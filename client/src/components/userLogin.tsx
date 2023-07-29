@@ -9,7 +9,7 @@ const LoginForm = () => {
 
     const handleLogin = () => {
         // Perform authentication logic here and dispatch actions if needed
-        navigate('/otp');
+        navigate('/dashboard');
     };
 
     return (
