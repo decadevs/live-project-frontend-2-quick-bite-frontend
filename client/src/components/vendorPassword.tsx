@@ -14,8 +14,8 @@ const VendorPassword = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-edf0eb"> 
-            <div className="w-1/3 p-8 bg-white rounded-xl shadow">
+        <div className="flex justify-center items-center h-screen bg-edf0eb px-4"> 
+            <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">Vendor Change Password </h2>
                 <div className="mb-4">
                     <label htmlFor="password" className="block font-medium">
