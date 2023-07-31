@@ -164,12 +164,8 @@ const SignupForm = () => {
                         Log in
                     </RouterLink>
                 </p>
-                <p className="text-black text-center mt-4">
-                    Registering as a Vendor?{' '}
-                    <RouterLink to="/vendor" className="text-blue-700 font-bold">
-                        Vendor
-                    </RouterLink>
-                </p>
+          
+        
             </div>
         </div>
     );
