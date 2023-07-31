@@ -70,7 +70,7 @@ const OtpVerification = () => {
   };
 
   return (
-    <div>
+    <div className="wrapper">
       <div className="container">
         <h2><strong>Verify Your Account</strong></h2>
         <p>
