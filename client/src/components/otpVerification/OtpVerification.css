@@ -6,7 +6,7 @@ html {
     font-size: 100%;
 }
 
-body {
+.wrapper {
     background-color: rgb(237,240,235);
     font-family: "Montserrat", sans-serif;
     height: 100vh;

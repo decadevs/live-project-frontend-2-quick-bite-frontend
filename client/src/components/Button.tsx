@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & object
-const Button = (props: Props) => {
+// type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {}
+const Button = () => {
   return (
-   <button {...props}/>
+   <button />
   )
 }
 
