@@ -8,19 +8,20 @@ const SignupForm = () => {
         email: '',
         password: '',
         gender: '',
-        otherGender: '', 
+        otherGender: '',
         DOB: '',
-        phoneNumber: ''
+        phoneNumber: '',
     });
     const [signupSuccess, setSignupSuccess] = useState(false);
     const [passwordValidation, setPasswordValidation] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // New state variable for password visibility
     const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setUser((prevUser) => ({
             ...prevUser,
-            [name]: value
+            [name]: value,
         }));
     };
 
@@ -53,8 +54,12 @@ const SignupForm = () => {
         setUser((prevUser) => ({
             ...prevUser,
             gender: selectedGender,
-            otherGender: selectedGender === 'other' ? '' : prevUser.otherGender 
+            otherGender: selectedGender === 'other' ? '' : prevUser.otherGender,
         }));
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
     };
 
     return (
@@ -89,20 +94,34 @@ const SignupForm = () => {
                         className="w-full p-2 border border-gray-300 rounded mb-4"
                         required
                     />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        value={user.password}
-                        onChange={handlePasswordChange}
-                        onFocus={() => setPasswordValidation(true)}
-                        onBlur={() => setPasswordValidation(false)}
-                        className="w-full p-2 border border-gray-300 rounded mb-4"
-                        required
-                    />
+                    <div className="relative mb-4">
+                        <input
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder="Password"
+                            name="password"
+                            value={user.password}
+                            onChange={handlePasswordChange}
+                            onFocus={() => setPasswordValidation(true)}
+                            onBlur={() => setPasswordValidation(false)}
+                            className="w-full p-2 border border-gray-300 rounded"
+                            required
+                        />
+                        {/* <div className="placeholder-text">Password</div> */}
+                        <span
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+                            onClick={handleTogglePasswordVisibility}
+                        >
+                            {showPassword ? (
+                                <i className="fas fa-eye-slash"></i>
+                            ) : (
+                                <i className="fas fa-eye"></i>
+                            )}
+                        </span>
+                    </div>
                     {passwordValidation && (
                         <p className="text-green-500 text-sm mb-2">
-                            Password should contain at least Include at least one uppercase letter, one lowercase letter, one special character ( @, $, !, %, *, ?) and one number.
+                            Password should contain at least one uppercase letter, one lowercase letter,
+                            one special character, and one number.
                         </p>
                     )}
                     <select
@@ -115,19 +134,7 @@ const SignupForm = () => {
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-                        <option value="other">Other</option>
                     </select>
-                    {user.gender === 'other' && (
-                        <input
-                            type="text"
-                            placeholder="Other Gender"
-                            name="otherGender"
-                            value={user.otherGender}
-                            onChange={handleChange}
-                            className="w-full p-2 border border-gray-300 rounded mb-4"
-                            required
-                        />
-                    )}
                     <input
                         type="text"
                         placeholder="Phone Number"

@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(''); // Add this line
+    const [passwordValidation, setPasswordValidation] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
 
@@ -12,6 +14,17 @@ const LoginForm = () => {
         navigate('/userdashboard');
     };
 
+    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const password = e.target.value;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        setPasswordValidation(passwordRegex.test(password));
+        setPassword(e.target.value); // Set the password state here
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+    
     return (
         <div className="flex justify-center items-center h-screen bg-edf0eb"> 
             <div className="w-1/3 p-8 bg-white rounded-xl shadow">
@@ -28,18 +41,41 @@ const LoginForm = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="password" className="block font-medium">
-                        Password
-                    </label>
+                <div className="relative mb-4">
                     <input
-                        type="password"
-                        id="password"
-                        className="w-full p-2 border rounded"
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Password"
+                        name="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
+                        onFocus={() => setPasswordValidation(true)}
+                        onBlur={() => setPasswordValidation(false)}
+                        className="w-full p-2 border border-gray-300 rounded"
+                        required
                     />
+                    <span
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={handleTogglePasswordVisibility}
+                    >
+                        {showPassword ? (
+                            <i className="fas fa-eye-slash"></i>
+                        ) : (
+                            <i className="fas fa-eye"></i>
+                        )}
+                    </span>
                 </div>
+                {passwordValidation && (
+                    <p className="text-green-500 text-sm mb-2">
+                        Password should contain at least one uppercase letter, one lowercase letter,
+                        one special character, and one number.
+                    </p>
+                )}
+                <p className="text-black text-center mt-4 mb-4">
+                    Login as a Vendor{' '}
+                    <RouterLink to="/vendorlogin" className="text-blue-700 font-bold">
+                        Vendor
+                    </RouterLink>
+                </p>
                 <button
                     className="w-full p-2 bg-deepBlue text-white rounded-xl"
                     onClick={handleLogin}
