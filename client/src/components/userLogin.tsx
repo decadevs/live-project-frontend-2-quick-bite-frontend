@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -40,12 +41,12 @@ const LoginForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button
+                <Link to="/food"><button
                     className="w-full p-2 bg-deepBlue text-white rounded-xl"
                     onClick={handleLogin}
                 >
                     Login
-                </button>
+                </button></Link>
             </div>
         </div>
     );

@@ -639,6 +639,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-anchor-link-smooth-scroll@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@types/react-anchor-link-smooth-scroll@npm:1.0.2"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 5e39e107ce721fe1b1e0663a7a1457357ee85c0f7e4d4c88248c5be7f25dedbc90955ca9804d83c5e4f6a1dd5a2ada3bd35f32f0125a3d9673401db0f1efb444
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.2.7":
   version: 18.2.7
   resolution: "@types/react-dom@npm:18.2.7"
@@ -1152,6 +1161,7 @@ __metadata:
   resolution: "client@workspace:."
   dependencies:
     "@types/react": "npm:^18.2.15"
+    "@types/react-anchor-link-smooth-scroll": "npm:^1.0.2"
     "@types/react-dom": "npm:^18.2.7"
     "@typescript-eslint/eslint-plugin": "npm:^6.0.0"
     "@typescript-eslint/parser": "npm:^6.0.0"
@@ -1164,6 +1174,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.3"
     postcss: "npm:^8.4.27"
     react: "npm:^18.2.0"
+    react-anchor-link-smooth-scroll: "npm:^1.0.12"
     react-dom: "npm:^18.2.0"
     react-router-dom: "npm:^6.14.2"
     tailwindcss: "npm:^3.3.3"
@@ -2786,6 +2797,13 @@ __metadata:
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
   checksum: 84624bee6c25c9d9776242ce0dcc3e15f703d897f4b7d982f32ef4d88c51048507a0999d9ff038ec46f65901655460b69240e414da1cebc2d723987ec81cbae8
+  languageName: node
+  linkType: hard
+
+"react-anchor-link-smooth-scroll@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "react-anchor-link-smooth-scroll@npm:1.0.12"
+  checksum: c63258c023fcb5c107c776ed8fe152c872883aabcac9dc712bd5bdb1c727f499873aed81721abd03a42a0981689a47ff30c0acb90e47fb26c78dac6be6c82a25
   languageName: node
   linkType: hard
 
