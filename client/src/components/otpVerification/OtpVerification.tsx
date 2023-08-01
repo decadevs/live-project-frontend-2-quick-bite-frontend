@@ -70,8 +70,8 @@ const OtpVerification = () => {
   };
 
   return (
-    <div>
-      <div className="container">
+    <div className="wrapper">
+      <div className="containerApp">
         <h2><strong>Verify Your Account</strong></h2>
         <p>
           Six digit code was sent to personal@gmail.com <br />
