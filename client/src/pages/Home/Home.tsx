@@ -3,7 +3,7 @@ import styles from '../../styles/homePage.module.css'
 import NewQuickbite from "../../components/NewQuickbite"
 import PopularFood from "../../components/PopularFood"
 import PopularDelivery from "../../components/PopularDelivery"
-import Footer from "../../components/Footer"
+
 
 const Home = () => {
   return (
@@ -14,7 +14,7 @@ const Home = () => {
    <NewQuickbite/>
    <PopularDelivery/>
    <PopularFood/>
-   <Footer/>       
+         
       </div>
     </>
    

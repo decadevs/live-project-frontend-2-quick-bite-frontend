@@ -42,10 +42,12 @@
 
 .logo {
     font-family: "Poppins";
-     font-size: 20px ;
-     font-weight: 800 ;
+    margin-top: -20px;
+     height:100px;
+     width:100px;
+    
      /* line-height: 52px ; */
-     color: rgb(24, 32, 74);
+  
      /* margin-left: -50px;
      margin-bottom: -100px; */
 }
@@ -60,6 +62,10 @@
    
     
 }  
+.SignUp:hover{
+    background-color: #1a512e9f;
+}
+
     
 
 .hamburger{
@@ -69,7 +75,7 @@
     transition: all, 0.25s;
     position: relative; 
     font-size: 40px;
-
+   color:#1A512E;
     
 }
 .mobileView{
@@ -165,9 +171,16 @@
    .navbar{
     width: 100%;
     padding: 0 0px;
+    
 
    }
+
    .hamburger{
-    padding-left: 60px;
+    margin-left: 60px;
+    color: #1A512E;
+  
+}
+.logo{
+    margin-left: -50px;
 }
 }

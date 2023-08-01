@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from "../styles/footer.module.css"
+import Logo from "../assets/LogoBite.svg"
 const Footer = () => {
   return (
      <div className={styles.footerContainer}>
         <div>
-        <p className={styles.footerLogo}>QUICK <br/> BITE</p>
+       <img src={Logo} alt="" className={styles.footerLogo}/>
         </div>
    
     <div className={styles.footerLeft}>

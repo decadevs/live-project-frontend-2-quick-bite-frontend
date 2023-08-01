@@ -27,7 +27,7 @@
     font-size: 32px;
     font-weight: 700;
     line-Height: 48px;
-    color: rgb(24, 32, 74)
+    color: #1A512E
 }
 .hide{
     display: none;
@@ -72,7 +72,7 @@
     
 }
 .Card:hover{
-    background-color:rgba(32, 32, 185, 0.2);
+    background-color: #836868;
          ;
 }
 .cardFooter{

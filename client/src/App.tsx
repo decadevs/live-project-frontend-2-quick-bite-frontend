@@ -9,6 +9,7 @@ import VendorLoginForm from "./components/vendorLogin"
 import VendorRegNO from "./components/vendorVerifyForm"
 import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -16,8 +17,10 @@ function App() {
   return (
     <>
      <main>
+
       <Routes>
       <Route path='/' element = {<Home/>}></Route>
+    
       <Route path='login' element = {<SignIn/>}></Route>     
       <Route path='/register' element = {<SignUp/>}></Route>
       <Route path='/vendor' element = {<VendorSignupForm/>}></Route>
@@ -28,6 +31,7 @@ function App() {
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
      </Routes>
+     <Footer/>
      </main>
     </>
   )

@@ -76,9 +76,12 @@ const NewQuickbite = () => {
              </div>
             </div></Link>
 
+            
+
         </div>
+        
         </div>
-   
+       
   </div>
   )
 }
