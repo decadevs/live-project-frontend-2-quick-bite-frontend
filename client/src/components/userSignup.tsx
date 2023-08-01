@@ -106,7 +106,6 @@ const SignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded"
                             required
                         />
-                        {/* <div className="placeholder-text">Password</div> */}
                         <span
                             className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
                             onClick={handleTogglePasswordVisibility}
