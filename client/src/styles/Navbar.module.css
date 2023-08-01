@@ -18,6 +18,9 @@
 
 
   }
+  .MobileImg{
+    width: 100%;
+  }
   .overlay{
     position: absolute;
     top:0;
@@ -79,6 +82,9 @@
     position: absolute;
     bottom:0;
     z-index: -1;
+    @media (max-width:480px) {
+         display: none;
+    }
 }
 .content{
     display: flex;
@@ -170,6 +176,7 @@
    }
    .hamburger{
     padding-left: 60px;
+    color: #fff;
    }
    .content{
     display: flex;

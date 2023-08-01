@@ -3,7 +3,7 @@ import styles from "../styles/header.module.css"
 import { Link } from 'react-router-dom'
 import ProfileImg from "../assets/profile.png"
 const Header = () => {
-    const[collapse, setCollapse] = useState(false)
+    const[collapse, setCollapse] = useState(true)
     
     const toggleButton = ()=> setCollapse(!collapse)
   return (
