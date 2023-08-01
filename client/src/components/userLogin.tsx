@@ -73,7 +73,7 @@ const LoginForm = () => {
                 )}
                 <p className="text-black text-center mt-4 mb-4">
                     Login as a Vendor{' '}
-                    <RouterLink to="/vendorlogin" className="text-blue-700 font-bold">
+                    <RouterLink to="/vendors" className="text-blue-700 font-bold">
                         Vendor
                     </RouterLink>
                 </p>
