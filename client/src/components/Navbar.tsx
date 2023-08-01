@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
 import VideoImg from "../assets/Hero-video.mp4"
+import MobileImg from "../assets/mobilefrontpg-sm.jpg"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom"
 
@@ -18,6 +19,7 @@ export const Navbar = () => {
     <div className={styles.hero}> 
 
    <video src={VideoImg}autoPlay loop muted plays-inline  className={styles.backVideo}/>
+   <img src={MobileImg} alt="" className={`${styles.MobileImg} md:hidden lg:hiddeen xlg:hidden`} />
        <nav className= {`${styles.navbar}  container mx-auto px-10 `} >
         <div className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}>
          <Link to='/'><div className={`${styles.logoContainer}`}>
@@ -60,9 +62,9 @@ export const Navbar = () => {
         
        <div className={styles.selectBtnContainer}>
         
-        <AnchorLink href="#newQUICK"><button className={styles.selectBtn}>open now</button> </AnchorLink> 
-     <AnchorLink href="#pVendor"> <button className={styles.selectBtn1}>popular vendors</button></AnchorLink> 
-     <AnchorLink href="#pFood"><button className={styles.selectBtn1}>popular foods</button></AnchorLink>
+        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn}  hover:bg-lightBlue`}>open now</button> </AnchorLink> 
+     <AnchorLink href="#pVendor"> <button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular vendors</button></AnchorLink> 
+     <AnchorLink href="#pFood"><button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular foods</button></AnchorLink>
         
        </div>
 

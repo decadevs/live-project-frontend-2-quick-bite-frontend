@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-
+import Header from './Header';
 const VendorSignupForm = () => {
     const [vendor, setVendor] = useState({
         nameOfOwner: '',
@@ -40,7 +40,9 @@ const VendorSignupForm = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen">
+        <>
+        <Header/>
+          <div className="flex justify-center items-center h-screen">
             <div className="max-w-sm mx-auto">
                 <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Sign up</h1>
                 <form onSubmit={handleSubmit} className="mt-4">
@@ -111,6 +113,8 @@ const VendorSignupForm = () => {
                
             </div>
         </div>
+        </>
+      
     );
 };
 
