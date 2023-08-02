@@ -10,6 +10,7 @@ import VendorRegNO from "./components/vendorVerifyForm"
 import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
+import VendorsPage from "./pages/VendorsPage"
 
 function App() {
 
@@ -17,18 +18,20 @@ function App() {
   return (
     <>
       <main>
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='login' element={<SignIn />}></Route>
-          <Route path='/register' element={<SignUp />}></Route>
-          <Route path='/' element={<VendorPassword />}></Route>
-          <Route path='/' element={<VendorLoginForm/>}></Route>
-          <Route path='/' element={<VendorSignupForm/>}></Route>
-          <Route path='/' element={<VendorRegNO />}></Route>
-          <Route path='/' element={<SingleVendor/>}></Route>
-          <Route path='/' element={<FoodPage />}></Route>
-          <Route path='/otp' element={<OtpVerificationPage />}></Route>
-        </Routes>
+      <Routes>
+      <Route path='/' element = {<Home/>}></Route>
+    
+      <Route path='login' element = {<SignIn/>}></Route>     
+      <Route path='/register' element = {<SignUp/>}></Route>
+      <Route path='/vendor' element = {<VendorSignupForm/>}></Route>
+      <Route path='/vendorlogin' element = {<VendorLoginForm/>}></Route> 
+      <Route path='/verifyVendor' element = {<VendorRegNO/>}></Route>   
+      <Route path='/vendorPassword' element = {<VendorPassword/>}></Route> 
+      <Route path='/:id' element = {<SingleVendor/>}></Route> 
+      <Route path='/food' element = {<FoodPage/>}></Route> 
+      <Route path='/otp' element={<OtpVerificationPage />}></Route>
+      <Route path='/vendorspage' element={<VendorsPage />}></Route>
+     </Routes>
         <Footer/>
       </main>
 
