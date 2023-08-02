@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import {Link as RouterLink, useNavigate } from 'react-router-dom';
 import Header from './Header';
@@ -18,7 +19,7 @@ const VendorRegNO = () => {
            <div className="flex justify-center items-center h-screen bg-edf0eb"> 
            
             <div className="w-1/3 p-8 bg-white rounded-xl shadow">
-                <h2 className="text-2xl font-bold mb-4">Vendor Registration Number</h2>
+                <h2 className="text-2xl font-bold mb-4">Vendor Verification Page</h2>
                 <div className="mb-4">
                     {/* <label htmlFor="regNo" className="block font-medium">
                     RegNo
@@ -44,7 +45,7 @@ const VendorRegNO = () => {
 
                 <p className="text-black text-center mt-4">
                     Not a registered Vendor?{' '}
-                    <RouterLink to="/register" className="text-blue-700 font-bold">
+                    <RouterLink to="/register" className="text-green-800 font-bold">
                       Click here to Sign up as a User
                     </RouterLink>
                 </p>
