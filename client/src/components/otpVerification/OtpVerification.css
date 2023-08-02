@@ -18,7 +18,7 @@ html {
 }
 
 .containerApp {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255);
     border-radius: 1rem;
     padding: 3rem;
     max-width: 100rem;
@@ -77,12 +77,12 @@ html {
 
 .btn-primary {
     color: #fff;
-    background-color: rgb(24,32,74);
-    border-color: rgb(24,32,74);
+    background-color: rgb(37,81,46);
+    border-color: rgb(37,81,46);
 }
 
 .resend {
-    color: blue;
+    color: rgb(37,81,46);
 }
 
 /* ------------------- Media Queries ------------------- */

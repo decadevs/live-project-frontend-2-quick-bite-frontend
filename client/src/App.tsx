@@ -13,27 +13,23 @@ import Footer from "./components/Footer"
 
 function App() {
 
-
   return (
     <>
-     <main>
-
-      <Routes>
-      <Route path='/' element = {<Home/>}></Route>
-    
-      <Route path='login' element = {<SignIn/>}></Route>     
-      <Route path='/register' element = {<SignUp/>}></Route>
-      <Route path='/vendor' element = {<VendorSignupForm/>}></Route>
-      <Route path='/vendorlogin' element = {<VendorLoginForm/>}></Route> 
-      <Route path='/verifyVendor' element = {<VendorRegNO/>}></Route>   
-      <Route path='/vendorPassword' element = {<VendorPassword/>}></Route> 
-      <Route path='/:id' element = {<SingleVendor/>}></Route> 
-      <Route path='/food' element = {<FoodPage/>}></Route> 
-      <Route path='/otp' element={<OtpVerificationPage />}></Route>
-     </Routes>
-     <Footer/>
-     </main>
-
+      <main>
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='login' element={<SignIn />}></Route>
+          <Route path='/register' element={<SignUp />}></Route>
+          <Route path='/vendor' element = {<VendorSignupForm/>}></Route>
+          <Route path='/vendorlogin' element = {<VendorLoginForm/>}></Route> 
+          <Route path='/verifyVendor' element = {<VendorRegNO/>}></Route>   
+          <Route path='/vendorPassword' element = {<VendorPassword/>}></Route> 
+          <Route path='/:id' element = {<SingleVendor/>}></Route> 
+          <Route path='/food' element = {<FoodPage/>}></Route> 
+          <Route path='/otp' element={<OtpVerificationPage />}></Route>
+        </Routes>
+        <Footer/>
+        </main>
 
     </>
   )
