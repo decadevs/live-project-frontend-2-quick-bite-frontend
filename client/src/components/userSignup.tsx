@@ -14,7 +14,7 @@ const SignupForm = () => {
     });
     const [signupSuccess, setSignupSuccess] = useState(false);
     const [passwordValidation, setPasswordValidation] = useState(false);
-    const [showPassword, setShowPassword] = useState(false); // New state variable for password visibility
+    const [showPassword, setShowPassword] = useState(false); 
     const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,6 @@ const SignupForm = () => {
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         const password = e.target.value;
-        // Password validation: at least one uppercase letter, one lowercase letter, one special character, and one number
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         setPasswordValidation(passwordRegex.test(password));
         handleChange(e);
@@ -37,10 +36,9 @@ const SignupForm = () => {
         e.preventDefault();
 
         try {
-            // Simulate saving user data to the MongoDB database
+            // Simulate saving user data to the postgres database
             console.log(user);
             setSignupSuccess(true);
-            // Delay navigation to login page for better user experience
             setTimeout(() => {
                 navigate('/otp');
             }, 2000);
@@ -63,9 +61,9 @@ const SignupForm = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen px-4">
+        <div className="flex justify-center items-center h-screen px-4 mt-12">
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-                <h1 className="text-black text-3xl font-bold text-center mb-4">Sign up</h1>
+                <h1 className="text-black text-3xl font-bold text-center mb-4">User Sign Up</h1>
                 <form onSubmit={handleSubmit} className="mt-4">
                     <input
                         type="text"
@@ -166,8 +164,14 @@ const SignupForm = () => {
                 )}
                 <p className="text-black text-center mt-4">
                     Already have an account?{' '}
-                    <RouterLink to="/login" className="text-blue-700 font-bold">
+                    <RouterLink to="/login" className="text-deepBlue font-bold">
                         Log in
+                    </RouterLink>
+                </p>
+                <p className="text-black text-center mt-4">
+                    Register as a Vendor{' '}
+                    <RouterLink to="/vendorlogin" className="text-deepBlue font-bold">
+                        Click Here
                     </RouterLink>
                 </p>
           
