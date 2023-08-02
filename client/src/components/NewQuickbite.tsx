@@ -81,7 +81,7 @@ const NewQuickbite = () => {
         </div>
         
         </div>
-       
+       <button className={`${styles.more} p-4 bg-lightBlue rounded-lg mt-7 text-white` }>see more</button>
   </div>
   )
 }
