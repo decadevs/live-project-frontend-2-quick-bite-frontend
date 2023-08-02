@@ -10,6 +10,7 @@ import VendorRegNO from "./components/vendorVerifyForm"
 import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
+import VendorsPage from "./pages/VendorsPage"
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
       <Route path='/:id' element = {<SingleVendor/>}></Route> 
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
+      <Route path='/vendors' element={<VendorsPage />}></Route>
      </Routes>
      <Footer/>
      </main>
