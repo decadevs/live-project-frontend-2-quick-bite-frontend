@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
-import VideoImg from "../assets/Hero-video.mp4"
+import VideoImg from "../assets/Hero-videos.mp4"
 import MobileImg from "../assets/mobilefrontpg-sm.jpg"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom"

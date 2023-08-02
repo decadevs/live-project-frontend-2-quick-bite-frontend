@@ -1,10 +1,11 @@
 import Cardlist from "../components/Cardlist"
  import '../styles/index.css'
-
+import Header from "../components/Header"
 const VendorsPage = () => {
   return (
     <div>
-      <h1 className="vendor-title">All vendors</h1>
+      <Header/>
+      
       <Cardlist/>
     </div>
   )

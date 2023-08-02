@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./OtpVerification.css";
+import {toast, ToastContainer} from "react-toastify"
+import "react-toastify/ReactToastify.css"
 
 const OtpVerification = () => {
   const codeInputsRef = useRef<HTMLInputElement[]>([]);
@@ -65,7 +67,8 @@ const OtpVerification = () => {
       // You can redirect the user to the next page or show a success message
     } else {
       // OTP verification failed, you can show an error message to the user
-      alert("Invalid OTP, please try again.");
+      // alert("Invalid OTP, please try again.");
+      toast.error("please enter valid OTP", {position: toast.POSITION.TOP_CENTER})
     }
   };
 
@@ -150,6 +153,7 @@ const OtpVerification = () => {
           )}
         </small>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
