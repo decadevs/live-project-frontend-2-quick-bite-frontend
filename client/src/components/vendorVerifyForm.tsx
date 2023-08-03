@@ -21,14 +21,10 @@ const VendorRegNO = () => {
             <div className="w-1/3 p-8 bg-white rounded-xl shadow">
                 <h2 className="text-2xl font-bold mb-4">Vendor Verification Page</h2>
                 <div className="mb-4">
-                    {/* <label htmlFor="regNo" className="block font-medium">
-                    RegNo
-                    </label> */}
                     <input
                         type="text"
                         id="regNo"
                         placeholder="Enter Reg.No"
-
                         className="w-full p-2 border rounded"
                         value={regNo}
                         onChange={(e) => setRegNo(e.target.value)}
