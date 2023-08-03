@@ -23,57 +23,57 @@ const PopularFood = () => {
         <div className={show ? styles.hide : ""}>
         <div className={styles.cardContainer}>
         <Link to="/4"> <div className={styles.Card}>
-             <div className="cardHead">
-                <img src={FoodOne} alt="" />
+             <div className={styles.cardHead}>
+                <img src={FoodOne} alt="" className="h-60 w-90" />
              </div>
-             <div className="cardBody">
-                <h2>Bruncherie</h2>
-                <p>Breakfast , lunch, desserts</p>
+             <div className={styles.cardBody}>
+                <h2 className={styles.cardheading}>Bruncherie</h2>
+                <p className={styles.cardText}>Breakfast , lunch, desserts</p>
              </div>
+             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
              <div className={styles.cardFooter}>
-                <span>
-                    <img src="" alt="" />
-                    #3.26
+                <span className={styles.amount}>
+                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                 </span>
-                <span>####</span>
+                <span className={styles.totalAmount}>####</span>
              </div>
             </div></Link>
             <Link to="/4"> <div className={styles.Card}>
-             <div className="cardHead">
-                <img src={FoodOne} alt="" />
+             <div className={styles.cardHead}>
+                <img src={FoodOne} alt="" className="h-60 w-90" />
              </div>
-             <div className="cardBody">
-                <h2>Bruncherie</h2>
-                <p>Breakfast , lunch, desserts</p>
+             <div className={styles.cardBody}>
+                <h2 className={styles.cardheading}>Bruncherie</h2>
+                <p className={styles.cardText}>Breakfast , lunch, desserts</p>
              </div>
+             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
              <div className={styles.cardFooter}>
-                <span>
-                    <img src="" alt="" />
-                    #3.26
+                <span className={styles.amount}>
+                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                 </span>
-                <span>####</span>
+                <span className={styles.totalAmount}>####</span>
              </div>
             </div></Link>
             <Link to="/4"> <div className={styles.Card}>
-             <div className="cardHead">
-                <img src={FoodOne} alt="" />
+             <div className={styles.cardHead}>
+                <img src={FoodOne} alt="" className="h-60 w-90" />
              </div>
-             <div className="cardBody">
-                <h2>Bruncherie</h2>
-                <p>Breakfast , lunch, desserts</p>
+             <div className={styles.cardBody}>
+                <h2 className={styles.cardheading}>Bruncherie</h2>
+                <p className={styles.cardText}>Breakfast , lunch, desserts</p>
              </div>
+             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
              <div className={styles.cardFooter}>
-                <span>
-                    <img src="" alt="" />
-                    #3.26
+                <span className={styles.amount}>
+                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                 </span>
-                <span>####</span>
+                <span className={styles.totalAmount}>####</span>
              </div>
             </div></Link>
 
         </div>
         <div className={styles.btnContainer}>
-        <Link to="/food"><button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+        <Link to="/food"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
         </div>
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`}></div>
         </div>

@@ -73,6 +73,23 @@
         
      }
 }
+.cardBody{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    
+}
+.cardheading{
+    font-size: 30px;
+}
+.cardText{
+   color: #836868; 
+}
+.amount{
+    color: #836868;
+}
+.totalAmount{
+    color: #836868;
+}
 .Card:hover{
     background-color:#836868;
          ;

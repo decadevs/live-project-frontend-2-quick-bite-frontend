@@ -81,6 +81,23 @@
         
      }
 }
+.cardBody{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    
+}
+.cardheading{
+    font-size: 30px;
+}
+.cardText{
+   color: #836868; 
+}
+.amount{
+    color: #836868;
+}
+.totalAmount{
+    color: #836868;
+}
 .Card:hover{
     /* background-color:#836868; */
    
@@ -100,6 +117,11 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+/* .more{
+    @media (max-width:480px) {
+       width: 100%; 
+    }
+} */
 .more:hover{
     background: #1a512eb3;
 }

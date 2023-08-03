@@ -1,45 +1,54 @@
-
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState(''); // Add this line
+    const [password, setPassword] = useState('');
     const [passwordValidation, setPasswordValidation] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [formValid, setFormValid] = useState(false); 
 
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        // Perform authentication logic here and dispatch actions if needed
-        navigate('/userdashboard');
+        if (formValid && email.trim() !== '' && password.trim() !== '') {
+            navigate('/food');
+        }
     };
 
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         const password = e.target.value;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
         setPasswordValidation(passwordRegex.test(password));
-        setPassword(e.target.value); // Set the password state here
+        setPassword(e.target.value);
+        setFormValid(validateForm()); 
+    };
+
+    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+        setFormValid(validateForm()); 
+    };
+
+    const validateForm = () => {
+        return email.trim() !== '' && password.trim() !== '' && passwordValidation;
     };
 
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
-    
+
     return (
-        <div className="flex justify-center items-center h-screen bg-edf0eb px-4"> 
+        <div className="flex justify-center items-center h-screen bg-edf0eb px-4">
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">User Login</h2>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block font-medium">
-                        Email
-                    </label>
                     <input
+                        placeholder='Email'
                         type="text"
                         id="email"
                         className="w-full p-2 border rounded"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleEmailChange}
                     />
                 </div>
                 <div className="relative mb-4">
@@ -58,11 +67,7 @@ const LoginForm = () => {
                         className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
                         onClick={handleTogglePasswordVisibility}
                     >
-                        {showPassword ? (
-                            <i className="fas fa-eye-slash"></i>
-                        ) : (
-                            <i className="fas fa-eye"></i>
-                        )}
+                        {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
                     </span>
                 </div>
                 {passwordValidation && (
@@ -73,16 +78,16 @@ const LoginForm = () => {
                 )}
                 <p className="text-black text-center mt-4 mb-4">
                     Login as a Vendor{' '}
-                    <RouterLink to="/vendors" className="text-blue-700 font-bold">
-                        Vendor
+                    <RouterLink to="/vendorlogin" className="text-deepBlue font-bold">
+                        Here
                     </RouterLink>
                 </p>
                 <button
-                    className="w-full p-2 bg-deepBlue text-white rounded-xl"
+                    className={`w-full p-2 bg-deepBlue text-white rounded-xl ${formValid ? '' : 'opacity-50 cursor-not-allowed'}`}
                     onClick={handleLogin}
+                    disabled={!formValid}
                 >
                     Login
-                    
                 </button>
             </div>
         </div>

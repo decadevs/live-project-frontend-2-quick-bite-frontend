@@ -6,7 +6,7 @@ const Cards = () => {
   
     return (
       <div className='wrapper'>
-        
+       
            <div className='card-container'>
         <div className="image-container">
               <img src= {Image} alt="" />

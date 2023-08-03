@@ -77,6 +77,7 @@
 
 .Card{  
     width: 300px;
+    /* height: 450px; */
     background: #D9D9D9;
     color: #1A512E;
     /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
@@ -86,11 +87,29 @@
     animation: ease-in; 
     border-radius: 20px;
     @media (max-width:480px) {
-        margin-bottom: 20px;
-       margin: 0 auto;
+        /* height: 300px; */
+        margin-bottom: 50px;
+       /* margin: 0 auto; */
          
       }
     
+}
+.cardBody{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    
+}
+.cardheading{
+    font-size: 30px;
+}
+.cardText{
+   color: #836868; 
+}
+.amount{
+    color: #836868;
+}
+.totalAmount{
+    color: #836868;
 }
 
 .Card:hover{
@@ -103,7 +122,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 20px;
 }
-.more:hover{
+/* .more:hover{
     background:#8368689c ;
-}
+} */
