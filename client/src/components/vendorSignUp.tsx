@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import Header from './Header';
+// import Header from './Header';
 const VendorSignupForm = () => {
     const [vendor, setVendor] = useState({
         nameOfOwner: '',
@@ -55,7 +55,7 @@ const VendorSignupForm = () => {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div className="flex justify-center items-center h-screen px-4">
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Sign up</h1>

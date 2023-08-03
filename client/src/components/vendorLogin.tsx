@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import Header from './Header';
+// import Header from './Header';
 
 const VendorLoginForm = () => {
     const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const VendorLoginForm = () => {
 
     return (
         <>
-        <Header/>
+        {/* <Header/> */}
          <div className="flex justify-center items-center h-screen bg-edf0eb px-4"> 
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">Vendor Login</h2>
