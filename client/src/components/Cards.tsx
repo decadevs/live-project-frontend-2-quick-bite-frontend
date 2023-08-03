@@ -1,9 +1,12 @@
 import './Cards.css'
 import Image from '../assets/Pulled Pork.jpeg'
 
-const Cards:React.FC = () => {
+
+const Cards = () => {
+  
     return (
       <div className='wrapper'>
+       
            <div className='card-container'>
         <div className="image-container">
               <img src= {Image} alt="" />

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
-import VideoImg from "../assets/Hero-video.mp4"
+import VideoImg from "../assets/Hero-videos.mp4"
 import MobileImg from "../assets/mobilefrontpg-sm.jpg"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom"
+import Logo from "../assets/LogoBite.svg"
 
 export const Navbar = () => {
     const[collapse, setCollapse] = useState(false)
@@ -19,11 +20,13 @@ export const Navbar = () => {
     <div className={styles.hero}> 
 
    <video src={VideoImg}autoPlay loop muted plays-inline  className={styles.backVideo}/>
-   <img src={MobileImg} alt="" className={`${styles.MobileImg} md:hidden lg:hiddeen xlg:hidden`} />
+   <img src={MobileImg} alt="" className={`${styles.MobileImg} md:hidden lg:hiddeen xl:hidden`} />
        <nav className= {`${styles.navbar}  container mx-auto px-10 `} >
         <div className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}>
+        <img src={Logo} alt=""className= {`${styles.logo} pr-3 `} />
          <Link to='/'><div className={`${styles.logoContainer}`}>
-            <h1 className= {`${styles.logo} pr-3 `}>QUICK <br/> BITE</h1>
+          
+            
          </div>
          </Link>
          <div className="hidden md:flex space-x-6">
@@ -62,7 +65,7 @@ export const Navbar = () => {
         
        <div className={styles.selectBtnContainer}>
         
-        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn}  hover:bg-lightBlue`}>open now</button> </AnchorLink> 
+        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn} hover:bg-deepBlue hover:text-white `}>open now</button> </AnchorLink> 
      <AnchorLink href="#pVendor"> <button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular vendors</button></AnchorLink> 
      <AnchorLink href="#pFood"><button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular foods</button></AnchorLink>
         

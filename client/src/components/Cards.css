@@ -1,13 +1,14 @@
-body{
+/* body{
     width: 100%;
 
-}
+} */
 
 .wrapper{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 20px;
+    margin: 100px 20px;
+
 
 }
 .card-container{
@@ -20,6 +21,7 @@ body{
     transition: 0.3s;
     animation: ease-in; 
     margin: 20px 10px 20px 30px ;
+    border-radius: 30px;
    
 
 }
@@ -85,4 +87,16 @@ a{
     text-decoration: none;
     font-weight: bold;
 
+}
+
+.title-restaurants{
+    margin-top: 150px;
+    text-align: center;
+    font-size: 40px;
+    color: #1A512E;
+    font-weight: 700;
+}
+
+button a {
+    color: #1A512E;
 }

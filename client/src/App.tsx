@@ -17,7 +17,8 @@ function App() {
 
   return (
     <>
-      <main>
+     <main>
+
       <Routes>
       <Route path='/' element = {<Home/>}></Route>
     
@@ -30,10 +31,11 @@ function App() {
       <Route path='/:id' element = {<SingleVendor/>}></Route> 
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
-      <Route path='/vendorspage' element={<VendorsPage />}></Route>
+      <Route path='/vendors' element={<VendorsPage />}></Route>
      </Routes>
-        <Footer/>
-      </main>
+     <Footer/>
+     </main>
+
 
     </>
   )

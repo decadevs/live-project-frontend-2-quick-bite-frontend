@@ -27,6 +27,7 @@ const NewQuickbite = () => {
         <div className={ ` ${styles.cardContainer}`}>
            <Link to="/4"> <div className={styles.Card}>
            {/* <button className={styles.featurebtn}>Features</button> */}
+       
              <div className="cardHead">
                 <img src={FoodOne} alt="" />
              </div>
@@ -76,9 +77,15 @@ const NewQuickbite = () => {
              </div>
             </div></Link>
 
+            
+
         </div>
+        {/* <div className={styles.btnContainer}>
+        <button className={`${styles.more} p-4 bg-lightBlue rounded-lg mt-7 text-white` }>see more</button>
+        </div> */}
         </div>
-   
+      
+      
   </div>
   )
 }
