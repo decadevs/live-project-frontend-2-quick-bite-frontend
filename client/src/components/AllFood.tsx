@@ -14,14 +14,14 @@ const AllFood = () => {
     }
   return (
     <div id="pFood" className={styles.popular}>
-    <div className="divider  w-70% md:min-w-full h-0.5 bg-deepBlue" ></div>
+    <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
     <div className={styles.popularFlex}>
         <h2 className={styles.popularText}>Foods</h2>
         <div onClick={handleClick} style={{cursor: "pointer"}}>
          {show ? <i className="fa-solid fa-chevron-up" style={{fontSize:"20px"}}></i> :<img src={Dropdown} alt="" className={styles.dropdown} /> }
          </div >
         </div>
-        <div className="divider  w-70% md:min-w-full h-0.5 bg-deepBlue" ></div>
+        <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
         <div className={show ? styles.hide : ""}>
         <div className={styles.cardContainer}>
         <Link to="/4"> <div className={styles.Card}>
@@ -71,6 +71,7 @@ const AllFood = () => {
                 </span>
                 <span>$$$$</span>
              </div>
+      
             </div></Link>
 
         </div>

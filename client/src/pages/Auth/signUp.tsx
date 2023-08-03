@@ -1,10 +1,10 @@
 import SignupForm from '../../components/userSignup'
-import Header from '../../components/Header'
+// import Header from '../../components/Header'
 
 const signUp = () => {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
       <SignupForm />
     </div>
   )

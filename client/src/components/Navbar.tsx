@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
-import VideoImg from "../assets/Hero-videos.mp4"
-import MobileImg from "../assets/mobilefrontpg-sm.jpg"
+import VideoImg from "../assets/compressable.mp4"
+import MobileImg from "../assets/newmobileHero1.jpg"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom"
-import Logo from "../assets/LogoBite.svg"
+import Logo from "../assets/LogoIcon.svg"
 
 export const Navbar = () => {
     const[collapse, setCollapse] = useState(false)
@@ -20,7 +20,7 @@ export const Navbar = () => {
     <div className={styles.hero}> 
 
    <video src={VideoImg}autoPlay loop muted plays-inline  className={styles.backVideo}/>
-   <img src={MobileImg} alt="" className={`${styles.MobileImg} md:hidden lg:hiddeen xl:hidden`} />
+   <img src={MobileImg} alt="" className={`${styles.MobileImg} lg:hiddeen xl:hidden`} />
        <nav className= {`${styles.navbar}  container mx-auto px-10 `} >
         <div className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}>
         <img src={Logo} alt=""className= {`${styles.logo} pr-3 `} />
@@ -65,9 +65,9 @@ export const Navbar = () => {
         
        <div className={styles.selectBtnContainer}>
         
-        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn} hover:bg-deepBlue hover:text-white `}>open now</button> </AnchorLink> 
-     <AnchorLink href="#pVendor"> <button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular vendors</button></AnchorLink> 
-     <AnchorLink href="#pFood"><button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>popular foods</button></AnchorLink>
+        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn} hover:bg-deepBlue hover:text-white `}>Open Now</button> </AnchorLink> 
+     <AnchorLink href="#pVendor"> <button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>Popular Resturants</button></AnchorLink> 
+     <AnchorLink href="#pFood"><button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>Popular Foods</button></AnchorLink>
         
        </div>
 

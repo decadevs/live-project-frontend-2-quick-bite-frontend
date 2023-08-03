@@ -1,9 +1,9 @@
 import VendorLoginForm from "../../components/vendorLogin"
-import Header from "../../components/Header"
+// import Header from "../../components/Header"
 const vendorSignIn = () => {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
       <VendorLoginForm/>
     </div>
   )

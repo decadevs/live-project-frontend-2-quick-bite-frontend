@@ -14,7 +14,7 @@ const NewQuickbite = () => {
  
   return (
   <div id='newQUICK' className={styles.newQuick}>
-    <div className="divider  w-70% md:min-w-full h-0.5 bg-deepBlue" ></div>
+ <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
     <div className={styles.newQuickFlex}>
         <h2 className={styles.newQuickText}>New on QuickBite</h2>
          <div onClick={handleClick} style={{cursor: "pointer"}}>
@@ -22,7 +22,7 @@ const NewQuickbite = () => {
          </div >
         
         </div>
-        <div className="divider  w-70% md:min-w-full h-0.5 bg-deepBlue" ></div>
+        <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
         <div className={`${show ? styles.hide : ""}`}>
         <div className={ ` ${styles.cardContainer}`}>
            <Link to="/4"> <div className={styles.Card}>
@@ -39,9 +39,9 @@ const NewQuickbite = () => {
              <div className={styles.cardFooter}>
                 <span>
                     <img src="" alt="" />
-                    $3.26
+                    #3.26
                 </span>
-                <span>$$$$</span>
+                <span>####</span>
              </div>
             </div></Link>
             <Link to="/4"> <div className={styles.Card}>
@@ -55,9 +55,9 @@ const NewQuickbite = () => {
              <div className={styles.cardFooter}>
                 <span>
                     <img src="" alt="" />
-                    $3.26
+                    #3.26
                 </span>
-                <span>$$$$</span>
+                <span>####</span>
              </div>
             </div></Link>
             <Link to="/4"> <div className={styles.Card}>
@@ -71,9 +71,9 @@ const NewQuickbite = () => {
              <div className={styles.cardFooter}>
                 <span>
                     <img src="" alt="" />
-                    $3.26
+                    #3.26
                 </span>
-                <span>$$$$</span>
+                <span>####</span>
              </div>
             </div></Link>
 

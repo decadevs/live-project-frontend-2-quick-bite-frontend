@@ -2,13 +2,16 @@
     margin-top: 50px;
     width: 80%;
     margin-inline: auto;
+    padding-left: 50px;
     @media (max-width:480px) {
-     
-         
-      }
+        padding-left: 0; 
+     }
 
 }
-
+.divider{
+    width: 100%;
+    max-width: 1080px;
+}
 
 .newQuickFlex {
     display: flex;
@@ -19,8 +22,13 @@
 }
 
 .dropdown {
+
     width: 20px;
     height: 20px;
+    margin-right: 70px;
+    @media (max-width:480px) {
+       margin-right: 0;; 
+    }
 }
 
 .newQuickText {
@@ -38,8 +46,10 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(auto, 1fr);
     width: 100%;
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 60px;
     position: relative;
+    gap: 80px;
 
     @media (max-width:1200px) {
      display: grid;
