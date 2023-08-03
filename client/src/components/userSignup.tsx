@@ -47,15 +47,6 @@ const SignupForm = () => {
         }
     };
 
-    const handleGenderChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        const selectedGender = e.target.value;
-        setUser((prevUser) => ({
-            ...prevUser,
-            gender: selectedGender,
-            otherGender: selectedGender === 'other' ? '' : prevUser.otherGender,
-        }));
-    };
-
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
@@ -121,31 +112,11 @@ const SignupForm = () => {
                             one special character, and one number.
                         </p>
                     )}
-                    <select
-                        className="w-full p-2 border border-gray-300 rounded mb-4"
-                        name="gender"
-                        value={user.gender}
-                        onChange={handleGenderChange}
-                        required
-                    >
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
                     <input
                         type="text"
                         placeholder="Phone Number"
                         name="phoneNumber"
                         value={user.phoneNumber}
-                        onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded mb-4"
-                        required
-                    />
-                    <input
-                        type="date"
-                        placeholder="Date of Birth"
-                        name="DOB"
-                        value={user.DOB}
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded mb-4"
                         required
@@ -170,7 +141,7 @@ const SignupForm = () => {
                 </p>
                 <p className="text-black text-center mt-4">
                     Register as a Vendor{' '}
-                    <RouterLink to="/vendorlogin" className="text-deepBlue font-bold">
+                    <RouterLink to="/verifyVendor" className="text-deepBlue font-bold">
                         Click Here
                     </RouterLink>
                 </p>
