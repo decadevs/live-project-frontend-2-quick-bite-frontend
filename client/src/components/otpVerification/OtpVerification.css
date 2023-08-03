@@ -77,12 +77,12 @@ body {
 
 .btn-primary {
     color: #fff;
-    background-color: rgb(24,32,74);
-    border-color: rgb(24,32,74);
+    background-color: #1A512E;
+    border-color: #1A512E;
 }
 
 .resend {
-    color: blue;
+    color: #1A512E;
 }
 
 /* ------------------- Media Queries ------------------- */
