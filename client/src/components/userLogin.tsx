@@ -1,48 +1,91 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordValidation, setPasswordValidation] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+    const [formValid, setFormValid] = useState(false); 
 
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        // Perform authentication logic here and dispatch actions if needed
-        navigate('/otp');
+        if (formValid && email.trim() !== '' && password.trim() !== '') {
+            navigate('/food');
+        }
+    };
+
+    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const password = e.target.value;
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        setPasswordValidation(passwordRegex.test(password));
+        setPassword(e.target.value);
+        setFormValid(validateForm()); 
+    };
+
+    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
+        setFormValid(validateForm()); 
+    };
+
+    const validateForm = () => {
+        return email.trim() !== '' && password.trim() !== '' && passwordValidation;
+    };
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-edf0eb"> 
-            <div className="w-1/3 p-8 bg-white rounded-xl shadow">
+        <div className="flex justify-center items-center h-screen bg-edf0eb px-4">
+            <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">User Login</h2>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block font-medium">
-                        Email
-                    </label>
                     <input
+                        placeholder='Email'
                         type="text"
                         id="email"
                         className="w-full p-2 border rounded"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleEmailChange}
                     />
                 </div>
-                <div className="mb-4">
-                    <label htmlFor="password" className="block font-medium">
-                        Password
-                    </label>
+                <div className="relative mb-4">
                     <input
-                        type="password"
-                        id="password"
-                        className="w-full p-2 border rounded"
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder="Password"
+                        name="password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
+                        onFocus={() => setPasswordValidation(true)}
+                        onBlur={() => setPasswordValidation(false)}
+                        className="w-full p-2 border border-gray-300 rounded"
+                        required
                     />
+                    <span
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={handleTogglePasswordVisibility}
+                    >
+                        {showPassword ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>}
+                    </span>
                 </div>
+                {passwordValidation && (
+                    <p className="text-green-500 text-sm mb-2">
+                        Password should contain at least one uppercase letter, one lowercase letter,
+                        one special character, and one number.
+                    </p>
+                )}
+                <p className="text-black text-center mt-4 mb-4">
+                    Login as a Vendor{' '}
+                    <RouterLink to="/vendorlogin" className="text-deepBlue font-bold">
+                        Here
+                    </RouterLink>
+                </p>
                 <button
-                    className="w-full p-2 bg-deepBlue text-white rounded-xl"
+                    className={`w-full p-2 bg-deepBlue text-white rounded-xl ${formValid ? '' : 'opacity-50 cursor-not-allowed'}`}
                     onClick={handleLogin}
+                    disabled={!formValid}
                 >
                     Login
                 </button>
