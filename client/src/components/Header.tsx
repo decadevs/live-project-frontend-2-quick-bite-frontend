@@ -3,6 +3,7 @@ import styles from "../styles/header.module.css"
 import { Link } from 'react-router-dom'
 import ProfileImg from "../assets/profile.png"
 import Logo from "../assets/LogoBite.svg"
+
 const Header = () => {
     const[collapse, setCollapse] = useState(true)
     
@@ -15,7 +16,10 @@ const Header = () => {
             <img src={Logo} alt="" className= {`${styles.logo} pr-3 `} />
             
          </div>
+     
+        
          </Link>
+   
          <div className="hidden md:flex space-x-6 justify-between">         
            
          </div>

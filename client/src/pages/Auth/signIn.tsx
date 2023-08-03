@@ -1,10 +1,10 @@
 import LoginForm from "../../components/userLogin"
-import Header from "../../components/Header"
+// import Header from "../../components/Header"
 
 const signIn = () => {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
       <LoginForm/>
     </div>
   )

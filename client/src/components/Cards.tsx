@@ -43,7 +43,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -64,7 +64,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -85,7 +85,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -106,7 +106,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -127,7 +127,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -148,7 +148,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>
@@ -169,7 +169,7 @@ const Cards = () => {
         </div>
         
           <button>
-              <a>
+              <a className='view'>
                view more 
               </a>
           </button>

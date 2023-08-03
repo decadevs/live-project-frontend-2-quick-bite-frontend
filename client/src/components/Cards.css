@@ -81,7 +81,7 @@ h3,p{
 }
 
 
-a{
+.view{
     text-transform: uppercase;
     color: rgb(24, 32, 74);
     text-decoration: none;

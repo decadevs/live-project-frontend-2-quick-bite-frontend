@@ -11,11 +11,21 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.divider{
+    width: 100%;
+    max-width: 1080px;
+}
 
 .dropdown {
+
     width: 20px;
     height: 20px;
+    margin-right: 70px;
+    @media (max-width:480px) {
+       margin-right: 0;; 
+    }
 }
+
 
 .popularText {
     font-family: "Poppins";
@@ -32,8 +42,9 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 100px;
     margin-bottom: 60px;
+    gap:80px;
     @media (max-width:1200px) {
         display: grid;
           gap:20px
@@ -56,10 +67,28 @@
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 30px;
     border-radius: 30px;
+    margin-top: 100px;
     @media (max-width:480px) {
        margin-bottom: 20px;
         
      }
+}
+.cardBody{
+    margin-top: 20px;
+    margin-bottom: 25px;
+    
+}
+.cardheading{
+    font-size: 30px;
+}
+.cardText{
+   color: #836868; 
+}
+.amount{
+    color: #836868;
+}
+.totalAmount{
+    color: #836868;
 }
 .Card:hover{
     background-color:#836868;

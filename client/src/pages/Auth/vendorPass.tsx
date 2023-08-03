@@ -1,10 +1,10 @@
 import VendorPassword from "../../components/vendorPassword";
-import Header from "../../components/Header";
+// import Header from "../../components/Header";
 
 const newPassword = () => {
     return (
         <div>
-            <Header/>
+            {/* <Header/> */}
             <VendorPassword />
         </div>
     )
