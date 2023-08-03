@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Header from './Header';
 
@@ -26,6 +25,7 @@ const VendorLoginForm = () => {
                     </label>
                     <input
                         type="text"
+                        placeholder="enter email"
                         id="email"
                         className="w-full p-2 border rounded"
                         value={email}
@@ -34,10 +34,11 @@ const VendorLoginForm = () => {
                 </div>
                 <div className="mb-4">
                     <label htmlFor="password" className="block font-medium">
-                       Vendor Password
+                        Password
                     </label>
                     <input
                         type="password"
+                        placeholder="enter password"
                         id="password"
                         className="w-full p-2 border rounded"
                         value={password}
@@ -53,16 +54,8 @@ const VendorLoginForm = () => {
                 </button>
                 <p className="text-black text-center mt-4">
                     Don't have an account?{' '}
-                    <RouterLink to="/vendor" className="text-blue-700 font-bold">
+                    <RouterLink to="/verifyVendor" className="text-green-800 font-bold">
                       Sign up as a Vendor
-                    </RouterLink>
-                </p>
-
-
-                <p className="text-black text-center mt-4">
-                    Received an email?{' '}
-                    <RouterLink to="/vendorPassword" className="text-blue-700 font-bold">
-                      Click here to change password
                     </RouterLink>
                 </p>
             </div>
