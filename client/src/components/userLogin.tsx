@@ -42,10 +42,8 @@ const LoginForm = () => {
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">User Login</h2>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block font-medium">
-                        Email
-                    </label>
                     <input
+                        placeholder='Email'
                         type="text"
                         id="email"
                         className="w-full p-2 border rounded"
