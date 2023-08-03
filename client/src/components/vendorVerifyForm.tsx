@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import {Link as RouterLink, useNavigate } from 'react-router-dom';
-import Header from './Header';
+// import Header from './Header';
 
 const VendorRegNO = () => {
     const [regNo, setRegNo] = useState('');
@@ -15,7 +15,7 @@ const VendorRegNO = () => {
 
     return (
         <>
-       <Header/>
+       {/* <Header/> */}
            <div className="flex justify-center items-center h-screen bg-edf0eb"> 
            
             <div className="w-1/3 p-8 bg-white rounded-xl shadow">

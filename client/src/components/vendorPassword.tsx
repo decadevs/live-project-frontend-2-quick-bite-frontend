@@ -3,7 +3,7 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import Header from './Header';
+// import Header from './Header';
 const VendorPassword = () => {
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -17,7 +17,7 @@ const VendorPassword = () => {
 
     return (
         <>
-        <Header/>
+        {/* <Header/> */}
           <div className="flex justify-center items-center h-screen bg-edf0eb px-4"> 
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">Vendor Change Password </h2>

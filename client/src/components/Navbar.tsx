@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import styles from "../styles/Navbar.module.css"
-import VideoImg from "../assets/compressable.mp4"
+import VideoImg from "../assets/heroNewVideo.mp4"
 import MobileImg from "../assets/newmobileHero1.jpg"
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { Link } from "react-router-dom"
-import Logo from "../assets/LogoIcon.svg"
+import Logo from "../assets/Logo.svg"
 
 export const Navbar = () => {
     const[collapse, setCollapse] = useState(false)
