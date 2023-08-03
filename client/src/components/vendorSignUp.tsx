@@ -132,10 +132,9 @@ const VendorSignupForm = () => {
                     <p className="text-black text-center mt-4">
                         Already have an account?{' '}
                         <RouterLink to="/vendorlogin" className="text-green-800 font-bold">
-                            Click here Login
+                            Click here to Login
                         </RouterLink>
                     </p>
-
                 </div>
             </div>
         </>
