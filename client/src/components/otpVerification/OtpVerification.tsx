@@ -2,12 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import "./OtpVerification.css";
 import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/ReactToastify.css"
+import { useNavigate } from "react-router-dom";
 
 const OtpVerification = () => {
   const codeInputsRef = useRef<HTMLInputElement[]>([]);
   const [resendTimer, setResendTimer] = useState(30); // Countdown timer for RESEND link
   const [otpVerified, setOtpVerified] = useState(false); // Flag to track OTP verification status
-
+ const navigate = useNavigate()
   useEffect(() => {
     const codes: NodeListOf<Element> = document.querySelectorAll(
       ".code"
@@ -64,6 +65,7 @@ const OtpVerification = () => {
     if (enteredOTP === sentOTP) {
       // OTP verification successful, proceed to the next page
       setOtpVerified(true);
+      navigate("/login")
       // You can redirect the user to the next page or show a success message
     } else {
       // OTP verification failed, you can show an error message to the user
