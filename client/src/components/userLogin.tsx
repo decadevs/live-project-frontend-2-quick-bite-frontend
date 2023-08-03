@@ -12,7 +12,7 @@ const LoginForm = () => {
 
     const handleLogin = () => {
         if (formValid && email.trim() !== '' && password.trim() !== '') {
-            navigate('/userdashboard');
+            navigate('/food');
         }
     };
 
