@@ -65,7 +65,7 @@ export const Navbar = () => {
         
        <div className={styles.selectBtnContainer}>
         
-        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn} hover:bg-deepBlue hover:text-white `}>Open Now</button> </AnchorLink> 
+        <AnchorLink href="#newQUICK"><button className={`${styles.selectBtn} hover:bg-deepBlue hover:text-white `}>New Delicacies</button> </AnchorLink> 
      <AnchorLink href="#pVendor"> <button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>Popular Resturants</button></AnchorLink> 
      <AnchorLink href="#pFood"><button className={`${styles.selectBtn1} hover:bg-deepBlue hover:text-white`}>Popular Foods</button></AnchorLink>
         
