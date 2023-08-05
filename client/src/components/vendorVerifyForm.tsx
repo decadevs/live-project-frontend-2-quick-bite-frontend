@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import {Link as RouterLink, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 // import Header from './Header';
 
 const VendorRegNO = () => {
@@ -38,12 +38,17 @@ const VendorRegNO = () => {
                 >
                     Submit
                 </button>
-
-                <p className="text-black text-center mt-4">
+                {/* <p className="text-black text-center mt-4">
                     Not a registered Vendor?{' '}
                     <RouterLink to="/register" className="text-green-800 font-bold">
                       Click here to Sign up as a User
                     </RouterLink>
+                </p> */}
+                <p className="text-black text-center mt-4">
+                    Not a registered business?{' '}
+                <a href="mailto:your@email.com" className="text-green-800 font-bold">
+                    Click here to Send an Email to Corporate Affairs Commission
+                </a>
                 </p>
             </div>
         </div>
