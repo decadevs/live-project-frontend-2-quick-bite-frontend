@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-// import Header from './Header';
+import Input from './reusableComponents/input';
 
 const VendorLoginForm = () => {
     const [email, setEmail] = useState('');
@@ -23,8 +23,9 @@ const VendorLoginForm = () => {
                     {/* <label htmlFor="email" className="block font-medium">
                         Email
                     </label> */}
-                    <input
+                    <Input
                         type="text"
+                        name = "email"
                         placeholder="Enter email"
                         id="email"
                         className="w-full p-2 border rounded"
@@ -36,8 +37,9 @@ const VendorLoginForm = () => {
                     {/* <label htmlFor="password" className="block font-medium">
                         Password
                     </label> */}
-                    <input
+                    <Input
                         type="password"
+                        name="password"
                         placeholder="Enter password"
                         id="password"
                         className="w-full p-2 border rounded"

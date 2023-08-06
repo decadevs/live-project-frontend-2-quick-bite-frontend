@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Input from './reusableComponents/input';
 // import Header from './Header';
 const VendorSignupForm = () => {
     const [vendor, setVendor] = useState({
@@ -60,7 +61,7 @@ const VendorSignupForm = () => {
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Sign up</h1>
                     <form onSubmit={handleSubmit} className="mt-4">
-                        <input
+                        <Input
                             type="text"
                             placeholder="Name Of Owner"
                             name="nameOfOwner"
@@ -69,7 +70,7 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="text"
                             placeholder="Name of Restaurant"
                             name="restaurantName"
@@ -78,7 +79,7 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="email"
                             placeholder="Email"
                             name="email"
@@ -88,7 +89,7 @@ const VendorSignupForm = () => {
                             required
                         />
 
-                        <input
+                        <Input
                             type="text"
                             placeholder="Phone Number"
                             name="phoneNumber"
@@ -97,7 +98,7 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="text"
                             placeholder="Address"
                             name="address"
@@ -107,15 +108,15 @@ const VendorSignupForm = () => {
                             required
                         />
                         <label htmlFor="">Cover Image</label>
-                        <input
+                        <Input
                             type="file"
                             placeholder="Cover Image"
                             accept="image/*" // Allow only image files
                             name="coverImage"
                             onChange={handleFileChange} // Handle file input change
                             className="w-full p-2 border border-gray-300 rounded mb-4"
-                            required
-                        />
+                            required value={null}                        
+                            />
 
                         <button
                             type="submit"
