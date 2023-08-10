@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react';
 interface InputProps {
     type: 'text' | 'email' | 'password' | 'file';
     name: string;
-    id: string;
+    id?: string;
     value: string | File | null;
     placeholder: string;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
