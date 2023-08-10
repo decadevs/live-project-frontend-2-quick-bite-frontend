@@ -1,7 +1,11 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
+
 const SignupForm = () => {
+
+     
+    //  console.log("register",register)
     const [user, setUser] = useState({
         firstName: '',
         lastName: '',
@@ -28,7 +32,8 @@ const SignupForm = () => {
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
         const password = e.target.value;
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        setPasswordValidation(passwordRegex.test(password));
+
+        setPasswordValidation(passwordRegex.test(password));        
         handleChange(e);
     };
 
@@ -38,10 +43,15 @@ const SignupForm = () => {
         try {
             // Simulate saving user data to the postgres database
             console.log(user);
+      
+            
             setSignupSuccess(true);
-            setTimeout(() => {
-                navigate('/otp');
-            }, 2000);
+
+              navigate("/")
+
+            // setTimeout(() => {
+            //     navigate('/otp');
+            // }, 2000);
         } catch (error) {
             console.error(error);
         }

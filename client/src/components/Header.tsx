@@ -26,7 +26,7 @@ const Header = () => {
          <div className={styles.flexProfile}>
          <img src={ProfileImg} alt="" className={styles.profileImg}/>
             <p>Adeyemo.O</p>
-            <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
+            <Link to="/"><button className={`${styles.Logout} bg-deepBlue `}>Logout</button></Link> 
          </div>
 
          <button id="menu-btn" onClick={toggleButton} className={ `${styles.hamburger}  hamburger w-20 h-14 md:hidden focus:outline-none lg:hidden`}>
@@ -38,7 +38,7 @@ const Header = () => {
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
           
-            <Link to="/"><button className={`${styles.SignUp} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+            <Link to="/"><button className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
         
     </div>
     </div>

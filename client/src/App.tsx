@@ -11,6 +11,7 @@ import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
 import VendorsPage from "./pages/VendorsPage"
+import UserLanding from "./pages/userLandingpg"
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
       <Routes>
       <Route path='/' element = {<Home/>}></Route>
     
-      <Route path='login' element = {<SignIn/>}></Route>     
+      <Route path='login' element = {<SignIn/>}></Route>  
+      <Route path='userlanding' element = {<UserLanding/>}></Route>    
       <Route path='/register' element = {<SignUp/>}></Route>
       <Route path='/vendor' element = {<VendorSignupForm/>}></Route>
       <Route path='/vendorlogin' element = {<VendorLoginForm/>}></Route> 

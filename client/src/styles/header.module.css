@@ -60,10 +60,30 @@
     font-weight: 600;
     color: #ffff;
     border-radius: 10px;
+    margin-left: 60px;
    
     
 }  
 .SignUp:hover{
+    background-color: #1a512e9f;
+}
+
+.Logout{
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #ffff;
+    border-radius: 10px;
+    margin-left: 60px;
+    @media (max-width:480px) {
+       margin-inline: auto;  
+      
+    }
+   
+    
+}  
+.Logout:hover{
     background-color: #1a512e9f;
 }
 
@@ -174,6 +194,10 @@
     padding: 0 0px;
     
 
+   }
+   .signup{
+    margin: 0;
+    padding: 30px;
    }
 
    .hamburger{
