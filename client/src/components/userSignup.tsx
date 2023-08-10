@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
-
+import Input from './reusableComponents/input';
 const SignupForm = () => {
 
      
@@ -66,7 +66,8 @@ const SignupForm = () => {
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h1 className="text-black text-3xl font-bold text-center mb-4">User Sign Up</h1>
                 <form onSubmit={handleSubmit} className="mt-4">
-                    <input
+                    <Input
+                     id='firstName'
                         type="text"
                         placeholder="First Name"
                         name="firstName"
@@ -75,7 +76,8 @@ const SignupForm = () => {
                         className="w-full p-2 border border-gray-300 rounded mb-4"
                         required
                     />
-                    <input
+                    <Input
+                           id='lastName'
                         type="text"
                         placeholder="Last Name"
                         name="lastName"
@@ -84,7 +86,8 @@ const SignupForm = () => {
                         className="w-full p-2 border border-gray-300 rounded mb-4"
                         required
                     />
-                    <input
+                    <Input
+                          id='email'
                         type="email"
                         placeholder="Email"
                         name="email"
@@ -94,7 +97,8 @@ const SignupForm = () => {
                         required
                     />
                     <div className="relative mb-4">
-                        <input
+                        <Input
+                            id='password'
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Password"
                             name="password"
@@ -122,7 +126,8 @@ const SignupForm = () => {
                             one special character, and one number.
                         </p>
                     )}
-                    <input
+                    <Input
+                      id ="phoneNumber"
                         type="text"
                         placeholder="Phone Number"
                         name="phoneNumber"

@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import Input from './reusableComponents/input';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('');
@@ -42,7 +43,8 @@ const LoginForm = () => {
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">User Login</h2>
                 <div className="mb-4">
-                    <input
+                    <Input
+                        name = "email"
                         placeholder='Email'
                         type="text"
                         id="email"
@@ -52,10 +54,11 @@ const LoginForm = () => {
                     />
                 </div>
                 <div className="relative mb-4">
-                    <input
+                    <Input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         name="password"
+                        id='password'
                         value={password}
                         onChange={handlePasswordChange}
                         onFocus={() => setPasswordValidation(true)}

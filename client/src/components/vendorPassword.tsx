@@ -3,7 +3,10 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-// import Header from './Header';
+import Input from './reusableComponents/input';
+
+
+
 const VendorPassword = () => {
     const [password, setPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -23,10 +26,11 @@ const VendorPassword = () => {
                 <h2 className="text-2xl font-bold mb-4">Vendor Change Password </h2>
                 <div className="mb-4">
                  
-                    <input
+                    <Input
                         type="password"
                         placeholder="Old password"
                         id="password"
+                        name="password"
                         className="w-full p-2 border rounded"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -34,10 +38,11 @@ const VendorPassword = () => {
                 </div>
                 <div className="mb-4">
                   
-                    <input
+                    <Input
                         type="password"
                         placeholder="New password"
                         id="newPassword"
+                        name="newPassword"
                         className="w-full p-2 border rounded"
                         value={newPassword}
                         onChange={(e) => setNewPassword(e.target.value)}
@@ -45,10 +50,11 @@ const VendorPassword = () => {
                 </div>
                 <div className="mb-4">
                     
-                    <input
+                    <Input
                         type="password"
                         placeholder="Confirm password"
                         id="confirmNewPassword"
+                        name="confirmNewPassword"
                         className="w-full p-2 border rounded"
                         value={confirmNewPassword}
                         onChange={(e) => setConfirmNewPassword(e.target.value)}
