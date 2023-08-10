@@ -11,6 +11,7 @@ import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
 import VendorsPage from "./pages/VendorsPage"
+import VendorCreateFood from "./components/VendorCreatesFood"
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
       <Route path='/vendors' element={<VendorsPage />}></Route>
+      <Route path='/vendorsFood' element={<VendorCreateFood />}></Route>
+
      </Routes>
      <Footer/>
      </main>

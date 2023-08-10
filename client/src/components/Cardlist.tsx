@@ -1,9 +1,13 @@
-import Cards from "./Cards" 
+import Cards from "./Cards"
+import './Cards.css'
+
 
 const Cardlist = () => {
   return (
+
     <div>
-      <Cards/>
+      <h1 className="title-restaurants"> All Restaurants </h1>
+      <Cards />
     </div>
   )
 }

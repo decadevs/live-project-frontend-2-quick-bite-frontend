@@ -9,7 +9,7 @@ const Food = () => {
     <>
    
     <div className={styles.overlay}></div>
-    <div className='mt-10' > 
+    <div className='mt-50' > 
 <img src={FoodImg} alt="" className={`${styles.FoodImage}   `}/>         
 
 <AllFood/>
