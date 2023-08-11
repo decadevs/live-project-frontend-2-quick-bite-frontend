@@ -19,6 +19,7 @@ import auth from "./utility/auth";
 import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserUpdatesProfile from "./components/userUpdatesProfile"
 
 if (auth.authenticate()) {
 	const user = JSON.parse(localStorage.getItem("user") as string);
@@ -45,6 +46,7 @@ function App() {
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
 					<Route path="/button" element={<ButtonPage />}></Route>
+					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
 				</Routes>
 				<Footer />
 			</main>
