@@ -1,14 +1,15 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Style.css";
-import Header from "../components/Header";
+// import Header from "../components/Header";
+import { Navbar } from "../components/Navbar";
 // import Header from "../components/Header";
 // btn btn-primary btn-block mb-4
 // row g-3
 
 const CheckOut = () => {
   <div>
-    <Header />
+    <Navbar />
   </div>;
   return (
     <div className="checkout-container">

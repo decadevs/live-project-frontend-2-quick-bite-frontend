@@ -19,6 +19,8 @@ html {
 
 .checkout-container{
     margin-top: 70px;
+    width: 100%;
+
 }
 
 .container {
@@ -106,7 +108,7 @@ html {
 
 
   /* Adjust styles for smaller screens */
-  @media (max-width: 760px) {
+  @media (max-width: 768px) {
       html {
           font-size: 16px;
       }
@@ -141,8 +143,8 @@ html {
         overflow-x: auto;
     }
     .checkout-container {
-        max-width: 100%;
-        padding: 0 15px; /* Optional padding to prevent content from sticking to the edges */
+        width: 100%;
+        padding: 0 15px;
         margin: 0 auto;
     }
 }
