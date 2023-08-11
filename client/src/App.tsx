@@ -11,6 +11,8 @@ import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
 import VendorsPage from "./pages/VendorsPage"
+import CartPage from "./pages/CartPage"
+
 
 function App() {
 
@@ -32,6 +34,7 @@ function App() {
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
       <Route path='/vendors' element={<VendorsPage />}></Route>
+      <Route path='/cartpage' element={<CartPage />}></Route>
      </Routes>
      <Footer/>
      </main>
