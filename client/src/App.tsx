@@ -23,7 +23,6 @@ import "react-toastify/dist/ReactToastify.css";
 if (auth.authenticate()) {
 	const user = JSON.parse(localStorage.getItem("user") as string);
 	const token = localStorage.getItem("token") as string;
-
 	store.dispatch(loginSuccess({ user, token }));
 }
 

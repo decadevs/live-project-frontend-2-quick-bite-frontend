@@ -1,59 +1,52 @@
-import { useState, ChangeEvent } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Input from './reusableComponents/input';
 // import Header from './Header';
 const VendorSignupForm = () => {
-    const [vendor, setVendor] = useState({
-        nameOfOwner: '',
-        restaurantName: '',
-        email: '',
-        phoneNumber: '',
-        address: '',
-        coverImage: null as File | null
-    });
-    const [signupSuccess, setSignupSuccess] = useState(false);
-    // const [passwordValidation, setPasswordValidation] = useState(false);
-    const navigate = useNavigate();
+  const [vendor, setVendor] = useState({
+    nameOfOwner: "",
+    restaurantName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    coverImage: null as File | null,
+  });
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  // const [passwordValidation, setPasswordValidation] = useState(false);
+  const navigate = useNavigate();
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
 
-        
-        setVendor((prevVendor) => ({
-            ...prevVendor,
-            [name]: value
-        }));
-    };
+    setVendor((prevVendor) => ({
+      ...prevVendor,
+      [name]: value,
+    }));
+  };
 
- 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.currentTarget;
+    const file = files && files[0];
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { files } = e.currentTarget;
-        const file = files && files[0];
-    
-        if (file) {
-          setVendor((prevVendor) => ({ ...prevVendor, coverImage: file }));
-        }
-      };
+    if (file) {
+      setVendor((prevVendor) => ({ ...prevVendor, coverImage: file }));
+    }
+  };
 
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    try {
+      console.log(vendor);
+      setSignupSuccess(true);
 
-    const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-
-            console.log(vendor);
-            setSignupSuccess(true);
-
-            setTimeout(() => {
-                navigate('/vendorLogin');
-            }, 2000);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
+      setTimeout(() => {
+        navigate("/vendorLogin");
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
     return (
         <>
             {/* <Header /> */}
@@ -63,6 +56,7 @@ const VendorSignupForm = () => {
                     <form onSubmit={handleSubmit} className="mt-4">
                         <Input
                             type="text"
+                            id="text"
                             placeholder="Name Of Owner"
                             name="nameOfOwner"
                             value={vendor.nameOfOwner}
@@ -72,6 +66,7 @@ const VendorSignupForm = () => {
                         />
                         <Input
                             type="text"
+                            id="text"
                             placeholder="Name of Restaurant"
                             name="restaurantName"
                             value={vendor.restaurantName}
@@ -81,6 +76,7 @@ const VendorSignupForm = () => {
                         />
                         <Input
                             type="email"
+                            id="email"
                             placeholder="Email"
                             name="email"
                             value={vendor.email}
@@ -91,6 +87,7 @@ const VendorSignupForm = () => {
 
                         <Input
                             type="text"
+                            id="text"
                             placeholder="Phone Number"
                             name="phoneNumber"
                             value={vendor.phoneNumber}
@@ -100,6 +97,7 @@ const VendorSignupForm = () => {
                         />
                         <Input
                             type="text"
+                            id="text"
                             placeholder="Address"
                             name="address"
                             value={vendor.address}
@@ -110,6 +108,7 @@ const VendorSignupForm = () => {
                         <label htmlFor="">Cover Image</label>
                         <Input
                             type="file"
+                            id="file"
                             placeholder="Cover Image"
                             accept="image/*" // Allow only image files
                             name="coverImage"
@@ -144,4 +143,3 @@ const VendorSignupForm = () => {
 };
 
 export default VendorSignupForm;
-
