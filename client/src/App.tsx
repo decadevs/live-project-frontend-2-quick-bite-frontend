@@ -13,6 +13,7 @@ import Footer from "./components/Footer"
 import VendorsPage from "./pages/VendorsPage"
 import ModalPage from "./pages/ModalPage"
 import ButtonPage from "./pages/button"
+import CheckOut from "./pages/CheckOut"
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
       <Route path='/vendors' element={<VendorsPage />}></Route>
       <Route path='/modal' element={<ModalPage/>}></Route>
       <Route path='/button' element={<ButtonPage/>}></Route>
+      <Route path='/checkout' element={<CheckOut/>}></Route>
      </Routes>
      <Footer/>
      </main>
