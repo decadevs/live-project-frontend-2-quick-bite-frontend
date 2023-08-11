@@ -12,6 +12,9 @@ import OtpVerificationPage from "./pages/OtpVerificationPage";
 import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import AllVendorFoods from "./pages/AllVendorFoods";
+import VendorCreateFood from "./components/VendorCreatesFood";
+import ModalPage from "./pages/ModalPage";
+import ButtonPage from "./pages/button";
 
 function App() {
   return (
@@ -19,7 +22,6 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-
           <Route path="login" element={<SignIn />}></Route>
           <Route path="/register" element={<SignUp />}></Route>
           <Route path="/vendor" element={<VendorSignupForm />}></Route>
@@ -31,6 +33,9 @@ function App() {
           <Route path="/otp" element={<OtpVerificationPage />}></Route>
           <Route path="/vendors" element={<VendorsPage />}></Route>
           <Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
+          <Route path="/vendorsFood" element={<VendorCreateFood />}></Route>
+          <Route path="/modal" element={<ModalPage />}></Route>
+          <Route path="/button" element={<ButtonPage />}></Route>
         </Routes>
         <Footer />
       </main>
