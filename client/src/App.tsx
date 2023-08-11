@@ -11,6 +11,10 @@ import VendorPassword from "./components/vendorPassword"
 import OtpVerificationPage from "./pages/OtpVerificationPage"
 import Footer from "./components/Footer"
 import VendorsPage from "./pages/VendorsPage"
+import VendorsEdit from "./pages/VendorsEdit"
+import { ToastContainer } from "react-toastify"
+
+
 
 function App() {
 
@@ -19,7 +23,17 @@ function App() {
     <>
      <main>
 
+      
+       <ToastContainer
+        theme="dark"
+        position="top-right"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover={false}
+        />  
+
       <Routes>
+       
       <Route path='/' element = {<Home/>}></Route>
     
       <Route path='login' element = {<SignIn/>}></Route>     
@@ -32,6 +46,7 @@ function App() {
       <Route path='/food' element = {<FoodPage/>}></Route> 
       <Route path='/otp' element={<OtpVerificationPage />}></Route>
       <Route path='/vendors' element={<VendorsPage />}></Route>
+      <Route path='/editVendor' element = {<VendorsEdit/>}></Route>
      </Routes>
      <Footer/>
      </main>
