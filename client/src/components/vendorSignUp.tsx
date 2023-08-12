@@ -1,58 +1,52 @@
-import { useState, ChangeEvent } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useState, ChangeEvent } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import Input from './reusableComponents/input';
 // import Header from './Header';
 const VendorSignupForm = () => {
-    const [vendor, setVendor] = useState({
-        nameOfOwner: '',
-        restaurantName: '',
-        email: '',
-        phoneNumber: '',
-        address: '',
-        coverImage: null as File | null
-    });
-    const [signupSuccess, setSignupSuccess] = useState(false);
-    // const [passwordValidation, setPasswordValidation] = useState(false);
-    const navigate = useNavigate();
+  const [vendor, setVendor] = useState({
+    nameOfOwner: "",
+    restaurantName: "",
+    email: "",
+    phoneNumber: "",
+    address: "",
+    coverImage: null as File | null,
+  });
+  const [signupSuccess, setSignupSuccess] = useState(false);
+  // const [passwordValidation, setPasswordValidation] = useState(false);
+  const navigate = useNavigate();
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
 
-        
-        setVendor((prevVendor) => ({
-            ...prevVendor,
-            [name]: value
-        }));
-    };
+    setVendor((prevVendor) => ({
+      ...prevVendor,
+      [name]: value,
+    }));
+  };
 
- 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.currentTarget;
+    const file = files && files[0];
 
-    const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { files } = e.currentTarget;
-        const file = files && files[0];
-    
-        if (file) {
-          setVendor((prevVendor) => ({ ...prevVendor, coverImage: file }));
-        }
-      };
+    if (file) {
+      setVendor((prevVendor) => ({ ...prevVendor, coverImage: file }));
+    }
+  };
 
+  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
+    try {
+      console.log(vendor);
+      setSignupSuccess(true);
 
-    const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-
-            console.log(vendor);
-            setSignupSuccess(true);
-
-            setTimeout(() => {
-                navigate('/vendorLogin');
-            }, 2000);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
+      setTimeout(() => {
+        navigate("/vendorLogin");
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
     return (
         <>
             {/* <Header /> */}
@@ -60,8 +54,9 @@ const VendorSignupForm = () => {
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Sign up</h1>
                     <form onSubmit={handleSubmit} className="mt-4">
-                        <input
+                        <Input
                             type="text"
+                            id="text"
                             placeholder="Name Of Owner"
                             name="nameOfOwner"
                             value={vendor.nameOfOwner}
@@ -69,8 +64,9 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="text"
+                            id="text"
                             placeholder="Name of Restaurant"
                             name="restaurantName"
                             value={vendor.restaurantName}
@@ -78,8 +74,9 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="email"
+                            id="email"
                             placeholder="Email"
                             name="email"
                             value={vendor.email}
@@ -88,8 +85,9 @@ const VendorSignupForm = () => {
                             required
                         />
 
-                        <input
+                        <Input
                             type="text"
+                            id="text"
                             placeholder="Phone Number"
                             name="phoneNumber"
                             value={vendor.phoneNumber}
@@ -97,8 +95,9 @@ const VendorSignupForm = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required
                         />
-                        <input
+                        <Input
                             type="text"
+                            id="text"
                             placeholder="Address"
                             name="address"
                             value={vendor.address}
@@ -107,15 +106,16 @@ const VendorSignupForm = () => {
                             required
                         />
                         <label htmlFor="">Cover Image</label>
-                        <input
+                        <Input
                             type="file"
+                            id="file"
                             placeholder="Cover Image"
                             accept="image/*" // Allow only image files
                             name="coverImage"
                             onChange={handleFileChange} // Handle file input change
                             className="w-full p-2 border border-gray-300 rounded mb-4"
-                            required
-                        />
+                            required value={null}                        
+                            />
 
                         <button
                             type="submit"
@@ -143,4 +143,3 @@ const VendorSignupForm = () => {
 };
 
 export default VendorSignupForm;
-
