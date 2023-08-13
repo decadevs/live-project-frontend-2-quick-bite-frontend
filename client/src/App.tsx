@@ -17,16 +17,16 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreateFood from "./components/VendorCreatesFood";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
-import auth from "./utility/auth";
-import { loginSuccess } from "./slices/authSlice";
+// import auth from "./utility/auth";
+// import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-if (auth.authenticate()) {
-  const user = JSON.parse(localStorage.getItem("user") as string);
-  const token = localStorage.getItem("token") as string;
-  store.dispatch(loginSuccess({ user, token }));
-}
+// if (auth.authenticate()) {
+//   const user = JSON.parse(localStorage.getItem("user") as string);
+//   const token = localStorage.getItem("token") as string;
+//   store.dispatch(loginSuccess({ user, token }));
+// }
 
 function App() {
   return (

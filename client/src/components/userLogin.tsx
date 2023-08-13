@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../store/hooks";
-import { showErrorToast } from "../utility/toast";
+// import { showErrorToast } from "../utility/toast";
 import Input from "./reusableComponents/input";
 import { login } from "../slices/authSlice";
 
@@ -21,7 +21,7 @@ const LoginForm = () => {
 			setLoading(true);
 
 			if (formValid && email.trim() !== "" && password.trim() !== "") {
-				showErrorToast("Please enter your details correctly.");
+				// showErrorToast("Please enter your details correctly.");
 				return;
 			}
 			const payload = {
@@ -30,6 +30,7 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
+			console.log( "login", payload)
 
 			setEmail("");
 			setPassword("");
@@ -39,14 +40,14 @@ const LoginForm = () => {
 			navigate("/food");
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
-			setLoading(false);
-			if (error.response) {
-				showErrorToast(error.response.data.message);
-			} else if (error.request) {
-				showErrorToast("Internal Server Error");
-			} else {
-				showErrorToast(`Error, ${error.message}`);
-			}
+			// setLoading(false);
+			// if (error.response) {
+			// 	showErrorToast(error.response.data.message);
+			// } else if (error.request) {
+			// 	showErrorToast("Internal Server Error");
+			// } else {
+			// 	showErrorToast(`Error, ${error.message}`);
+			// }
 		}
 	};
 

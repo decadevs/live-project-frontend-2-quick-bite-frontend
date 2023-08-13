@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "../api/httpService";
-import { showErrorToast } from "../utility/toast";
+// import { showErrorToast } from "../utility/toast";
 import Input from "./reusableComponents/input";
 
 const initialState = {
@@ -61,13 +61,13 @@ const SignupForm = () => {
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setLoading(false);
-			if (error.response) {
-				showErrorToast(error.response.data.message);
-			} else if (error.request) {
-				showErrorToast("Internal Server Error");
-			} else {
-				showErrorToast(`Error, ${error.message}`);
-			}
+			// if (error.response) {
+			// 	showErrorToast(error.response.data.message);
+			// } else if (error.request) {
+			// 	showErrorToast("Internal Server Error");
+			// } else {
+			// 	showErrorToast(`Error, ${error.message}`);
+			// }
 		}
 	};
 
@@ -174,7 +174,10 @@ const SignupForm = () => {
 				</p>
 			</div>
 		</div>
-	);
+	
+	)
+				
 };
+
 
 export default SignupForm;

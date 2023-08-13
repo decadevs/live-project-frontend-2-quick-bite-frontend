@@ -42,6 +42,7 @@ export const login = createAsyncThunk(
 			const response = await axios.post("/user/login", payload);
 			localStorage.setItem("user", JSON.stringify(response.data.user));
 			localStorage.setItem("token", response.data.token);
+		
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
