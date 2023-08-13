@@ -1,21 +1,7 @@
 import { useState, ChangeEvent, MouseEvent, } from 'react';
 import {  useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify' 
-// import Modal from './reusableComponents/modal';
+import { toast } from 'react-toastify';
 
-
-// Modal.setAppElemnt('#root');
-
-// ReactDOM.render
-
-// interface Vendor {
-//     nameOfOwner: string;
-//     restaurantName: string;
-//     email: string;
-//     phoneNumber: number;
-//     address: string;
-//     coverImage: File | null;
-// }
 
 
  // import Header from './Header';
