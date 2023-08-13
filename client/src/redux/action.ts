@@ -11,7 +11,8 @@
 //    "register/changePassword", async(formData:PassChange, {dispatch})=>{
 //       try {
 //         dispatch(fetchDataStart(false))
-//          const response = await apiPut("/vendor/passwordchange" ,formData )
+//          const response = await apiPut("/vendor/passwordchange",{} )
+//           return response
 //       } catch (error) {
 //         console.log(error)
 //       }
