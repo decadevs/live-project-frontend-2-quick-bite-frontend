@@ -8,6 +8,11 @@ const Header = () => {
     const[collapse, setCollapse] = useState(true)
     
     const toggleButton = ()=> setCollapse(!collapse)
+    const menus = 
+      [{  id : "Id", Updateprofile:"Update profile", Order :  "Order", Changepassword : "Change Password"}]
+    const [dropdown, setDropDown] = useState(true)
+    const toggle = () =>setDropDown(!dropdown)
+   
   return (
     <div>
    <nav className= {`${styles.navbar}  container mx-auto px-10 `} >
@@ -24,10 +29,25 @@ const Header = () => {
            
          </div>
          <div className={styles.flexProfile}>
-         <img src={ProfileImg} alt="" className={styles.profileImg}/>
+         <img src={ProfileImg} alt="" className={styles.profileImg} onClick={toggle}/>
+        
+         <ul className={`${dropdown ?styles.dropdown : ""} 
+         absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`  }>
+          {menus.map((menu)=>(<li className={styles.menu} key={menu.id}>{menu.Order}<br/> <Link to ="/userupdatesprofile" >{menu.Updateprofile} </Link><br/>
+          {menu.Changepassword}
+          </li>
+          ))
+          
+          
+          }
+          
+         </ul >
+         
+       
             <p>Adeyemo.O</p>
             <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
          </div>
+ 
 
          <button id="menu-btn" onClick={toggleButton} className={ `${styles.hamburger}  hamburger w-20 h-14 md:hidden focus:outline-none lg:hidden`}>
          {collapse ?<i className= 'fas fa-bars'></i> :<i className='fas fa-times'></i> }
