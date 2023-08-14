@@ -53,7 +53,7 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
-          <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+          			<Route path="/editVendor" element = {<VendorsEdit/>}></Route>
 				</Routes>
 				<Footer />
 			</main>

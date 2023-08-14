@@ -164,11 +164,11 @@ const VendorSignupForm = () => {
               Vendor Sign up
             </button>
           </form>
-          {signupSuccess && (
+          {/* {signupSuccess && (
             <p className="text-green-500 text-center font-bold mt-4">
               Sign up successful!
             </p>
-          )}
+          )} */}
           <p className="text-black text-center mt-4">
             Already have an account?{" "}
             <RouterLink to="/vendorlogin" className="text-green-800 font-bold">
