@@ -60,9 +60,9 @@ export const login = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
 	"auth/update-profile",
-	async (payload, thunkAPI) => {
+	async (payload: Record<string, string>, thunkAPI) => {
 		try {
-			const response = await axios.post("/user/update-profile", payload);
+			const response = await axios.put("/user/editprofile", payload);
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -122,9 +122,10 @@ export const authSlice = createSlice({
 		});
 		builder.addCase(updateUserProfile.fulfilled, (state, action) => {
 			// Add user to the state array
-			const newUser = action.payload;
+			const newUser = action.payload.user;
 			state.user = newUser;
 			toast(action.payload.message);
+			localStorage.setItem("user",JSON.stringify(newUser))
 		});
 		builder.addCase(updateUserProfile.rejected, (state, action) => {
 			// Add user to the state array

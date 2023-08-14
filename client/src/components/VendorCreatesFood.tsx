@@ -165,7 +165,7 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
                   <button
                     className="bg-deepBlue hover:bg-deepBlue-600  text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
                     type="button"
-                    // onClick={() => setShowModal(false)}
+                    // onClick={handleClose}
                   >
                     Create Food
                     <Modal />

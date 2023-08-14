@@ -1,16 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Input from './reusableComponents/input';
-// import Header from './Header';
-const VendorSignupForm = () => {
-  const [vendor, setVendor] = useState({
-    nameOfOwner: "",
+import { showErrorToast } from "../utility/toast";
+import Header from './Header';
+import axios from "../api/httpService";
+import { showSuccessToast } from "../utility/toast";
+
+const initialData = {
+   nameOfOwner: "",
     restaurantName: "",
     email: "",
     phoneNumber: "",
     address: "",
     coverImage: null as File | null,
-  });
+}
+
+const VendorSignupForm = () => {
+  const [vendor, setVendor] = useState(initialData)
+  const [loading, setLoading] = useState(false)
   const [signupSuccess, setSignupSuccess] = useState(false);
   // const [passwordValidation, setPasswordValidation] = useState(false);
   const navigate = useNavigate();
@@ -40,16 +48,40 @@ const VendorSignupForm = () => {
       console.log(vendor);
       setSignupSuccess(true);
 
-      setTimeout(() => {
+      setLoading(true);
+   const formData = new FormData()
+  
+  formData.append("email",vendor.email)
+  formData.append("phone_no",vendor.phoneNumber)
+  formData.append("name_of_owner",vendor.nameOfOwner)
+  formData.append("address",vendor.address)
+  formData.append("restaurant_name",vendor.restaurantName)
+  formData.append("cover_image",vendor.coverImage as Blob)
+
+     const {data} = await axios.post("/vendor/registervendor", formData) 
+    
+      setVendor(initialData)
+      showSuccessToast(data.message)
+      setLoading(false)
+
         navigate("/vendorLogin");
-      }, 2000);
-    } catch (error) {
-      console.error(error);
-    }
+      
+      
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+			setLoading(false);
+			if (error.response) {
+				showErrorToast(error.response.data.message);
+			} else if (error.request) {
+				showErrorToast("Internal Server Error");
+			} else {
+				showErrorToast(`Error, ${error.message}`);
+			}
+		}
   };
     return (
         <>
-            {/* <Header /> */}
+            { /*<Header />*/ }
             <div className="flex justify-center items-center h-screen px-4">
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Sign up</h1>
@@ -124,11 +156,11 @@ const VendorSignupForm = () => {
                             Vendor Sign up
                         </button>
                     </form>
-                    {signupSuccess && (
+                    {/* {signupSuccess && (
                         <p className="text-green-500 text-center font-bold mt-4">
                             Sign up successful!
                         </p>
-                    )}
+                    )} */}
                     <p className="text-black text-center mt-4">
                         Already have an account?{' '}
                         <RouterLink to="/vendorlogin" className="text-green-800 font-bold">
