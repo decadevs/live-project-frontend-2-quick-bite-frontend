@@ -19,6 +19,9 @@ import auth from "./utility/auth";
 import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import VendorCreatesFood from "./components/VendorCreatesFood";
+import Modal from "./components/vendorsModal";
+import { useState } from "react";
 
 if (auth.authenticate()) {
 	const user = JSON.parse(localStorage.getItem("user") as string);
@@ -27,6 +30,7 @@ if (auth.authenticate()) {
 }
 
 function App() {
+	
 	return (
 		<Provider store={store}>
 			<ToastContainer />
@@ -45,6 +49,10 @@ function App() {
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
 					<Route path="/button" element={<ButtonPage />}></Route>
+                              <Route path="/vendorsFood" element={<VendorCreatesFood  />}></Route>
+                              <Route path="/VendorModal" element={<Modal />}></Route>
+
+
 				</Routes>
 				<Footer />
 			</main>

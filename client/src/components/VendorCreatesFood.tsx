@@ -2,19 +2,38 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
+import Modal from "../components/reusableComponents/Modal"
 
+
+interface VendorCreatesFoodProps{
+  handleClose: () => void,
+  show:boolean
+}
 interface Vendor {
   name: string;
   price: string;
   readyTime: string;
+  description: string;
   foodImage: File | null;
 }
 
 const VendorCreatesFood = () => {
+
+  const [showModal, setShowModal] = useState(false)
+  return(
+    <>
+    <button onClick={() =>setShowModal(!showModal)}>Create Food</button>
+      <VendorChild show={showModal} handleClose={() => setShowModal(!showModal)}/>
+    </>
+  )
+}
+
+const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => {
   const [vendor, setVendor] = useState<Vendor>({
     name: "",
     price: "",
     readyTime: "",
+    description: "",
     foodImage: null as File | null,
   });
 
@@ -37,6 +56,8 @@ const VendorCreatesFood = () => {
       setVendor((prevVendor) => ({ ...prevVendor, foodImage: file }));
     }
   };
+
+  console.log(vendor);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,10 +86,11 @@ const VendorCreatesFood = () => {
     }
   };
 
+  
+
   return (
     <>
-      <div className="flex justify-center items-center h-screen px-4">
-        <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
+       {show ? <div className="w-full max-w-md p-8 bg-white">
           <h1 className="text-black text-3xl font-bold text-center mb-4">
             Create Food
           </h1>
@@ -105,6 +127,16 @@ const VendorCreatesFood = () => {
               required
             />
 
+<input
+              type="text-Area"
+              placeholder="Description"
+              name="description"
+              value={vendor.description}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              required
+            />
+
             <label htmlFor="foodImage">Food Image:</label>
 
             <input
@@ -115,17 +147,37 @@ const VendorCreatesFood = () => {
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
             />
-            <button
+            {/* <button
               type="submit"
               className="w-full p-2 bg-deepBlue text-white rounded"
             >
               Create Food
-            </button>
+            </button> */}
+
+            <div className="flex items-center justify-end">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={handleClose}
+                    >
+                    Close
+                  </button>
+                  <button
+                    className="bg-deepBlue hover:bg-deepBlue-600  text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+                    type="button"
+                    // onClick={() => setShowModal(false)}
+                  >
+                    Create Food
+                    <Modal />
+                  </button>
+                </div>
           </form>
-        </div>
-      </div>
+        </div> : null}
+        
+      
     </>
   );
 };
+
 
 export default VendorCreatesFood;
