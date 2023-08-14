@@ -1,16 +1,51 @@
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Input from './reusableComponents/input';
+import { useAppDispatch } from "../store/hooks";
+import { showErrorToast } from "../utility/toast";
+import { vendorLogin } from '../slices/vendorSlice';
 
 const VendorLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordValidation, setPasswordValidation] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
+    const [formValid, setFormValid] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const handleLogin = async () => {
+       try{
+        setLoading(true);
 
-    const handleLogin = () => {
-       
-        navigate('/vendordashboard');
+			// if (formValid && email.trim() !== "" && password.trim() !== "") {
+			// 	showErrorToast("Please enter your details correctly.");
+			// 	return;
+			// }
+			const payload = {
+				email,
+				password,
+			};
+
+            await dispatch(vendorLogin(payload)).unwrap()
+
+            setEmail("");
+			setPassword("");
+			setPasswordValidation(false);
+			setFormValid(false);
+			setLoading(false);
+        navigate('/vendorPassword');
+       }catch (error: any) {
+        setLoading(false);
+        if (error.response) {
+            showErrorToast(error.response.data.message);
+        } else if (error.request) {
+            showErrorToast("Internal Server Error");
+        } else {
+            showErrorToast(`Error, ${error.message}`);
+        }
+    }
     };
 
     return (
@@ -50,8 +85,10 @@ const VendorLoginForm = () => {
                 <button
                     className="w-full p-2 bg-deepBlue text-white rounded-xl"
                     onClick={handleLogin}
+                    // disabled={!formValid || loading}
                 >
                     Vendor Login
+                    {/* {loading ? "Loading" : "Vendor Login"} */}
                 </button>
                 <p className="text-black text-center mt-4">
                     Don't have an account?{' '}
