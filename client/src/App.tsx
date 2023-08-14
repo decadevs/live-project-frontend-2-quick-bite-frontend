@@ -38,6 +38,7 @@ if (auth.authenticate()) {
 }
 
 function App() {
+	
 	return (
 		<Provider store={store}>
 			<ToastContainer />

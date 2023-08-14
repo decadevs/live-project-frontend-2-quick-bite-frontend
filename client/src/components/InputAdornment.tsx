@@ -6,7 +6,7 @@ interface TextFieldProps {
   handleChange?:(e: ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   required: boolean;
-  adornment: string;
+   adornment: string;
   type: string;
   placeholder?: string
 }
