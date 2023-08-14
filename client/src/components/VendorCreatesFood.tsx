@@ -19,7 +19,7 @@ const VendorCreatesFood = () => {
   });
 
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
-
+   console.log(createFoodSuccess)
   const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

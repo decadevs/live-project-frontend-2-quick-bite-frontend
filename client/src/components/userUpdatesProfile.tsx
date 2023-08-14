@@ -5,11 +5,13 @@ import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { updateUserProfile } from '../slices/authSlice';
 import { showErrorToast } from '../utility/toast';
 
-const initialUserData = {firstName: '',
+const initialUserData = {
+        firstName: '',
         lastName: '',
         email: '',
         phoneNumber: '',
-        address: ""} 
+        address: ""
+    } 
 
 
  const UserUpdatesProfile = () => {

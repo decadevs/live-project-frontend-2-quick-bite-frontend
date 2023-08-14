@@ -1,15 +1,27 @@
-import  { MouseEventHandler,  useState } from 'react';
+import  { MouseEventHandler,  useState ,useEffect} from 'react';
 import styles from '../styles/freeDelivery.module.css'
 import Dropdown from "../assets/dropdown.svg"
 import  FoodOne from "../assets/food1.png"
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { getPopularRestaurant} from '../slices/popularRestaurantSlice';
+
+
 const PopularDelivery = () => {
     const[show, setShow] = useState(false)
-
+    
     // const [show, setShow] = useState(true)
    const handleClick : MouseEventHandler<HTMLImageElement>=()=>{
      setShow(!show)
    }
+   const dispatch = useAppDispatch();
+   const { popularRestaurant, isLoading } = useAppSelector((state) => state.popularRestaurant);
+   console.log({popularRestaurant, isLoading})
+      
+   useEffect(()=>{
+      dispatch(getPopularRestaurant()) 
+    
+   },[dispatch])
   return (
     <div id="pVendor" className={styles.delivery}>
     <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
