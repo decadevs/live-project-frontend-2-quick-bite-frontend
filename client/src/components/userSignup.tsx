@@ -60,24 +60,25 @@ const SignupForm = () => {
                         type="text"
                         placeholder="First Name"
                         name="firstName"
+                        id="firstName"
                         value={user.firstName}
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded mb-4"
-                        required
-                    />
+                        required                    />
                     <Input
                         type="text"
                         placeholder="Last Name"
                         name="lastName"
+                        id="lastName"
                         value={user.lastName}
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded mb-4"
-                        required
-                    />
+                        required                   />
                     <Input
                         type="email"
                         placeholder="Email"
                         name="email"
+                        id="email"
                         value={user.email}
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -88,6 +89,7 @@ const SignupForm = () => {
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Password"
                             name="password"
+                            id="password"
                             value={user.password}
                             onChange={handlePasswordChange}
                             onFocus={() => setPasswordValidation(true)}
@@ -116,6 +118,7 @@ const SignupForm = () => {
                         type="text"
                         placeholder="Phone Number"
                         name="phoneNumber"
+                        id="phoneNumber"
                         value={user.phoneNumber}
                         onChange={handleChange}
                         className="w-full p-2 border border-gray-300 rounded mb-4"

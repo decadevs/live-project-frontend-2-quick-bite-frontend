@@ -65,6 +65,7 @@ const VendorSignupForm = () => {
                             type="text"
                             placeholder="Name Of Owner"
                             name="nameOfOwner"
+                            id='nameOfOwner'
                             value={vendor.nameOfOwner}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -74,6 +75,7 @@ const VendorSignupForm = () => {
                             type="text"
                             placeholder="Name of Restaurant"
                             name="restaurantName"
+                            id='restaurantName'
                             value={vendor.restaurantName}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -83,6 +85,7 @@ const VendorSignupForm = () => {
                             type="email"
                             placeholder="Email"
                             name="email"
+                            id='email'
                             value={vendor.email}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -93,6 +96,7 @@ const VendorSignupForm = () => {
                             type="text"
                             placeholder="Phone Number"
                             name="phoneNumber"
+                            id='phoneNumber'
                             value={vendor.phoneNumber}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -102,6 +106,7 @@ const VendorSignupForm = () => {
                             type="text"
                             placeholder="Address"
                             name="address"
+                            id='address'
                             value={vendor.address}
                             onChange={handleChange}
                             className="w-full p-2 border border-gray-300 rounded mb-4"
@@ -113,6 +118,7 @@ const VendorSignupForm = () => {
                             placeholder="Cover Image"
                             accept="image/*" // Allow only image files
                             name="coverImage"
+                            id='coverImage'
                             onChange={handleFileChange} // Handle file input change
                             className="w-full p-2 border border-gray-300 rounded mb-4"
                             required value={null}                        
