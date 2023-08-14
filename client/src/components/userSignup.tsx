@@ -9,10 +9,9 @@ const initialState = {
   lastName: "",
   email: "",
   password: "",
-  gender: "",
-  otherGender: "",
-  DOB: "",
+  confirm_password: "",
   phoneNumber: "",
+  address: "",
 };
 
 const SignupForm = () => {
@@ -132,12 +131,38 @@ const SignupForm = () => {
               )}
             </span>
           </div>
+
+          <div className="relative mb-4">
+            <Input
+              type={showPassword ? "text" : "password"}
+              placeholder="confirm Password"
+              name="verify_password"
+              value={user.confirm_password}
+              onChange={handlePasswordChange}
+              onFocus={() => setPasswordValidation(true)}
+              onBlur={() => setPasswordValidation(false)}
+              className="w-full p-2 border border-gray-300 rounded"
+              required
+            />
+            <span
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              onClick={handleTogglePasswordVisibility}
+            >
+              {showPassword ? (
+                <i className="fas fa-eye-slash"></i>
+              ) : (
+                <i className="fas fa-eye"></i>
+              )}
+            </span>
+          </div>
+
           {passwordValidation && (
             <p className="text-green-500 text-sm mb-2">
               Password should contain at least one uppercase letter, one
               lowercase letter, one special character, and one number.
             </p>
           )}
+
           <Input
             type="text"
             placeholder="Phone Number"
@@ -147,6 +172,17 @@ const SignupForm = () => {
             className="w-full p-2 border border-gray-300 rounded mb-4"
             required
           />
+
+          <Input
+            type="text"
+            placeholder="address"
+            name="phoneNumber"
+            value={user.address}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded mb-4"
+            required
+          />
+
           <button
             type="submit"
             className="w-full p-2 bg-deepBlue text-white rounded"

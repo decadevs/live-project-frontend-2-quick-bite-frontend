@@ -70,7 +70,7 @@ const VendorRegNO = () => {
             className="w-full p-2 bg-deepBlue text-white rounded-xl"
             onClick={handleSubmit}
           >
-            Submit
+            {loading ? "Loading..." : "Submit"}
           </button>
           {/* <p className="text-black text-center mt-4">
                     Not a registered Vendor?{' '}
