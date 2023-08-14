@@ -1,0 +1,27 @@
+Arguments: 
+  /Users/macbook/.volta/tools/image/node/18.16.0/bin/node /Users/macbook/.volta/tools/image/yarn/1.22.19/bin/yarn.js add react-icons
+
+PATH: 
+  /Users/macbook/.volta/tools/image/yarn/1.22.19/bin:/Users/macbook/.volta/tools/image/node/18.16.0/bin:/Users/macbook/.volta/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/macbook/.volta/bin:/Applications/Postgres.app/Contents/Versions/16/bin:/Applications/Postgres.app/Contents/Versions/16/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
