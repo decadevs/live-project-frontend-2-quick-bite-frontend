@@ -1,7 +1,8 @@
-import Home from "./pages/Home/Home";
+
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import Home from "./pages/Home/Home";
 import SignUp from "./pages/Auth/signUp";
 import SignIn from "./pages/Auth/signIn";
 import FoodPage from "./pages/FoodPage";
@@ -13,8 +14,6 @@ import VendorPassword from "./components/vendorPassword";
 import OtpVerificationPage from "./pages/OtpVerificationPage";
 import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
-import AllVendorFoods from "./pages/AllVendorFoods";
-import VendorCreateFood from "./components/VendorCreatesFood";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
 import VendorsEdit from "./pages/VendorsEdit"
@@ -23,11 +22,13 @@ import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
+import AllVendorFoods from "./pages/AllVendorFoods";
+import VendorCreatesFood from "./components/VendorCreatesFood";
 
 if (auth.authenticate()) {
-  const user = JSON.parse(localStorage.getItem("user") as string);
-  const token = localStorage.getItem("token") as string;
-  store.dispatch(loginSuccess({ user, token }));
+	const user = JSON.parse(localStorage.getItem("user") as string);
+	const token = localStorage.getItem("token") as string;
+	store.dispatch(loginSuccess({ user, token }));
 }
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
 					<Route path="/button" element={<ButtonPage />}></Route>
-					<Route path="/vendorsFood" element={<VendorCreateFood />}></Route>
+					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
           <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
