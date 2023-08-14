@@ -39,9 +39,6 @@ import EditVendor from './EditVendor';
 
                 <EditVendor handleClose={() => setShowEditModal(false)} />
 
-              
-
-                {/*footer*/}
 
                 
 
