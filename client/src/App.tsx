@@ -16,6 +16,7 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+import VendorsEdit from "./pages/VendorsEdit"
 import auth from "./utility/auth";
 import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
@@ -52,6 +53,7 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
+          <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
 				</Routes>
 				<Footer />
 			</main>
