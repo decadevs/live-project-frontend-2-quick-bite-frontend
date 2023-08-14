@@ -22,6 +22,12 @@ import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
+import VendorHome from "./vendordashboard/Home";
+import Settings from "./pages/Settings";
+import Analytics from "./pages/Analytics";
+import Products from './pages/Product';
+import Orders from "./pages/Orders";
+
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 
@@ -53,7 +59,12 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
-          <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+                    <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+					<Route path="/vendordashboard" element={<VendorHome />}></Route>
+					<Route path="/products" element={<Products />}></Route>
+					<Route path="/analytics" element={<Analytics />}></Route>
+					<Route path="/settings" element={<Settings />}></Route>
+					<Route path="/orders" element={<Orders />}></Route>
 				</Routes>
 				<Footer />
 			</main>
