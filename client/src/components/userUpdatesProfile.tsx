@@ -58,10 +58,12 @@ const UserUpdatesProfile = () => {
         address: user.address,
       };
 
+      setLoading(true)
       const data = await dispatch(updateUserProfile(payload)).unwrap();
 
       console.log(data.message);
 
+      setLoading(false)
       setUser(initialUserData);
       // throw new Error('Function not implemented.');
     } catch (error: any) {
