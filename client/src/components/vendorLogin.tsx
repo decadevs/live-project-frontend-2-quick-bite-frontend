@@ -36,10 +36,10 @@ const VendorLoginForm = () => {
 			setFormValid(false);
 			setLoading(false);
 
-            setTimeout(() => {
-                navigate("/vendordashboard");
-              }, 2000)            
-        // navigate('/vendordashboard');
+            // setTimeout(() => {
+            //     navigate("/vendordashboard");
+            //   }, 2000)            
+        navigate('/vendordashboard');
        }catch (error: any) {
         setLoading(false);
         if (error.response) {

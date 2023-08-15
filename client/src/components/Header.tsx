@@ -6,7 +6,7 @@ import Logo from "../assets/LogoBite.svg"
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
 import  "./cartmodal.css";
-import "../pages/cartpage.css"
+import "../pages/cartpage.css";
 
 const initialProducts: Product[] = [
   {

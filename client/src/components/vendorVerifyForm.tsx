@@ -29,10 +29,10 @@ const VendorRegNO = () => {
       localStorage.setItem("token", data.token);
       setRegNo("");
       setLoading(false);
+      navigate("/vendor");
       
-      setTimeout(() => {
-        navigate("/vendor");
-      }, 2000)
+      // setTimeout(() => {
+      // }, 2000)
       
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

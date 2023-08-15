@@ -40,7 +40,7 @@ useEffect(() => {
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
         <div className={show ? styles.hide : ""}>
         <div className={styles.cardContainer}>
-         {popularFood.map((food)=>(
+         {popularFood?.map((food)=>(
         <Link to="/4" key={food.id}> <div className={styles.Card}>
              <div className={styles.cardHead}>
                 <img src={food.food_image} alt="" className="h-60 w-90" />

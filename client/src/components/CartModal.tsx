@@ -248,8 +248,8 @@ function ShoppingCart({
     >
       <div className="shoppingCart">
         <div className="header">
-          <h2 className="text-xl font-semibold">Quick Food Basket</h2>
-          <button className="btn close-btn" onClick={onClose}>
+          <h2 className="text-xl font-semibold">Quick Bite Cart</h2>
+          <button className="product-remove-btn" onClick={onClose}>
             <AiFillCloseCircle size={40} />
           </button>
         </div>
@@ -271,7 +271,7 @@ function ShoppingCart({
                 </span>
               </div>
               <select
-                id="count"
+                id="count-num"
                 value={product.count}
                 onChange={(event) => {
                   onQuantityChange(product.id, parseInt(event.target.value));
@@ -289,12 +289,12 @@ function ShoppingCart({
                 className="btn remove-btn"
                 onClick={() => onProductRemove(product)}
               >
-                <RiDeleteBin6Line size={20} />
+                <RiDeleteBin6Line size={20} id="remove-bin"/>
               </button>
             </div>
           ))}
           {products.length > 0 && (
-            <button className="btn checkout-btn">
+            <button className="checkout-btn">
               Proceed to checkout
             </button>
           )}
