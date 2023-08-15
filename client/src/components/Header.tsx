@@ -82,14 +82,11 @@ const Header = () => {
           {menus.map((menu)=>(<li className={styles.menu} key={menu.id}>{menu.Order}<br/> <Link to ="/userupdatesprofile" >{menu.Updateprofile} </Link><br/>
           {menu.Changepassword}
           </li>
-          ))
-          
+          )) 
           
           }
           
-         </ul >
-         
-       
+         </ul >       
             <p>Adeyemo.O</p>
             <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
             <GiShoppingBag size={35} className="shop" onClick={()=>setCartVisibility(!cartVisibility)}/>

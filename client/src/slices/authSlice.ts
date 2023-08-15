@@ -24,6 +24,7 @@ export interface UserDetails {
 export interface InitialState {
   user: UserDetails;
   data: [];
+  
   token: string;
   isAuthenticated: boolean;
   error: string;
@@ -147,22 +148,7 @@ export const authSlice = createSlice({
      
       state.error = action.payload as string;
     });
-    builder.addCase(getPopularFood.pending, (state) => {
-      // Add user to the state array
-      state.isAuthenticated = false;
-      state.error =""
-    });
-    builder.addCase(getPopularFood.fulfilled, (state, action) => {
-      // Add user to the state array
-  
-      state.error = action.payload;
-    });
 
-    builder.addCase(getPopularFood.rejected, (state, action) => {
-      // Add user to the state array
-      state.isAuthenticated = false;
-      state.error = action.payload as string;
-    });
   },
 });
 

@@ -1,7 +1,7 @@
 import  { MouseEventHandler,  useState, useEffect } from 'react';
 import styles from "../styles/popular.module.css"
 import Dropdown from "../assets/dropdown.svg"
-import  FoodOne from "../assets/food1.png"
+// import  FoodOne from "../assets/food1.png"
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getPopularFood } from '../slices/popularSlice';
@@ -22,12 +22,14 @@ const PopularFood = () => {
 
 useEffect(() => {
    dispatch(getPopularFood());
-}, []);
+}, [dispatch]);
 
 
 
   return (
+
    <div id="pFood" className={styles.popular}>
+     
     <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`}></div>
     <div className={styles.popularFlex}>
         <h2 className={styles.popularText}>Popular Foods</h2>
@@ -38,7 +40,26 @@ useEffect(() => {
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
         <div className={show ? styles.hide : ""}>
         <div className={styles.cardContainer}>
-        <Link to="/4"> <div className={styles.Card}>
+         {popularFood.map((food)=>(
+        <Link to="/4" key={food.id}> <div className={styles.Card}>
+             <div className={styles.cardHead}>
+                <img src={food.food_image} alt="" className="h-60 w-90" />
+             </div>
+             <div className={styles.cardBody}>            
+               <h2 className={styles.cardheading}>{food.name}</h2>
+                <p className={styles.cardText}>{food.description}</p> 
+               
+             </div>
+             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
+             <div className={styles.cardFooter}>
+                <span className={styles.amount}>
+                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
+                </span>
+                <span className={styles.totalAmount}>#{food.price}</span>
+             </div>
+            </div></Link>
+            ))}
+            {/* <Link to="/4"> <div className={styles.Card}>
              <div className={styles.cardHead}>
                 <img src={FoodOne} alt="" className="h-60 w-90" />
              </div>
@@ -69,24 +90,7 @@ useEffect(() => {
                 </span>
                 <span className={styles.totalAmount}>####</span>
              </div>
-            </div></Link>
-            <Link to="/4"> <div className={styles.Card}>
-             <div className={styles.cardHead}>
-                <img src={FoodOne} alt="" className="h-60 w-90" />
-             </div>
-             <div className={styles.cardBody}>
-                <h2 className={styles.cardheading}>Bruncherie</h2>
-                <p className={styles.cardText}>Breakfast , lunch, desserts</p>
-             </div>
-             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
-             <div className={styles.cardFooter}>
-                <span className={styles.amount}>
-                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
-                </span>
-                <span className={styles.totalAmount}>####</span>
-             </div>
-            </div></Link>
-
+            </div></Link> */}
         </div>
         <div className={styles.btnContainer}>
         <Link to="/food"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
