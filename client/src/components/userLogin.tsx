@@ -21,7 +21,7 @@ const LoginForm = () => {
 			setLoading(true);
 
 			if (formValid && email.trim() !== "" && password.trim() !== "") {
-				showErrorToast("Please enter your details correctly.");
+				// showErrorToast("Please enter your details correctly.");
 				return;
 			}
 			const payload = {
@@ -30,6 +30,7 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
+			console.log( "login", payload)
 
 			setEmail("");
 			setPassword("");

@@ -17,6 +17,7 @@
   .profileImg{
     width:50px;
     height: 50px;
+
   }
   .flexProfile{
     display: flex;
@@ -60,10 +61,30 @@
     font-weight: 600;
     color: #ffff;
     border-radius: 10px;
+    margin-left: 60px;
    
     
 }  
 .SignUp:hover{
+    background-color: #1a512e9f;
+}
+
+.Logout{
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #ffff;
+    border-radius: 10px;
+    margin-left: 60px;
+    @media (max-width:480px) {
+       margin-inline: auto;  
+      
+    }
+   
+    
+}  
+.Logout:hover{
     background-color: #1a512e9f;
 }
 
@@ -164,6 +185,26 @@
 
 }
 
+.dropdown {
+    display: none;
+
+    
+}
+
+.menu { 
+    background-color: #1A512E;
+    border:none;
+    border-radius: 5px;
+    color: #ffff;
+  padding: 0 30px;
+    
+}
+
+.menu:hover{
+    background-color:#1a512e43
+}
+
+
 @media (max-width:480px){
 
    /* .backVideo{
@@ -174,6 +215,10 @@
     padding: 0 0px;
     
 
+   }
+   .signup{
+    margin: 0;
+    padding: 30px;
    }
 
    .hamburger{
