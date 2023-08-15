@@ -58,10 +58,12 @@ const UserUpdatesProfile = () => {
         address: user.address,
       };
 
+      setLoading(true)
       const data = await dispatch(updateUserProfile(payload)).unwrap();
 
       console.log(data.message);
 
+      setLoading(false)
       setUser(initialUserData);
       // throw new Error('Function not implemented.');
     } catch (error: any) {
@@ -138,7 +140,7 @@ const UserUpdatesProfile = () => {
                 type="submit"
                 className="w-1/3 p-2 bg-deepBlue text-white rounded mr-5"
               >
-                Save
+                {loading ? 'loading...' : "Save"}
               </button>
               <button
                 type="button"
