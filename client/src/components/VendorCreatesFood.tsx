@@ -52,6 +52,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
   const [loading, setLoading] = useState(false)
 
+   console.log(createFoodSuccess)
   const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
