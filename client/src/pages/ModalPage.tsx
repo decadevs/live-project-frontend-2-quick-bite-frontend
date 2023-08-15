@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from "../components/reusableComponents/Modal";
+import Modal from '../components/reusableComponents/Modal';
 
 const ModalPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
