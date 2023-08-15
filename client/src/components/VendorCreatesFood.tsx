@@ -2,6 +2,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
+import Input from "./reusableComponents/input";
 import Modal from "../components/reusableComponents/Modal";
 //import Food from "./Food";
 import axios from "../api/httpService";
@@ -14,9 +15,9 @@ interface VendorCreatesFoodProps {
 interface Food {
   name: string;
   price: string;
-  readyTime: string;
+  ready_time: string;
   description: string;
-  foodImage: File | null;
+  food_image: File | null;
 }
 
 //const { name, price, food_image, ready_time, description } = req.body;
@@ -42,9 +43,9 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
   const initialData: Food = {
     name: "",
     price: "",
-    readyTime: "",
+    ready_time: "",
     description: "",
-    foodImage: null as File | null,
+    food_image: null as File | null,
 
   }
   const [createFood, setCreateFood] = useState(initialData);
@@ -67,7 +68,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
     const { files } = e.currentTarget;
     const file = files && files[0];
     if (file) {
-      setCreateFood((prevFood) => ({ ...prevFood, foodImage: file }));
+      setCreateFood((prevFood) => ({ ...prevFood, food_image: file }));
     }
   };
 
@@ -85,9 +86,9 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
 
       formData.append("name", createFood.name)
       formData.append("price", createFood.price)
-      formData.append("readyTime", createFood.readyTime)
+      formData.append("ready_time", createFood.ready_time)
       formData.append("description", createFood.description)
-      formData.append("foodImage", createFood.foodImage as Blob)
+      formData.append("food_image", createFood.food_image as Blob)
 
       const {data} = await axios.post("/vendor/createfood", formData)
 
@@ -97,19 +98,6 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       showSuccessToast(data.message)
       setLoading(false)
       navigate("/vendorLogin");
-      // const Toast = Swal.mixin({
-      //   toast: true,
-      //   width: "30%",
-      //   position: "top",
-      //   title: "Food Created Successfully",
-      //   showConfirmButton: false,
-      //   timer: 3000,
-      // });
-      // Toast.fire({
-      //   icon: "success",
-      //   title: "Food Created Successfully",
-      // });
-
      
     } catch (error:any) {
       console.error(error);
@@ -158,8 +146,8 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
             <input
               type="text"
               placeholder="Ready Time"
-              name="readyTime"
-              value={createFood.readyTime}
+              name="ready_time"
+              value={createFood.ready_time}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
@@ -175,16 +163,31 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
               required
             />
 
-            <label htmlFor="foodImage">Food Image:</label>
+            <label htmlFor="food_image">Food Image:</label>
 
-            <input
+            <Input
+              type="file"
+              id="file"
+              placeholder="Food Image"
+              accept="image/*" // Allow only image files
+              name="food_image"
+              onChange={handleFileChange} // Handle file input change
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              required
+              value={null}
+            />
+
+            {/* <input
               type="file"
               accept="image/*"
-              name="foodImage"
+              name="food_image"
               onChange={handleFileChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
-            />
+            /> */}
+
+
+
             {/* <button
               type="submit"
               className="w-full p-2 bg-deepBlue text-white rounded"

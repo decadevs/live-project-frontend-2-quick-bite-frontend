@@ -1,17 +1,17 @@
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "../api/httpService";
-import { showErrorToast } from "../utility/toast";
+import { showErrorToast,  } from "../utility/toast";
 import Input from "./reusableComponents/input";
 
 const initialState = {
-  firstName: "",
-  lastName: "",
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
   confirm_password: "",
+  phone_no: "",
   address: "",
-  phoneNumber: "",
 };
 
 const SignupForm = () => {
@@ -19,7 +19,7 @@ const SignupForm = () => {
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [closePassword, setOpenPassowrd] = useState(false)
+  const [closePassword, setOpenPassowrd] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -88,8 +88,8 @@ const SignupForm = () => {
           <Input
             type="text"
             placeholder="First Name"
-            name="firstName"
-            value={user.firstName}
+            name="firstname"
+            value={user.firstname}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             required
@@ -97,8 +97,8 @@ const SignupForm = () => {
           <Input
             type="text"
             placeholder="Last Name"
-            name="lastName"
-            value={user.lastName}
+            name="lastname"
+            value={user.lastname}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             required
@@ -135,24 +135,26 @@ const SignupForm = () => {
               )}
             </span>
           </div>
+
           {passwordValidation && (
             <p className="text-green-500 text-sm mb-2">
               Password should contain at least one uppercase letter, one
               lowercase letter, one special character, and one number.
             </p>
           )}
+
           <div className="relative mb-4">
-          <Input
-             type={closePassword ? "text" : "password"}
-            placeholder="Confirm Password"
-            name="confirm_password"
-            value={user.confirm_password}
-            onChange={handlePasswordChange}
-            onFocus={() => setPasswordValidation(true)}
-            onBlur={() => setPasswordValidation(false)}
-            className="w-full p-2 border border-gray-300 rounded mb-4"
-            required
-          />
+            <Input
+              type={closePassword ? "text" : "password"}
+              placeholder="Confirm Password"
+              name="confirm_password"
+              value={user.confirm_password}
+              onChange={handlePasswordChange}
+              onFocus={() => setPasswordValidation(true)}
+              onBlur={() => setPasswordValidation(false)}
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              required
+            />
             <span
               className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
               onClick={handleTogglePasswordVisibility2}
@@ -163,17 +165,17 @@ const SignupForm = () => {
                 <i className="fas fa-eye"></i>
               )}
             </span>
-            </div>
+          </div>
           <Input
             type="text"
             placeholder="Phone Number"
-            name="phoneNumber"
-            value={user.phoneNumber}
+            name="phone_no"
+            value={user.phone_no}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             required
           />
-           <Input
+          <Input
             type="text"
             placeholder="Address"
             name="address"
