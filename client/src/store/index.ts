@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer from "../slices/authSlice";
+import popularRestaurantReducer from "../slices/popularRestaurantSlice"
+import popularFoodReducer from "../slices/popularSlice";
+import newFoodReducer from "../slices/newFoodsSlice"
 
 export const store = configureStore({
 	reducer: {
 		auth: authReducer,
+		popularFood:popularFoodReducer,
+		popularRestaurant : popularRestaurantReducer,
+		newFood : newFoodReducer
 	},
 });
 

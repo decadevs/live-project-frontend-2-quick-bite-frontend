@@ -82,14 +82,11 @@ const Header = () => {
           {menus.map((menu)=>(<li className={styles.menu} key={menu.id}>{menu.Order}<br/> <Link to ="/userupdatesprofile" >{menu.Updateprofile} </Link><br/>
           {menu.Changepassword}
           </li>
-          ))
-          
+          )) 
           
           }
           
-         </ul >
-         
-       
+         </ul >       
             <p>Adeyemo.O</p>
             <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
             <GiShoppingBag size={35} className="shop" onClick={()=>setCartVisibility(!cartVisibility)}/>
@@ -105,7 +102,7 @@ const Header = () => {
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
           
-            <Link to="/"><button className={`${styles.SignUp} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+            <Link to="/"><button className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
         
     </div>
     </div>
