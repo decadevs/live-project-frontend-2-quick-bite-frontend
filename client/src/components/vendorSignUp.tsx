@@ -65,10 +65,10 @@ const VendorSignupForm = () => {
       setLoading(false);
 
       // navigate("/vendorLogin")
+      navigate("/vendorLogin");
 
-      setTimeout(() => {
-        navigate("/vendorLogin");
-      }, 1000) 
+      // setTimeout(() => {
+      // }, 1000) 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
