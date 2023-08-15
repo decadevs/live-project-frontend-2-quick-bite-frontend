@@ -71,11 +71,12 @@ const Header = () => {
          <div className="hidden md:flex space-x-6 justify-between">         
            
          </div>
-         <div className={styles.flexProfile}>
-         
-         <img src={ProfileImg} alt="" className={styles.profileImg}/>
-            
-         <img src={ProfileImg} alt="" className={styles.profileImg} onClick={toggle}/>
+         <div className={styles.flexProfile}>       
+          <div>
+          <img src={ProfileImg} alt="" className={styles.profileImg} onClick={toggle}/>
+         <p>Adeyemo.O</p>
+            </div>  
+        
         
          <ul className={`${dropdown ?styles.dropdown : ""} 
          absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`  }>
@@ -86,8 +87,9 @@ const Header = () => {
           
           }
           
-         </ul >       
-            <p>Adeyemo.O</p>
+         </ul > 
+
+            
             <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
             <GiShoppingBag size={35} className="shop" onClick={()=>setCartVisibility(!cartVisibility)}/>
          </div>

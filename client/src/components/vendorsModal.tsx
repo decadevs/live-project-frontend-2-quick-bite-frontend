@@ -1,5 +1,5 @@
 import React from "react";
-import VendorCreatesFood from "./VendorCreatesFood";
+// import VendorCreatesFood from "./VendorCreatesFood";
 
 export default function Modal() {
   const [showModal, setShowModal] = React.useState(false);
