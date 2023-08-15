@@ -16,8 +16,8 @@ const config = (): Config => {
 			secrets: {
 				apiHost:
 					environment === "development"
-						? "http://localhost:6050"
-						: "http://localhost:6050",
+						? "http://localhost:3050"
+						: "http://localhost:3050",
 			},
 		});
 	}
