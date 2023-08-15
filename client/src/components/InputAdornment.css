@@ -6,6 +6,7 @@
 .textfield__input {
   border: 1px solid rgb(209, 213, 219);
   display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 8px;
   border-radius: 4px;
@@ -15,6 +16,7 @@
 .textfield__input-field {
   border: 0;
   padding-left: 10px;
+  width: 95%;
 }
 
 .textfield__input-field:focus {

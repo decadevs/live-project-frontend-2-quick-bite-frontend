@@ -10,118 +10,24 @@ import CountUp from "react-countup";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getAllFood } from "../slices/getAllFoodSlice";
-import axios from "axios";
-// import axios from "axios";
-// import { curryGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+
 
 export default function Home() {
-  const [numberOfFoods, setNumberOfFoods] = useState(0);
+ 
   const [numberOfPopularFoods, setNumberOfPopularFoods] = useState(0);
   const [numberOfOrders, setNumberOfOrders] = useState(0);
   const dispatch = useAppDispatch();
   const { allFood, isLoading } = useAppSelector((state) => state.allFood);
-  console.log("redux  data ",allFood, isLoading);
+  console.log("redux  data ",allFood.length, isLoading);
 
   useEffect(() => {
     dispatch(getAllFood());
-    // fetchPopularFoodsCount();
-    // fetchOrderCount();
+  
   }, [dispatch]);
 
   console.log(setNumberOfPopularFoods)
   console.log(setNumberOfOrders)
-  console.log(numberOfFoods)
 
-  // useEffect(() => {
-  //     fetch('/api/foods')
-  //         .then(response => response.json())
-  //         .then(data => {
-  //             setNumberOfFoods(data.numberOfFoods);
-  //         })
-  //         .catch(error => {
-  //             console.error('Error fetching number of foods:', error);
-  //         });
-  // }, []);
-
-  // useEffect(() => {
-  //     // Fetch the number of popular foods from the backend API
-  //     fetch('/api/popularFoodsCount')
-  //         .then(response => response.json())
-  //         .then(data => {
-  //             setNumberOfPopularFoods(data.count);
-  //         })
-  //         .catch(error => {
-  //             console.error('Error fetching number of popular foods:', error);
-  //         });
-  // }, []);
-
-  // useEffect(() => {
-  //     // Fetch the number of popular foods from the backend API
-  //     fetch('/api/orders')
-  //         .then(response => response.json())
-  //         .then(data => {
-  //             setNumberOfOrders(data.orderCount);
-  //         })
-  //         .catch(error => {
-  //             console.error('Error fetching order count:', error);
-  //         });
-  // }, []);
-
-  const fetchFoodsCount = async () => {
-      try {
-          const response = await axios.get('api/food'); // Use axios for GET request
-
-          localStorage.setItem("user", JSON.stringify(response.data.user));
-          console.log(response)
-          localStorage.setItem("token", response.data.token);
-          console.log('data  ', response.data.numberOfFoods)
-          setNumberOfFoods(response.data.numberOfFoods);
-          return response.data;
-
-      } catch (error) {
-          console.error('Error fetching number of foods:', error);
-      }
-  };
-
-//   const fetchFoodsCount = async () => {
-//       try {
-//           const token = localStorage.getItem("token"); // Retrieve the token from localStorage
-
-//           if (token) {
-//               const response = await axios.get('http://localhost:4500/vendor/getallfood', {
-//                   headers: {
-//                       Authorization: `Bearer ${token}` // Include the token in the request headers
-//                   }
-//               });
-
-//               console.log(response)
-//               // Rest of your code
-//           } else {
-//               console.log("No token found in localStorage");
-//               // Handle the case where there's no token available
-//           }
-//       } catch (error) {
-//           console.error('Error fetching number of foods:', error);
-//       }
-//   };
-
-  // const fetchPopularFoodsCount = async () => {
-  //     try {
-  //         const response = await axios.get('/api/popularFoodsCount');
-  //         setNumberOfPopularFoods(response.data.count);
-  //     } catch (error) {
-  //         console.error('Error fetching number of popular foods:', error);
-  //     }
-  // };
-
-  // const fetchOrderCount = async () => {
-  //     try {
-  //         const response = await axios.get('/api/orders');
-  //         setNumberOfOrders(response.data.orderCount);
-  //     } catch (error) {
-  //         console.error('Error fetching order count:', error);
-  //     }
-  // };
 
   return (
     <>
@@ -156,7 +62,7 @@ export default function Home() {
                         >
                           <CountUp
                             delay={0.2}
-                            end={fetchFoodsCount}
+                            end={allFood.length}
                             duration={0.3}
                           />
                         </Typography>
