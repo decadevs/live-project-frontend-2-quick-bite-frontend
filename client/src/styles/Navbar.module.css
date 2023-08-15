@@ -84,7 +84,10 @@
     transition: all, 0.25s;
     position: relative; 
     font-size: 40px;
-
+    @media (min-width:480px) {
+        display: none;  
+        
+      }
 
     
 }
@@ -97,11 +100,8 @@
     position: absolute;
     bottom:0;
     z-index: -1;
-    @media (max-width:768px) {
-      display: none;  
-      
-    }
-    @media (max-width:480px) {
+ 
+    @media (min-width:480px) and (max-width:768px) {
          display: none;
     }
 }

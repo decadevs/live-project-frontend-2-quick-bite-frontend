@@ -1,6 +1,6 @@
 import CardSection from "../components/CardSection";
 import "../styles/allVendorFoods.css";
-import Header from "../components/Header";
+import VendorHeader from "../components/VendorHeader";
 
 const AllVendorFoods = () => {
   let foods = [
@@ -31,7 +31,7 @@ const AllVendorFoods = () => {
 
   return (
     <>
-      <Header />
+      <VendorHeader />
       <div>
         <div className="cover-photo">
           {/* <img src={cover_photo} alt="" /> */}
