@@ -26,12 +26,10 @@ const VendorSignupForm = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setVendor((prevVendor) => {
-      return {
-        ...prevVendor,
-        [name]: value,
-      };
-    });
+    setVendor((prevVendor) => ({
+      ...prevVendor,
+      [name]: value,
+    }));
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +49,6 @@ const VendorSignupForm = () => {
       setSignupSuccess(true);
 
       setLoading(true);
-
       const formData = new FormData();
 
       formData.append("email", vendor.email);
@@ -62,15 +59,13 @@ const VendorSignupForm = () => {
       formData.append("cover_image", vendor.coverImage as Blob);
 
       const { data } = await axios.post("/vendor/registervendor", formData);
-      //localStorage.setItem("token",data.token)
+
       setVendor(initialData);
       showSuccessToast(data.message);
       setLoading(false);
 
       navigate("/vendorLogin");
 
-      // setTimeout(() => {
-      // }, 2000);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
@@ -85,7 +80,7 @@ const VendorSignupForm = () => {
   };
   return (
     <>
-      {/* <Header /> */}
+      {/*<Header />*/}
       <div className="flex justify-center items-center h-screen px-4">
         <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
           <h1 className="text-black text-3xl font-bold text-center mb-4">
@@ -164,11 +159,11 @@ const VendorSignupForm = () => {
               Vendor Sign up
             </button>
           </form>
-          {signupSuccess && (
-            <p className="text-green-500 text-center font-bold mt-4">
-              Sign up successful!
-            </p>
-          )}
+          {/* {signupSuccess && (
+                        <p className="text-green-500 text-center font-bold mt-4">
+                            Sign up successful!
+                        </p>
+                    )} */}
           <p className="text-black text-center mt-4">
             Already have an account?{" "}
             <RouterLink to="/vendorlogin" className="text-green-800 font-bold">

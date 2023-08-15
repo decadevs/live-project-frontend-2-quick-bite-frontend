@@ -11,11 +11,6 @@ const VendorRegNO = () => {
 
   const navigate = useNavigate();
 
-  // const handleLogin = () => {
-
-  //     navigate('/vendor');
-  // };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -28,7 +23,6 @@ const VendorRegNO = () => {
       };
 
       const { data } = await axios.post("/vendor/verifyvendor", payload);
-
       showSuccessToast(data.message);
 
       localStorage.setItem("token", data.token);
@@ -39,7 +33,7 @@ const VendorRegNO = () => {
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
-        showErrorToast(error.response.data.message);
+        showErrorToast(error.response.status);
       } else if (error.request) {
         showErrorToast("Internal Server Error");
       } else {

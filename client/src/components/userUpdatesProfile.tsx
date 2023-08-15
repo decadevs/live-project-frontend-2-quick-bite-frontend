@@ -22,8 +22,6 @@ const UserUpdatesProfile = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 
-  //console.log(logedInUser);
-
   useEffect(() => {
     setUser({
       ...user,
@@ -33,7 +31,8 @@ const UserUpdatesProfile = () => {
       address: logedInUser?.address as string,
       phoneNumber: logedInUser?.phone_no as string,
     });
-  }, [logedInUser, user]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [logedInUser]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -50,7 +49,14 @@ const UserUpdatesProfile = () => {
   ): Promise<void> {
     try {
       event.preventDefault();
-      const payload = { ...user };
+
+      const payload = {
+        firstname: user.firstName,
+        lastname: user.lastName,
+        email: user.email,
+        phone_no: user.phoneNumber,
+        address: user.address,
+      };
 
       const data = await dispatch(updateUserProfile(payload)).unwrap();
 
