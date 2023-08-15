@@ -6,7 +6,7 @@ import Logo from "../assets/LogoBite.svg"
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
 import  "./cartmodal.css";
-import "../pages/cartpage.css"
+import "../pages/cartpage.css";
 
 const initialProducts: Product[] = [
   {
@@ -71,26 +71,25 @@ const Header = () => {
          <div className="hidden md:flex space-x-6 justify-between">         
            
          </div>
-         <div className={styles.flexProfile}>
-         
-         <img src={ProfileImg} alt="" className={styles.profileImg}/>
-            
-         <img src={ProfileImg} alt="" className={styles.profileImg} onClick={toggle}/>
+         <div className={styles.flexProfile}>       
+          <div>
+          <img src={ProfileImg} alt="" className={styles.profileImg} onClick={toggle}/>
+         <p>Adeyemo.O</p>
+            </div>  
+        
         
          <ul className={`${dropdown ?styles.dropdown : ""} 
          absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`  }>
           {menus.map((menu)=>(<li className={styles.menu} key={menu.id}>{menu.Order}<br/> <Link to ="/userupdatesprofile" >{menu.Updateprofile} </Link><br/>
           {menu.Changepassword}
           </li>
-          ))
-          
+          )) 
           
           }
           
-         </ul >
-         
-       
-            <p>Adeyemo.O</p>
+         </ul > 
+
+            
             <Link to="/"><button className={`${styles.SignUp} bg-deepBlue `}>Logout</button></Link> 
             <GiShoppingBag size={35} className="shop" onClick={()=>setCartVisibility(!cartVisibility)}/>
          </div>
@@ -105,7 +104,7 @@ const Header = () => {
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
           
-            <Link to="/"><button className={`${styles.SignUp} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+            <Link to="/"><button className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
         
     </div>
     </div>

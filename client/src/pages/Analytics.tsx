@@ -18,7 +18,7 @@ export default function Home() {
   const [numberOfOrders, setNumberOfOrders] = useState(0);
   const dispatch = useAppDispatch();
   const { allFood, isLoading } = useAppSelector((state) => state.allFood);
-  console.log("redux  data ",allFood.length, isLoading);
+  console.log("redux  data ", allFood, isLoading);
 
   useEffect(() => {
     dispatch(getAllFood());
@@ -28,7 +28,8 @@ export default function Home() {
   console.log(setNumberOfPopularFoods)
   console.log(setNumberOfOrders)
 
-
+const value = allFood.length
+console.log("detail value ", value)
   return (
     <>
       <div className="bgColor">
@@ -62,7 +63,7 @@ export default function Home() {
                         >
                           <CountUp
                             delay={0.2}
-                            end={allFood.length}
+                            end={value}
                             duration={0.3}
                           />
                         </Typography>
