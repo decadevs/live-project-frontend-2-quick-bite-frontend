@@ -35,7 +35,11 @@ const VendorLoginForm = () => {
 			setPasswordValidation(false);
 			setFormValid(false);
 			setLoading(false);
-        navigate('/vendorPassword');
+
+            setTimeout(() => {
+                navigate("/vendordashboard");
+              }, 2000)            
+        // navigate('/vendordashboard');
        }catch (error: any) {
         setLoading(false);
         if (error.response) {
@@ -87,7 +91,7 @@ const VendorLoginForm = () => {
                     onClick={handleLogin}
                     // disabled={!formValid || loading}
                 >
-                    Vendor Login
+                    {loading ? 'loading...' : "Vendor Login"}
                     {/* {loading ? "Loading" : "Vendor Login"} */}
                 </button>
                 <p className="text-black text-center mt-4">

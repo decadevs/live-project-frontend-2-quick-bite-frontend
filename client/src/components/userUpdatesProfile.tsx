@@ -138,7 +138,7 @@ const UserUpdatesProfile = () => {
                 type="submit"
                 className="w-1/3 p-2 bg-deepBlue text-white rounded mr-5"
               >
-                Save
+                {loading ? 'loading...' : "Save"}
               </button>
               <button
                 type="button"

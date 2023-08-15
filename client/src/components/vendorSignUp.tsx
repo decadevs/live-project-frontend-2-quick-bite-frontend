@@ -64,8 +64,9 @@ const VendorSignupForm = () => {
       showSuccessToast(data.message)
       setLoading(false)
 
-        navigate("/vendorLogin");
-      
+        setTimeout(() => {
+          navigate("/vendorLogin");
+        }, 2000)
       
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -153,7 +154,7 @@ const VendorSignupForm = () => {
                             type="submit"
                             className="w-full p-2 bg-deepBlue text-white rounded"
                         >
-                            Vendor Sign up
+                          {loading ? 'loading...' : "Vendor Sign up"}
                         </button>
                     </form>
                     {/* {signupSuccess && (
