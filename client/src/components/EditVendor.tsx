@@ -3,10 +3,21 @@ import {  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 
+interface EditVendorProps{
+    handleClose: () => void
+}
+interface Vendor {
+    nameOfOwner: string;
+    restaurantName: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    coverImage: File | null;
+}
 
  // import Header from './Header';
-const VendorEditProfile: React.FC = () => {
-    const [vendor, setVendor] = useState({
+const VendorEditProfile: React.FC<EditVendorProps> = () => {
+    const [vendor, setVendor] = useState<Vendor>({
         nameOfOwner: '',
         restaurantName: '',
         email: '',
@@ -15,10 +26,7 @@ const VendorEditProfile: React.FC = () => {
         coverImage: null as File | null
     });
    const [editprofileSuccess, setEditProfileSuccess] = useState(false);
-//    const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [editprofileSuccess, setEditProfileSuccess] = useState(false);
-    
-    // const [passwordValidation, setPasswordValidation] = useState(false);
+//   
     const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -28,10 +36,6 @@ const VendorEditProfile: React.FC = () => {
             [name]: value
         }));
     };
-
-    // const handleCancel = (e: ChangeEvent<HTMLInputElement>) => {
-    //     const 
-    // }
 
  
 
@@ -44,43 +48,14 @@ const VendorEditProfile: React.FC = () => {
         }
       };
 
-    //   const openModal = () => {
-    //     setIsModalOpen(true);
-    //   };
-
-    //   const closeModal = () => {
-    //     setIsModalOpen(false);
-    //   };
-
+    //  
       const handleCancel = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         
-            // const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
-            // e.stopPropagation();
-            // setVendor({
-            //     nameOfOwner: '',
-            //     restaurantName: '',
-            //     email: '',
-            //     phoneNumber: '',
-            //     address: '',
-            //     coverImage: null,
-
-            // });
-            // closeModal();
+            
             toast.error('Cancelled', {
                 autoClose: 3000
     
-
-        // try {
-        //     console.log(vendor)
-        //     toast.error('Cancelled', {
-        //     autoClose: 3000
-        //     });
-        //     // setTimeout(() => {
-        //     //     // navigate('/');
-        //     // }, 3000);
-        // } catch (error) {
-        //     console.error(error);
          })
 
         
@@ -105,37 +80,12 @@ const VendorEditProfile: React.FC = () => {
         }
     };
 
-    // const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-
-    //     try {
-
-    //         console.log(vendor);
-    //         // toast.success("Profile edited sucessfullly");
-    //          setEditProfileSuccess(true);
-    //         setEditProfileSuccess();
-
-    //         setTimeout(() => {
-               
-    //             navigate('/dashbord');
-    //         }, 2000);
-    //     } catch (error) {
-    //         toast.error("Editancelled")
-    //     }
-    // };
-
+    
     return (
         <>
             {/* <Header /> */}
             <div className="flex justify-center items-center h-screen px-4">
-                {/* <button onClick={openModal}>View Edited Profile</button>
-                </div> */}
-
-                {/* <Modal
-                isOpen={isModalOpen}
-                onRequstClose={closeModal}
-                contentLabel="EditProfile Modal"
-                > */}
+                
 
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Edit Profile  </h1>
@@ -207,7 +157,6 @@ const VendorEditProfile: React.FC = () => {
                         </div>
 
 
-                    {/* </form> */}
                     {editprofileSuccess && (
                         <p className="text-green-500 text-center font-bold mt-4">
                             Edit successful!
@@ -219,7 +168,6 @@ const VendorEditProfile: React.FC = () => {
                 </div>
             </div>    
             
-            {/* </Modal> */}
         </>
 
     );
