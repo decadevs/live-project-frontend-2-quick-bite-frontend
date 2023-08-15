@@ -39,7 +39,7 @@ const VendorLoginForm = () => {
             // setTimeout(() => {
             //     navigate("/vendordashboard");
             //   }, 2000)            
-        navigate('/vendordashboard');
+        navigate('/vendorsFood');
        }catch (error: any) {
         setLoading(false);
         if (error.response) {
