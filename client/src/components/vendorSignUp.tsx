@@ -58,6 +58,7 @@ const VendorSignupForm = () => {
       formData.append("restaurant_name", vendor.restaurantName);
       formData.append("cover_image", vendor.coverImage as Blob);
 
+<<<<<<< HEAD
       const { data } = await axios.post("/vendor/registervendor", formData);
 
       setVendor(initialData);
@@ -67,6 +68,13 @@ const VendorSignupForm = () => {
       navigate("/vendorLogin");
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
+=======
+        setTimeout(() => {
+          navigate("/vendorLogin");
+        }, 2000)
+      
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+>>>>>>> f5c020687f4e78a77924abe30760900a2f211740
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
@@ -152,6 +160,7 @@ const VendorSignupForm = () => {
               value={null}
             />
 
+<<<<<<< HEAD
             <button
               type="submit"
               className="w-full p-2 bg-deepBlue text-white rounded"
@@ -160,6 +169,16 @@ const VendorSignupForm = () => {
             </button>
           </form>
           {/* {signupSuccess && (
+=======
+                        <button
+                            type="submit"
+                            className="w-full p-2 bg-deepBlue text-white rounded"
+                        >
+                          {loading ? 'loading...' : "Vendor Sign up"}
+                        </button>
+                    </form>
+                    {/* {signupSuccess && (
+>>>>>>> f5c020687f4e78a77924abe30760900a2f211740
                         <p className="text-green-500 text-center font-bold mt-4">
                             Sign up successful!
                         </p>
