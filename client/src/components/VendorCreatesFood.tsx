@@ -38,7 +38,7 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
   });
 
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
-
+   console.log(createFoodSuccess)
   const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
