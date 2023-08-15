@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showErrorToast, showSuccessToast } from "../utility/toast";
@@ -28,6 +29,7 @@ const VendorRegNO = () => {
       localStorage.setItem("token", data.token);
       setRegNo("");
       setLoading(false);
+      
       setTimeout(() => {
         navigate("/vendor");
       }, 2000)
@@ -67,11 +69,7 @@ const VendorRegNO = () => {
             className="w-full p-2 bg-deepBlue text-white rounded-xl"
             onClick={handleSubmit}
           >
-<<<<<<< HEAD
-            {loading ? "Loading..." : "Submit"}
-=======
-            {loading ? 'loading...' : "Verify"}
->>>>>>> f5c020687f4e78a77924abe30760900a2f211740
+            {loading ? "Loading..." : "Verify"}
           </button>
           {/* <p className="text-black text-center mt-4">
                     Not a registered Vendor?{' '}
