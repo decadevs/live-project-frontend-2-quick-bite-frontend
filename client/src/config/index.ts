@@ -17,7 +17,7 @@ const config = (): Config => {
 				apiHost:
 					environment === "development"
 						? "http://localhost:3050"
-						: "http://localhost:3050",
+						: "http://localhost:3050"
 			},
 		});
 	}

@@ -71,7 +71,7 @@
     /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
     color: #1A512E;
     /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
-
+    height: 100%;
     box-shadow:0px 0px 15px -5px;
     transition: 0.3s;
     animation: ease-in;
@@ -85,17 +85,18 @@
 .cardBody{
     margin-top: 20px;
     margin-bottom: 25px;
-   max-width: 200px;
+   max-width: 300x;
  
     
 }
 
 
 .cardheading{
-    font-size: 30px;
+    font-size: 24px;
 }
 .cardText{
    color: #836868; 
+   max-width: 200px;
    
 }
 .amount{
@@ -103,6 +104,7 @@
 }
 .totalAmount{
     color: #836868;
+    font-size: 30px;
 }
 .Card:hover{
     /* background-color:#836868; */

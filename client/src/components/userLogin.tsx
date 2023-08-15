@@ -125,11 +125,11 @@ const LoginForm = () => {
 					</RouterLink>
 				</p>
 				<button
-					className={`w-full p-2 bg-deepBlue text-white rounded-xl ${
-						formValid ? "" : "opacity-50 cursor-not-allowed"
-					}`}
+					className={`w-full p-2 bg-deepBlue text-white rounded-xl` //${
+						//formValid ? "" : "opacity-50 cursor-not-allowed"}`
+					}
 					onClick={handleLogin}
-					disabled={!formValid || loading}
+					// disabled={!formValid || loading}
 				>
 					{loading ? "Loading" : "Login"}
 				</button>

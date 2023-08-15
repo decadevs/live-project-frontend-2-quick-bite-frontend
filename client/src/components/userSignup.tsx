@@ -52,10 +52,12 @@ const SignupForm = () => {
         ...user,
       };
 
-      await axios.post("/user/register", payload);
+      const {data} = await axios.post("/user/register", payload);
+
 
       setUser(initialState);
       setSignupSuccess(true);
+      localStorage.setItem("token", data.token);
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
