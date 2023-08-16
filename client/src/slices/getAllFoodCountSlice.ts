@@ -24,7 +24,7 @@ export interface AllFoodDetails{
    
 }
 export interface InitialState { 
-      allFood: AllFoodDetails[];   
+    allFoodCount: AllFoodDetails[];   
     isLoading: boolean
     token: string;
 	isAuthenticated: boolean;
@@ -32,7 +32,7 @@ export interface InitialState {
     message:string
   }
   const initialState:InitialState={
-     allFood:[],
+     allFoodCount:[],
      isLoading:false,
      token: "",
 	isAuthenticated: false,
@@ -41,8 +41,8 @@ export interface InitialState {
   } 
  
   
-  export const getAllFood = createAsyncThunk(
-    "allFood/getAllFood",
+  export const getAllFoodCount = createAsyncThunk(
+    "allFoodCount/getAllFood",
     async (_, thunkAPI) => {
       try {
         const response = await axios.get("/vendor/getallfood");
@@ -65,22 +65,22 @@ export interface InitialState {
     }
   );
   
-  export const getAllFoodSlice = createSlice({
-    name: "allFood",
+  export const getAllFoodCountSlice = createSlice({
+    name: "allFoodCount",
     initialState,
     reducers: {},
     extraReducers: (builder) => {  
      
-      builder.addCase(getAllFood.pending, (state) => {
+      builder.addCase(getAllFoodCount.pending, (state) => {
         // Add user to the state array
         state.isLoading = true;
         state.isAuthenticated = false;
         state.message = ""
         state.error =""
       });
-      builder.addCase(getAllFood.fulfilled, (state, action) => {
+      builder.addCase(getAllFoodCount.fulfilled, (state, action) => {
         // Add user to the state array
-         state.allFood = action.payload.data;
+         state.allFoodCount = action.payload.data;
 
          state.message = action.payload.message;
          state.isAuthenticated = true;
@@ -89,7 +89,7 @@ export interface InitialState {
 
       });
   
-      builder.addCase(getAllFood.rejected, (state, action) => {
+      builder.addCase(getAllFoodCount.rejected, (state, action) => {
         // Add user to the state array
         state.isLoading = false;
         state.message = ""
@@ -103,4 +103,4 @@ export interface InitialState {
   // Action creators are generated for each case reducer function
 //   export const { logout, loginSuccess } = popularFoodSlice.actions;
   
-  export default getAllFoodSlice.reducer;
+  export default getAllFoodCountSlice.reducer;

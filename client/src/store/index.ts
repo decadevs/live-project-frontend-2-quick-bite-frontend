@@ -3,8 +3,9 @@ import authReducer from "../slices/authSlice";
 import popularRestaurantReducer from "../slices/popularRestaurantSlice"
 import popularFoodReducer from "../slices/popularSlice";
 import newFoodReducer from "../slices/newFoodsSlice";
-import getAllFoodReducer from "../slices/getAllFoodSlice";
-
+import getAllFoodCountReducer from "../slices/getAllFoodCountSlice";
+import getTotalFoodReducer from "../slices/popularFoodCountSlice";
+import getOrderCountReducer from "../slices/orderCountSlice";
 
 export const store = configureStore({
 	reducer: {
@@ -12,7 +13,9 @@ export const store = configureStore({
 		popularFood:popularFoodReducer,
 		popularRestaurant : popularRestaurantReducer,
 		newFood : newFoodReducer,
-		allFood :getAllFoodReducer
+		allFoodCount :getAllFoodCountReducer,
+		totalFood: getTotalFoodReducer,
+		vendorOrder: getOrderCountReducer
 	},
 });
 

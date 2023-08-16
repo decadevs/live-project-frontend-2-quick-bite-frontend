@@ -7,29 +7,45 @@ import GeoChart from "../charts/GeoChart";
 import PieChart from "../charts/PieChart";
 import HBarChart from "../charts/HBarChart";
 import CountUp from "react-countup";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getAllFood } from "../slices/getAllFoodSlice";
+import { getAllFoodCount } from "../slices/getAllFoodCountSlice";
+import { getTotalFood } from "../slices/popularFoodCountSlice";
+import { getOrderCount } from "../slices/orderCountSlice";
 
 
 export default function Home() {
  
-  const [numberOfPopularFoods, setNumberOfPopularFoods] = useState(0);
-  const [numberOfOrders, setNumberOfOrders] = useState(0);
+  // const [numberOfPopularFoods, setNumberOfPopularFoods] = useState(0);
+ // const [numberOfOrders, setNumberOfOrders] = useState(0);
   const dispatch = useAppDispatch();
-  const { allFood, isLoading } = useAppSelector((state) => state.allFood);
-  console.log("redux  data ", allFood, isLoading);
+  const { allFoodCount, isLoading } = useAppSelector((state) => state.allFoodCount);
+  console.log("redux  data ", allFoodCount, isLoading);
+
+  const { totalFoods } = useAppSelector((state) => state.totalFood);
+  console.log(" totalFood  data ", totalFoods, isLoading);
+
+  const { vendorOrder } = useAppSelector((state) => state.vendorOrder);
+  console.log(" vendorOrder  data ", vendorOrder, isLoading);
 
   useEffect(() => {
-    dispatch(getAllFood());
-  
+    dispatch(getAllFoodCount());
+    dispatch(getTotalFood());
+    dispatch(getOrderCount());
   }, [dispatch]);
 
-  console.log(setNumberOfPopularFoods)
-  console.log(setNumberOfOrders)
+  // console.log(setNumberOfPopularFoods)
+  //console.log(setNumberOfOrders)
 
-const value = allFood.length
-console.log("detail value ", value)
+const value = allFoodCount.length
+console.log("allFood value ", value)
+
+const popularFoods = totalFoods.length
+console.log("popularFoods value ", popularFoods)
+
+const totalVendorOrder = vendorOrder.length
+console.log("totalVendorOrder value ", totalVendorOrder)
+
   return (
     <>
       <div className="bgColor">
@@ -95,7 +111,7 @@ console.log("detail value ", value)
                         >
                           <CountUp
                             delay={0.2}
-                            end={numberOfOrders}
+                            end={totalVendorOrder}
                             duration={0.3}
                           />
                         </Typography>
@@ -132,7 +148,7 @@ console.log("detail value ", value)
                         >
                           <CountUp
                             delay={0.2}
-                            end={numberOfPopularFoods}
+                            end={popularFoods}
                             duration={0.3}
                           />
                         </Typography>
