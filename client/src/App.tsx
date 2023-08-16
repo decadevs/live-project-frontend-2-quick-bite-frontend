@@ -16,6 +16,11 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+import AllFoodsPage from "./pages/AllFoodsPage";
+import NewFoodsPage from "./pages/NewFoodsPage";
+import PopularResPage from "./pages/PopularResPage";
+import PopularFoodsPage from "./pages/PopularFoodsPage";
+// import { loginSuccess } from "./slices/authSlice";
 import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -65,6 +70,10 @@ function App() {
 					<Route path="/analytics" element={<Analytics />}></Route>
 					<Route path="/settings" element={<Settings />}></Route>
 					<Route path="/orders" element={<Orders />}></Route>
+					<Route path="/allfoods" element={<AllFoodsPage />}></Route>
+					<Route path="/newfoods" element={ <NewFoodsPage />}></Route>
+					<Route path="/popular" element={ <PopularResPage/>}></Route>
+					<Route path="/popularfoods" element={ <PopularFoodsPage/>}></Route>
 				</Routes>
 				<Footer />
 			</main>

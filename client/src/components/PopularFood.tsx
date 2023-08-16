@@ -68,7 +68,7 @@ useEffect(() => {
         </div>
 
         <div className={styles.btnContainer}>
-        <Link to="/food"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+        <Link to="/popularfoods"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
         </div>
       
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`}></div>

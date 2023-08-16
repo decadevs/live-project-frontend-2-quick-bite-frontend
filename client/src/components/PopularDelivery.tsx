@@ -98,7 +98,7 @@ const PopularDelivery = () => {
         </div>
 
         <div className={styles.btnContainer}>
-       <Link to="/vendors"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+       <Link to="/popular"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
         </div>
         </>
         }
