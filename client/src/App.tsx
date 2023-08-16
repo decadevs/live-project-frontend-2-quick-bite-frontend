@@ -16,10 +16,7 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
-
-import VendorsEdit from "./pages/VendorsEdit"
-
-// import { loginSuccess } from "./slices/authSlice";
+import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
@@ -28,10 +25,10 @@ import Settings from "./pages/Settings";
 import Analytics from "./pages/Analytics";
 import Products from './pages/Product';
 import Orders from "./pages/Orders";
-
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import UserLandingpg from "./pages/userLandingpg";
+import {ProtectRoute} from './utility/auth'
 
 function App() {
 	
@@ -63,6 +60,7 @@ function App() {
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
 					<Route path="/vendordashboard" element={<VendorHome />}></Route>
 					
+					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
 					<Route path="/products" element={<Products />}></Route>
 					<Route path="/analytics" element={<Analytics />}></Route>
 					<Route path="/settings" element={<Settings />}></Route>

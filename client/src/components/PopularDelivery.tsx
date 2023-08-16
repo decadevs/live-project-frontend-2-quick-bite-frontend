@@ -41,7 +41,8 @@ const PopularDelivery = () => {
          <div className={styles.cardContainer}>
          {
             isLoading ? <img src={spinner} alt="" /> :
-          popularRestaurant.map((restaurant)=>(
+         
+          popularRestaurant?.map((restaurant)=>(
             <Link to="/4"> <div className={styles.Card} key={restaurant.id}>
             <div className={styles.cardHead}>
                <img src={FoodOne} alt="" className="h-60 w-90" />

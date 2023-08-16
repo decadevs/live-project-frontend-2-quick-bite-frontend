@@ -22,6 +22,7 @@ const PopularFood = () => {
   
 
 useEffect(() => {
+  
    dispatch(getPopularFood());
 }, [dispatch]);
 
