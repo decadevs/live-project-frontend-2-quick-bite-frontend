@@ -1,5 +1,4 @@
-import React from 'react'
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 
 // export const ProtectRoute = ({children}:any) => {
 //     const location = useLocation()
