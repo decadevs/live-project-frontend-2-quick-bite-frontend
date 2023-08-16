@@ -1716,9 +1716,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001520":
-  version: 1.0.30001520
-  resolution: "caniuse-lite@npm:1.0.30001520"
-  checksum: 8327a67402a385fce945ca0a146e3f8d701354013de9764512987443edc7a76b8ceac6860cdc01c5ad0dd1391443b5d574393675a2b2824487e7d4ef733d0171
+  version: 1.0.30001521
+  resolution: "caniuse-lite@npm:1.0.30001521"
+  checksum: 330233b1cad702ad7959c56fe7465a2684eea94603855d740bf848a82f089c98cb956ceb522ffebf9599968d00dd2a1e31f44a93d1e64f28bef6d16734b34bea
   languageName: node
   linkType: hard
 
@@ -2915,15 +2915,15 @@ __metadata:
   linkType: hard
 
 "jackspeak@npm:^2.0.3":
-  version: 2.2.3
-  resolution: "jackspeak@npm:2.2.3"
+  version: 2.3.0
+  resolution: "jackspeak@npm:2.3.0"
   dependencies:
     "@isaacs/cliui": "npm:^8.0.2"
     "@pkgjs/parseargs": "npm:^0.11.0"
   dependenciesMeta:
     "@pkgjs/parseargs":
       optional: true
-  checksum: 357f003532ba358b25e2b21313443db023edd1e4154939a448f788393ac34e23f8cf85ffd5dc0bc22cec5cf1a2e06477a754cfe57de76d530dc700ec04a38de2
+  checksum: 57e1e2dfe1dc4ec5f6b24caeeb7049dcad3cb41a3635b20ee84e854bd5cb8a1621ae9a8fd009fd6ccf54ca99a8d651aa0e83c00304f83dfba10364b0211315b5
   languageName: node
   linkType: hard
 
