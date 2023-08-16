@@ -39,6 +39,7 @@ export interface InitialState {
     async (_, thunkAPI) => {
       try {
         const response = await axios.get("/user/getNewFoods");
+        console.log(response.data)
         return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error:any) {
