@@ -16,14 +16,23 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
-import VendorsEdit from "./pages/VendorsEdit"
+//import VendorsEdit from "./pages/VendorsEdit"
 import auth from "./utility/auth";
 import { loginSuccess } from "./slices/authSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
+import VendorHome from "./vendordashboard/Home";
+import Settings from "./pages/Settings";
+import Analytics from "./pages/Analytics";
+import Products from './pages/Product';
+import Orders from "./pages/Orders";
+
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
+import EditVendorButton from "./components/EditVendorButton";
+import VendorEditProfile from "./components/EditVendor"
+
 
 if (auth.authenticate()) {
 	const user = JSON.parse(localStorage.getItem("user") as string);
@@ -32,6 +41,7 @@ if (auth.authenticate()) {
 }
 
 function App() {
+	
 	return (
 		<Provider store={store}>
 			<ToastContainer />
@@ -53,7 +63,15 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
-          <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+                    <Route path="/editVendorbutton" element = {<EditVendorButton/>}></Route>
+					<Route path="/editVendorbutton/:id" element = {<VendorEditProfile handleClose={function (): void {
+						throw new Error("Function not implemented.");
+					} }/>}></Route>
+					<Route path="/vendordashboard" element={<VendorHome />}></Route>
+					<Route path="/products" element={<Products />}></Route>
+					<Route path="/analytics" element={<Analytics />}></Route>
+					<Route path="/settings" element={<Settings />}></Route>
+					<Route path="/orders" element={<Orders />}></Route>
 				</Routes>
 				<Footer />
 			</main>

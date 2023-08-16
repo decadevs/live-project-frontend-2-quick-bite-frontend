@@ -9,9 +9,8 @@ const initialState = {
   lastName: "",
   email: "",
   password: "",
-  gender: "",
-  otherGender: "",
-  DOB: "",
+  confirm_password: "",
+  address: "",
   phoneNumber: "",
 };
 
@@ -20,6 +19,7 @@ const SignupForm = () => {
   const [signupSuccess, setSignupSuccess] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [closePassword, setOpenPassowrd] = useState(false)
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -73,6 +73,9 @@ const SignupForm = () => {
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+  const handleTogglePasswordVisibility2 = () => {
+    setOpenPassowrd((prevShowPassword) => !prevShowPassword);
   };
 
   return (
@@ -138,11 +141,43 @@ const SignupForm = () => {
               lowercase letter, one special character, and one number.
             </p>
           )}
+          <div className="relative mb-4">
+          <Input
+             type={closePassword ? "text" : "password"}
+            placeholder="Confirm Password"
+            name="confirm_password"
+            value={user.confirm_password}
+            onChange={handlePasswordChange}
+            onFocus={() => setPasswordValidation(true)}
+            onBlur={() => setPasswordValidation(false)}
+            className="w-full p-2 border border-gray-300 rounded mb-4"
+            required
+          />
+            <span
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              onClick={handleTogglePasswordVisibility2}
+            >
+              {closePassword ? (
+                <i className="fas fa-eye-slash"></i>
+              ) : (
+                <i className="fas fa-eye"></i>
+              )}
+            </span>
+            </div>
           <Input
             type="text"
             placeholder="Phone Number"
             name="phoneNumber"
             value={user.phoneNumber}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded mb-4"
+            required
+          />
+           <Input
+            type="text"
+            placeholder="Address"
+            name="address"
+            value={user.address}
             onChange={handleChange}
             className="w-full p-2 border border-gray-300 rounded mb-4"
             required
