@@ -5,6 +5,8 @@ import ProfileImg from "../assets/profile.png"
 import Logo from "../assets/LogoBite.svg"
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
+import { useAppDispatch } from '../store/hooks'
+import {logout} from "../slices/authSlice"
 import  "./cartmodal.css";
 import "../pages/cartpage.css";
 
@@ -26,6 +28,9 @@ const initialProducts: Product[] = [
 ];
 
 const Header = () => {
+
+  const dispatch = useAppDispatch()
+  // const {logout} = useAppSelector((state)=>state.auth.logout)
     const[collapse, setCollapse] = useState(true)
     
     const toggleButton = ()=> setCollapse(!collapse)
@@ -53,6 +58,10 @@ const Header = () => {
       [{  id : "Id", Updateprofile:"Update profile", Order :  "Order", Changepassword : "Change Password"}]
     const [dropdown, setDropDown] = useState(true)
     const toggle = () =>setDropDown(!dropdown)
+
+    const handleLogout = ()=>{
+        dispatch(logout())
+    }
    
   return (
     <div>
@@ -104,7 +113,7 @@ const Header = () => {
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
           
-            <Link to="/"><button className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
         
     </div>
     </div>

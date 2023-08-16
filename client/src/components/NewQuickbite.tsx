@@ -6,6 +6,7 @@ import  FoodOne from "../assets/food1.png"
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getNewFoods } from '../slices/newFoodsSlice';
+import spinner from  "../assets/spinner.gif"
 
 
 const NewQuickbite = () => {
@@ -34,8 +35,12 @@ const NewQuickbite = () => {
         </div>
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
         <div className={`${show ? styles.hide : ""}`}>
-        <div className={ ` ${styles.cardContainer}`}>
          {
+              isLoading ? <img src={spinner} alt="" className={styles.spinner} />  :
+        <div className={ ` ${styles.cardContainer}`}>
+
+         {
+        
           newFood.map((foodNew)=>(
             <Link to="/4"> <div className={styles.Card}>
             <div className={styles.cardHead}>
@@ -57,7 +62,7 @@ const NewQuickbite = () => {
       
 }
 
-            <Link to="/4"> <div className={styles.Card}>
+            {/* <Link to="/4"> <div className={styles.Card}>
              <div className={styles.cardHead}>
                 <img src={FoodOne} alt="" className="h-60 w-90" />
              </div>
@@ -90,11 +95,12 @@ const NewQuickbite = () => {
              </div>
             
            
-            </div></Link>
+            </div></Link> */}
 
             
 
         </div>
+}
         {/* <div className={styles.btnContainer}>
         <button className={`${styles.more} p-4 bg-lightBlue rounded-lg mt-7 text-white` }>see more</button>
         </div> */}
