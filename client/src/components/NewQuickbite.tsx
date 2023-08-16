@@ -36,7 +36,7 @@ const NewQuickbite = () => {
         <div className={`${show ? styles.hide : ""}`}>
         <div className={ ` ${styles.cardContainer}`}>
          {
-          newFood.map((foodNew)=>(
+          newFood?.map((foodNew)=>(
             <Link to="/4"> <div className={styles.Card}>
             <div className={styles.cardHead}>
                <img src={FoodOne} alt="" className="h-60 w-90" />

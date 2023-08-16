@@ -35,7 +35,7 @@ const PopularDelivery = () => {
         <div className={ show ? styles.hide : ""}>
         <div className={styles.cardContainer}>
          {
-          popularRestaurant.map((restaurant)=>(
+          popularRestaurant?.map((restaurant)=>(
             <Link to="/4"> <div className={styles.Card} key={restaurant.id}>
             <div className={styles.cardHead}>
                <img src={FoodOne} alt="" className="h-60 w-90" />
