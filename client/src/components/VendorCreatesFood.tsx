@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
 import Input from "./reusableComponents/input";
 import Modal from "../components/reusableComponents/Modal";
@@ -99,6 +99,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       setLoading(false)
       navigate("/vendorLogin");
      
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       console.error(error);
       setLoading(false);
