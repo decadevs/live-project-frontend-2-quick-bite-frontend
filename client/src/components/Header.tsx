@@ -6,6 +6,10 @@ import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi";
 import "./cartmodal.css";
+//import { GiShoppingBag } from "react-icons/gi"
+import { useAppDispatch } from '../store/hooks'
+import {logout} from "../slices/authSlice"
+import  "./cartmodal.css";
 import "../pages/cartpage.css";
 
 const initialProducts: Product[] = [
@@ -26,9 +30,12 @@ const initialProducts: Product[] = [
 ];
 
 const Header = () => {
-  const [collapse, setCollapse] = useState(true);
 
-  const toggleButton = () => setCollapse(!collapse);
+  const dispatch = useAppDispatch()
+  // const {logout} = useAppSelector((state)=>state.auth.logout)
+    const[collapse, setCollapse] = useState(true)
+    
+    const toggleButton = ()=> setCollapse(!collapse)
 
   const [cartVisibility, setCartVisibility] = useState(false);
   const [products, setProducts] = useState(initialProducts);
@@ -57,6 +64,9 @@ const Header = () => {
       Dashboard: "Dashboard",
     },
   ];
+  const handleLogout = ()=>{
+        dispatch(logout())
+    }
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
@@ -122,7 +132,16 @@ const Header = () => {
             )}
           </button>
         </div>
-
+      
+        <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
+        <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
+        {/* <a href="#" className="mx-auto">Vendors</a> */}
+          
+            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+        
+    </div>
+    </div>
+//
         <div
           className={`${
             collapse ? styles.mobileView : ""
