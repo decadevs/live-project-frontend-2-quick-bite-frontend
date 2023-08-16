@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { updateUserProfile } from "../slices/authSlice";
 import { showErrorToast } from "../utility/toast";
+import { Link as RouterLink, useNavigate} from "react-router-dom";
+import Header from "./Header"
 
 const initialUserData = {
   firstName: "",
@@ -21,7 +24,7 @@ const UserUpdatesProfile = () => {
   const { user: logedInUser } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
-
+const navigate = useNavigate();
   useEffect(() => {
     setUser({
       ...user,
@@ -62,9 +65,10 @@ const UserUpdatesProfile = () => {
       const data = await dispatch(updateUserProfile(payload)).unwrap();
 
       console.log(data.message);
-
+         
       setLoading(false)
       setUser(initialUserData);
+        navigate("/userlanding");
       // throw new Error('Function not implemented.');
     } catch (error: any) {
       setLoading(false);
@@ -80,7 +84,7 @@ const UserUpdatesProfile = () => {
 
   return (
     <>
-      {/* <Header /> */}
+      { <Header />}
       <div className="flex justify-center items-center h-screen px-4">
         <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
           <h1 className="text-black text-3xl font-bold text-center mb-4">
@@ -140,13 +144,19 @@ const UserUpdatesProfile = () => {
                 type="submit"
                 className="w-1/3 p-2 bg-deepBlue text-white rounded mr-5"
               >
-                {loading ? 'loading...' : "Save"}
+                {loading ? "loading..." : "Save"}
               </button>
               <button
                 type="button"
                 className="w-1/3 p-2 bg-deepBlue text-white rounded"
               >
-                Cancel
+                <RouterLink
+                  to="/userlanding"
+                  className="w-1/3 p-2 bg-deepBlue text-white rounded"
+                >
+                  Cancel
+                </RouterLink>
+                
               </button>
             </div>
           </form>
@@ -157,3 +167,4 @@ const UserUpdatesProfile = () => {
 };
 
 export default UserUpdatesProfile;
+
