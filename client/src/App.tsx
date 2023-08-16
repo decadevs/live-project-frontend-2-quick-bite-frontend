@@ -45,7 +45,9 @@ function App() {
 					<Route path="/verifyVendor" element={<VendorRegNO />}></Route>
 					<Route path="/vendorPassword" element={<VendorPassword />}></Route>
 					<Route path="/:id" element={<SingleVendor />}></Route>
-					<Route path="/food" element={<FoodPage />}></Route>
+					<Route path="/food" element={<FoodPage />}>
+						
+					</Route>
 					<Route path="/otp" element={<OtpVerificationPage />}></Route>
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
@@ -56,6 +58,8 @@ function App() {
 					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+					<Route path="/vendordashboard" element={<VendorHome />}></Route>
+					
 					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
 					<Route path="/products" element={<Products />}></Route>
 					<Route path="/analytics" element={<Analytics />}></Route>

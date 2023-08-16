@@ -1,11 +1,11 @@
 
-import VendorHeader from '../components/VendorHeader'
+import Header from '../components/Header'
 // import Header from '../components/Header'
 
 const SingleVendor = () => {
   return (
     <div>
-      <VendorHeader/>
+      <Header/>
        
     </div>
 
