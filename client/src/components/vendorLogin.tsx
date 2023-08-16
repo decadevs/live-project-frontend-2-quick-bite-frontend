@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Input from './reusableComponents/input';
@@ -8,8 +9,10 @@ import { vendorLogin } from '../slices/vendorSlice';
 const VendorLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [passwordValidation, setPasswordValidation] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [formValid, setFormValid] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -40,6 +43,7 @@ const VendorLoginForm = () => {
             //     navigate("/vendordashboard");
             //   }, 2000)            
         navigate('/vendordashboard');
+       // eslint-disable-next-line @typescript-eslint/no-explicit-any
        }catch (error: any) {
         setLoading(false);
         if (error.response) {
