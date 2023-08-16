@@ -1,11 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import type { PayloadAction } from "@reduxjs/toolkit";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 
-export interface RestaurantDetails{
+export interface TotalFoodDetails{
     id: string;
     email?: string;
     restaurant_name?: string;
@@ -24,25 +23,32 @@ export interface RestaurantDetails{
     orders: number
    
 }
-export interface InitialState {	
-      popularRestaurant: RestaurantDetails[];	
-	isLoading: boolean
-	error: string;
+export interface InitialState { 
+    totalFoods: TotalFoodDetails[];   
+    isLoading: boolean
+    token: string;
+	isAuthenticated: boolean;
+    error: string;
     message:string
   }
   const initialState:InitialState={
-     popularRestaurant:[],
+     totalFoods:[],
      isLoading:false,
+     token: "",
+	isAuthenticated: false,
      error:"",
      message: ""
   } 
  
   
-  export const getPopularRestaurant = createAsyncThunk(
-    "popularRestaurant/getPopularRestaurant",
+  export const getTotalFood = createAsyncThunk(
+    "vendor/popularfoods",
     async (_, thunkAPI) => {
       try {
-        const response = await axios.get("/user/getPopularVendors");
+        const response = await axios.get("/vendor/popularfoods");
+        console.log("response  ", response)
+        //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
+        localStorage.setItem("token", response.data.token);
         return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error:any) {
@@ -59,34 +65,37 @@ export interface InitialState {
     }
   );
   
-  export const popularRestaurantSlice = createSlice({
-    name: "popularRestaurant",
+  export const getTotalFoodSlice = createSlice({
+    name: "totalFood",
     initialState,
     reducers: {},
     extraReducers: (builder) => {  
      
-      builder.addCase(getPopularRestaurant.pending, (state) => {
+      builder.addCase(getTotalFood.pending, (state) => {
         // Add user to the state array
         state.isLoading = true;
+        state.isAuthenticated = false;
         state.message = ""
         state.error =""
       });
-      builder.addCase(getPopularRestaurant.fulfilled, (state, action) => {
+      builder.addCase(getTotalFood.fulfilled, (state, action) => {
         // Add user to the state array
-         state.popularRestaurant = action.payload.data
-         state.message = action.payload.message
-         state.isLoading = false
+         state.totalFoods = action.payload.data;
+
+         state.message = action.payload.message;
+         state.isAuthenticated = true;
         state.error = "";
-        // toast.success(action.payload.message)
+        toast.success(action.payload.message)
 
       });
   
-      builder.addCase(getPopularRestaurant.rejected, (state, action) => {
+      builder.addCase(getTotalFood.rejected, (state, action) => {
         // Add user to the state array
         state.isLoading = false;
         state.message = ""
+        state.isAuthenticated = false;
         state.error = action.payload as string;
-        // toast.error(action.payload as string) 
+        toast.error(action.payload as string) 
       });
     },
   });
@@ -94,4 +103,4 @@ export interface InitialState {
   // Action creators are generated for each case reducer function
 //   export const { logout, loginSuccess } = popularFoodSlice.actions;
   
-  export default popularRestaurantSlice.reducer;
+  export default getTotalFoodSlice.reducer;

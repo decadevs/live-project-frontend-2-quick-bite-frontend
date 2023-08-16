@@ -20,11 +20,8 @@ import AllFoodsPage from "./pages/AllFoodsPage";
 import NewFoodsPage from "./pages/NewFoodsPage";
 import PopularResPage from "./pages/PopularResPage";
 import PopularFoodsPage from "./pages/PopularFoodsPage";
-
-
-import VendorsEdit from "./pages/VendorsEdit"
-
 // import { loginSuccess } from "./slices/authSlice";
+import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
@@ -33,8 +30,6 @@ import Settings from "./pages/Settings";
 import Analytics from "./pages/Analytics";
 import Products from './pages/Product';
 import Orders from "./pages/Orders";
-
-
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import UserLandingpg from "./pages/userLandingpg";
@@ -55,7 +50,9 @@ function App() {
 					<Route path="/verifyVendor" element={<VendorRegNO />}></Route>
 					<Route path="/vendorPassword" element={<VendorPassword />}></Route>
 					<Route path="/:id" element={<SingleVendor />}></Route>
-					<Route path="/food" element={<FoodPage />}></Route>
+					<Route path="/food" element={<FoodPage />}>
+						
+					</Route>
 					<Route path="/otp" element={<OtpVerificationPage />}></Route>
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
@@ -66,6 +63,8 @@ function App() {
 					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+					<Route path="/vendordashboard" element={<VendorHome />}></Route>
+					
 					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
 					<Route path="/products" element={<Products />}></Route>
 					<Route path="/analytics" element={<Analytics />}></Route>

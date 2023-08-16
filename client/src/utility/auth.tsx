@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+
+import { useLocation, Navigate } from "react-router-dom";
 
 // export const ProtectRoute = ({children}:any) => {
 //     const location = useLocation()
@@ -9,7 +9,7 @@ import { useLocation, useNavigate, Navigate } from "react-router-dom";
     
 //     return children
 // }
-
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ProtectRoute = ({ children }:any) => {
   const location = useLocation();
   console.log(location);
@@ -55,5 +55,6 @@ const auth = {
 		return token;
 	},
 };
+
 
 export default auth;
