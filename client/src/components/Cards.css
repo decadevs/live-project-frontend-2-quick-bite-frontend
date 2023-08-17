@@ -3,11 +3,14 @@
 
 } */
 
+
+
+
 .wrapper{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 100px 20px;
+    margin: 65px 20px;
 
 
 }
@@ -90,10 +93,45 @@ h3,p{
 }
 
 .title-restaurants{
-    margin-top: 150px;
+    margin-top: 100px;
     text-align: center;
     font-size: 40px;
-    color: #1A512E;
+    color: #32c467;
+    font-weight: 700;
+}
+
+.title-AllFoods{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 50px;
+    color: #2C7744;
+    font-weight: 700;
+}
+
+.title-popular-restaurants{
+    
+
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Oleo Script', cursive;
+    color: white;
+    font-weight: 700;
+}
+
+.title-popularfoods{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Oleo Script', cursive;
+    color: white;
+    font-weight: 700;
+}
+.title-newfoods{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 40px;
+    color: white;
     font-weight: 700;
 }
 

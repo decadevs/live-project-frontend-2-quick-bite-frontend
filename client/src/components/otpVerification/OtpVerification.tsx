@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import "./OtpVerification.css";
@@ -7,13 +8,10 @@ import { useNavigate } from "react-router-dom";
 import axios from  "../../api/httpService";
 
 
-
-
-
 const OtpVerification = () => {
   const codeInputsRef = useRef<HTMLInputElement[]>([]);
 
-  
+  const email = localStorage.getItem("email")
   const [resendTimer, setResendTimer] = useState(30); // Countdown timer for RESEND link
   const [otpVerified, setOtpVerified] = useState(false); // Flag to track OTP verification status
  const navigate = useNavigate()
@@ -59,9 +57,26 @@ const OtpVerification = () => {
     };
   }, []);
 
-  const handleResendClick = () => {
+  const handleResendClick = async (e:any) => {
+    try{
     // Reset the countdown timer to 30 seconds when the RESEND link is clicked
     setResendTimer(30);
+    e.preventDefault()
+    const {data} = await axios.get('/user/resend')
+
+    toast.success(data.message)
+    
+  } catch (error:any) {
+    if (error.response) {
+      return toast.error(error.response.data.message);
+    }
+    if (error.request) {
+      return toast.error("Network Error");
+    }
+    if (error.message) {
+      return toast.error(error.message);
+    }
+  }
   };
 
   const handleVerifyClick = async () => {
@@ -92,13 +107,14 @@ navigate("/login")
 }
 }
 
+
   return (
     <div className="wrapper">
       <div className="containerApp">
         <h2><strong>Verify Your Account</strong></h2>
         <p>
-          Six digit code was sent to personal@gmail.com <br />
-          Enter the code below to verify your email address
+          A six digit code was sent to <span style={{ color: '#1A512E', fontWeight: "bold" }}>{email}</span> <br />
+          Please enter the code below to verify your email address
         </p>
         <div className="code-container">
           <input

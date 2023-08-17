@@ -2,7 +2,7 @@ import React from 'react'
 import  { MouseEventHandler, useState } from 'react';
 import Dropdown from "../assets/dropdown.svg"
 import styles from "../styles/newQuickbite.module.css"
-import  FoodOne from "../assets/food1.png"
+import  FoodOne from "../assets/food1.jpeg"
 import { Link } from 'react-router-dom';
 
 const AllPopularRestaurant = () => {
@@ -81,6 +81,9 @@ const AllPopularRestaurant = () => {
                
    
            </div>
+           <div className={styles.btnContainer}>
+       <Link to="/vendors"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+        </div>
            {/* <div className={styles.btnContainer}>
            <button className={`${styles.more} p-4 bg-lightBlue rounded-lg mt-7 text-white` }>see more</button>
            </div> */}

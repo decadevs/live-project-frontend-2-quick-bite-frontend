@@ -6,7 +6,7 @@ import PopularDelivery from "../components/PopularDelivery"
 import Header from '../components/Header'
 import AllPopularFood from '../components/AllPopularFood'
  import AllPopularRestaurant from '../components/AllPopularRestaurant'
- import  UserLoginImg from "../assets/food1.png"
+ import  UserLoginImg from "../assets/food1.jpeg"
 
 const userLandingpg = () => {
   return (
