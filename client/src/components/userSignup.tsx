@@ -58,6 +58,7 @@ const SignupForm = () => {
       setUser(initialState);
       setSignupSuccess(true);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email)
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

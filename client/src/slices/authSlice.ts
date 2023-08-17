@@ -50,7 +50,7 @@ export const login = createAsyncThunk(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response) {
-        return thunkAPI.rejectWithValue(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.response.data);
       }
       if (error.request) {
         return thunkAPI.rejectWithValue("Network Error");

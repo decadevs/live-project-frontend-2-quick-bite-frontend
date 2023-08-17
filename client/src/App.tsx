@@ -42,9 +42,15 @@ function App() {
 			<ToastContainer />
 			<main>
 				<Routes>
+
+					{/* General Routes */}
 					<Route path="/" element={<Home />}></Route>
+
+					{/* User routes */}
 					<Route path="login" element={<SignIn />}></Route>
 					<Route path="/register" element={<SignUp />}></Route>
+
+					{/* Vendor Routes */}
 					<Route path="/vendor" element={<VendorSignupForm />}></Route>
 					<Route path="/vendorlogin" element={<VendorLoginForm />}></Route>
 					<Route path="/verifyVendor" element={<VendorRegNO />}></Route>
