@@ -3,11 +3,15 @@ import {
     Container,
     Typography,
     IconButton,
+    Box,
 } from '@material-ui/core';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import axios from 'axios';
+
+import Sidenav from "../components/dashboard/sidenav";
+import Navbar from "../components/dashboard/Navbar";
 
 const Orders = () => {
     const [orders, setOrders] = useState([]);
@@ -20,7 +24,12 @@ const Orders = () => {
 
     const fetchOrders = async () => {
         try {
-            const response = await axios.get('http://localhost:4500/vendor/getallfood');
+            const token = 'YOUR_TOKEN_HERE';
+            const response = await axios.get('http://localhost:4500/vendor/getallfood', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
             const ordersData = response.data.allData;
             setOrders(ordersData);
             setOrdersLoading(false);
@@ -65,25 +74,34 @@ const Orders = () => {
     ];
 
     return (
-        <Container maxWidth="lg">
-            <Typography variant="h4" gutterBottom style={{ color: 'black' }}>
-                Orders
-            </Typography>
-            <div>
-                <Typography variant="h6" gutterBottom>
-                    Add Order
-                </Typography>
-            </div>
-            <div style={{ height: 400, width: '100%', marginTop: '2rem' }}>
-                <DataGrid
-                    rows={orders}
-                    columns={columns}
-                    pageSize={5}
-                    loading={ordersLoading}
-                    onRowClick={(params) => setSelectedOrderId(params.row.id)}
-                />
-            </div>
-        </Container>
+        <>
+            <Navbar />
+            <Box height={50} />
+            <Box sx={{ display: "flex" }}>
+                <Sidenav />
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                    <Container maxWidth="lg">
+                        <Typography variant="h4" gutterBottom style={{ color: 'black' }}>
+                            Orders
+                        </Typography>
+                        <div>
+                            <Typography variant="h6" gutterBottom>
+                                Add Order
+                            </Typography>
+                        </div>
+                        <div style={{ height: 400, width: '100%', marginTop: '2rem' }}>
+                            <DataGrid
+                                rows={orders}
+                                columns={columns}
+                                pageSize={5}
+                                loading={ordersLoading}
+                                onRowClick={(params) => setSelectedOrderId(params.row.id)}
+                            />
+                        </div>
+                    </Container>
+                </Box>
+            </Box>
+        </>
     );
 };
 

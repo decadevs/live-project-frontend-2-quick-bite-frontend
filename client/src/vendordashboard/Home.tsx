@@ -8,46 +8,31 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AreaChart from "../charts/AreaChart";
 import CountUp from 'react-countup';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getVendorRevenue } from "../slices/totalRevenueSlice";
+import { getVendorOrders } from "../slices/totalOrdersSlice";
+import { getVendorEarnings } from "../slices/totalEarningSlice";
 
 export default function VendorHome() {
-    const [totalEarnings, setTotalEarnings] = useState(0);
-    const [totalOrders, setTotalOrders] = useState(0);
-    const [totalRevenue, setTotalRevenue] = useState(0);
+    const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        // Fetch total earnings from the backend API endpoint
-        fetch('/api/vendor/earning')
-            .then(response => response.json())
-            .then(data => {
-                setTotalEarnings(data.totalEarnings);
-            })
-            .catch(error => {
-                console.error('Error fetching total earnings:', error);
-            });
-    }, []);
+    const { vendorRevenue, isLoading } = useAppSelector((state) => state.vendorRevenue)
+    const { vendorOrder } = useAppSelector((state) => state.vendorOrder)
+    const { vendorEarning } = useAppSelector((state) => state.vendorEarning)
 
-    useEffect(() => {
-        fetch("/api/getTotalOrders")
-            .then(response => response.json())
-            .then(data => {
-                setTotalOrders(data.totalOrders);
-            })
-            .catch((err) => {
-                console.log(`Error fetching the orders`, err)
-            });
-    }, []);
 
+    console.log(vendorRevenue, isLoading, vendorOrder, vendorEarning)
     useEffect(() => {
-        fetch("/api/getTotalRevenue")
-            .then(response => response.json())
-            .then(data => {
-                setTotalRevenue(data.totalRevenue);
-            })
-            .catch((err) => {
-                console.log(`Error fetching the revenue`, err)
-            });
-    }, []);
+        dispatch(getVendorOrders())
+        dispatch(getVendorRevenue())
+        dispatch(getVendorEarnings())
+    }, [dispatch])
+
+
+    const getOrders = vendorOrder?.map((item) => item.orders)
+    const getEarnings = vendorEarning?.map((item) => item.earnings)
+    const getRevenue = vendorRevenue?.map((item) => item.revenue)
 
     return (
         <>
@@ -66,7 +51,7 @@ export default function VendorHome() {
                                                 <CreditCardIcon />
                                             </div>
                                             <Typography gutterBottom variant="h5" component="div" sx={{ color: "#ffffff" }}>
-                                                $<CountUp delay={0.2} end={totalEarnings} duration={0.6} />
+                                                ₦<CountUp delay={0.2} end={getEarnings} duration={0.6} />
                                             </Typography>
                                             <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
                                                 Total Earning
@@ -79,7 +64,7 @@ export default function VendorHome() {
                                                 <LocalMallIcon />
                                             </div>
                                             <Typography gutterBottom variant="h5" component="div" sx={{ color: "#ffffff" }}>
-                                                <CountUp delay={0.2} end={totalOrders} duration={0.6} />
+                                                <CountUp delay={0.2} end={getOrders} duration={0.6} />
                                             </Typography>
                                             <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
                                                 Total Orders
@@ -96,7 +81,7 @@ export default function VendorHome() {
                                                 <LocalMallIcon />
                                             </div>
                                             <Typography gutterBottom variant="h5" component="div" sx={{ color: "#ffffff" }}>
-                                                <CountUp delay={0.2} end={totalRevenue} duration={0.6} />
+                                                ₦<CountUp delay={0.2} end={getRevenue} duration={0.6} />
                                             </Typography>
                                             <Typography gutterBottom variant="body2" component="div" sx={{ color: "#ccd1d1" }}>
                                                 Total Revenue

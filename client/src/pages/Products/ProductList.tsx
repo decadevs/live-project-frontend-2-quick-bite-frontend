@@ -6,7 +6,7 @@ import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
-import AddProduct from './AddProduct';
+import VendorCreatesFood from '../../components/VendorCreatesFood';
 
 interface Product {
     id: number;
@@ -143,10 +143,7 @@ const ProductList = () => {
                 >
                     <Typography variant="h6">Product List ({productData.length})</Typography>
                 </StyledPaper>
-                <Button variant="contained" sx={{ height: "40px", width: "20%" }} color="primary" onClick={handleOpenDialog}>
-                    Add Product
-                </Button>
-                <AddProduct open={openDialog} onClose={handleCloseDialog} onSave={handleSaveProduct} />
+                <VendorCreatesFood open={openDialog} onClose={handleCloseDialog} onSave={handleSaveProduct} />
                 {selectedSection === 'products' && (
                     <div style={{ height: '400px', width: '100%' }}>
                         <DataGrid
