@@ -82,7 +82,7 @@ const AllPopularFood = () => {
 
             </div>
             <div className={styles.btnContainer}>
-       <Link to="/vendors"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+       <Link to="/allfoods"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
         </div>
             {/* <div className={styles.btnContainer}>
            <button className={`${styles.more} p-4 bg-lightBlue rounded-lg mt-7 text-white` }>see more</button>
