@@ -16,12 +16,15 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+//import VendorsEdit from "./pages/VendorsEdit"
+//import auth from "./utility/auth";
+//import { loginSuccess } from "./slices/authSlice";
 import AllFoodsPage from "./pages/AllFoodsPage";
 import NewFoodsPage from "./pages/NewFoodsPage";
 import PopularResPage from "./pages/PopularResPage";
 import PopularFoodsPage from "./pages/PopularFoodsPage";
 // import { loginSuccess } from "./slices/authSlice";
-import VendorsEdit from "./pages/VendorsEdit";
+//import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
@@ -32,6 +35,20 @@ import Products from './pages/Product';
 import Orders from "./pages/Orders";
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
+import EditVendorButton from "./components/EditVendorButton";
+import EditVendor from "./components/EditVendor";
+
+
+
+// if (auth.authenticate()) {
+// 	const user = JSON.parse(localStorage.getItem("user" || "vendor") as string);
+// 	const token = localStorage.getItem("token") as string;
+// 	store.dispatch(loginSuccess({ user, token }));
+// }
+
+
+
+
 import UserLandingpg from "./pages/userLandingpg";
 import {ProtectRoute} from './utility/auth'
 
@@ -64,9 +81,15 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
+                    <Route path="/editVendorbutton" element = {<EditVendorButton/>}></Route>
+					{/* <Route path="/editVendorbutton/:id" element = {<VendorEditProfile handleClose={function (): void {
+						throw new Error("Function not implemented.");
+					} }/>}></Route> */}
+
+					
 					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
-                    <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
-                    <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+                    {/* <Route path="/editVendor" element = {<VendorsEdit/>}></Route> */}
+                    <Route path="/editvendor" element = {<EditVendor/>}></Route>
 					<Route path="/vendordashboard" element={<VendorHome />}></Route>
 					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
 					<Route path="/products" element={<Products />}></Route>

@@ -1,0 +1,63 @@
+.bg-deepBlue{
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.custom-form-container {
+    max-width: 400px; /* Adjust the max-width value as needed */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.form-edit input[type="text"],
+.form-edit input[type="email"],
+.form-edit input[type="file"] {
+    width: 100%;
+}
+
+
+
+
+.wrapper{
+    margin-bottom: 10px;
+}
+
+
+
+.vendor-edit-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    height: 100vh; /* Adjust this to your layout */
+
+  }
+
+ 
+
+  .vendor-edit {
+
+    background-color: darkgreen;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+  }
+
+  
+
+  .vendor-edit:hover {
+
+    background-color: green; /* Change color on hover */
+
+  } 
