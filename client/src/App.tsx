@@ -15,15 +15,10 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
-//import VendorsEdit from "./pages/VendorsEdit"
-//import auth from "./utility/auth";
-//import { loginSuccess } from "./slices/authSlice";
 import AllFoodsPage from "./pages/AllFoodsPage";
 import NewFoodsPage from "./pages/NewFoodsPage";
 import PopularResPage from "./pages/PopularResPage";
 import PopularFoodsPage from "./pages/PopularFoodsPage";
-// import { loginSuccess } from "./slices/authSlice";
-//import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserUpdatesProfile from "./components/userUpdatesProfile"
