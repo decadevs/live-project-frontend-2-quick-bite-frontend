@@ -5,7 +5,7 @@ import ProfileImg from "../assets/profile.png"
 import Logo from "../assets/LogoBite.svg"
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
-import { useAppDispatch } from '../store/hooks'
+import { useAppDispatch,useAppSelector } from '../store/hooks'
 import {logout} from "../slices/authSlice"
 import  "./cartmodal.css";
 import "../pages/cartpage.css";
@@ -30,7 +30,7 @@ const initialProducts: Product[] = [
 const Header = () => {
 
   const dispatch = useAppDispatch()
-  // const {logout} = useAppSelector((state)=>state.auth.logout)
+  const {logout} = useAppSelector((state)=>state.auth.logout)
     const[collapse, setCollapse] = useState(true)
     
     const toggleButton = ()=> setCollapse(!collapse)
