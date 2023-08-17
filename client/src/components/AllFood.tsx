@@ -2,7 +2,7 @@ import React from 'react'
 import  { MouseEventHandler,  useState } from 'react';
 import styles from "../styles/popular.module.css"
 import Dropdown from "../assets/dropdown.svg"
-import  FoodOne from "../assets/food1.png"
+import  FoodOne from "../assets/food1.jpeg"
 import { Link } from 'react-router-dom';
 
 const AllFood = () => {
