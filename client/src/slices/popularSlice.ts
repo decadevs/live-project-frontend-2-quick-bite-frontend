@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import type { PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 
@@ -43,7 +43,7 @@ export interface InitialState {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error:any) {
         if (error.response) {
-            return thunkAPI.rejectWithValue(error.response.data.message);
+            return thunkAPI.rejectWithValue(error.response.data);
           }
           if (error.request) {
             return thunkAPI.rejectWithValue("Network Error");
@@ -71,8 +71,9 @@ export interface InitialState {
         // Add user to the state array
          state.popularFood = action.payload.data
          state.message = action.payload.message
+         state.isLoading = false
         state.error = "";
-        toast.success(action.payload.message)
+        // toast.success(action.payload.message)
 
       });
   
@@ -81,7 +82,7 @@ export interface InitialState {
         state.isLoading = false;
         state.message = ""
         state.error = action.payload as string;
-        toast.error(action.payload as string) 
+        // toast.error(action.payload as string) 
       });
     },
   });

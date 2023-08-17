@@ -1,166 +1,164 @@
-import { useState, useEffect } from 'react';
-import { Paper, Typography, Grid, Button, IconButton, Box } from '@mui/material';
-import { styled } from '@mui/system';
-import { DataGrid, GridColDef, GridValueFormatterParams } from '@mui/x-data-grid';
-import axios from 'axios';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Swal from 'sweetalert2';
-import AddProduct from './AddProduct';
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getAllFoodCount } from "../../slices/getAllFoodCountSlice";
 
-interface Product {
-    id: number;
-    order_count: number;
-    name: string;
-    date_created: Date;
-    date_updated: Date;
-    vendorId: number;
-    price: number;
-    food_image: string;
-    ready_time: number;
-    isAvailable: boolean;
-    rating: number;
-    description: string;
+interface Column {
+  id:
+    | "name"
+    | "price"
+    | "order_count"
+    | "ready_time"
+    | "isAvailable"
+    | "rating";
+  label: string;
+  minWidth?: number;
+  align?: "right"| "left" | "center";
+  format?: (value: number) => string;
 }
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    padding: theme.spacing(2),
-    borderRadius: '14px',
-    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)',
-    cursor: 'pointer',
-}));
+const columns: readonly Column[] = [
+  { id: "name", label: "Name", minWidth: 100 },
+  {
+    id: "price",
+    label: "Price",
+    minWidth: 100,
+    align: "right"
+  },
+  {
+    id: "order_count",
+    label: "Order Count",
+    minWidth: 170,
+    align: "center"
+  },
+  { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
+  { id: "ready_time", label: "Ready Time", minWidth: 170, align: "center" },
+  { id: "rating", label: "Rating", minWidth: 170, align: "center"  }
+];
 
-const ProductList = () => {
-    const [productData, setProductData] = useState<Product[]>([]);
-    const [selectedSection, setSelectedSection] = useState<string>('products');
-    const [openDialog, setOpenDialog] = useState(false);
+interface Data {
+  name: string;
+  price: number;
+  order_count: number;
+  ready_time: string;
+  rating: string;
+  isAvailable: string;
+}
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
+function createData(
+  name: string,
+  price: number,
+  order_count: number,
+  ready_time: string,
+  rating: string,
+  isAvailable: string
+): Data {
+  return {
+    name,
+    price,
+    order_count,
+    ready_time,
+    rating,
+    isAvailable,
+  };
+}
 
-    const fetchProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:3030/products/fetch');
-            const { allData: products } = response.data;
-            setProductData(products);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+export default function ProductList() {
+  const dispatch = useAppDispatch();
+  const { allFoodCount, isLoading } = useAppSelector(
+    (state) => state.allFoodCount
+  );
+  console.log("All Foood Details", allFoodCount, isLoading);
 
-    const handleSectionSelect = (section: string) => {
-        setSelectedSection(section);
-    };
+  React.useEffect(() => {
+    dispatch(getAllFoodCount());
+  }, [dispatch]);
 
-    const handleEdit = (id: number) => {
-        console.log(`Edit product with ID: ${id}`);
-    };
+  const rows = allFoodCount.map((food: any) =>
+    createData(
+      food.name,
+      food.price,
+      food.order_count,
+      food.ready_time,
+      food.rating,
+      food.isAvailable
+    )
+  );
 
-    const handleDelete = (id: number) => {
-        console.log(`Delete product with ID: ${id}`);
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!',
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    await deleteApi(id);
-                    const updatedProducts = productData.filter((product) => product.id !== id);
-                    setProductData(updatedProducts);
-                    Swal.fire('Deleted!', 'The product has been deleted.', 'success');
-                } catch (error) {
-                    console.error(error);
-                    Swal.fire('Error', 'An error occurred while deleting the product.', 'error');
-                }
-            }
-        });
-    };
+  console.log("row", rows);
 
-    const deleteApi = async (id: number) => {
-        // eslint-disable-next-line no-useless-catch
-        try {
-            await axios.delete(`http://localhost:3030/products/${id}`);
-        } catch (error) {
-            throw error;
-        }
-    };
+  // allFoodCount.map((item) => console.log("product food  ", item))
 
-    const handleOpenDialog = () => {
-        setOpenDialog(true);
-    };
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-    const handleCloseDialog = () => {
-        setOpenDialog(false);
-    };
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
 
-    const handleSaveProduct = (newProduct: Product) => {
-        setProductData((prevProducts) => [...prevProducts, newProduct]);
-        setOpenDialog(false);
-    };
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
 
-    const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', width: 60 },
-        { field: 'name', headerName: 'Name', width: 150 },
-        { field: 'price', headerName: 'Price', type: 'number', width: 100 },
-        { field: 'order_count', headerName: 'Order Count', type: 'number', width: 120 },
-        { field: 'date_created', headerName: 'Date Created', type: 'date', width: 120 },
-        { field: 'date_updated', headerName: 'Date Updated', type: 'date', width: 120 },
-        { field: 'vendorId', headerName: 'Vendor ID', type: 'number', width: 80 },
-        { field: 'ready_time', headerName: 'Ready Time', type: 'number', width: 100 },
-        { field: 'isAvailable', headerName: 'Available', type: 'boolean', width: 90 },
-        { field: 'rating', headerName: 'Rating', type: 'number', width: 80 },
-        { field: 'description', headerName: 'Description', type: 'string', width: 150 },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            width: 110,
-            renderCell: (params: GridValueFormatterParams) => (
-                <Box display="flex" justifyContent="center">
-                    <IconButton onClick={() => handleEdit(params.row.id)}>
-                        <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => handleDelete(params.row.id)}>
-                        <DeleteIcon />
-                    </IconButton>
-                </Box>
-            ),
-        },
-    ];
-
-    return (
-        <Grid container spacing={3}>
-            <Grid item xs={12}>
-                <StyledPaper
-                    elevation={3}
-                    onClick={() => handleSectionSelect('products')}
-                    sx={{ backgroundColor: selectedSection === 'products' ? '#f5f5f5' : 'inherit' }}
+  return (
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
                 >
-                    <Typography variant="h6">Product List ({productData.length})</Typography>
-                </StyledPaper>
-                <Button variant="contained" sx={{ height: "40px", width: "20%" }} color="primary" onClick={handleOpenDialog}>
-                    Add Product
-                </Button>
-                <AddProduct open={openDialog} onClose={handleCloseDialog} onSave={handleSaveProduct} />
-                {selectedSection === 'products' && (
-                    <div style={{ height: '400px', width: '100%' }}>
-                        <DataGrid
-                            rows={productData}
-                            columns={columns}
-                            autoHeight
-                            pagination
-                            pageSize={5}
-                        />
-                    </div>
-                )}
-            </Grid>
-        </Grid>
-    );
-};
-
-export default ProductList;
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1}>
+                    {columns.map((column) => {
+                      console.log("col", column);
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === "number"
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
+}
