@@ -5,21 +5,17 @@ import axios from "../api/httpService";
 
 export interface AllFoodDetails {
   id: string;
-  email?: string;
-  restaurant_name?: string;
-  name_of_owner?: string;
-  company_name: string;
-  password: string;
-  address?: string;
-  phone_no?: string;
-  isAvailable: boolean;
-  earnings: number;
-  revenue: number;
-  role: string;
-  salt: string;
-  cover_image?: string;
-  rating: number;
-  orders: number;
+  order_count?: number;
+  name?: string;
+  date_created?: Date;
+  date_updated?: Date;
+  vendorId?: string;
+  price?: number;
+  food_image?: string;
+  ready_time?: string;
+  isAvailable?: boolean;
+  rating?: number;
+  description?: string;
 }
 export interface InitialState {
   allFoodCount: AllFoodDetails[];

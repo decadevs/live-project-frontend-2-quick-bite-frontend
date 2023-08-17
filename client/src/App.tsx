@@ -16,6 +16,11 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+import AllFoodsPage from "./pages/AllFoodsPage";
+import NewFoodsPage from "./pages/NewFoodsPage";
+import PopularResPage from "./pages/PopularResPage";
+import PopularFoodsPage from "./pages/PopularFoodsPage";
+// import { loginSuccess } from "./slices/authSlice";
 import VendorsEdit from "./pages/VendorsEdit";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -45,7 +50,9 @@ function App() {
 					<Route path="/verifyVendor" element={<VendorRegNO />}></Route>
 					<Route path="/vendorPassword" element={<VendorPassword />}></Route>
 					<Route path="/:id" element={<SingleVendor />}></Route>
-					<Route path="/food" element={<FoodPage />}></Route>
+					<Route path="/food" element={<FoodPage />}>
+						
+					</Route>
 					<Route path="/otp" element={<OtpVerificationPage />}></Route>
 					<Route path="/vendors" element={<VendorsPage />}></Route>
 					<Route path="/modal" element={<ModalPage />}></Route>
@@ -56,11 +63,17 @@ function App() {
 					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
                     <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
+					<Route path="/vendordashboard" element={<VendorHome />}></Route>
+					
 					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
 					<Route path="/products" element={<Products />}></Route>
 					<Route path="/analytics" element={<Analytics />}></Route>
 					<Route path="/settings" element={<Settings />}></Route>
 					<Route path="/orders" element={<Orders />}></Route>
+					<Route path="/allfoods" element={<AllFoodsPage />}></Route>
+					<Route path="/newfoods" element={ <NewFoodsPage />}></Route>
+					<Route path="/popular" element={ <PopularResPage/>}></Route>
+					<Route path="/popularfoods" element={ <PopularFoodsPage/>}></Route>
 				</Routes>
 				<Footer />
 			</main>

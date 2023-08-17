@@ -1,90 +1,153 @@
-import { useState, useEffect } from 'react';
-import {
-    Container,
-    Typography,
-    IconButton,
-} from '@material-ui/core';
-import { DataGrid } from '@mui/x-data-grid';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import axios from 'axios';
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getOrderCount } from "../slices/orderCountSlice";
 
-const Orders = () => {
-    const [orders, setOrders] = useState([]);
-    const [ordersLoading, setOrdersLoading] = useState(true);
-    const [selectedOrderId, setSelectedOrderId] = useState(null);
+interface Column {
+  id: "food_name" | "quantity" | "amount" | "status" | "isPaid";
+  label: string;
+  minWidth?: number;
+  align?: "right" | "left" | "center";
+  format?: (value: number) => string;
+}
 
-    useEffect(() => {
-        fetchOrders();
-    }, []);
+const columns: readonly Column[] = [
+  { id: "food_name", label: "Name", minWidth: 70 },
+  {
+    id: "quantity",
+    label: "Quantity",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: "amount",
+    label: "Amount",
+    minWidth: 100,
+    align: "center",
+  },
+  { id: "status", label: "Status", minWidth: 100, align: "center" },
+  { id: "isPaid", label: "Paid", minWidth: 100, align: "center" },
+];
 
-    const fetchOrders = async () => {
-        try {
-            const response = await axios.get('http://localhost:4500/vendor/getallfood');
-            const ordersData = response.data.allData;
-            setOrders(ordersData);
-            setOrdersLoading(false);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+interface Data {
+  food_name: string;
+  quantity: number;
+  amount: number;
+  status: string;
+  isPaid: boolean;
+}
 
-    const handleEdit = (orderId: string) => {
-        console.log(`Edit order with ID: ${orderId}`);
-    };
+function createData(
+  food_name: string,
+  quantity: number,
+  amount: number,
+  status: string,
+  isPaid: boolean
+): Data {
+  return {
+    food_name,
+    quantity,
+    amount,
+    status,
+    isPaid
+  };
+}
 
-    const handleDelete = (orderId: string) => {
-        console.log(`Delete order with ID: ${orderId}`);
-    };
+export default function VendorOrder() {
+  const dispatch = useAppDispatch();
+  const { vendorOrder, isLoading } = useAppSelector(
+    (state) => state.vendorOrder
+  );
+  console.log("All Order Details", vendorOrder, isLoading);
 
-    const columns = [
-        { field: 'id', headerName: 'ID', width: 100 },
-        { field: 'foodid', headerName: 'Food ID', width: 120 },
-        { field: 'food_name', headerName: 'Food Name', width: 180 },
-        { field: 'quantity', headerName: 'Quantity', type: 'number', width: 120 },
-        { field: 'amount', headerName: 'Amount', type: 'number', width: 120 },
-        { field: 'status', headerName: 'Status', width: 120 },
-        { field: 'userId', headerName: 'User ID', width: 150 },
-        { field: 'vendorId', headerName: 'Vendor ID', width: 150 },
-        { field: 'isPaid', headerName: 'Paid', type: 'boolean', width: 100 },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            width: 150,
-            renderCell: (params) => (
-                <>
-                    <IconButton color="primary" onClick={() => handleEdit(params.row.id)}>
-                        <EditIcon />
-                    </IconButton>
-                    <IconButton color="secondary" onClick={() => handleDelete(params.row.id)}>
-                        <DeleteIcon />
-                    </IconButton>
-                </>
-            ),
-        },
-    ];
+  React.useEffect(() => {
+    dispatch(getOrderCount());
+  }, [dispatch]);
 
-    return (
-        <Container maxWidth="lg">
-            <Typography variant="h4" gutterBottom style={{ color: 'black' }}>
-                Orders
-            </Typography>
-            <div>
-                <Typography variant="h6" gutterBottom>
-                    Add Order
-                </Typography>
-            </div>
-            <div style={{ height: 400, width: '100%', marginTop: '2rem' }}>
-                <DataGrid
-                    rows={orders}
-                    columns={columns}
-                    pageSize={5}
-                    loading={ordersLoading}
-                    onRowClick={(params) => setSelectedOrderId(params.row.id)}
-                />
-            </div>
-        </Container>
-    );
-};
+  const rows = vendorOrder.map((order: any) =>
+    createData(
+      order.food_name,
+      order.quantity,
+      order.amount,
+      order.status,
+      order.isPaid
+    )
+  );
 
-export default Orders;
+  console.log("row", rows);
+
+  // allFoodCount.map((item) => console.log("product food  ", item))
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  return (
+    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1}>
+                    {columns.map((column) => {
+                      console.log("col", column);
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {column.format && typeof value === "number"
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
+    </Paper>
+  );
+}
