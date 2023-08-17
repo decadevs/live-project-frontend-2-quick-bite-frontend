@@ -211,12 +211,12 @@ const EditVendor = () => {
                                             <div id="profile" className='flex flex-row space-x-4'>
                                                 <button
                                                     type="submit"
-                                                    className="bg-deepBlue text-white rounded"
+                                                    className="bg text-white rounded"
                                                 >
                                                     {loading?"Loading...":"Save"}
                                                 </button>
                                                 <button
-                                                    className="bg-deepBlue text-white rounded"
+                                                    className="bg text-white rounded"
                                                     onClick={handleCancel}
                                                 >
                                                     Cancel

@@ -1,4 +1,3 @@
-
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -35,20 +34,7 @@ import Products from './pages/Product';
 import Orders from "./pages/Orders";
 import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
-import EditVendorButton from "./components/EditVendorButton";
 import EditVendor from "./components/EditVendor";
-
-
-
-// if (auth.authenticate()) {
-// 	const user = JSON.parse(localStorage.getItem("user" || "vendor") as string);
-// 	const token = localStorage.getItem("token") as string;
-// 	store.dispatch(loginSuccess({ user, token }));
-// }
-
-
-
-
 import UserLandingpg from "./pages/userLandingpg";
 import {ProtectRoute} from './utility/auth'
 
@@ -64,7 +50,7 @@ function App() {
 					<Route path="/" element={<Home />}></Route>
 
 					{/* User routes */}
-					<Route path="login" element={<SignIn />}></Route>
+					<Route path="/login" element={<SignIn />}></Route>
 					<Route path="/register" element={<SignUp />}></Route>
 
 					{/* Vendor Routes */}
@@ -81,10 +67,6 @@ function App() {
 					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
 					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
 					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
-                    <Route path="/editVendorbutton" element = {<EditVendorButton/>}></Route>
-					{/* <Route path="/editVendorbutton/:id" element = {<VendorEditProfile handleClose={function (): void {
-						throw new Error("Function not implemented.");
-					} }/>}></Route> */}
 
 					
 					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
