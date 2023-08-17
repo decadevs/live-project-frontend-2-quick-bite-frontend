@@ -72,9 +72,11 @@ const AllFood = () => {
                 <span className={styles.totalAmount}>####</span>
              </div>
             </div></Link>
-
+             
         </div>
-   
+        <div className={styles.btnContainer}>
+       <Link to="/vendors"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+        </div>
         <div className="divider  w-70% md:min-w-full h-0.5 bg-deepBlue" ></div>
         </div>
         

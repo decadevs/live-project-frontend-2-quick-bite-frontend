@@ -1,14 +1,14 @@
 // toastUtils.js
-import { toast } from "react-toastify";
 
+import { toast } from "react-toastify";
 export const showToast = (message: string) => {
-	toast(message);
+    toast(message);
 };
 
 export const showSuccessToast = (message: string) => {
-	toast.success(message);
+    toast.success(message);
 };
 
 export const showErrorToast = (message: string) => {
-	toast.error(message);
+    toast.error(message);
 };

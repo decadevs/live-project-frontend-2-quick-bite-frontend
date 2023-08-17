@@ -1,50 +1,65 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
-import Modal from "../components/reusableComponents/Modal"
+import Input from "./reusableComponents/input";
+import Modal from "../components/reusableComponents/Modal";
+//import Food from "./Food";
+import axios from "../api/httpService";
+import { showSuccessToast, showErrorToast } from "../utility/toast";
 
-
-interface VendorCreatesFoodProps{
-  handleClose: () => void,
-  show:boolean
+interface VendorCreatesFoodProps {
+  handleClose: () => void;
+  show: boolean;
 }
-interface Vendor {
+interface Food {
   name: string;
   price: string;
-  readyTime: string;
+  ready_time: string;
   description: string;
-  foodImage: File | null;
+  food_image: File | null;
 }
+
+//const { name, price, food_image, ready_time, description } = req.body;
 
 const VendorCreatesFood = () => {
-
-  const [showModal, setShowModal] = useState(false)
-  return(
+  const [showModal, setShowModal] = useState(false);
+  return (
     <>
-    <button onClick={() =>setShowModal(!showModal)}>Create Food</button>
-      <VendorChild show={showModal} handleClose={() => setShowModal(!showModal)}/>
+      <button onClick={() => setShowModal(!showModal)} className="ml-96 bg-deepBlue hover:bg-deepBlue-600 text-white font-bold text-m mt-10 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150" >Create Food</button>
+      <VendorChild
+        show={showModal}
+        handleClose={() => setShowModal(!showModal)}
+      />
     </>
-  )
-}
+  );
+};
 
-const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => {
-  const [vendor, setVendor] = useState<Vendor>({
+const VendorChild: React.FC<VendorCreatesFoodProps> = ({
+  show,
+  handleClose,
+}) => {
+
+  const initialData: Food = {
     name: "",
     price: "",
-    readyTime: "",
+    ready_time: "",
     description: "",
-    foodImage: null as File | null,
-  });
+    food_image: null as File | null,
+
+  }
+  const [createFood, setCreateFood] = useState(initialData);
 
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
+  const [loading, setLoading] = useState(false)
 
+   console.log(createFoodSuccess)
   const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setVendor((prevVendor) => ({
-      ...prevVendor,
+    setCreateFood((prevFood) => ({
+      ...prevFood,
       [name]: value,
     }));
   };
@@ -53,44 +68,56 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
     const { files } = e.currentTarget;
     const file = files && files[0];
     if (file) {
-      setVendor((prevVendor) => ({ ...prevVendor, foodImage: file }));
+      setCreateFood((prevFood) => ({ ...prevFood, food_image: file }));
     }
   };
 
-  console.log(vendor);
+  // console.log(Food);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit =  async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      console.log(vendor);
+      // console.log(vendor);
       setCreateFoodSuccess(true);
+      setLoading(true)
 
-      const Toast = Swal.mixin({
-        toast: true,
-        width: "30%",
-        position: "top",
-        title: "Food Created Successfully",
-        showConfirmButton: false,
-        timer: 3000,
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Food Created Successfully",
-      });
+      const formData = new FormData()
 
+      formData.append("name", createFood.name)
+      formData.append("price", createFood.price)
+      formData.append("ready_time", createFood.ready_time)
+      formData.append("description", createFood.description)
+      formData.append("food_image", createFood.food_image as Blob)
+
+      const {data} = await axios.post("/vendor/createfood", formData)
+
+      console.log(data)
+
+      setCreateFood(initialData)
+      showSuccessToast(data.message)
+      setLoading(false)
       navigate("/vendorLogin");
-    } catch (error) {
-      
+     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
       console.error(error);
+      setLoading(false);
+			if (error.response) {
+				showErrorToast(error.response.data.message);
+			} else if (error.request) {
+				showErrorToast("Internal Server Error");
+			} else {
+				showErrorToast(`Error, ${error.message}`);
+			}
     }
   };
 
-  
-
   return (
     <>
-       {show ? <div className="w-full max-w-md p-8 bg-white">
+    <div className="ml-96 mt-10">
+      {show ? (
+        <div className="w-full max-w-md p-8 bg-white">
           <h1 className="text-black text-3xl font-bold text-center mb-4">
             Create Food
           </h1>
@@ -99,7 +126,7 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
               type="text"
               placeholder="Food Name"
               name="name"
-              value={vendor.name}
+              value={createFood.name}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
@@ -107,7 +134,7 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
 
             <div className="mb-4">
               <TextField
-                value={vendor.price}
+                value={createFood.price}
                 handleChange={handleChange}
                 name="price"
                 required
@@ -118,35 +145,50 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
             </div>
 
             <input
-              type="number"
+              type="text"
               placeholder="Ready Time"
-              name="readyTime"
-              value={vendor.readyTime}
+              name="ready_time"
+              value={createFood.ready_time}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
             />
 
-<input
+            <input
               type="text-Area"
               placeholder="Description"
               name="description"
-              value={vendor.description}
+              value={createFood.description}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
             />
 
-            <label htmlFor="foodImage">Food Image:</label>
+            <label htmlFor="food_image">Food Image:</label>
 
-            <input
+            <Input
+              type="file"
+              id="file"
+              placeholder="Food Image"
+              accept="image/*" // Allow only image files
+              name="food_image"
+              onChange={handleFileChange} // Handle file input change
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              required
+              value={null}
+            />
+
+            {/* <input
               type="file"
               accept="image/*"
-              name="foodImage"
+              name="food_image"
               onChange={handleFileChange}
               className="w-full p-2 border border-gray-300 rounded mb-4"
               required
-            />
+            /> */}
+
+
+
             {/* <button
               type="submit"
               className="w-full p-2 bg-deepBlue text-white rounded"
@@ -155,29 +197,28 @@ const VendorChild : React.FC<VendorCreatesFoodProps> = ({show, handleClose}) => 
             </button> */}
 
             <div className="flex items-center justify-end">
-                  <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={handleClose}
-                    >
-                    Close
-                  </button>
-                  <button
-                    className="bg-deepBlue hover:bg-deepBlue-600  text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
-                    type="button"
-                    // onClick={handleClose}
-                  >
-                    Create Food
-                    <Modal />
-                  </button>
-                </div>
+              <button
+                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                type="button"
+                onClick={handleClose}
+              >
+                Close
+              </button>
+              <button
+                className="bg-deepBlue hover:bg-deepBlue-600  text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+                type="submit"
+                // onClick={handleClose}
+              >
+                {loading? "Looading...": "Create Food"}
+                <Modal />
+              </button>
+            </div>
           </form>
-        </div> : null}
-        
-      
+        </div>
+        ) : null}
+      </div>
     </>
   );
 };
-
 
 export default VendorCreatesFood;

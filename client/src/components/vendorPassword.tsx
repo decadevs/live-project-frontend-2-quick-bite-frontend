@@ -108,7 +108,7 @@ const VendorPassword = () => {
                     className="w-full p-2 bg-deepBlue text-white rounded-xl"
                     type= "submit"
                 >
-                    Change Password
+                    {loading ? 'loading...' : "Change Password"}
                 </button>
                 </form>
             </div>

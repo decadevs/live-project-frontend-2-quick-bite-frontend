@@ -1,36 +1,64 @@
-import { useState, ChangeEvent, MouseEvent, } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState, ChangeEvent, MouseEvent, useEffect,FormEvent } from 'react';
+import { useAppDispatch, useAppSelector } from '../store/hooks'; //
+import { updateVendorProfile } from '../slices/vendorSlice';
 import {  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import '../styles/EditVendor.css'
+import { showErrorToast, showSuccessToast } from "../utility/toast";
 
 //bg-white p-8 rounded-xl shadow-lg
 //fixed inset-0 flex justify-center items-center bg-black bg-opacity-50
 
-interface EditVendorProps{
-    handleClose: () => void
-}
-interface Vendor {
-    nameOfOwner: string;
-    restaurantName: string;
-    email: string;
-    phoneNumber: string;
-    address: string;
-    coverImage: File | null;
+// interface EditVendorProps{
+//     handleClose: () => void
+// }
+
+
+// interface Vendor {
+//     name_of_owner?: string;
+//     restaurant_name?: string;
+//     email?: string;
+//     phone_no?: string;
+//     address?: string;
+//     // coverImage: File | null;
+// }
+
+const initialData = {
+    name_of_owner: '',
+    restaurant_name: '',
+    email: '',
+    phone_no: '',
+    address: '',
+    coverImage: null as File | null
 }
 
- // import Header from './Header';
-const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
-    const [vendor, setVendor] = useState<Vendor>({
-        nameOfOwner: '',
-        restaurantName: '',
-        email: '',
-        phoneNumber: '',
-        address: '',
-        coverImage: null as File | null
-    });
+//: React.FC<EditVendorProps>
+
+const EditVendor = () => {
+
+    const [vendor, setVendor] = useState(initialData);
+    const [loading, setLoading] = useState(false);
 //    const [editprofileSuccess, setEditProfileSuccess] = useState(false);
-//   
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+
+
+    const {vendor: logedInVendor} = useAppSelector((state)=> state.vendorAuth)
+
+    useEffect(()=>{
+        setVendor({
+            ...vendor,
+            name_of_owner: logedInVendor.name_of_owner as string,
+            restaurant_name: logedInVendor.restaurant_name as string,
+            email: logedInVendor.email as string,
+            phone_no: logedInVendor.phone_no as string,
+            address: logedInVendor.address as string,
+        })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[logedInVendor]);
+    
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -54,8 +82,11 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
     //  
       const handleCancel = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        // handleClose();
-            
+    
+        setTimeout(() => {
+            //handleClose(); 
+             navigate('/vendordashboard');
+         }, 2000);
             toast.error   ('Cancelled', {
                 autoClose: 2000
     
@@ -64,22 +95,43 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
         
     };
     
-  const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
        e.preventDefault();
 
         try {
-            // Simulate saving user data to the postgres database
-            console.log(vendor);
-            toast.success ('successfully edited')
-            // setEditProfileSuccess(true)
-            ;
+            
+            const payload = {
+                name_of_owner: vendor.name_of_owner,
+                restaurant_name: vendor.restaurant_name,
+                email: vendor.email,
+                phone_no: vendor.phone_no,
+                address: vendor.address,
+            };
+
+            setLoading(true)
+            const data = await dispatch(updateVendorProfile(payload)).unwrap()
+
+            console.log(data);
+            //showSuccessToast(data.message);
+            setLoading(false)
+            setVendor(initialData);
+            
             setTimeout(() => {
-               handleClose(); // closeModal();
+               //handleClose(); 
                 navigate('/vendordashboard');
             }, 2000);
             
-        } catch (error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
             console.error(error);
+            setLoading(false);
+      if (error.response) {
+        showErrorToast(error.response.data.message);
+      } else if (error.request) {
+        showErrorToast("Internal Server Error");
+      } else {
+        showErrorToast(`Error, ${error.message}`);
+      }   
         }
     };
 
@@ -100,21 +152,21 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
                                 {/* Modal structure */}
                                 <div className="custom-form-container">
                                     <div className="custom-form-container">
-                                        <form onSubmit={handleSubmit} className='form-edit'>
+                                        <form onSubmit={handleSubmit}  className='form-edit'>
                                             {/* Input fields */}
                                             <input
                                                 type="text"
                                                 placeholder="Name Of Owner"
-                                                name="nameOfOwner"
-                                                value={vendor.nameOfOwner}
+                                                name="name_of_owner"
+                                                value={vendor.name_of_owner}
                                                 onChange={handleChange}
                                                 className="w-full p-2 border border-gray-300 rounded mb-4 input-width"
                                             />
                                              <input
                                     type="text"
                                     placeholder="Name of Restaurant"
-                                    name="restaurantName"
-                                    value={vendor.restaurantName}
+                                    name="restaurant_name"
+                                    value={vendor.restaurant_name}
                                     onChange={handleChange}
                                     className="w-full p-2 border border-gray-300 rounded mb-4 input-width"
                                 />
@@ -127,11 +179,11 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
                                     className="w-full p-2 border border-gray-300 rounded mb-4 input-width"
                                 />
         
-        <input
+                                 <input
                                     type="text"
                                     placeholder="Phone Number"
-                                    name="phoneNumber"
-                                    value={vendor.phoneNumber}
+                                    name="phone_no"
+                                    value={vendor.phone_no}
                                     onChange={handleChange}
                                     className="w-full p-2 border border-gray-300 rounded mb-4 input-width"
                                 />
@@ -161,7 +213,7 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
                                                     type="submit"
                                                     className="bg-deepBlue text-white rounded"
                                                 >
-                                                    Save
+                                                    {loading?"Loading...":"Save"}
                                                 </button>
                                                 <button
                                                     className="bg-deepBlue text-white rounded"
@@ -182,344 +234,18 @@ const VendorEditProfile: React.FC<EditVendorProps> = ({handleClose}) => {
 
 //   
 
-export default VendorEditProfile;
+export default EditVendor;
 
 
-// return (
-    //         <div className="fixed inset-0 flex items-center justify-center z-50">
-    //             <div className="bg-white w-full max-w-md p-8 rounded-lg shadow-lg">
-    //                 <h1 className="text-3xl font-bold text-center mb-4">Vendor Edit Profile</h1>
-    //                 <form className="mt-4" onSubmit={handleSubmit}>
-    //                     {/* ... Input fields ... */}
-    //                     <div className="flex justify-between mt-6">
-    //                         <button
-    //                             type="button"
-    //                             className="bg-gray-500 text-white rounded px-4 py-2 hover:bg-gray-600 transition"
-    //                             onClick={handleCancel}
-    //                         >
-    //                             Cancel
-    //                         </button>
-    //                         <button
-    //                             type="submit"
-    //                             className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition"
-    //                         >
-    //                             Save
-    //                         </button>
-    //                     </div>
-    //                 </form>
-    //                 {editprofileSuccess && (
-    //                     <p className="text-green-500 text-center font-bold mt-4">
-    //                         Edit successful!
-    //                     </p>
-    //                 )}
-    //             </div>
-    //         </div>
-    //     );
-    // };
-    
 
 
-//     return (
-//         <>
-//             <div className="flex justify-center items-center h-screen px-4">
-//                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-//                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Edit Profile </h1>
-
-//                     {/* Button to open the modal */}
-//                     <button
-//                         className="bg-deepBlue text-white rounded"
-//                         onClick={() => setEditProfileSuccess(true)}
-//                     >
-//                         Click to edit
-//                     </button>
-
-//                     {editprofileSuccess && (
-//                         // Modal structure
-//                         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-//                             <div className="bg-white p-8 rounded-xl shadow-lg">
-//                                 <form onSubmit={handleSubmit}>
-//                                     {/* Input fields */}
-//                                     <input
-//                                         type="text"
-//                                         placeholder="Name Of Owner"
-//                                         name="nameOfOwner"
-//                                         value={vendor.nameOfOwner}
-//                                         onChange={handleChange}
-//                                         className="w-full p-2 border border-gray-300 rounded mb-4"
-//                                     />
-//                                      <input
-//                             type="text"
-//                             placeholder="Name of Restaurant"
-//                             name="restaurantName"
-//                             value={vendor.restaurantName}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <input
-//                             type="email"
-//                             placeholder="Email"
-//                             name="email"
-//                             value={vendor.email}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-
-// <input
-//                             type="text"
-//                             placeholder="Phone Number"
-//                             name="phoneNumber"
-//                             value={vendor.phoneNumber}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <input
-//                             type="text"
-//                             placeholder="Address"
-//                             name="address"
-//                             value={vendor.address}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <label htmlFor="">Cover Image</label>
-
-//                                     {/* File input */}
-//                                     <input
-//                                         type="file"
-//                                         placeholder="Cover Image"
-//                                         accept="image/*"
-//                                         name="coverImage"
-//                                         onChange={handleFileChange}
-//                                         className="w-full p-2 border border-gray-300 rounded mb-4"
-//                                     />
-
-//                                     {/* Buttons */}
-//                                     <div id="profile" className='flex flex-row space-x-4'>
-//                                         <button
-//                                             type="submit"
-//                                             className="bg-deepBlue text-white rounded"
-//                                         >
-//                                             Save
-//                                         </button>
-//                                         <button
-//                                             className="bg-deepBlue text-white rounded"
-//                                             onClick={handleCancel}
-//                                         >
-//                                             Cancel
-//                                         </button>
-//                                     </div>
-//                                 </form>
-//                             </div>
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default VendorEditProfile;
 
 
-//     return (
-//         <>
-//             <div className="flex justify-center items-center h-screen px-4">
-//                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-//                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Edit Profile </h1>
-
-//                     {/* Button to open the modal */}
-//                     <button
-//                         className="bg-deepBlue text-white rounded"
-//                         onClick={() => setEditProfileSuccess(true)}
-//                     >
-//                         Open Edit Modal
-//                     </button>
-
-//                     {editprofileSuccess && (
-//                         // Modal structure
-//                         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-//                             <div className="bg-white p-8 rounded-xl shadow-lg">
-//                                 <form onSubmit={handleSubmit}>
-//                                     {/* Input fields */}
-//                                     {/* ... */}
-
-//                                     {/* File input */}
-//                                     <input
-//                                         type="file"
-//                                         placeholder="Cover Image"
-//                                         accept="image/*"
-//                                         name="coverImage"
-//                                         onChange={handleFileChange}
-//                                         className="w-full p-2 border border-gray-300 rounded mb-4"
-//                                     />
-
-//                                     {/* Buttons */}
-//                                     <div className="flex justify-end space-x-4">
-//                                         <button
-//                                             type="submit"
-//                                             className="bg-deepBlue text-white rounded"
-//                                         >
-//                                             Save
-//                                         </button>
-//                                         <button
-//                                             className="bg-deepBlue text-white rounded"
-//                                             onClick={handleCancel}
-//                                         >
-//                                             Cancel
-//                                         </button>
-//                                     </div>
-//                                 </form>
-//                             </div>
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default VendorEditProfile;
-
-//     return (
-//         <>
-//             <div className="flex justify-center items-center h-screen px-4">
-//                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-//                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Edit Profile </h1>
-
-//                     {/* Button to open the modal */}
-//                     <button
-//                         className="bg-deepBlue text-white rounded"
-//                         onClick={() => setEditProfileSuccess(true)}
-//                     >
-//                         Open Edit Modal
-//                     </button>
-
-//                     {editprofileSuccess && (
-//                         // Modal structure
-//                         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-//                             <div className="bg-white p-8 rounded-xl shadow-lg">
-//                                 <form onSubmit={handleSubmit}>
-//                                     {/* Input fields */}
-//                                     {/* ... */}
-
-//                                     {/* Buttons */}
-//                                     <div className="flex justify-end space-x-4">
-//                                         <button
-//                                             type="submit"
-//                                             className="bg-deepBlue text-white rounded"
-//                                         >
-//                                             Save
-//                                         </button>
-//                                         <button
-//                                             className="bg-deepBlue text-white rounded"
-//                                             onClick={handleCancel}
-//                                         >
-//                                             Cancel
-//                                         </button>
-//                                     </div>
-//                                 </form>
-//                             </div>
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default VendorEditProfile;
-
-    
-//     return (
-//         <>
-//             {/* <Header /> */}
-//             <div className="flex justify-center items-center h-screen px-4">
-                
-
-//                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
-//                     <h1 className="text-black text-3xl font-bold text-center mb-4"> Vendor Edit Profile  </h1>
-//                     <form className="mt-4" onSubmit={handleSubmit}>
-//                         <input
-//                             type="text"
-//                             placeholder="Name Of Owner"
-//                             name="nameOfOwner"
-//                             value={vendor.nameOfOwner}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <input
-//                             type="text"
-//                             placeholder="Name of Restaurant"
-//                             name="restaurantName"
-//                             value={vendor.restaurantName}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <input
-//                             type="email"
-//                             placeholder="Email"
-//                             name="email"
-//                             value={vendor.email}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-
-//                         <input
-//                             type="text"
-//                             placeholder="Phone Number"
-//                             name="phoneNumber"
-//                             value={vendor.phoneNumber}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <input
-//                             type="text"
-//                             placeholder="Address"
-//                             name="address"
-//                             value={vendor.address}
-//                             onChange={handleChange}
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <label htmlFor="">Cover Image</label>
-//                         <input
-//                             type="file"
-//                             placeholder="Cover Image"
-//                             accept="image/*" // Allow only image files
-//                             name="coverImage"
-//                             onChange={handleFileChange} // Handle file input change
-//                             className="w-full p-2 border border-gray-300 rounded mb-4"
-//                         />
-//                         <div id="profile" className='flex flex-row space-x-4'>
 
 
-//                         <button type="submit" className="w-full p-2 bg-deepBlue text-white rounded"
-//                         //  onClick={handleSubmit}
-//                         >
-//                             Save
-//                         </button>
-
-//                         <button  className="w-full p-2 bg-deepBlue text-white rounded"
-//                         onClick={handleCancel}
-//                         >
-//                         Cancel
-//                         </button>
-//                         </div>
 
 
-//                     {editprofileSuccess && (
-//                         <p className="text-green-500 text-center font-bold mt-4">
-//                             Edit successful!
-//                         </p>  
-//                     )}
-//                 </form>
-                       
 
-//                 </div>
-//             </div>    
-            
-//         </>
 
-//     );
-// };
 
-// export default VendorEditProfile;
 

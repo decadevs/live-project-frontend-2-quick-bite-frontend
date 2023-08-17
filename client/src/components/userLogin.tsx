@@ -21,7 +21,7 @@ const LoginForm = () => {
 			setLoading(true);
 
 			if (formValid && email.trim() !== "" && password.trim() !== "") {
-				showErrorToast("Please enter your details correctly.");
+				// showErrorToast("Please enter your details correctly.");
 				return;
 			}
 			const payload = {
@@ -30,13 +30,14 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
+			console.log( "login", payload)
 
 			setEmail("");
 			setPassword("");
 			setPasswordValidation(false);
 			setFormValid(false);
 			setLoading(false);
-			navigate("/food");
+			navigate("/userlanding");
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setLoading(false);
@@ -124,11 +125,11 @@ const LoginForm = () => {
 					</RouterLink>
 				</p>
 				<button
-					className={`w-full p-2 bg-deepBlue text-white rounded-xl ${
-						formValid ? "" : "opacity-50 cursor-not-allowed"
-					}`}
+					className={`w-full p-2 bg-deepBlue text-white rounded-xl` //${
+						//formValid ? "" : "opacity-50 cursor-not-allowed"}`
+					}
 					onClick={handleLogin}
-					disabled={!formValid || loading}
+					// disabled={!formValid || loading}
 				>
 					{loading ? "Loading" : "Login"}
 				</button>
