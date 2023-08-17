@@ -31,7 +31,7 @@
 
 import React, { useState } from "react";
 import "../styles/cardSection.css";
-import food1 from "../assets/food1.png";
+import food1 from "../assets/food1.jpeg";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 

@@ -1,4 +1,3 @@
-
 import { useLocation, Navigate } from "react-router-dom";
 
 // export const ProtectRoute = ({children}:any) => {

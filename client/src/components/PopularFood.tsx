@@ -45,7 +45,7 @@ useEffect(() => {
          isLoading ? <img src={spinner} alt="" className={styles.spinner} />  :
          <>
        <div className={styles.cardContainer}>
-         {popularFood.map((food)=>(
+         {popularFood?.map((food)=>(
         <Link to="/4" key={food.id}> <div className={styles.Card}>
              <div className={styles.cardHead}>
                 <img src={food.food_image} alt="" className="h-60 w-90" />
@@ -68,7 +68,7 @@ useEffect(() => {
         </div>
 
         <div className={styles.btnContainer}>
-        <Link to="/food"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
+        <Link to="/popularfoods"><button className={`${styles.more} sm:mt-4 w-full p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
         </div>
       
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`}></div>

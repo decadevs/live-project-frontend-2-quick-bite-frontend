@@ -48,7 +48,8 @@ export const vendorLogin = createAsyncThunk(
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			if (error.response) {
-				return thunkAPI.rejectWithValue(error.response.data.message);
+				console.log(error.response)
+				return thunkAPI.rejectWithValue(error.response.data);
 			}
 			if (error.request) {
 				return thunkAPI.rejectWithValue("Network Error");
@@ -69,7 +70,7 @@ export const updateVendorProfile = createAsyncThunk(
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			if (error.response) {
-				return thunkAPI.rejectWithValue(error.response.data.message);
+				return thunkAPI.rejectWithValue(error.response.data);
 			}
 			if (error.request) {
 				return thunkAPI.rejectWithValue("Network Error");
