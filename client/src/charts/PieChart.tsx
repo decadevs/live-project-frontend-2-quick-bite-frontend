@@ -1,30 +1,23 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Chart } from 'react-google-charts';
-import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { getPopularFoods } from '../slices/vendorPopularFoodsSlice';
 
 export default function PieChart() {
-    const [popularProducts, setPopularProducts] = useState([]);
+    const dispatch = useAppDispatch();
+    const { vendorPopularFoods, isLoading } = useAppSelector(
+        (state) => state.vendorPopularFood
+    );
 
     useEffect(() => {
-        fetchPopularProducts();
-    }, []);
-
-    const fetchPopularProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:3030/vendor/popular-products');
-            const popularProductsData = response.data; // Assuming the API response is an array of popular products
-            setPopularProducts(popularProductsData);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+        dispatch(getPopularFoods());
+    }, [dispatch]);
 
     const formatDataForChart = () => {
-        const chartData = [
+        return [
             ['Product', 'Popularity'],
-            ...popularProducts.map((product) => [product.name, product.popularity]),
+            ...vendorPopularFoods.map((food) => [food.name, food.order_count]),
         ];
-        return chartData;
     };
 
     const options = {
@@ -34,13 +27,27 @@ export default function PieChart() {
         colors: ['#4285F4', '#0F9D58', '#F4B400', '#DB4437', '#9E69AF'],
     };
 
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
+
     return (
-        <Chart
-            chartType="PieChart"
-            width="100%"
-            height="270px"
-            data={formatDataForChart()}
-            options={options}
-        />
+        <div>
+            <h2>Pie Chart</h2>
+            {vendorPopularFoods.length === 0 ? (
+                <p>No data available.</p>
+            ) : (
+                <>
+                    <h3>Popular Products</h3>
+                    <Chart
+                        chartType="PieChart"
+                        width="100%"
+                        height="270px"
+                        data={formatDataForChart()}
+                        options={options}
+                    />
+                </>
+            )}
+        </div>
     );
 }

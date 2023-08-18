@@ -22,7 +22,7 @@ export interface VendorDetails {
 }
 
 export interface InitialVendorState {
-    vendorOrder: VendorDetails[];
+    vendorOrders: VendorDetails[];
     token: string;
     isAuthenticated: boolean;
     isLoading: boolean
@@ -31,7 +31,7 @@ export interface InitialVendorState {
 }
 
 const initialState: InitialVendorState = {
-    vendorOrder: [],
+    vendorOrders: [],
     token: "",
     isAuthenticated: false,
     error: "",
@@ -75,7 +75,7 @@ export const totalOrderSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorOrders.fulfilled, (state, action) => {
-            state.vendorOrder = action.payload.data
+            state.vendorOrders = action.payload.data
             state.message = action.payload.message
             state.error = "";
             toast.success(action.payload.message)

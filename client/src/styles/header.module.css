@@ -16,6 +16,11 @@
     }
   }
 
+  .flex-icon{
+     display:flex;
+    flex-direction: column;
+    text-align: center
+  }
 
   .profileImg{
     width:50px;
@@ -208,7 +213,10 @@
 }
 
 .menu:hover{
-    background-color:#1a512e43
+    background-color:rgb(237,240,235);
+    transform: scale(1.2);
+    color: #1A512E;
+    font-weight: 400;
 }
 
 

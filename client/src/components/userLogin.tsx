@@ -37,12 +37,12 @@ const LoginForm = () => {
 			setPasswordValidation(false);
 			setFormValid(false);
 			setLoading(false);
-			navigate("/food");
+			navigate("/userlanding");
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setLoading(false);
 			if (error.response) {
-				showErrorToast(error.response.data.message);
+				showErrorToast(error.response.data);
 			} else if (error.request) {
 				showErrorToast("Internal Server Error");
 			} else {

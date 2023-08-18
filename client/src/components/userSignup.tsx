@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import axios from "../api/httpService";
-import { showErrorToast } from "../utility/toast";
+import { showErrorToast,  } from "../utility/toast";
 import Input from "./reusableComponents/input";
 
 const initialState = {
@@ -58,6 +58,7 @@ const SignupForm = () => {
       setUser(initialState);
       setSignupSuccess(true);
       localStorage.setItem("token", data.token);
+      localStorage.setItem("email", data.email)
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,26 +1,34 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import authReducer from "../slices/authSlice";
+import vendorReducer from "../slices/vendorSlice"
 import popularRestaurantReducer from "../slices/popularRestaurantSlice"
 import popularFoodReducer from "../slices/popularSlice";
-import newFoodReducer from "../slices/newFoodsSlice"
-import totalRevenueReducer from '../slices/totalRevenueSlice'
-import totalOrdersReducer from "../slices/totalOrdersSlice";
-import totalEarningReducer from "../slices/totalEarningSlice";
-import vendorPopularFoodsReducer from "../slices/vendorPopularFoodsSlice";
+import newFoodReducer from "../slices/newFoodsSlice";
+import getAllFoodCountReducer from "../slices/getAllFoodCountSlice";
+import getTotalFoodReducer from "../slices/popularFoodCountSlice";
+import getOrderCountReducer from "../slices/orderCountSlice";
 import vendorGetProfileReducer from "../slices/vendorGetProfileSlice";
+import totalRevenueReducer from "../slices/totalRevenueSlice";
+import totalEarningReducer from "../slices/totalEarningSlice";
+import totalOrderReducer from "../slices/totalOrdersSlice";
+import vendorPopularFoodsReducer from '../slices/vendorPopularFoodsSlice';
+
 
 export const store = configureStore({
 	reducer: {
 		auth: authReducer,
+		vendorAuth: vendorReducer,
 		popularFood:popularFoodReducer,
 		popularRestaurant : popularRestaurantReducer,
 		newFood : newFoodReducer,
+		allFoodCount :getAllFoodCountReducer,
+		totalFood: getTotalFoodReducer,
+		vendorOrder: getOrderCountReducer,
+		vendorProfile: vendorGetProfileReducer,
 		vendorRevenue: totalRevenueReducer,
-		vendorOrder: totalOrdersReducer,
 		vendorEarning: totalEarningReducer,
-		vendorPopularFood: vendorPopularFoodsReducer,
-		vendorProfile: vendorGetProfileReducer
+		vendorOrders: totalOrderReducer,
+		vendorPopularFood: vendorPopularFoodsReducer
 	},
 });
 
