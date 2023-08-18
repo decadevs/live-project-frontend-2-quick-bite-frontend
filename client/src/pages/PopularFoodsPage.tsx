@@ -4,7 +4,11 @@ import Header from "../components/Header"
 const PopularFoodsPage = () => {
   return (
     <div>
-      <Header/>
+      
+      {
+        localStorage.getItem('token') ? <Header/> : null
+        
+        }
       
       <PopularFoodsCard />
     </div>

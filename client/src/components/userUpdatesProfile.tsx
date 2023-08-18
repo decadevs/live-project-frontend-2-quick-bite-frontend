@@ -25,6 +25,8 @@ const UserUpdatesProfile = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 const navigate = useNavigate();
+
+
   useEffect(() => {
     setUser({
       ...user,

@@ -37,13 +37,13 @@ export default function Home() {
   // console.log(setNumberOfPopularFoods)
   //console.log(setNumberOfOrders)
 
-const value = allFoodCount.length
+const value = allFoodCount?.length
 console.log("allFood value ", value)
 
-const popularFoods = totalFoods.length
+const popularFoods = totalFoods?.length
 console.log("popularFoods value ", popularFoods)
 
-const totalVendorOrder = vendorOrder.length
+const totalVendorOrder = vendorOrder?.length
 console.log("totalVendorOrder value ", totalVendorOrder)
 
   return (

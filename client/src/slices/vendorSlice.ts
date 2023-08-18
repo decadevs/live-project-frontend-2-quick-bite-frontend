@@ -38,17 +38,20 @@ const initialState: InitialVendorState = {
 };
 
 export const vendorLogin = createAsyncThunk(
-	"auth/login",
+	"vendorAuth/loginVendor",
 	async (payload: Record<string, string>, thunkAPI) => {
 		try {
 			const response = await axios.post("/vendor/login", payload);
+
 			localStorage.setItem("vendor", JSON.stringify(response.data.user));
 			localStorage.setItem("token", response.data.token);
+			console.log("response", response.data)
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			if (error.response) {
-				return thunkAPI.rejectWithValue(error.response.data.message);
+				console.log(error.response)
+				return thunkAPI.rejectWithValue(error.response.data);
 			}
 			if (error.request) {
 				return thunkAPI.rejectWithValue("Network Error");
@@ -61,15 +64,16 @@ export const vendorLogin = createAsyncThunk(
 );
 
 export const updateVendorProfile = createAsyncThunk(
-	"auth/update-profile",
+	"vendor/update-profile",
 	async (payload: Record<string, string>, thunkAPI) => {
 		try {
 			const response = await axios.put("/vendor/editprofile", payload);
+			//console.log(response.data.data)
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			if (error.response) {
-				return thunkAPI.rejectWithValue(error.response.data.message);
+				return thunkAPI.rejectWithValue(error.response.data);
 			}
 			if (error.request) {
 				return thunkAPI.rejectWithValue("Network Error");
@@ -81,8 +85,8 @@ export const updateVendorProfile = createAsyncThunk(
 	}
 );
 
-export const authSlice = createSlice({
-	name: "auth",
+export const vendorAuthSlice = createSlice({
+	name: "vendorAuth",
 	initialState,
 	reducers: {
 		logout: (state) => {
@@ -124,10 +128,10 @@ export const authSlice = createSlice({
 		});
 		builder.addCase(updateVendorProfile.fulfilled, (state, action) => {
 			// Add user to the state array
-			const newVendor = action.payload.vendor;
+			const newVendor = action.payload;
 			state.vendor = newVendor;
 			toast(action.payload.message);
-			localStorage.setItem("user",JSON.stringify(newVendor))
+			localStorage.setItem("vendor",JSON.stringify(newVendor))
 		});
 		builder.addCase(updateVendorProfile.rejected, (state, action) => {
 			// Add user to the state array
@@ -138,6 +142,6 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { logout, loginSuccess } = authSlice.actions;
+export const { logout, loginSuccess } = vendorAuthSlice.actions;
 
-export default authSlice.reducer;
+export default vendorAuthSlice.reducer;

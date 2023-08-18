@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../slices/authSlice";
+import vendorReducer from "../slices/vendorSlice"
 import popularRestaurantReducer from "../slices/popularRestaurantSlice"
 import popularFoodReducer from "../slices/popularSlice";
 import newFoodReducer from "../slices/newFoodsSlice";
@@ -10,6 +11,7 @@ import getOrderCountReducer from "../slices/orderCountSlice";
 export const store = configureStore({
 	reducer: {
 		auth: authReducer,
+		vendorAuth: vendorReducer,
 		popularFood:popularFoodReducer,
 		popularRestaurant : popularRestaurantReducer,
 		newFood : newFoodReducer,
