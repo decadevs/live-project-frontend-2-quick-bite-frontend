@@ -64,10 +64,10 @@ const VendorSignupForm = () => {
       setLoading(false);
 
       // navigate("/vendorLogin")
-      navigate("/vendorLogin");
-
-      // setTimeout(() => {
-      // }, 1000) 
+      
+      setTimeout(() => {
+        navigate("/vendorLogin");
+      }, 500) 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
