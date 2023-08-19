@@ -34,6 +34,7 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import UserLandingpg from "./pages/userLandingpg";
 import {ProtectRoute} from './utility/auth'
+import PaystackIntegration from "./components/PaystackIntegration";
 
 function App() {
 	
@@ -71,6 +72,7 @@ function App() {
 					<Route path="/newfoods" element={ <NewFoodsPage />}></Route>
 					<Route path="/popular" element={ <PopularResPage/>}></Route>
 					<Route path="/popularfoods" element={ <PopularFoodsPage/>}></Route>
+					<Route path="/checkout" element={ <PaystackIntegration/>}></Route>
 				</Routes>
 				<Footer />
 			</main>

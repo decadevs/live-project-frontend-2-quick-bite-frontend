@@ -6,6 +6,8 @@ import newFoodReducer from "../slices/newFoodsSlice";
 import getAllFoodCountReducer from "../slices/getAllFoodCountSlice";
 import getTotalFoodReducer from "../slices/popularFoodCountSlice";
 import getOrderCountReducer from "../slices/orderCountSlice";
+import userGetAllFoodReducer from "../slices/userGetAllFoodSlice"
+import getSingleUserReducer from "../slices/getSingleUserProfileSlice"
 
 export const store = configureStore({
 	reducer: {
@@ -15,7 +17,9 @@ export const store = configureStore({
 		newFood : newFoodReducer,
 		allFoodCount :getAllFoodCountReducer,
 		totalFood: getTotalFoodReducer,
-		vendorOrder: getOrderCountReducer
+		vendorOrder: getOrderCountReducer,		
+		userAllFood : userGetAllFoodReducer,
+		singleUser :getSingleUserReducer
 	},
 });
 

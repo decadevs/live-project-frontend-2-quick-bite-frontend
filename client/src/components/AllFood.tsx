@@ -1,17 +1,24 @@
-import React from 'react'
-import  { MouseEventHandler,  useState } from 'react';
+
+import  { MouseEventHandler,  useState, useEffect } from 'react';
 import styles from "../styles/popular.module.css"
 import Dropdown from "../assets/dropdown.svg"
 import  FoodOne from "../assets/food1.jpeg"
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import {getUserAllFood} from "../slices/userGetAllFoodSlice"
 
 const AllFood = () => {
     const[show, setShow] = useState(false)
-
-  
+ const dispatch = useAppDispatch()
+ const {userAllFood, token} = useAppSelector((state)=>state.userAllFood)
+   console.log(userAllFood)
     const handleClick : MouseEventHandler<HTMLImageElement>=()=>{
       setShow(!show)
     }
+
+    useEffect(()=>{
+      dispatch(getUserAllFood())
+    },[dispatch, token])
   return (
     <div id="pFood" className={styles.popular}>
     <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>

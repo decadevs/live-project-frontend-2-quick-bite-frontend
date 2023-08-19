@@ -1,7 +1,7 @@
 import  { MouseEventHandler,  useState ,useEffect} from 'react';
 import styles from '../styles/freeDelivery.module.css'
 import Dropdown from "../assets/dropdown.svg"
-import  FoodOne from "../assets/food1.png"
+// import  FoodOne from "../assets/food1.png"
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getPopularRestaurant} from '../slices/popularRestaurantSlice';

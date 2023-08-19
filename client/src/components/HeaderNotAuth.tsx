@@ -5,15 +5,9 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
-import { useAppDispatch} from '../store/hooks'
-
 import "./cartmodal.css";
-//import { GiShoppingBag } from "react-icons/gi"
-
-import {logout} from "../slices/authSlice"
 import  "./cartmodal.css";
 import "../pages/cartpage.css";
-
 const initialProducts: Product[] = [
   {
     id: 1,
@@ -31,10 +25,7 @@ const initialProducts: Product[] = [
   },
 ];
 
-const Header = () => {
-
-  const dispatch = useAppDispatch()
-  
+const Header = () => {  
     const[collapse, setCollapse] = useState(true)
     
     const toggleButton = ()=> setCollapse(!collapse)
@@ -66,9 +57,7 @@ const Header = () => {
 //       Dashboard: "Dashboard",
 //     },
 //   ];
-  const handleLogout = ()=>{
-        dispatch(logout())
-    }
+ 
 //   const [dropdown, setDropDown] = useState(true);
 //   const toggle = () => setDropDown(!dropdown);
 
@@ -86,8 +75,9 @@ const Header = () => {
 
           <div className="hidden md:flex space-x-6 justify-between"></div>
           <div className={styles.flexProfile}>     
+          <Link to='/login'> <button className={`${styles.SignIn} bg-veryLightGray hover:bg-deepBlue hover:text-white`}>Sign In</button></Link>
+            <Link to="/register">
 
-            <Link to="/signup">
               <button className={`${styles.SignUp} bg-deepBlue `}>
                Signup
               </button>
@@ -116,11 +106,11 @@ const Header = () => {
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
           
-            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>SignUp</button> </Link>      
+            {/* <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>SignUp</button> </Link>       */}
         
     </div>
     </div>
-//
+
         <div
           className={`${
             collapse ? styles.mobileView : ""
@@ -129,7 +119,7 @@ const Header = () => {
           <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
             {/* <a href="#" className="mx-auto">Vendors</a> */}
 
-            <Link to="/">
+            <Link to="/register">
               <button
                 className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}
               >
