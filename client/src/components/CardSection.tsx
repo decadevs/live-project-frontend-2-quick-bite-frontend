@@ -1,39 +1,9 @@
-// import "../styles/cardSection.css";
-// import food1 from "../assets/food1.png";
-// import { FaEdit } from "react-icons/fa";
-// import { MdDelete } from "react-icons/md";
-
-// interface props {
-//   name: string;
-//   description: string;
-// }
-
-// let foods = [
-//   { name: "Fried rice", description: "hot and spice " },
-//   { name: "Moi-moi", description: "hot and spice " },
-//   { name: "Abacha", description: "hot and spice " },
-//   { name: "Grilled Chiken", description: "hot and spice " },
-//   { name: "Egusi & fudu", description: "hot and spice " },
-// ];
-
-// const CardSection = (prop: props) => {
-//   return (
-//     <div className="card-section-container">
-//       <img src={food1} alt="food" />
-//       <h3>{prop.name}</h3>
-//       <p>{prop.description}</p>
-//       <FaEdit /> <MdDelete />
-//     </div>
-//   );
-// };
-
-// export default CardSection;
-
 import React, { useState } from "react";
 import "../styles/cardSection.css";
 import food1 from "../assets/food1.png";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { BsPlusSquare } from "react-icons/bs";
 
 interface Props {
   name: string;
@@ -69,10 +39,13 @@ const CardSection: React.FC<Props> = ({ name, description, onEdit }) => {
         </div>
         <h2 className="foodtitle">{name}</h2>
         <p className="foodtext">{description}</p>
-        <FaEdit onClick={handleEditClick} className="desktop-icons" />{" "}
-        <MdDelete className="desktop-icons" />
+        {/* <FaEdit onClick={handleEditClick} className="desktop-icons" />{" "} */}
+        <div className="price">
+          <p>N12500</p>
+          <BsPlusSquare className="desktop-icons" />
+        </div>
         <div className="mobile-icons">
-          <FaEdit onClick={handleEditClick} /> <MdDelete />
+          <FaEdit onClick={handleEditClick} /> <BsPlusSquare />
         </div>
         {showModal && (
           <div className="modal-overlay">
