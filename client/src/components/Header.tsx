@@ -150,14 +150,16 @@ const Header = () => {
               <i className="fas fa-times"></i>
             )}
           </button>
-        </div>
-
-        <div className={`${collapse ? styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
-          <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
-            {/* <a href="#" className="mx-auto">Vendors</a> */}
-            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>
-          </div>
-        </div>
+        </div>  
+      
+        <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
+        <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
+        {/* <a href="#" className="mx-auto">Vendors</a> */}
+          
+            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
+        
+    </div>
+    </div>
         <div
           className={`${collapse ? styles.mobileView : ""
             } mt-20 md:hidden bg-deepBlue`}

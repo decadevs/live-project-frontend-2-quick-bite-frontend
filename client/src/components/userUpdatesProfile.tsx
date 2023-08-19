@@ -25,6 +25,8 @@ const UserUpdatesProfile = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 const navigate = useNavigate();
+
+
   useEffect(() => {
     setUser({
       ...user,
@@ -53,23 +55,28 @@ const navigate = useNavigate();
     try {
       event.preventDefault();
 
-      const payload = {
-        firstname: user.firstName,
-        lastname: user.lastName,
-        email: user.email,
-        phone_no: user.phoneNumber,
-        address: user.address,
-      };
+       if (!Object.values(user)?.some((item) => !!item)){
+        return showErrorToast(`All fields cannot be empty`);
+       }
+        else {
+         const payload = {
+           firstname: user.firstName,
+           lastname: user.lastName,
+           email: user.email,
+           phone_no: user.phoneNumber,
+           address: user.address,
+         };
 
-      setLoading(true)
-      const data = await dispatch(updateUserProfile(payload)).unwrap();
+         setLoading(true);
 
-      console.log(data.message);
-         
-      setLoading(false)
-      setUser(initialUserData);
-        navigate("/userlanding");
-      // throw new Error('Function not implemented.');
+         const data = await dispatch(updateUserProfile(payload)).unwrap();
+         console.log(data.message);
+
+         setLoading(false);
+         setUser(initialUserData);
+       }
+         navigate("/userlanding");
+       
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
@@ -91,7 +98,7 @@ const navigate = useNavigate();
             {" "}
             Update Your Profile
           </h1>
-          <form onSubmit={handleSubmit} className="mt-4">
+          <form onSubmit={ async (e)=>{await handleSubmit(e)}} className="mt-4">
             <input
               type="text"
               placeholder="First Name"

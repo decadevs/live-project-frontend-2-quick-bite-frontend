@@ -2,64 +2,61 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-
-
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getVendorProfile } from '../slices/vendorGetProfileSlice';
+import { useEffect } from 'react';
+import { Button } from '@mui/material';
 
 export default function MediaCard() {
+    const dispatch = useAppDispatch();
+
+    const { vendorProfile, isLoading } = useAppSelector((state) => state.vendorProfile);
+
+    console.log(isLoading)
+    useEffect(() => {
+        dispatch(getVendorProfile());
+    }, [dispatch]);
+
+    const vendorInfoAvailable = vendorProfile && vendorProfile.length > 0;
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={8} sm={6}>
-                <Card sx={{ maxWidth: 345, mb: 3 }}>
+                <Card sx={{ minWidth: 50 + "%", mb: 3 }}>
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Vendor Name
+                            {vendorInfoAvailable ? vendorProfile[0].name_of_owner : "Vendor Name"}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            <div>
-                                <strong>Email:</strong> edgarhansen@gmail.com
-                            </div>
-                            <div>
-                                <strong>Phone:</strong> +234 912 765 2354
-                            </div>
+                            {vendorInfoAvailable ? (
+                                <div>
+                                    <strong>Email:</strong> {vendorProfile[0].email}
+                                </div>
+                            ) : (
+                                <div>No vendor information available.</div>
+                            )}
+                            {vendorInfoAvailable && (
+                                <>
+                                    <div>
+                                        <strong>Phone:</strong> {vendorProfile[0].phone_no}
+                                    </div>
+                                    <div>
+                                        <strong>Restaurant Name:</strong> {vendorProfile[0].restaurant_name}
+                                    </div>
+                                    <div>
+                                        <strong>Address:</strong> {vendorProfile[0].address}
+                                    </div>
+                                    <div>
+                                        <strong>Company Name:</strong> {vendorProfile[0].company_name}
+                                    </div>
+                                </>
+                            )}
                         </Typography>
                     </CardContent>
                 </Card>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-                <Card sx={{ minWidth: 50 + "%" }}>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            About Me
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                            fringilla massa in dui ornare, eget tincidunt est ullamcorper.
-                            Nullam eget tortor sit amet quam accumsan tristique. Integer ut
-                            magna lacinia, tincidunt sapien vitae, condimentum libero. Sed
-                            auctor augue vitae felis lacinia, vel ullamcorper justo
-                            vestibulum.
-                        </Typography>
-                    </CardContent>
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Details
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            <div>
-                                <strong>Full Name:</strong> John Doe
-                            </div>
-                            <div>
-                                <strong>Vendor Reg Number:</strong> ABC123
-                            </div>
-                            <div>
-                                <strong>Vendor ID:</strong> 12345
-                            </div>
-                            <div>
-                                <strong>Rating:</strong> 4.5
-                            </div>
-                        </Typography>
-                    </CardContent>
-                </Card>
+                <Button variant="contained" color="primary" size="large">
+                    Edit Profile
+                </Button>
             </Grid>
         </Grid>
     );

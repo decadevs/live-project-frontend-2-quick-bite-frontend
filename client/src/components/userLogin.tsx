@@ -42,7 +42,7 @@ const LoginForm = () => {
 		} catch (error: any) {
 			setLoading(false);
 			if (error.response) {
-				showErrorToast(error.response.data.message);
+				showErrorToast(error.response.data);
 			} else if (error.request) {
 				showErrorToast("Internal Server Error");
 			} else {

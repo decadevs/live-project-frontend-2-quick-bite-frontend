@@ -1,10 +1,10 @@
 
 import VendorEditProfile from "../components/EditVendor"
-import Header from "../components/Header"
+// import Header from "../components/Header"
 const VendorsEdit = () => {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         
       <VendorEditProfile/>
     </div>
