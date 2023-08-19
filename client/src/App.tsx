@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -15,6 +17,7 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import AllFoodsPage from "./pages/AllFoodsPage";
 import NewFoodsPage from "./pages/NewFoodsPage";
 import PopularResPage from "./pages/PopularResPage";
@@ -31,8 +34,8 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-import { ProtectRoute } from "./utility/auth";
-import CheckOut from "./pages/CheckOut";
+import {ProtectRoute} from './utility/auth'
+import VendorsEdit from "./pages/VendorsEdit";
 
 function App() {
   return (
@@ -60,23 +63,12 @@ function App() {
           <Route path="/button" element={<ButtonPage />}></Route>
           <Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
           <Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
-          <Route
-            path="/userupdatesprofile"
-            element={<UserUpdatesProfile />}
-          ></Route>
+          <Route path="/userupdatesprofile" element={<UserUpdatesProfile />}></Route>
 
           <Route path="/userlanding" element={<UserLandingpg />}></Route>
           {/* <Route path="/editVendor" element = {<VendorsEdit/>}></Route> */}
           <Route path="/editvendor" element={<EditVendor />}></Route>
           <Route path="/vendordashboard" element={<VendorHome />}></Route>
-          <Route
-            path="/vendordashboard"
-            element={
-              <ProtectRoute>
-                <VendorHome />
-              </ProtectRoute>
-            }
-          ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/analytics" element={<Analytics />}></Route>
           <Route path="/settings" element={<Settings />}></Route>
