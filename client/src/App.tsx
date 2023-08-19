@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -15,6 +17,7 @@ import Footer from "./components/Footer";
 import VendorsPage from "./pages/VendorsPage";
 import ModalPage from "./pages/ModalPage";
 import ButtonPage from "./pages/button";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import AllFoodsPage from "./pages/AllFoodsPage";
 import NewFoodsPage from "./pages/NewFoodsPage";
 import PopularResPage from "./pages/PopularResPage";
@@ -31,7 +34,8 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-import { ProtectRoute } from "./utility/auth";
+import {ProtectRoute} from './utility/auth'
+import VendorsEdit from "./pages/VendorsEdit";
 import CheckOut from "./pages/CheckOut";
 
 function App() {
