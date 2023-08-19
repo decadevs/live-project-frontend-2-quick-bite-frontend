@@ -15,9 +15,6 @@ import { getOrderCount } from "../slices/orderCountSlice";
 
 
 export default function Home() {
- 
-  // const [numberOfPopularFoods, setNumberOfPopularFoods] = useState(0);
- // const [numberOfOrders, setNumberOfOrders] = useState(0);
   const dispatch = useAppDispatch();
   const { allFoodCount, isLoading } = useAppSelector((state) => state.allFoodCount);
   console.log("redux  data ", allFoodCount, isLoading);
@@ -33,9 +30,6 @@ export default function Home() {
     dispatch(getTotalFood());
     dispatch(getOrderCount());
   }, [dispatch]);
-
-  // console.log(setNumberOfPopularFoods)
-  //console.log(setNumberOfOrders)
 
 const value = allFoodCount?.length
 console.log("allFood value ", value)

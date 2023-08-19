@@ -4,10 +4,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-//import { Card, CardContent, Stack, styled } from '@mui/material';
 import { styled } from '@mui/material';
-//import Personal from './Personal';
 import Profile from './Profile';
+import ChangePassword from './ChangePassword';
+import Logout from './Logout';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -99,10 +99,18 @@ export default function List() {
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <StyledTab label="Profile" {...a11yProps(0)} />
+                    <StyledTab label="Change Password" {...a11yProps(1)} />
+                    <StyledTab label="Logout" {...a11yProps(2)} />
                 </StyledTabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
                 <Profile />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+                <ChangePassword />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+                <Logout />
             </CustomTabPanel>
         </Box>
     );
