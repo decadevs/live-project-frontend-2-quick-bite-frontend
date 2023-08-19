@@ -77,6 +77,20 @@
    
     
 }  
+.SignIn{
+    padding: 10px 30px;
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    color: #1A512E;
+    border-radius: 10px;
+    border: 1px solid;
+    margin-right: -20px;
+    /* margin-bottom: 20px; */
+   
+   
+    
+}
 .SignUp:hover{
     background-color: #1a512e9f;
 }

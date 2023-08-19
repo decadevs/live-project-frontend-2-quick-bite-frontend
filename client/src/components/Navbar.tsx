@@ -19,7 +19,7 @@ export const Navbar = () => {
     <div className={styles.overlay}></div>
     <div className={styles.hero}> 
 
-   <video src={VideoImg}autoPlay loop muted plays-inline  className={styles.backVideo}/>
+   <video src={VideoImg}autoPlay loop muted plays-inline="true"   className={styles.backVideo}/>
    <img src={MobileImg} alt="" className={`${styles.MobileImg} lg:hiddeen xl:hidden`} />
        <nav className= {`${styles.navbar}  container mx-auto px-10 `} >
         <div className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}>
@@ -48,20 +48,7 @@ export const Navbar = () => {
     </div>
 
      </nav>
-     <div className={styles.content}>
-        {/* <form className={styles.formwrapper}>
-        <img src={searchImg} alt=""  className={styles.search}/>
-        <input type="text"  
-         value={search}
-         onChange = {(e)=>setSearch(e.target.value)}
-        className={styles.inputBtn}
-        placeholder="Delivery address"
-        />
-        
-        <Button className={styles.selectBtn2}>search</Button>
-        </form> */}
-
-       
+     <div className={styles.content}>    
         
        <div className={styles.selectBtnContainer}>
         
