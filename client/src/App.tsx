@@ -60,23 +60,11 @@ function App() {
           <Route path="/button" element={<ButtonPage />}></Route>
           <Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
           <Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
-          <Route
-            path="/userupdatesprofile"
-            element={<UserUpdatesProfile />}
-          ></Route>
-
+          <Route path="/userupdatesprofile" element={<UserUpdatesProfile />}></Route>
           <Route path="/userlanding" element={<UserLandingpg />}></Route>
           {/* <Route path="/editVendor" element = {<VendorsEdit/>}></Route> */}
           <Route path="/editvendor" element={<EditVendor />}></Route>
           <Route path="/vendordashboard" element={<VendorHome />}></Route>
-          <Route
-            path="/vendordashboard"
-            element={
-              <ProtectRoute>
-                <VendorHome />
-              </ProtectRoute>
-            }
-          ></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/analytics" element={<Analytics />}></Route>
           <Route path="/settings" element={<Settings />}></Route>
