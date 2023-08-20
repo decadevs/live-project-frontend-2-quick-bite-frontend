@@ -7,16 +7,13 @@ import newFoodReducer from "../slices/newFoodsSlice";
 import getAllFoodCountReducer from "../slices/getAllFoodCountSlice";
 import getTotalFoodReducer from "../slices/popularFoodCountSlice";
 import getOrderCountReducer from "../slices/orderCountSlice";
-<<<<<<< HEAD
 import userGetAllFoodReducer from "../slices/userGetAllFoodSlice"
 import getSingleUserReducer from "../slices/getSingleUserProfileSlice"
-=======
 import vendorGetProfileReducer from "../slices/vendorGetProfileSlice";
 import totalRevenueReducer from "../slices/totalRevenueSlice";
 import totalEarningReducer from "../slices/totalEarningSlice";
 import totalOrderReducer from "../slices/totalOrdersSlice";
 import vendorPopularFoodsReducer from '../slices/vendorPopularFoodsSlice';
->>>>>>> a42e89685a0021801ed1d1aa4cf0e95e1d75017f
 
 export const store = configureStore({
 	reducer: {
@@ -27,18 +24,15 @@ export const store = configureStore({
 		newFood : newFoodReducer,
 		allFoodCount :getAllFoodCountReducer,
 		totalFood: getTotalFoodReducer,
-<<<<<<< HEAD
 		vendorOrder: getOrderCountReducer,		
 		userAllFood : userGetAllFoodReducer,
-		singleUser :getSingleUserReducer
-=======
-		vendorOrder: getOrderCountReducer,
+		singleUser :getSingleUserReducer,
+	
 		vendorProfile: vendorGetProfileReducer,
 		vendorRevenue: totalRevenueReducer,
 		vendorEarning: totalEarningReducer,
 		vendorOrders: totalOrderReducer,
 		vendorPopularFood: vendorPopularFoodsReducer
->>>>>>> a42e89685a0021801ed1d1aa4cf0e95e1d75017f
 	},
 });
 

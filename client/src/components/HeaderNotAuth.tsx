@@ -6,7 +6,7 @@ import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
 import "./cartmodal.css";
-import  "./cartmodal.css";
+
 import "../pages/cartpage.css";
 const initialProducts: Product[] = [
   {
@@ -63,7 +63,7 @@ const Header = () => {
 
   return (
     <div>
-      <nav className={`${styles.navbar}  container mx-auto px-10 `}>
+      <nav className={`${styles.navbar} `}>
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >

@@ -8,7 +8,7 @@ import { GiShoppingBag } from "react-icons/gi"
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getSingleUser } from "../slices/getSingleUserProfileSlice"
 
-import "./cartmodal.css";
+
 //import { GiShoppingBag } from "react-icons/gi"
 
 import { logout } from "../slices/authSlice"
@@ -87,7 +87,7 @@ const Header = () => {
   return (
 
     <div>
-      <nav className={`${styles.navbar}  container mx-auto px-10 `}>
+      <nav className={`${styles.navbar}  `}>
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >
