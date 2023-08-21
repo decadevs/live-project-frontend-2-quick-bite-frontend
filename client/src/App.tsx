@@ -34,9 +34,9 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-import {ProtectRoute} from './utility/auth'
-<<<<<<< HEAD
-import PaystackIntegration from "./components/PaystackIntegration";
+//import {ProtectRoute} from './utility/auth'
+//import PaystackIntegration from "./components/PaystackIntegration";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
 	
@@ -45,51 +45,6 @@ function App() {
 			<ToastContainer />
 			<main>
 				<Routes>
-					<Route path="/" element={<Home />}></Route>
-					<Route path="login" element={<SignIn />}></Route>
-					<Route path="/register" element={<SignUp />}></Route>
-					<Route path="/vendor" element={<VendorSignupForm />}></Route>
-					<Route path="/vendorlogin" element={<VendorLoginForm />}></Route>
-					<Route path="/verifyVendor" element={<VendorRegNO />}></Route>
-					<Route path="/vendorPassword" element={<VendorPassword />}></Route>
-					<Route path="/:id" element={<SingleVendor />}></Route>
-					<Route path="/food" element={<FoodPage />}></Route>
-					<Route path="/otp" element={<OtpVerificationPage />}></Route>
-					<Route path="/vendors" element={<VendorsPage />}></Route>
-					<Route path="/modal" element={<ModalPage />}></Route>
-					<Route path="/button" element={<ButtonPage />}></Route>
-					<Route path="/vendorsFood" element={<VendorCreatesFood />}></Route>
-					<Route path="/allvendorfoods" element={<AllVendorFoods />}></Route>
-					<Route path='/userupdatesprofile' element={<UserUpdatesProfile />}></Route>
-					<Route path='/userlanding' element={<UserLandingpg/>}></Route>
-                    <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
-                    <Route path="/editVendor" element = {<VendorsEdit/>}></Route>
-					<Route path="/vendordashboard" element={<VendorHome />}></Route>
-					<Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
-					<Route path="/products" element={<Products />}></Route>
-					<Route path="/analytics" element={<Analytics />}></Route>
-					<Route path="/settings" element={<Settings />}></Route>
-					<Route path="/orders" element={<Orders />}></Route>
-					<Route path="/allfoods" element={<AllFoodsPage />}></Route>
-					<Route path="/newfoods" element={ <NewFoodsPage />}></Route>
-					<Route path="/popular" element={ <PopularResPage/>}></Route>
-					<Route path="/popularfoods" element={ <PopularFoodsPage/>}></Route>
-					<Route path="/checkout" element={ <PaystackIntegration/>}></Route>
-				</Routes>
-				<Footer />
-			</main>
-		</Provider>
-	);
-=======
-import VendorsEdit from "./pages/VendorsEdit";
-import CheckOut from "./pages/CheckOut";
-
-function App() {
-  return (
-    <Provider store={store}>
-      <ToastContainer />
-      <main>
-        <Routes>
           {/* General Routes */}
           <Route path="/" element={<Home />}></Route>
 
@@ -129,7 +84,6 @@ function App() {
       </main>
     </Provider>
   );
->>>>>>> a42e89685a0021801ed1d1aa4cf0e95e1d75017f
 }
 
 export default App;
