@@ -37,7 +37,7 @@ import UserLandingpg from "./pages/userLandingpg";
 import {ProtectRoute} from './utility/auth'
 // import VendorsEdit from "./pages/VendorsEdit";
 import CheckOut from "./pages/CheckOut";
-import PaystackIntegration from "./components/PaystackIntegration";
+
 
 function App() {
   return (
@@ -80,7 +80,7 @@ function App() {
           <Route path="/popular" element={<PopularResPage />}></Route>
           <Route path="/popularfoods" element={<PopularFoodsPage />}></Route>
           <Route path="/checkout" element={<CheckOut />}></Route>
-          <Route path="/paynow" element={<PaystackIntegration/>}></Route>
+         
         </Routes>
         <Footer />
       </main>

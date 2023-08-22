@@ -1,71 +1,182 @@
 import { useState } from "react"
 import { PaystackButton } from "react-paystack"
 import styles from "../styles/paystack.module.css"
-
-const PaystackIntegration = () => {
-
-
+import { FaTimes } from "react-icons/fa"
+import "../styles/index.css"
+// interface Close{
+//   closeModal : boolean
+// }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const PaystackIntegration:React.FC<any> = ({closeModal}) => {
     const publicKey = "pk_test_7a07c22bac28de6adde6e701da1374a91b14f269"
-  const amount = 1000000 // Remember, set in kobo!
+  const [amount, setAmount] =  useState(0)
   const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
-  const [phone, setPhone] = useState("")
-
+  const [firstname, setFirstName] = useState("")
+  const [lasttname, setLastName] = useState("")
   const componentProps = {
     email,
-    amount,   
-      name,
-      phone,   
+    amount: amount * 100,   
+    firstname,
+    lasttname,
+        
     publicKey,
-    text: "Pay Now",
-    onSuccess: () =>
-      alert("Thanks for doing business with us! Come back soon!!"),
-    onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+    text: "Checkout",
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    onSuccess(transaction: any) {
+      const message = `Payment Complete
+        Reference ${transaction.reference}         
+        `
+      alert(message);
+      setEmail("");
+      setFirstName("");
+      setLastName("");
+      setAmount(amount)
+
+    },
+    onCancel() {
+      alert("Wait! You need this oil, don't go!!!!")
+    },
   }
   return (
-    <div className={styles.App}>
-  <div className="container">
-    <div className="item">
-      <div className="overlay-effect"></div>
-      <img
-        className="item-image"
-        src="https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80"
-        alt="product"
-      />
-      <div className={styles.item_details}>
-        <p className={styles.item_details__title}>Coconut Oil</p>
-        <p className="item-details__amount">NGN{amount / 100}</p>
-      </div>
+
+    <div className={styles.modalBackground}>
+      
+    <div className={styles.modalContainer}>
+    <FaTimes className={styles.cancel} onClick={()=>closeModal(false)}/>
+        <div className={styles.title}>
+            <h2>kindly confirm your details</h2>
+            
+        </div>
+        <div className={styles.body}>   
+           
+          <input type="text"          
+            value={`${localStorage.getItem("firstname")}`}
+            required
+          className={styles.modalInput}
+          readOnly
+          /> <br/>
+            
+          <input type="text"   
+          name="lastName"       
+          value={`${localStorage.getItem("lastname")}`}
+
+          className={styles.modalInput}
+            required
+          readOnly
+          /><br/>
+         
+          <input type="text" 
+          
+          name ="Email"
+        value={`${localStorage.getItem("address")}`}
+          className={styles.modalInput}
+          required
+          readOnly
+          /><br/>
+            
+          <input type="text"          
+            id ="Amount" 
+            name ="totalAmount"          
+            value={amount}
+            required
+            readOnly
+         
+            className={styles.modalInput}
+   
+          /><br/>     
+
+        <div className={styles.divider}></div>
+
+        <div className={styles.footer}>
+
+        <PaystackButton className={styles.payBtn} {...componentProps} />
+           
+          </div>
+      
+         
+        </div>
     </div>
-    <div className={styles.checkout_form}>
-  <div className="checkout-field">
-    <label>Name</label>
-    <input
-      type="text"
-      id="name"
-      onChange={(e) => setName(e.target.value)}
-    />
-  </div>
-  <div className="checkout-field">
-    <label>Email</label>
-    <input
-      type="text"
-      id="email"
-      onChange={(e) => setEmail(e.target.value)}
-    />
-  </div>
-  <div className="checkout-field">
-    <label>Phone</label>
-    <input
-      type="text"
-      id="phone"
-      onChange={(e) => setPhone(e.target.value)}
-    />
-  </div>
-  <PaystackButton className="paystack-button" {...componentProps} />
-</div>
-  </div>
-</div>
+   
+     </div>
+
+//     <div class="relative flex w-100 mt-10 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+//   <div class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-deepBlue to-lightBlue">
+//   </div>
+//   <div class=" p-10 mx-auto space-y-5 ">
+//     <div class="  flex justify-betwwen  ">
+//       <h4 class=" block font-sans md: text-xl font-semibold  ml-10">First Name</h4>
+//       <h4 class="block font-sans text-lg font-bold leading-relaxed text-inherit antialiased">Olawale</h4>
+//     </div>
+//     <div  class="flex justify-between">
+//       <h4 class=" block font-sans text-xl font-semibold ">Last Name</h4>
+//       <h4 class="block font-sans text-lg font-bold leading-relaxed text-inherit antialiased">Ojelude</h4>
+//     </div>
+//     <div  class="flex justify-between">
+//       <h4  class=" block font-sans text-xl font-semibold ">Email</h4>
+//       <span class="block font-sans text-lg font-bold leading-relaxed text-inherit antialiased">example@gmail.com</span>
+//     </div>
+//     <div  class="flex justify-between">
+//       <h4  class=" block font-sans text-xl font-semibold ">Phone</h4>
+//       <h4 class="block font-sans text-lg font-bold leading-relaxed text-inherit antialiased">08132913298</h4>
+//     </div>
+//     <div  class="flex justify-between">
+//       <h4 class=" block font-sans text-xl font-semibold ">Amount</h4>
+//       <h4 class="block font-sans text-lg font-bold leading-relaxed text-inherit antialiased">8000</h4>
+//     </div>
+  
+//     <div class="p-6 pt-0">
+//     {/* <button data-ripple-light="true" type="button" class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+//       Read More
+//     </button> */}
+//     <PaystackButton class=" select-none rounded-lg bg-deepBlue py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" {...componentProps} />
+//   </div>
+//   </div>
+ 
+// </div>
+//     <div className={styles.App}>
+//   <div className="container">
+//     <div className="item">
+//       <div className="overlay-effect"></div>     
+//     </div>
+//     <div className={styles.checkout_form}>
+//   <div className="checkout-field">
+//     <label> FirstName</label>
+//     <input
+//       type="text"
+//       id="firstname"
+
+//       onChange={(e) => setFirstName(e.target.value)}
+//     />
+//   </div>
+//   <div className="checkout-field">
+//     <label>LastName</label>
+//     <input
+//       type="text"
+//       id="lastname"
+      
+//       onChange={(e) => setLastName(e.target.value)}
+//     />
+//   </div>
+//   <div className="checkout-field">
+//     <label>Email</label>
+//     <input
+//       type="text"
+//       id="email"
+//       onChange={(e) => setEmail(e.target.value)}
+//     />
+//   </div>
+//   <div className="checkout-field">
+//     <label>Amount</label>
+//     <input
+//       type="text"
+//       id="amount"
+//       onChange={(e) => setAmount(Number(e.target.value))}
+//     />
+//   </div>
+//   <PaystackButton className="paystack-button" {...componentProps} />
+// </div>
+//   </div>
+// </div>
   )
 }
 

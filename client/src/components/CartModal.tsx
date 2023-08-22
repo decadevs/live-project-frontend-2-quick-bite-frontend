@@ -2,6 +2,7 @@
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import "./cartmodal.css";
 import egusiSoup from "../assets/istockphoto-1386522276-1024x1024.jpeg"
 
@@ -21,11 +22,16 @@ export interface ShoppingCartProps {
 }
 
 function ShoppingCart({
+
   products,
   onProductRemove,
   onClose,
   onQuantityChange,
 }: ShoppingCartProps) {
+  const navigate = useNavigate()
+  const goToCheckout =()=>{
+     navigate("/checkout")
+  }
   return (
     <div className="modal">
       <div className="shoppingCart">
@@ -72,7 +78,7 @@ function ShoppingCart({
             </div>
           ))}
           {products.length > 0 && (
-            <button className="checkout-btn">Proceed to checkout</button>
+            <button className="checkout-btn" onClick={goToCheckout}>Proceed to checkout</button>
           )}
         </div>
       </div>

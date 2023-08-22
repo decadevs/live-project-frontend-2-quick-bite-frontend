@@ -7,11 +7,14 @@ import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { getSingleUser } from "../slices/getSingleUserProfileSlice"
+import { toast } from "react-toastify";
+  
+
 
 
 //import { GiShoppingBag } from "react-icons/gi"
 
-import { logout } from "../slices/authSlice"
+// import { logout } from "../slices/authSlice"
 import "./cartmodal.css";
 import "../pages/cartpage.css";
 
@@ -70,46 +73,54 @@ const Header = () => {
     },
   ];
   const handleLogout = () => {
-    dispatch(logout())
+    try {
+       localStorage.clear()      
+       window.location.href= '/'
+       toast.success("Logout successfully")
+       
+    } catch (error) {
+       throw new Error("An error occur")
+    }
   }
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
-  const { singleUser, token } = useAppSelector((state) => state.singleUser)
-  console.log(singleUser, token)
+  const { singleUser} = useAppSelector((state) => state.singleUser)
+  console.log(singleUser)
 
   useEffect(() => {
 
     dispatch(getSingleUser())
-  }, [dispatch, token])
+  }, [dispatch])
 
+console.log(singleUser)
 
   return (
 
     <div>
       <nav className={`${styles.navbar}  `}>
+        
+        
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >
-          <Link to="/">
+          <Link to="/userLanding">
             <div className={`${styles.logoContainer}`}>
               <img src={Logo} alt="" className={`${styles.logo} pr-3 `} />
             </div>
           </Link>
 
           <div className="hidden md:flex space-x-6 justify-between"></div>
+      
+         
+            <div className={styles.flexProfile}>
+       <div className="flex-icon">
 
-          <div className={styles.flexProfile}>
-
-            <div className="flex-icon">
-
-
-              <img src={ProfileImg} alt="" className={styles.profileImg} />
-              <p></p>
-            </div>
-
-
-            <button>
+     
+         <img src={ProfileImg} alt="" className={styles.profileImg} />
+         <p>{}</p>
+       </div>            
+       <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
             </button>
             <ul
@@ -129,7 +140,7 @@ const Header = () => {
             </ul>
 
             <Link to="/">
-              <button className={`${styles.SignUp} bg-deepBlue `}>
+              <button  onClick={handleLogout}  className={`${styles.SignUp} bg-deepBlue `}>
                 Logout
               </button>
             </Link>
@@ -151,7 +162,7 @@ const Header = () => {
             )}
           </button>
         </div>  
-      
+            
         <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
