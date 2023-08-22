@@ -14,7 +14,6 @@ import  "./cartmodal.css";
 
 // import { logout } from "../slices/authSlice"
 import "./cartmodal.css";
-import "../pages/cartpage.css";
 
 
 const initialProducts: Product[] = [

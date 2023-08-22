@@ -53,12 +53,14 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
             value={`${localStorage.getItem("firstname")}`}
             required
           className={styles.modalInput}
+          onChange={(e)=>setFirstName(e.target.value)}
           readOnly
           /> <br/>
             
           <input type="text"   
           name="lastName"       
           value={`${localStorage.getItem("lastname")}`}
+          onChange={(e)=>setLastName(e.target.value)}
 
           className={styles.modalInput}
             required
@@ -70,6 +72,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
           name ="Email"
         value={`${localStorage.getItem("address")}`}
           className={styles.modalInput}
+          onChange={(e)=>setEmail(e.target.value)}
           required
           readOnly
           /><br/>
@@ -79,6 +82,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
             name ="totalAmount"          
             value={amount}
             required
+            onChange={(e)=>setAmount(Number(e.target.value))}
             readOnly
          
             className={styles.modalInput}
@@ -135,6 +139,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
 // </div>
 //     <div className={styles.App}>
 //   <div className="container">
+//   <FaTimes className={styles.cancel} onClick={()=>closeModal(false)}/>
 //     <div className="item">
 //       <div className="overlay-effect"></div>     
 //     </div>
