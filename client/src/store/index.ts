@@ -27,7 +27,6 @@ export const store = configureStore({
 		vendorOrder: getOrderCountReducer,		
 		userAllFood : userGetAllFoodReducer,
 		singleUser :getSingleUserReducer,
-	
 		vendorProfile: vendorGetProfileReducer,
 		vendorRevenue: totalRevenueReducer,
 		vendorEarning: totalEarningReducer,

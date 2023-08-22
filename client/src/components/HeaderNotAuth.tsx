@@ -84,7 +84,7 @@ const Header = () => {
             </Link>
             <GiShoppingBag
               size={35}
-              className="shop"
+              className="the-shop"
               onClick={() => setCartVisibility(!cartVisibility)}
             />
           </div>
