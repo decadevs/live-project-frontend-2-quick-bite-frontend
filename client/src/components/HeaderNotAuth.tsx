@@ -6,8 +6,7 @@ import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi"
 import "./cartmodal.css";
-import  "./cartmodal.css";
-import "../pages/cartpage.css";
+// import "../pages/cartpage.css";
 const initialProducts: Product[] = [
   {
     id: 1,
@@ -84,7 +83,7 @@ const Header = () => {
             </Link>
             <GiShoppingBag
               size={35}
-              className="shop"
+              className="the-shop"
               onClick={() => setCartVisibility(!cartVisibility)}
             />
           </div>
