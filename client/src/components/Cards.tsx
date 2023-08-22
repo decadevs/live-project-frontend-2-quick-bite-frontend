@@ -1,17 +1,17 @@
 import "./Cards.css";
-import Image from "../assets/Pulled Pork.jpeg";
+import Image from "../assets/restaurant-background.jpg";
 
 
 const Cards = () => {
   return (
     <div className="wrapper">
-      <div className="card-container">
+      {/* <div className="card-container">
         <div className="image-container">
           <img src={Image} alt="" />
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'green' }} >Vendors </h3>
           </div>
           <div className="card-body">
             <p>tedshjjkzkz,µ</p>
@@ -22,7 +22,7 @@ const Cards = () => {
             <a>view more</a>
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div className="card-container">
         <div className="image-container">
@@ -30,10 +30,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors </h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -48,10 +48,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors </h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -66,10 +66,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -84,10 +84,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -102,10 +102,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors </h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -120,10 +120,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -138,10 +138,10 @@ const Cards = () => {
         </div>
         <div className="card-content">
           <div className="card-title">
-            <h3>Vendors food</h3>
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
           </div>
           <div className="card-body">
-            <p>tedshjjkzkz,µ</p>
+            <p>Bringing flavors to life, making every meal....</p>
           </div>
           <div className="btn"></div>
 
@@ -150,6 +150,46 @@ const Cards = () => {
           </button>
         </div>
       </div>
+
+      <div className="card-container">
+        <div className="image-container">
+          <img src={Image} alt="" />
+        </div>
+        <div className="card-content">
+          <div className="card-title">
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
+          </div>
+          <div className="card-body">
+            <p>Bringing flavors to life, making every meal....</p>
+          </div>
+          <div className="btn"></div>
+
+          <button>
+            <a className="view">view more</a>
+          </button>
+        </div>
+      </div>
+
+      <div className="card-container">
+        <div className="image-container">
+          <img src={Image} alt="" />
+        </div>
+        <div className="card-content">
+          <div className="card-title">
+            <h3 style={{ fontSize: '1.5rem', color: 'darkgreen', fontWeight: 'bold' }}>Vendors</h3>
+          </div>
+          <div className="card-body">
+            <p>Bringing flavors to life, making every meal...</p>
+          </div>
+          <div className="btn"></div>
+
+          <button>
+            <a className="view">view more</a>
+          </button>
+        </div>
+      </div>
+
+
     </div>
   );
 };

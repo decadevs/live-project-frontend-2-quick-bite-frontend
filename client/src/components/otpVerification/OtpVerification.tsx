@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import "./OtpVerification.css";
 import {toast, ToastContainer} from "react-toastify"
 import "react-toastify/ReactToastify.css"
 import { useNavigate } from "react-router-dom";
+import axios from  "../../api/httpService";
+
 
 const OtpVerification = () => {
   const codeInputsRef = useRef<HTMLInputElement[]>([]);
+
+  const email = localStorage.getItem("email")
   const [resendTimer, setResendTimer] = useState(30); // Countdown timer for RESEND link
   const [otpVerified, setOtpVerified] = useState(false); // Flag to track OTP verification status
  const navigate = useNavigate()
@@ -15,11 +21,13 @@ const OtpVerification = () => {
     ) as NodeListOf<Element>;
     codeInputsRef.current = Array.from(codes) as HTMLInputElement[];
 
-    codeInputsRef.current[0].focus();
+    codeInputsRef?.current?.[0]?.focus();
+
 
     const handleKeyDown = (e: KeyboardEvent, idx: number) => {
       if (e.key >= "0" && e.key <= "9") {
         codeInputsRef.current[idx].value = "";
+
         setTimeout(() => codeInputsRef.current[idx + 1]?.focus(), 10);
       } else if (e.key === "Backspace") {
         setTimeout(() => codeInputsRef.current[idx - 1]?.focus(), 10);
@@ -49,38 +57,64 @@ const OtpVerification = () => {
     };
   }, []);
 
-  const handleResendClick = () => {
+  const handleResendClick = async (e:any) => {
+    try{
     // Reset the countdown timer to 30 seconds when the RESEND link is clicked
     setResendTimer(30);
+    e.preventDefault()
+    const {data} = await axios.get('/user/resend')
+
+    toast.success(data.message)
+    
+  } catch (error:any) {
+    if (error.response) {
+      return toast.error(error.response.data.message);
+    }
+    if (error.request) {
+      return toast.error("Network Error");
+    }
+    if (error.message) {
+      return toast.error(error.message);
+    }
+  }
   };
 
-  const handleVerifyClick = () => {
+  const handleVerifyClick = async () => {
     // Perform the OTP verification here (you should replace this with your actual verification logic)
     const enteredOTP = codeInputsRef.current
       .map((input) => input.value)
       .join("");
+  
+const payload = {otp:enteredOTP}
+try {
+  const { data } = await axios.post('/user/verify',payload)
 
-    const sentOTP = "123456"; // Replace this with the code sent to the user
+  toast.success(data.message)
 
-    if (enteredOTP === sentOTP) {
-      // OTP verification successful, proceed to the next page
-      setOtpVerified(true);
-      navigate("/login")
-      // You can redirect the user to the next page or show a success message
-    } else {
-      // OTP verification failed, you can show an error message to the user
-      // alert("Invalid OTP, please try again.");
-      toast.error("please enter valid OTP", {position: toast.POSITION.TOP_CENTER})
-    }
-  };
+navigate("/login")
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+} catch (error:any) {
+  if (error.response) {
+    return toast.error(error.response.data.message);
+  }
+  if (error.request) {
+    return toast.error("Network Error");
+  }
+  if (error.message) {
+    return toast.error(error.message);
+  }
+}
+}
+
 
   return (
     <div className="wrapper">
       <div className="containerApp">
         <h2><strong>Verify Your Account</strong></h2>
         <p>
-          Six digit code was sent to personal@gmail.com <br />
-          Enter the code below to verify your email address
+          A six digit code was sent to <span style={{ color: '#1A512E', fontWeight: "bold" }}>{email}</span> <br />
+          Please enter the code below to verify your email address
         </p>
         <div className="code-container">
           <input
@@ -155,9 +189,9 @@ const OtpVerification = () => {
           )}
         </small>
       </div>
-      <ToastContainer></ToastContainer>
     </div>
   );
-};
+}
+
 
 export default OtpVerification;

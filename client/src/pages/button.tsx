@@ -7,9 +7,6 @@ const ButtonPage = () => {
       <Button variant="primary" size="medium" onClick={() => alert('Primary button clicked')}>
         Primary Button
       </Button>
-      <Button variant="secondary" size="large" onClick={() => alert('Secondary button clicked')}>
-        Secondary Button
-      </Button>
     </div>
   );
 };

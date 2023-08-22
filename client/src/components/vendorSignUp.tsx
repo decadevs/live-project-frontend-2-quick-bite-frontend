@@ -2,10 +2,9 @@
 import { useState, ChangeEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Input from "./reusableComponents/input";
-import { showErrorToast } from "../utility/toast";
 import Header from "./Header";
 import axios from "../api/httpService";
-import { showSuccessToast } from "../utility/toast";
+import { showSuccessToast, showErrorToast } from "../utility/toast";
 
 const initialData = {
   nameOfOwner: "",
@@ -65,10 +64,10 @@ const VendorSignupForm = () => {
       setLoading(false);
 
       // navigate("/vendorLogin")
-      navigate("/vendorLogin");
-
-      // setTimeout(() => {
-      // }, 1000) 
+      
+      setTimeout(() => {
+        navigate("/vendorLogin");
+      }, 500) 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setLoading(false);
