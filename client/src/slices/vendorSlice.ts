@@ -43,9 +43,9 @@ export const vendorLogin = createAsyncThunk(
 		try {
 			const response = await axios.post("/vendor/login", payload);
 
-			localStorage.setItem("vendor", JSON.stringify(response.data.user));
-			localStorage.setItem("token", response.data.token);
-			console.log("response", response.data)
+			localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
+			
+			console.log("response", response.data.token)
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -113,6 +113,8 @@ export const vendorAuthSlice = createSlice({
 			state.isAuthenticated = true;
 			state.vendor = action.payload.vendor;
 			state.token = action.payload.token;
+			console.log(action.payload)
+			localStorage.setItem("token", action.payload.token);
 			toast(action.payload.message);
 			state.error = "";
 		});

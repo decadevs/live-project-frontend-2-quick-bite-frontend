@@ -41,7 +41,7 @@ export const getAllFoodCount = createAsyncThunk(
       const response = await axios.get("/vendor/getallfood");
       console.log("response  ", response);
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
