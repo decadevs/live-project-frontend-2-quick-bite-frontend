@@ -1,7 +1,7 @@
 import  { MouseEventHandler,  useState ,useEffect} from 'react';
 import styles from '../styles/freeDelivery.module.css'
 import Dropdown from "../assets/dropdown.svg"
-import  FoodOne from "../assets/food1.png"
+import  FoodOne from "../assets/food1.jpeg"
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getPopularRestaurant} from '../slices/popularRestaurantSlice';
@@ -45,18 +45,18 @@ const PopularDelivery = () => {
           popularRestaurant?.map((restaurant)=>(
             <Link to="/4"> <div className={styles.Card} key={restaurant.id}>
             <div className={styles.cardHead}>
-               <img src={restaurant.cover_image} alt="" className="h-60 w-90" />
+               <img src={FoodOne} alt="" className="h-60 w-90" />
             </div >
             <div className={styles.cardBody}>
-               <h2 className={styles.cardheading}>{restaurant.restaurant_name}</h2>
-               <p className={styles.cardText}>Powered By: {restaurant.company_name}</p>
+               <h2 className={styles.cardheading}>{restaurant.name_of_owner}</h2>
+               <p className={styles.cardText}>Breakfast , lunch, desserts</p>
             </div>
             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
             <div className={styles.cardFooter}>
                <span className={styles.amount}>
-               <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>View Restaurant</button></Link>
+               <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                </span>
-               {/* <span className={styles.totalAmount}>####</span> */}
+               <span className={styles.totalAmount}>####</span>
             </div>
            </div></Link>
           ))  
