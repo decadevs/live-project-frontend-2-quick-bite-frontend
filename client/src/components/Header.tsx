@@ -34,7 +34,9 @@ const initialProducts: Product[] = [
 ];
 
 const Header = () => {
-
+  const storedUserData = localStorage.getItem('user');
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
+  console.log("details", parsedUserData)
   // const dispatch = useAppDispatch()
   // const {logout} = useAppSelector((state)=>state.auth.logout)
     const[collapse, setCollapse] = useState(true)
@@ -108,7 +110,7 @@ const Header = () => {
             <div className="flex-icon">
               
               <img src={ProfileImg} alt="" className={styles.profileImg} />
-              <p>Adeyemo.O</p>
+              <p style={{fontSize:"18px", fontWeight:"normal", marginInline:"auto"}}>{`${parsedUserData.data.firstname} ${ parsedUserData.data.lastname[0]}.`}</p>
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
