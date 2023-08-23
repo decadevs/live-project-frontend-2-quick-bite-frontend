@@ -1,18 +1,31 @@
-import React from "react";
+
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Style.css";
 // import { Navbar } from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import PaystackIntegration from "../components/PaystackIntegration";
+
+// import { PaystackButton } from "react-paystack"
+
+
+
 
 const CheckOut = () => {
-  const navigate = useNavigate();
+
+  const [show , setShow] = useState(false)
+
+
+
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleContinueToPayment = (event: any) => {
     event.preventDefault();
+     setShow(true)
 
-    navigate("/payment");
+   
   };
+
   // <div>
   //   <Navbar />
   // </div>;
@@ -135,7 +148,9 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
+      {show && <PaystackIntegration  closeModal ={setShow}/>}
     </div>
+   
   );
 };
 

@@ -34,17 +34,17 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-//import {ProtectRoute} from './utility/auth'
-//import PaystackIntegration from "./components/PaystackIntegration";
+import {ProtectRoute} from './utility/auth'
+// import VendorsEdit from "./pages/VendorsEdit";
 import CheckOut from "./pages/CheckOut";
 
+
 function App() {
-	
-	return (
-		<Provider store={store}>
-			<ToastContainer />
-			<main>
-				<Routes>
+  return (
+    <Provider store={store}>
+      <ToastContainer />
+      <main>
+        <Routes>
           {/* General Routes */}
           <Route path="/" element={<Home />}></Route>
 
@@ -69,16 +69,18 @@ function App() {
           <Route path="/userlanding" element={<UserLandingpg />}></Route>
           {/* <Route path="/editVendor" element = {<VendorsEdit/>}></Route> */}
           <Route path="/editvendor" element={<EditVendor />}></Route>
-          <Route path="/vendordashboard" element={<VendorHome />}></Route>
+          <Route path="/vendordashboard" element={<ProtectRoute><VendorHome /></ProtectRoute>}></Route>
           <Route path="/products" element={<Products />}></Route>
           <Route path="/analytics" element={<Analytics />}></Route>
           <Route path="/settings" element={<Settings />}></Route>
+ 
           <Route path="/orders" element={<Orders />}></Route>
           <Route path="/allfoods" element={<AllFoodsPage />}></Route>
           <Route path="/newfoods" element={<NewFoodsPage />}></Route>
           <Route path="/popular" element={<PopularResPage />}></Route>
           <Route path="/popularfoods" element={<PopularFoodsPage />}></Route>
           <Route path="/checkout" element={<CheckOut />}></Route>
+         
         </Routes>
         <Footer />
       </main>

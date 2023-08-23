@@ -73,6 +73,7 @@ const LoginForm = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);
 	};
 
+
 	return (
 		<div className="flex justify-center items-center h-screen bg-edf0eb px-4">
 			<div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">

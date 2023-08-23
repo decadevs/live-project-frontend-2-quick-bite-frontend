@@ -3,6 +3,7 @@
 
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+// import { useNavigate } from "react-router-dom";
 import "./cartmodal.css";
 import egusiSoup from "../assets/istockphoto-1386522276-1024x1024.jpeg"
 
@@ -22,6 +23,7 @@ export interface ShoppingCartProps {
 }
 
 function ShoppingCart({
+
   products,
   onProductRemove,
   onClose,

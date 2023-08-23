@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
-import { GiShoppingBag } from "react-icons/gi";
-// import "./cartmodal.css";
+import { GiShoppingBag } from "react-icons/gi"
+// import { useAppDispatch, useAppSelector } from '../store/hooks'
+// import { getSingleUser } from "../slices/getSingleUserProfileSlice"
+import { toast } from "react-toastify";
 //import { GiShoppingBag } from "react-icons/gi"
-import { useAppDispatch } from '../store/hooks'
-import {logout} from "../slices/authSlice"
+// import {logout} from "../slices/authSlice"
 import  "./cartmodal.css";
 
+// import { logout } from "../slices/authSlice"
+import "./cartmodal.css";
 
 
 const initialProducts: Product[] = [
@@ -32,7 +35,7 @@ const initialProducts: Product[] = [
 
 const Header = () => {
 
-  const dispatch = useAppDispatch()
+  // const dispatch = useAppDispatch()
   // const {logout} = useAppSelector((state)=>state.auth.logout)
     const[collapse, setCollapse] = useState(true)
     
@@ -65,19 +68,36 @@ const Header = () => {
       Dashboard: "Dashboard",
     },
   ];
-  const handleLogout = ()=>{
-        dispatch(logout())
+  const handleLogout = () => {
+    try {
+       localStorage.clear()      
+       window.location.href= '/'
+       toast.success("Logout successfully")
+       
+    } catch (error) {
+       throw new Error("An error occur")
     }
+  }
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
+  // const { singleUser} = useAppSelector((state) => state.singleUser)
+  // console.log(singleUser)
+
+  // useEffect(() => {
+
+  //   dispatch(getSingleUser())
+  // }, [dispatch])
+
   return (
     <div>
-      <nav className={`${styles.navbar}  container mx-auto px-10 `}>
+      <nav className={`${styles.navbar}  `}>
+        
+        
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >
-          <Link to="/">
+          <Link to="/userLanding">
             <div className={`${styles.logoContainer}`}>
               <img src={Logo} alt="" className={`${styles.logo} pr-3 `} />
             </div>
@@ -110,7 +130,7 @@ const Header = () => {
             </ul>
 
             <Link to="/">
-              <button className={`${styles.SignUp} bg-deepBlue `}>
+              <button  onClick={handleLogout}  className={`${styles.SignUp} bg-deepBlue `}>
                 Logout
               </button>
             </Link>
@@ -132,8 +152,8 @@ const Header = () => {
               <i className="fas fa-times"></i>
             )}
           </button>
-        </div>
-      
+        </div>  
+            
         <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}

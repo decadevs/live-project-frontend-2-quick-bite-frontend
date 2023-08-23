@@ -32,6 +32,7 @@ const SignupForm = () => {
     }));
   };
 
+
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     const password = e.target.value;
     const passwordRegex =
@@ -53,12 +54,13 @@ const SignupForm = () => {
       };
 
       const {data} = await axios.post("/user/register", payload);
-
+console.log("register", data)
 
       setUser(initialState);
       setSignupSuccess(true);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("email", data.email)
+      localStorage.setItem("user", JSON.stringify(data))
+     
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,6 +75,7 @@ const SignupForm = () => {
       }
     }
   };
+
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
