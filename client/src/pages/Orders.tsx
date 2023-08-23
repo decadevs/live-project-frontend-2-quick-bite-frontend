@@ -74,7 +74,7 @@ export default function VendorOrder() {
     dispatch(getOrderCount());
   }, [dispatch]);
 
-  const rows = vendorOrder.map((order: any) =>
+  const rows = vendorOrder?.map((order: any) =>
     createData(
       order.food_name,
       order.quantity,
@@ -125,8 +125,8 @@ export default function VendorOrder() {
                 </TableHead>
                 <TableBody>
                   {rows
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
+                    ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    ?.map((row, index) => {
                       return (
                         <TableRow key={index} hover role="checkbox" tabIndex={-1}>
                           {columns.map((column) => {
@@ -149,7 +149,7 @@ export default function VendorOrder() {
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
               component="div"
-              count={rows.length}
+              count={rows?.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}

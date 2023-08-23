@@ -93,7 +93,7 @@ export default function ProductList() {
         dispatch(getAllFoodCount());
     }, [dispatch]);
 
-    const rows = allFoodCount.map((food: any) =>
+    const rows = allFoodCount?.map((food: any) =>
         createData(
             food.name,
             food.price,
@@ -139,9 +139,7 @@ export default function ProductList() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row) => {
+                        {rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row) => {
                                 return (
                                     <TableRow hover role="checkbox" tabIndex={-1}>
                                         {columns.map((column) => {
@@ -164,7 +162,7 @@ export default function ProductList() {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={rows.length}
+                count={rows?.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
