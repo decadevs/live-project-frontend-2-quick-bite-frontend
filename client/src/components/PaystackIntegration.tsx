@@ -37,6 +37,8 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
       alert("Wait! You need this oil, don't go!!!!")
     },
   }
+  const storedUserData = localStorage.getItem('user');
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
 
     <div className={styles.modalBackground}>
@@ -50,7 +52,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
         <div className={styles.body}>   
            
           <input type="text"          
-            value={`${localStorage.getItem("firstname")}`}
+            value={ parsedUserData.data.firstname}
             required
           className={styles.modalInput}
           onChange={(e)=>setFirstName(e.target.value)}
@@ -59,7 +61,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
             
           <input type="text"   
           name="lastName"       
-          value={`${localStorage.getItem("lastname")}`}
+          value={parsedUserData.data.lastname}
           onChange={(e)=>setLastName(e.target.value)}
 
           className={styles.modalInput}
@@ -70,7 +72,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
           <input type="text" 
           
           name ="Email"
-        value={`${localStorage.getItem("address")}`}
+        value={parsedUserData.data.email}
           className={styles.modalInput}
           onChange={(e)=>setEmail(e.target.value)}
           required

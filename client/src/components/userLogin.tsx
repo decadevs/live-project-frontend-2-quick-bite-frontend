@@ -30,9 +30,9 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
-			console.log( "login", payload)
+			// console.log( "login", payload)
 
-			setEmail("");
+			setEmail(" ");
 			setPassword("");
 			setPasswordValidation(false);
 			setFormValid(false);

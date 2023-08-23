@@ -14,21 +14,19 @@ import PaystackIntegration from "../components/PaystackIntegration";
 const CheckOut = () => {
 
   const [show , setShow] = useState(false)
-
-
-
+  const [address, setAddress] = useState("")
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleContinueToPayment = (event: any) => {
-    event.preventDefault();
-     setShow(true)
-
-   
+    event.preventDefault();   
+     setShow(true)   
   };
 
   // <div>
   //   <Navbar />
   // </div>;
+  const storedUserData = localStorage.getItem('user');
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
     <div className="checkout-container">
       <div className="container col-md-6 col-sm-12 br-2 rounded">
@@ -81,29 +79,40 @@ const CheckOut = () => {
               <div className="row">
                 <div className="col-6">
                   <label className="form-label" htmlFor="firstname">
-                    First Name
+                 
                   </label>
-                  <input type="text" id="firstname" className="form-control" />
+                  <input type="text" id="firstname" 
+                  value = { parsedUserData.data.firstname}
+                  className="form-control"  
+                  readOnly/>
                 </div>
                 <div className="col-6">
                   <label className="form-label" htmlFor="lastname">
-                    Last name
+                  
                   </label>
-                  <input type="text" id="lastname" className="form-control" />
+                  <input type="text" id="lastname" 
+                    value = { parsedUserData.data.lastname}
+                  className="form-control" readOnly />
                 </div>
                 <div className="col-12"></div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="email">
-                    Email
-                    <span className="text-muted"> (Optional)</span>
+                  
+                    <span className="text-muted"></span>
                   </label>
-                  <input type="text" id="email" className="form-control" />
+                  <input type="text" id="email" 
+                   value ={ parsedUserData.data.email}
+                  
+                  className="form-control" readOnly />
                 </div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="address">
-                    Address
+               
                   </label>
-                  <input type="text" id="address" className="form-control" />
+                  <input type="text" id="address" 
+                   value ={address}
+                   onChange = {(e)=>setAddress(e.target.value)}
+                  className="form-control" />
                 </div>
                 <div className="col-5">
                   <label className="form-label" htmlFor="country">
