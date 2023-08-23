@@ -5,9 +5,8 @@ import Header from "../components/Header";
 const AllVendorFoods = () => {
   let foods = [
     {
-      name: "Fried riceusd hiisdh hsdhi sijdfj gfahjdsd dsh",
-      description:
-        "hot and spice tdguhdu huhusdhu sygsygduud dyguiyus gugfsyug f fhgygdfygf uuosgfoifi ",
+      name: "Fried rice",
+      description: "hot and spice ",
       id: 1,
       price: 1500,
     },

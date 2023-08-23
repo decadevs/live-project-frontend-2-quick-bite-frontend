@@ -10,6 +10,7 @@ import { GiShoppingBag } from "react-icons/gi";
 import { useAppDispatch } from "../store/hooks";
 import { logout } from "../slices/authSlice";
 import "./cartmodal.css";
+import { useCart } from "react-use-cart";
 
 const initialProducts: Product[] = [
   {
@@ -31,7 +32,8 @@ const initialProducts: Product[] = [
 const Header = () => {
   const dispatch = useAppDispatch();
 
-  const dispatch = useAppDispatch();
+  const { isEmpty, totalItems } = useCart();
+
   // const {logout} = useAppSelector((state)=>state.auth.logout)
   const [collapse, setCollapse] = useState(true);
 
@@ -112,11 +114,18 @@ const Header = () => {
                 Logout
               </button>
             </Link>
-            <GiShoppingBag
-              size={35}
-              className="the-shop"
-              onClick={() => setCartVisibility(!cartVisibility)}
-            />
+            <div className="cartf">
+              {!isEmpty && (
+                <div className="item-count">
+                  <span>{totalItems}</span>
+                </div>
+              )}
+              <GiShoppingBag
+                size={35}
+                className="the-shop"
+                onClick={() => setCartVisibility(!cartVisibility)}
+              />
+            </div>
           </div>
 
           <button
@@ -168,14 +177,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {cartVisibility && (
-        <ShoppingCart
-          products={products} // Pass the products data to the cart
-          onProductRemove={handleProductRemove}
-          onQuantityChange={handleQuantityChange}
-          onClose={handleCartClose}
-        />
-      )}
+      {cartVisibility && <ShoppingCart onClose={handleCartClose} />}
     </div>
   );
 };
