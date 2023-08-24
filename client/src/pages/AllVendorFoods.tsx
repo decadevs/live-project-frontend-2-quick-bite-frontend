@@ -5,29 +5,21 @@ import Header from "../components/Header";
 const AllVendorFoods = () => {
   let foods = [
     {
-      name: "Fried riceusd hiisdh hsdhi sijdfj gfahjdsd dsh",
-      description:
-        "hot and spice tdguhdu huhusdhu sygsygduud dyguiyus gugfsyug f fhgygdfygf uuosgfoifi ",
+      name: "Fried rice",
+      description: "hot and spice ",
+      id: 1,
+      price: 1500,
     },
-    { name: "Moi-moi", description: "hot and spice " },
-    { name: "Abacha", description: "hot and spice " },
-    { name: "Grilled Chiken", description: "hot and spice " },
-    { name: "Egusi & fufu", description: "hot and spice " },
+    { name: "Moi-moi", description: "hot and spice ", id: 2, price: 500 },
+    { name: "Abacha", description: "hot and spice ", id: 3, price: 2000 },
+    {
+      name: "Grilled Chiken",
+      description: "hot and spice ",
+      id: 4,
+      price: 3500,
+    },
+    { name: "Egusi & fufu", description: "hot and spice ", id: 5, price: 4000 },
   ];
-
-  const handleFoodEdit = (name: string, description: string) => {
-    // Implement the logic to update the food list when the Save button is clicked.
-    // For this example, we'll just update the state of the foods array with the edited data.
-
-    const updatedFoods = foods.map((food) =>
-      food.name === name ? { ...food, description } : food
-    );
-
-    console.log(name);
-
-    // Update the foods array with the edited data
-    foods = updatedFoods;
-  };
 
   return (
     <>
@@ -47,7 +39,8 @@ const AllVendorFoods = () => {
         <CardSection
           name={item.name}
           description={item.description}
-          onEdit={handleFoodEdit}
+          price={item.price}
+          item={item}
         />
       ))}
     </>
