@@ -5,12 +5,13 @@ import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi";
-// import "./cartmodal.css";
-//import { GiShoppingBag } from "react-icons/gi"
-import { useAppDispatch } from "../store/hooks";
-import { logout } from "../slices/authSlice";
-import "./cartmodal.css";
+// import { useAppDispatch, useAppSelector } from '../store/hooks'
+// import { getSingleUser } from "../slices/getSingleUserProfileSlice"
+import { toast } from "react-toastify";
+//import { useAppDispatch } from "../store/hooks";
 import { useCart } from "react-use-cart";
+// import {logout} from "../slices/authSlice"
+import "./cartmodal.css";
 
 const initialProducts: Product[] = [
   {
@@ -30,29 +31,20 @@ const initialProducts: Product[] = [
 ];
 
 const Header = () => {
-  const dispatch = useAppDispatch();
-
   const { isEmpty, totalItems } = useCart();
 
+  //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+  // const storedUserData = localStorage.getItem("user");
+  // const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
+  // console.log("details", parsedUserData);
+
+  // const dispatch = useAppDispatch()
   // const {logout} = useAppSelector((state)=>state.auth.logout)
   const [collapse, setCollapse] = useState(true);
 
   const toggleButton = () => setCollapse(!collapse);
 
   const [cartVisibility, setCartVisibility] = useState(false);
-  const [products, setProducts] = useState(initialProducts);
-
-  const handleProductRemove = (product: Product) => {
-    const updatedProducts = products.filter((p) => p.id !== product.id);
-    setProducts(updatedProducts);
-  };
-
-  const handleQuantityChange = (productId: number, newQuantity: number) => {
-    const updatedProducts = products.map((p) =>
-      p.id === productId ? { ...p, count: newQuantity } : p
-    );
-    setProducts(updatedProducts);
-  };
 
   const handleCartClose = () => {
     setCartVisibility(false);
@@ -67,18 +59,32 @@ const Header = () => {
     },
   ];
   const handleLogout = () => {
-    dispatch(logout());
+    try {
+      localStorage.clear();
+      window.location.href = "/";
+      toast.success("Logout successfully");
+    } catch (error) {
+      throw new Error("An error occur");
+    }
   };
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
+  // const { singleUser} = useAppSelector((state) => state.singleUser)
+  // console.log(singleUser)
+
+  // useEffect(() => {
+
+  //   dispatch(getSingleUser())
+  // }, [dispatch])
+
   return (
     <div>
-      <nav className={`${styles.navbar}  container mx-auto px-10 `}>
+      <nav className={`${styles.navbar}  `}>
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >
-          <Link to="/">
+          <Link to="/userLanding">
             <div className={`${styles.logoContainer}`}>
               <img src={Logo} alt="" className={`${styles.logo} pr-3 `} />
             </div>
@@ -88,7 +94,15 @@ const Header = () => {
           <div className={styles.flexProfile}>
             <div className="flex-icon">
               <img src={ProfileImg} alt="" className={styles.profileImg} />
-              <p>Adeyemo.O</p>
+              {/*
+              UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+               <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "normal",
+                  marginInline: "auto",
+                }}
+              >{`${parsedUserData.data.firstname} ${parsedUserData.data.lastname[0]}.`}</p> */}
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
@@ -110,7 +124,10 @@ const Header = () => {
             </ul>
 
             <Link to="/">
-              <button className={`${styles.SignUp} bg-deepBlue `}>
+              <button
+                onClick={handleLogout}
+                className={`${styles.SignUp} bg-deepBlue `}
+              >
                 Logout
               </button>
             </Link>
@@ -140,6 +157,7 @@ const Header = () => {
             )}
           </button>
         </div>
+
         <div
           className={`${
             collapse ? styles.mobileView : ""
@@ -158,7 +176,7 @@ const Header = () => {
             </Link>
           </div>
         </div>
-        //
+
         <div
           className={`${
             collapse ? styles.mobileView : ""

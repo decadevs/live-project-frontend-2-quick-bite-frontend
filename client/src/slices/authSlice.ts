@@ -43,7 +43,9 @@ export const login = createAsyncThunk(
   async (payload: Record<string, string>, thunkAPI) => {
     try {
       const response = await axios.post("/user/login", payload);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("user", JSON.stringify(response.data));
+      
+ 
       localStorage.setItem("token", response.data.token);
 
       return response.data;

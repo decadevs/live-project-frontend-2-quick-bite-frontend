@@ -41,7 +41,7 @@ export const getPopularFoods = createAsyncThunk(
         try {
             const response = await axios.get("/vendor/popularfoods");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
-            localStorage.setItem("token", response.data.token);
+            // localStorage.setItem("token", response.data.token);
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {

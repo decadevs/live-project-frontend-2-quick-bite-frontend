@@ -34,8 +34,8 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-//import { ProtectRoute } from "./utility/auth";
 import { CartProvider } from "react-use-cart";
+import { ProtectRoute } from "./utility/auth";
 import CheckOut from "./pages/CheckOut";
 
 function App() {

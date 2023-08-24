@@ -97,7 +97,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       setCreateFood(initialData)
       showSuccessToast(data.message)
       setLoading(false)
-      navigate("/vendorLogin");
+      // navigate("/vendorLogin");
      
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {

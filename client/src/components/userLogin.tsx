@@ -30,9 +30,9 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
-			console.log( "login", payload)
+			// console.log( "login", payload)
 
-			setEmail("");
+			setEmail(" ");
 			setPassword("");
 			setPasswordValidation(false);
 			setFormValid(false);
@@ -72,6 +72,7 @@ const LoginForm = () => {
 	const handleTogglePasswordVisibility = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);
 	};
+
 
 	return (
 		<div className="flex justify-center items-center h-screen bg-edf0eb px-4">

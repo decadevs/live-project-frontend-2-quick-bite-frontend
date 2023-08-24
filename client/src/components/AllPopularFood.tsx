@@ -27,7 +27,7 @@ const AllPopularFood = () => {
          <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
          <div className={`${show ? styles.hide : ""}`}>
             <div className={` ${styles.cardContainer}`}>
-               <Link to="/4"> <div className={styles.Card}>
+                <div className={styles.Card}>
                   <div className={styles.cardHead}>
                      <img src={FoodOne} alt="" className="h-60 w-90" />
                   </div>
@@ -42,8 +42,8 @@ const AllPopularFood = () => {
                      </span>
                      <span className={styles.totalAmount}>####</span>
                   </div>
-               </div></Link>
-               <Link to="/4"> <div className={styles.Card}>
+               </div>
+                <div className={styles.Card}>
                   <div className={styles.cardHead}>
                      <img src={FoodOne} alt="" className="h-60 w-90" />
                   </div>
@@ -58,8 +58,8 @@ const AllPopularFood = () => {
                      </span>
                      <span className={styles.totalAmount}>####</span>
                   </div>
-               </div></Link>
-               <Link to="/4"> <div className={styles.Card}>
+               </div>
+                <div className={styles.Card}>
                   <div className={styles.cardHead}>
                      <img src={FoodOne} alt="" className="h-60 w-90" />
                   </div>
@@ -76,7 +76,7 @@ const AllPopularFood = () => {
                   </div>
 
 
-               </div></Link>
+               </div>
 
 
 

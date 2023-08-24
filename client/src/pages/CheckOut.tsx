@@ -4,6 +4,7 @@ import "../styles/Style.css";
 // import { Navbar } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
+//import PaystackIntegration from "../components/PaystackIntegration";
 
 const initialData = {
   address: "",
@@ -16,6 +17,7 @@ const CheckOut = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialData);
   const { cartTotal, items, emptyCart } = useCart();
+  const [show, setShow] = useState(false);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
@@ -39,9 +41,13 @@ const CheckOut = () => {
     };
     console.log(payload);
 
-    navigate("/payment");
+    setShow(true);
+    // emptyCart();
   };
 
+  //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+  // const storedUserData = localStorage.getItem("user");
+  // const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
     <div className="checkout-container">
       <div className="container col-md-6 col-sm-12 br-2 rounded">
@@ -89,24 +95,40 @@ const CheckOut = () => {
             <form onSubmit={handleContinueToPayment}>
               <div className="row">
                 <div className="col-6">
-                  <label className="form-label" htmlFor="firstname">
-                    First Name
-                  </label>
-                  <input type="text" id="firstname" className="form-control" />
+                  <label className="form-label" htmlFor="firstname"></label>
+                  <input
+                    type="text"
+                    id="firstname"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.firstname}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-6">
-                  <label className="form-label" htmlFor="lastname">
-                    Last name
-                  </label>
-                  <input type="text" id="lastname" className="form-control" />
+                  <label className="form-label" htmlFor="lastname"></label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.lastname}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-12"></div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="email">
-                    Email
-                    <span className="text-muted"> (Optional)</span>
+                    <span className="text-muted"></span>
                   </label>
-                  <input type="text" id="email" className="form-control" />
+                  <input
+                    type="text"
+                    id="email"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.email}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="address">
@@ -174,6 +196,7 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
+      {/* {show && <PaystackIntegration closeModal={setShow} />} */}
     </div>
   );
 };
