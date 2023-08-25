@@ -3,7 +3,7 @@ import styles from "../styles/header.module.css";
 import { Link } from "react-router-dom";
 import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
-import ShoppingCart, { Product } from "../components/CartModal";
+import ShoppingCart from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi";
 // import { useAppDispatch, useAppSelector } from '../store/hooks'
 // import { getSingleUser } from "../slices/getSingleUserProfileSlice"
@@ -13,33 +13,11 @@ import { useCart } from "react-use-cart";
 // import {logout} from "../slices/authSlice"
 import "./cartmodal.css";
 
-const initialProducts: Product[] = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: 10,
-    count: 2,
-    image: "product1.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: 15,
-    count: 1,
-    image: "product2.jpg",
-  },
-];
 
 const Header = () => {
   const { isEmpty, totalItems } = useCart();
 
-  //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
-  // const storedUserData = localStorage.getItem("user");
-  // const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
-  // console.log("details", parsedUserData);
-
-  // const dispatch = useAppDispatch()
-  // const {logout} = useAppSelector((state)=>state.auth.logout)
+ 
   const [collapse, setCollapse] = useState(true);
 
   const toggleButton = () => setCollapse(!collapse);
@@ -70,13 +48,6 @@ const Header = () => {
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
-  // const { singleUser} = useAppSelector((state) => state.singleUser)
-  // console.log(singleUser)
-
-  // useEffect(() => {
-
-  //   dispatch(getSingleUser())
-  // }, [dispatch])
 
   return (
     <div>
@@ -94,15 +65,6 @@ const Header = () => {
           <div className={styles.flexProfile}>
             <div className="flex-icon">
               <img src={ProfileImg} alt="" className={styles.profileImg} />
-              {/*
-              UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
-               <p
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "normal",
-                  marginInline: "auto",
-                }}
-              >{`${parsedUserData.data.firstname} ${parsedUserData.data.lastname[0]}.`}</p> */}
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
@@ -112,14 +74,42 @@ const Header = () => {
          absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`}
             >
               {menus.map((menu) => (
-                <li className={styles.menu} key={menu.id}>
-                  {menu.Order}
-                  <br />{" "}
-                  <Link to="/userupdatesprofile">{menu.Updateprofile} </Link>
-                  <br />
-                  <Link to ='/userChangePassword'>{menu.Changepassword}</Link> <br />
-                  <Link to="/userlanding">{menu.Dashboard} </Link>
-                </li>
+                <ul className={styles.menu} key={menu.id}>
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="" className={styles.dropdown_link}>
+                      {" "}
+                      {menu.Order}{" "}
+                    </Link>{" "}
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userupdatesprofile"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Updateprofile}{" "}
+                    </Link>
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userChangePassword"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Changepassword}
+                    </Link>{" "}
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="/userlanding" className={styles.dropdown_link}>
+                      {menu.Dashboard}{" "}
+                    </Link>{" "}
+                  </li>
+                </ul>
               ))}
             </ul>
 

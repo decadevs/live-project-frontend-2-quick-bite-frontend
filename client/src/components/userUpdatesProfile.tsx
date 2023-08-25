@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { updateUserProfile } from "../slices/authSlice";
 import { showErrorToast } from "../utility/toast";
-import { Link as RouterLink, useNavigate} from "react-router-dom";
-import Header from "./Header"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
+import styles from "../styles/header.module.css";
+import Header from "./Header";
 
 const initialUserData = {
   firstName: "",
@@ -24,8 +24,7 @@ const UserUpdatesProfile = () => {
   const { user: logedInUser } = useAppSelector((state) => state.auth);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
-const navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser({
@@ -55,28 +54,23 @@ const navigate = useNavigate();
     try {
       event.preventDefault();
 
-       if (!Object.values(user)?.some((item) => !!item)){
-        return showErrorToast(`All fields cannot be empty`);
-       }
-        else {
-         const payload = {
-           firstname: user.firstName,
-           lastname: user.lastName,
-           email: user.email,
-           phone_no: user.phoneNumber,
-           address: user.address,
-         };
+      const payload = {
+        firstname: user.firstName,
+        lastname: user.lastName,
+        email: user.email,
+        phone_no: user.phoneNumber,
+        address: user.address,
+      };
 
-         setLoading(true);
+      setLoading(true);
+      const data = await dispatch(updateUserProfile(payload)).unwrap();
 
-         const data = await dispatch(updateUserProfile(payload)).unwrap();
-         console.log(data.message);
+      console.log(data.message);
 
-         setLoading(false);
-         setUser(initialUserData);
-       }
-         navigate("/userlanding");
-       
+      setLoading(false);
+      setUser(initialUserData);
+      navigate("/userlanding");
+      // throw new Error('Function not implemented.');
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
@@ -91,14 +85,14 @@ const navigate = useNavigate();
 
   return (
     <>
-      { <Header />}
+      {<Header />}
       <div className="flex justify-center items-center h-screen px-4">
         <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
           <h1 className="text-black text-3xl font-bold text-center mb-4">
             {" "}
             Update Your Profile
           </h1>
-          <form onSubmit={ async (e)=>{await handleSubmit(e)}} className="mt-4">
+          <form onSubmit={handleSubmit} className="mt-4">
             <input
               type="text"
               placeholder="First Name"
@@ -157,13 +151,13 @@ const navigate = useNavigate();
                 type="button"
                 className="w-1/3 p-2 bg-deepBlue text-white rounded"
               >
+                {" "}
                 <RouterLink
                   to="/userlanding"
-                  className="w-1/3 p-2 bg-deepBlue text-white rounded"
+                  className={`${styles.cancel_link} w-1/3 p-2 bg-deepBlue text-white rounded`}
                 >
                   Cancel
-                </RouterLink>
-                
+                </RouterLink>{" "}
               </button>
             </div>
           </form>
@@ -174,4 +168,3 @@ const navigate = useNavigate();
 };
 
 export default UserUpdatesProfile;
-
