@@ -37,6 +37,8 @@ import UserLandingpg from "./pages/userLandingpg";
 import {ProtectRoute} from './utility/auth'
 // import VendorsEdit from "./pages/VendorsEdit";
 import CheckOut from "./pages/CheckOut";
+import UserOrderComponent from "./components/UserOrder";
+
 
 
 function App() {
@@ -80,6 +82,8 @@ function App() {
           <Route path="/popular" element={<PopularResPage />}></Route>
           <Route path="/popularfoods" element={<PopularFoodsPage />}></Route>
           <Route path="/checkout" element={<CheckOut />}></Route>
+          <Route path="/userorder" element={<UserOrderComponent />}></Route>
+
          
         </Routes>
         <Footer />
