@@ -117,7 +117,7 @@ const Header = () => {
                   <br />{" "}
                   <Link to="/userupdatesprofile">{menu.Updateprofile} </Link>
                   <br />
-                  {menu.Changepassword} <br />
+                  <Link to ='/userChangePassword'>{menu.Changepassword}</Link> <br />
                   <Link to="/userlanding">{menu.Dashboard} </Link>
                 </li>
               ))}
