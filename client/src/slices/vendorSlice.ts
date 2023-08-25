@@ -44,8 +44,8 @@ export const vendorLogin = createAsyncThunk(
 			const response = await axios.post("/vendor/login", payload);
 
 			localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
-			
-			console.log("response", response.data.token)
+			localStorage.setItem("id", JSON.stringify(response.data.vendor.id));
+			// console.log("response", response.data.token)
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {

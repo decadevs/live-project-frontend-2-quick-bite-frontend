@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import * as React from "react";
 // import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
 import Input from "./reusableComponents/input";
@@ -7,6 +8,8 @@ import Modal from "../components/reusableComponents/Modal";
 //import Food from "./Food";
 import axios from "../api/httpService";
 import { showSuccessToast, showErrorToast } from "../utility/toast";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getAllFoodCount } from "../slices/getAllFoodCountSlice";
 
 interface VendorCreatesFoodProps {
   handleClose: () => void;
@@ -49,7 +52,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
 
   }
   const [createFood, setCreateFood] = useState(initialData);
-
+  const dispatch = useAppDispatch();
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
   const [loading, setLoading] = useState(false)
 
@@ -88,17 +91,18 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       formData.append("price", createFood.price)
       formData.append("ready_time", createFood.ready_time)
       formData.append("description", createFood.description)
-      formData.append("food_image", createFood.food_image as Blob)
+
+      if (createFood.food_image) {
+        formData.append("food_image", createFood.food_image);
+      }
 
       const {data} = await axios.post("/vendor/createfood", formData)
-
-      console.log(data)
 
       setCreateFood(initialData)
       showSuccessToast(data.message)
       setLoading(false)
+        dispatch(getAllFoodCount());
       // navigate("/vendorLogin");
-     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       console.error(error);
@@ -146,7 +150,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
 
             <input
               type="text"
-              placeholder="Ready Time"
+              placeholder="Ready Time (eg: 20 minutes)"
               name="ready_time"
               value={createFood.ready_time}
               onChange={handleChange}

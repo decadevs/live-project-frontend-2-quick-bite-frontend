@@ -1,34 +1,53 @@
-
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Style.css";
 // import { Navbar } from "../components/Navbar";
-// import { useNavigate } from "react-router-dom";
-import PaystackIntegration from "../components/PaystackIntegration";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "react-use-cart";
+//import PaystackIntegration from "../components/PaystackIntegration";
 
-// import { PaystackButton } from "react-paystack"
-
-
-
+const initialData = {
+  address: "",
+  state: "",
+  country: "",
+  zip: "",
+};
 
 const CheckOut = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialData);
+  const { cartTotal, items, emptyCart } = useCart();
+  const [show, setShow] = useState(false);
 
-  const [show , setShow] = useState(false)
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
 
-
-
+    setFormData((previosValue) => ({
+      ...previosValue,
+      [name]: value,
+    }));
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleContinueToPayment = (event: any) => {
     event.preventDefault();
-     setShow(true)
 
-   
+    const payload = {
+      ...formData,
+      ...items,
+      cartTotal,
+    };
+    console.log(payload);
+
+    setShow(true);
+    // emptyCart();
   };
 
-  // <div>
-  //   <Navbar />
-  // </div>;
+  //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+  // const storedUserData = localStorage.getItem("user");
+  // const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
     <div className="checkout-container">
       <div className="container col-md-6 col-sm-12 br-2 rounded">
@@ -39,27 +58,23 @@ const CheckOut = () => {
               {/* <span className="badge bg-secondary rounded-pill">3</span> */}
             </h4>
             <ul className="list-group">
-              <li className="list-group-item d-flex justify-content-between">
-                <div>
-                  <h6 className="cart-logo">Product name</h6>
-                  <span className="text-text">Brief Description</span>
-                </div>
-                <span className="text-text">NGN 500</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <div>
-                  <h6 className="cart-logo">Second Product</h6>
-                  <span className="text-text">Brief Description</span>
-                </div>
-                <span className="text-text">NGN 200</span>
-              </li>
-              <li className="list-group-item d-flex justify-content-between">
-                <div>
-                  <h6 className="cart-logo">Third Product</h6>
-                  <span className="text-text">Brief Description</span>
-                </div>
-                <span className="text-text">NGN 600</span>
-              </li>
+              {items.map((product) => (
+                <li className="list-group-item d-flex justify-content-between">
+                  <div>
+                    <h6 className="cart-logo">
+                      {product.name} x{product.quantity}
+                    </h6>
+                    <span className="text-text">{product.description}</span>
+                  </div>
+                  <span className="text-text">
+                    NGN{" "}
+                    {product.quantity
+                      ? product.price * product.quantity
+                      : product.price}
+                  </span>
+                </li>
+              ))}
+
               <li className="list-group-item d-flex justify-content-between">
                 {/* <div>
                   <h6 className="text-success">Promo Code</h6>
@@ -71,76 +86,109 @@ const CheckOut = () => {
                 <div>
                   <h6 className="cart-logo">Total (NGN)</h6>
                 </div>
-                <span className="text-text"> 1200</span>
+                <span className="text-text"> {cartTotal}</span>
               </li>
             </ul>
           </div>
           <div className="col-8">
             <h4 className="header-title">Address</h4>
-            <form>
+            <form onSubmit={handleContinueToPayment}>
               <div className="row">
                 <div className="col-6">
-                  <label className="form-label" htmlFor="firstname">
-                    First Name
-                  </label>
-                  <input type="text" id="firstname" className="form-control" />
+                  <label className="form-label" htmlFor="firstname"></label>
+                  <input
+                    type="text"
+                    id="firstname"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.firstname}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-6">
-                  <label className="form-label" htmlFor="lastname">
-                    Last name
-                  </label>
-                  <input type="text" id="lastname" className="form-control" />
+                  <label className="form-label" htmlFor="lastname"></label>
+                  <input
+                    type="text"
+                    id="lastname"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.lastname}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-12"></div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="email">
-                    Email
-                    <span className="text-muted"> (Optional)</span>
+                    <span className="text-muted"></span>
                   </label>
-                  <input type="text" id="email" className="form-control" />
+                  <input
+                    type="text"
+                    id="email"
+                    //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
+                    // value={parsedUserData.data.email}
+                    className="form-control"
+                    readOnly
+                  />
                 </div>
                 <div className="col-12">
                   <label className="form-label" htmlFor="address">
                     Address
                   </label>
-                  <input type="text" id="address" className="form-control" />
+                  <input
+                    type="text"
+                    name="address"
+                    className="form-control"
+                    value={formData.address}
+                    onChange={handleChange}
+                  />
                 </div>
+
                 <div className="col-5">
                   <label className="form-label" htmlFor="country">
                     Country
                   </label>
-                  <select className="form-select" id="country">
+                  <select
+                    className="form-select"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                  >
                     <option>Choose</option>
                     <option>Nigeria</option>
                   </select>
                 </div>
+
                 <div className="col-4">
                   <label className="form-label" htmlFor="state">
                     State
                   </label>
-                  <select className="form-select" id="state">
+                  <select
+                    className="form-select"
+                    value={formData.state}
+                    onChange={handleChange}
+                    name="state"
+                  >
                     <option>Choose</option>
                     <option>Lagos</option>
-                    <option>Edo</option>
+                    <option>Abuja</option>
+                    <option>Enugu</option>
                   </select>
                 </div>
+
+                {/* 
                 <div className="col-3">
                   <label className="form-label" htmlFor="zip">
                     Zip
                   </label>
                   <input type="text" id="zip" className="form-control" />
-                </div>
+                </div> */}
               </div>
               <hr />
               <div className="form-check"></div>
               <hr />
 
               <div className="check-btn">
-                <button
-                  type="button"
-                  className="btn3"
-                  onClick={handleContinueToPayment}
-                >
+                <button type="submit" className="btn3">
                   <h4 className="checkout">Continue To Payment</h4>
                 </button>
               </div>
@@ -148,9 +196,8 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
-      {show && <PaystackIntegration  closeModal ={setShow}/>}
+      {/* {show && <PaystackIntegration closeModal={setShow} />} */}
     </div>
-   
   );
 };
 
