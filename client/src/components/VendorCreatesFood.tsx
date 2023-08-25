@@ -1,10 +1,14 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import * as React from "react";
+// import Swal from "sweetalert2";
 import TextField from "./InputAdornment";
 import Input from "./reusableComponents/input";
 import Modal from "../components/reusableComponents/Modal";
 import axios from "../api/httpService";
 import { showSuccessToast, showErrorToast } from "../utility/toast";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getAllFoodCount } from "../slices/getAllFoodCountSlice";
 
 interface VendorCreatesFoodProps {
   handleClose: () => void;
@@ -48,7 +52,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
     food_image: null as File | null,
   };
   const [createFood, setCreateFood] = useState(initialData);
-
+  const dispatch = useAppDispatch();
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -83,23 +87,24 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
 
       const formData = new FormData();
 
-      formData.append("name", createFood.name);
-      formData.append("price", createFood.price);
-      formData.append("ready_time", createFood.ready_time);
-      formData.append("description", createFood.description);
-      formData.append("food_image", createFood.food_image as Blob);
+      formData.append("name", createFood.name)
+      formData.append("price", createFood.price)
+      formData.append("ready_time", createFood.ready_time)
+      formData.append("description", createFood.description)
 
-      const { data } = await axios.post("/vendor/createfood", formData);
+      if (createFood.food_image) {
+        formData.append("food_image", createFood.food_image);
+      }
 
-      console.log(data);
+      const {data} = await axios.post("/vendor/createfood", formData)
 
-      setCreateFood(initialData);
-      showSuccessToast(data.message);
-      setLoading(false);
+      setCreateFood(initialData)
+      showSuccessToast(data.message)
+      setLoading(false)
+        dispatch(getAllFoodCount());
       // navigate("/vendorLogin");
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error:any) {
       console.error(error);
       setLoading(false);
       if (error.response) {
@@ -143,15 +148,15 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
                 />
               </div>
 
-              <input
-                type="text"
-                placeholder="Ready Time"
-                name="ready_time"
-                value={createFood.ready_time}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mb-4"
-                required
-              />
+            <input
+              type="text"
+              placeholder="Ready Time (eg: 20 minutes)"
+              name="ready_time"
+              value={createFood.ready_time}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded mb-4"
+              required
+            />
 
               <input
                 type="text-Area"

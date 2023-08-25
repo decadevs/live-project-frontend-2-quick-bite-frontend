@@ -46,6 +46,7 @@ export const getVendorProfile = createAsyncThunk(
             const response = await axios.get("/vendor/getsingleprofile");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             localStorage.setItem("token", response.data.token);
+            localStorage.getItem(response.data.id)
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {

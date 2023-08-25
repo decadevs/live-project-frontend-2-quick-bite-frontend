@@ -25,8 +25,9 @@ const VendorRegNO = () => {
 
       const { data } = await axios.post("/vendor/verifyvendor", payload);
       showSuccessToast(data.message);
-
+      console.log('data is', data)
       localStorage.setItem("token", data.token);
+      localStorage.setItem('company_name', data.company_name)
       setRegNo("");
       setLoading(false);
       navigate("/vendor");

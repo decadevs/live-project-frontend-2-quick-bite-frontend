@@ -44,6 +44,7 @@ export const getVendorRevenue = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get("/vendor/revenuevendor");
+            localStorage.getItem(response.data.id)
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
             return response.data;

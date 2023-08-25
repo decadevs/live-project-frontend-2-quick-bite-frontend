@@ -34,25 +34,26 @@ import AllVendorFoods from "./pages/AllVendorFoods";
 import VendorCreatesFood from "./components/VendorCreatesFood";
 import EditVendor from "./components/EditVendor";
 import UserLandingpg from "./pages/userLandingpg";
-import {ProtectRoute} from './utility/auth'
-// import VendorsEdit from "./pages/VendorsEdit";
+import { CartProvider } from "react-use-cart";
+import { ProtectRoute } from "./utility/auth";
 import CheckOut from "./pages/CheckOut";
 import UserOrderComponent from "./components/UserOrder";
 
-
+import UserChangePassword from "./components/userChangePassword";
 
 function App() {
   return (
     <Provider store={store}>
-      <ToastContainer />
-      <main>
-        <Routes>
-          {/* General Routes */}
-          <Route path="/" element={<Home />}></Route>
+      <CartProvider>
+        <ToastContainer />
+        <main>
+          <Routes>
+            {/* General Routes */}
+            <Route path="/" element={<Home />}></Route>
 
-          {/* User routes */}
-          <Route path="/login" element={<SignIn />}></Route>
-          <Route path="/register" element={<SignUp />}></Route>
+            {/* User routes */}
+            <Route path="/login" element={<SignIn />}></Route>
+            <Route path="/register" element={<SignUp />}></Route>
 
           {/* Vendor Routes */}
           <Route path="/vendor" element={<VendorSignupForm />}></Route>
@@ -88,6 +89,7 @@ function App() {
         </Routes>
         <Footer />
       </main>
+      </CartProvider>
     </Provider>
   );
 }
