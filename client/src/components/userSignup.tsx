@@ -54,7 +54,7 @@ const SignupForm = () => {
       };
 
       const {data} = await axios.post("/user/register", payload);
-console.log("register", data)
+// console.log("register", data)
 
       setUser(initialState);
       setSignupSuccess(true);

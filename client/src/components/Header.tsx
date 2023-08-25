@@ -4,17 +4,16 @@ import { Link } from "react-router-dom";
 import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
-import { GiShoppingBag } from "react-icons/gi"
+import { GiShoppingBag } from "react-icons/gi";
 // import { useAppDispatch, useAppSelector } from '../store/hooks'
 // import { getSingleUser } from "../slices/getSingleUserProfileSlice"
 import { toast } from "react-toastify";
 //import { GiShoppingBag } from "react-icons/gi"
 // import {logout} from "../slices/authSlice"
-import  "./cartmodal.css";
+import "./cartmodal.css";
 
 // import { logout } from "../slices/authSlice"
 import "./cartmodal.css";
-
 
 const initialProducts: Product[] = [
   {
@@ -39,9 +38,9 @@ const Header = () => {
   console.log("details", parsedUserData)
   // const dispatch = useAppDispatch()
   // const {logout} = useAppSelector((state)=>state.auth.logout)
-    const[collapse, setCollapse] = useState(true)
-    
-    const toggleButton = ()=> setCollapse(!collapse)
+  const [collapse, setCollapse] = useState(true);
+
+  const toggleButton = () => setCollapse(!collapse);
 
   const [cartVisibility, setCartVisibility] = useState(false);
   const [products, setProducts] = useState(initialProducts);
@@ -72,14 +71,13 @@ const Header = () => {
   ];
   const handleLogout = () => {
     try {
-       localStorage.clear()      
-       window.location.href= '/'
-       toast.success("Logout successfully")
-       
+      localStorage.clear();
+      window.location.href = "/";
+      toast.success("Logout successfully");
     } catch (error) {
-       throw new Error("An error occur")
+      throw new Error("An error occur");
     }
-  }
+  };
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
@@ -94,8 +92,6 @@ const Header = () => {
   return (
     <div>
       <nav className={`${styles.navbar}  `}>
-        
-        
         <div
           className={`flex sm:items-center space-x-20 md:flex items-center justify-between mx-20 ${"animate__animated animate__backInDown"}`}
         >
@@ -108,9 +104,14 @@ const Header = () => {
           <div className="hidden md:flex space-x-6 justify-between"></div>
           <div className={styles.flexProfile}>
             <div className="flex-icon">
-              
               <img src={ProfileImg} alt="" className={styles.profileImg} />
-              <p style={{fontSize:"18px", fontWeight:"normal", marginInline:"auto"}}>{`${parsedUserData.data.firstname} ${ parsedUserData.data.lastname[0]}.`}</p>
+              <p
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "normal",
+                  marginInline: "auto",
+                }}
+              >{`${parsedUserData.data.firstname} ${parsedUserData.data.lastname[0]}.`}</p>
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
@@ -132,7 +133,10 @@ const Header = () => {
             </ul>
 
             <Link to="/">
-              <button  onClick={handleLogout}  className={`${styles.SignUp} bg-deepBlue `}>
+              <button
+                onClick={handleLogout}
+                className={`${styles.SignUp} bg-deepBlue `}
+              >
                 Logout
               </button>
             </Link>
@@ -154,17 +158,26 @@ const Header = () => {
               <i className="fas fa-times"></i>
             )}
           </button>
-        </div>  
-            
-        <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
-        <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
-        {/* <a href="#" className="mx-auto">Vendors</a> */}
-          
-            <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
-        
-    </div>
-    </div>
-//
+        </div>
+        <div
+          className={`${
+            collapse ? styles.mobileView : ""
+          } mt-20 md:hidden bg-deepBlue`}
+        >
+          <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
+            {/* <a href="#" className="mx-auto">Vendors</a> */}
+
+            <Link to="/">
+              <button
+                onClick={handleLogout}
+                className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}
+              >
+                Logout
+              </button>{" "}
+            </Link>
+          </div>
+        </div>
+        //
         <div
           className={`${
             collapse ? styles.mobileView : ""
@@ -197,10 +210,6 @@ const Header = () => {
 
 export default Header;
 
-
-
-
-
 // import { useEffect, useState } from "react";
 // import styles from "../styles/header.module.css";
 // import { Link } from "react-router-dom";
@@ -217,7 +226,6 @@ export default Header;
 // import { logout } from "../slices/authSlice"
 // import "./cartmodal.css";
 // import "../pages/cartpage.css";
-
 
 // const initialProducts: Product[] = [
 //   {
@@ -286,7 +294,6 @@ export default Header;
 //     dispatch(getSingleUser())
 //   }, [dispatch, token])
 
-
 //   return (
 
 //     <div>
@@ -306,17 +313,15 @@ export default Header;
 
 //             <div className="flex-icon">
 
-
 //               <img src={ProfileImg} alt="" className={styles.profileImg} />
 //               <p></p>
 //             </div>
-
 
 //             <button>
 //               <i className="fa fa-angle-down" onClick={toggle}></i>
 //             </button>
 //             <ul
-//               className={`${dropdown ? styles.dropdown : ""} 
+//               className={`${dropdown ? styles.dropdown : ""}
 //          absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`}
 //             >
 //               {menus.map((menu) => (
@@ -353,14 +358,14 @@ export default Header;
 //               <i className="fas fa-times"></i>
 //             )}
 //           </button>
-//         </div>  
-      
+//         </div>
+
 //         <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
 //         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
 //         {/* <a href="#" className="mx-auto">Vendors</a> */}
-          
-//             <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>      
-        
+
+//             <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Logout</button> </Link>
+
 //     </div>
 //     </div>
 //         <div
