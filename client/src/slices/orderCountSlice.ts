@@ -38,6 +38,7 @@ export interface InitialState {
     async (_, thunkAPI) => {
       try {
         const response = await axios.get("/vendor/vendororders");
+        localStorage.getItem(response.data.id)
         console.log("response  ", response)
         //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
         // localStorage.setItem("token", response.data.token);

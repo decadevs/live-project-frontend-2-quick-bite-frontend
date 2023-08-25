@@ -40,7 +40,7 @@ const columns: readonly Column[] = [
         minWidth: 170,
         align: "center"
     },
-    { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
+    // { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
     { id: "ready_time", label: "Ready Time", minWidth: 170, align: "center" },
     { id: "rating", label: "Rating", minWidth: 170, align: "center" }
 ];
@@ -51,7 +51,7 @@ interface Data {
     order_count: number;
     ready_time: string;
     rating: string;
-    isAvailable: string;
+    isAvailable: boolean;
 }
 
 function createData(
@@ -60,7 +60,7 @@ function createData(
     order_count: number,
     ready_time: string,
     rating: string,
-    isAvailable: string
+    isAvailable: boolean
 ): Data {
     return {
         name,
@@ -77,7 +77,7 @@ export default function ProductList() {
     const { allFoodCount, isLoading } = useAppSelector(
         (state) => state.allFoodCount
     );
-    console.log("All Foood Details", allFoodCount, isLoading);
+    console.log("All Food Details", allFoodCount, isLoading);
 
     const [isModalOpen, setIsModalOpen] = React.useState(false);
 
