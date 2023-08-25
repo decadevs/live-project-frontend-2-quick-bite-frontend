@@ -60,7 +60,7 @@ console.log("register", data)
       setSignupSuccess(true);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data))
-     
+      localStorage.setItem("email", data.userDetails.email);
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
