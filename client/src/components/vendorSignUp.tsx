@@ -64,7 +64,7 @@ const VendorSignupForm = () => {
       setLoading(false);
 
       // navigate("/vendorLogin")
-      
+      localStorage.clear()
       setTimeout(() => {
         navigate("/vendorLogin");
       }, 500) 
