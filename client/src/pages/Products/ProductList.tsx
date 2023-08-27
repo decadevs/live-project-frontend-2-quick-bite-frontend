@@ -10,7 +10,6 @@ import TableRow from "@mui/material/TableRow";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getAllFoodCount } from "../../slices/getAllFoodCountSlice";
 import VendorCreatesFood from '../../components/VendorCreatesFood';
-import { Modal } from "@mui/material";
 
 interface Column {
     id:
@@ -40,7 +39,7 @@ const columns: readonly Column[] = [
         minWidth: 170,
         align: "center"
     },
-    // { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
+    { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
     { id: "ready_time", label: "Ready Time", minWidth: 170, align: "center" },
     { id: "rating", label: "Rating", minWidth: 170, align: "center" }
 ];
@@ -51,7 +50,7 @@ interface Data {
     order_count: number;
     ready_time: string;
     rating: string;
-    isAvailable: boolean;
+    isAvailable: string;
 }
 
 function createData(
@@ -60,7 +59,7 @@ function createData(
     order_count: number,
     ready_time: string,
     rating: string,
-    isAvailable: boolean
+    isAvailable: string
 ): Data {
     return {
         name,
@@ -77,23 +76,14 @@ export default function ProductList() {
     const { allFoodCount, isLoading } = useAppSelector(
         (state) => state.allFoodCount
     );
-    console.log("All Food Details", allFoodCount, isLoading);
-
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-
-    // const handleOpenModal = () => {
-    //     setIsModalOpen(true);
-    // };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-    };
-
+    console.log("All Foood Details", allFoodCount, isLoading);
+    
     React.useEffect(() => {
         dispatch(getAllFoodCount());
     }, [dispatch]);
 
-    const rows = allFoodCount?.map((food: any) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rows = allFoodCount.map((food: any) =>
         createData(
             food.name,
             food.price,
@@ -121,62 +111,57 @@ export default function ProductList() {
     };
 
     return (
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
+        <>
             <VendorCreatesFood />
-            <TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)?.map((row) => {
-                                return (
-                                    <TableRow hover role="checkbox" tabIndex={-1}>
-                                        {columns.map((column) => {
-                                            console.log("col", column);
-                                            const value = row[column.id];
-                                            return (
-                                                <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === "number"
-                                                        ? column.format(value)
-                                                        : value}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={rows?.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-            <Modal
-                open={isModalOpen}
-                onClose={handleCloseModal}
-                aria-labelledby="modal-title"
-            >
-                <div style={{ position: "absolute", top: "20px", left: "20px" }}>
-                    <VendorCreatesFood />
-                </div>
-            </Modal>
-        </Paper>
-    );
+            <Paper sx={{ width: "100%", overflow: "hidden" }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                {columns.map((column) => (
+                                    <TableCell
+                                        key={column.id}
+                                        align={column.align}
+                                        style={{ minWidth: column.minWidth }}
+                                    >
+                                        {column.label}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row) => {
+                                    return (
+                                        <TableRow hover role="checkbox" tabIndex={-1}>
+                                            {columns.map((column) => {
+                                                console.log("col", column);
+                                                const value = row[column.id];
+                                                return (
+                                                    <TableCell key={column.id} align={column.align}>
+                                                        {column.format && typeof value === "number"
+                                                            ? column.format(value)
+                                                            : value}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    );
+                                })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+                <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Paper>
+        </>
+    )
 }

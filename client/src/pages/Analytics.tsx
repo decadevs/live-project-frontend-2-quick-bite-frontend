@@ -120,7 +120,7 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                       </CardContent>
                     </Card>
                   </Box>
-                  <Box sx={{ width: "50%", height: "50%" }}>
+                  <Box sx={{ width: "50%" }}>
                     <Card
                       sx={{ height: 24 + "vh", marginBottom: "14px" }}
                       className="gradient"
@@ -156,7 +156,7 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                         </Typography>
                       </CardContent>
                     </Card>
-                    <Card sx={{ height: 24 + "vh" }} className="gradientlight">
+                    {/* <Card sx={{ height: 24 + "vh" }} className="gradientlight">
                       <CardContent>
                         <Typography
                           gutterBottom
@@ -183,7 +183,7 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                           Since last week
                         </Typography>
                       </CardContent>
-                    </Card>
+                    </Card> */}
                   </Box>
                 </Stack>
               </Grid>

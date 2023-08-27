@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 export interface FoodDetails {
@@ -41,7 +41,7 @@ export const getPopularFoods = createAsyncThunk(
         try {
             const response = await axios.get("/vendor/popularfoods");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
-            localStorage.getItem(response.data.id);
+            // localStorage.setItem("token", response.data.token);
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -74,7 +74,7 @@ export const vendorPopularFoodsSlice = createSlice({
             state.vendorPopularFoods = action.payload.data
             state.message = action.payload.message
             state.error = "";
-            toast.success(action.payload.message)
+            // toast.success(action.payload.message)
 
         });
 
@@ -82,8 +82,8 @@ export const vendorPopularFoodsSlice = createSlice({
             // Add user to the state array
             state.isLoading = false;
             state.message = ""
-            state.error = action.payload as string;
-            toast.error(action.payload as string)
+            state.error = action.error as string;
+            // toast.error(action.payload as string)
         });
     },
 });
