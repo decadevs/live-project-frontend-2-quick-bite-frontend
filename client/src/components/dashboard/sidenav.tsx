@@ -70,7 +70,7 @@ export default function Sidenav() {
     const navigate = useNavigate()
     const updateOpen = useAppStore((state) => state.updateOpen)
     const open = useAppStore((state) => state.dopen)
-    console.log(updateOpen)
+
     
     return (
         <Box sx={{ display: 'flex' }}>

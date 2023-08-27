@@ -68,7 +68,6 @@ export default function VendorOrder() {
   const { vendorOrder, isLoading } = useAppSelector(
     (state) => state.vendorOrder
   );
-  console.log("All Order Details", vendorOrder, isLoading);
 
   React.useEffect(() => {
     dispatch(getOrderCount());
@@ -83,8 +82,6 @@ export default function VendorOrder() {
       order.isPaid
     )
   );
-
-  console.log("row", rows);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -130,7 +127,6 @@ export default function VendorOrder() {
                       return (
                         <TableRow key={index} hover role="checkbox" tabIndex={-1}>
                           {columns.map((column) => {
-                            console.log("col", column);
                             const value = row[column.id];
                             return (
                               <TableCell key={column.id} align={column.align}>

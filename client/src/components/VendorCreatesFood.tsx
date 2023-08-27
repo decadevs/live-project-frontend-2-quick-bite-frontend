@@ -56,7 +56,6 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
   const [createFoodSuccess, setCreateFoodSuccess] = useState(false);
   const [loading, setLoading] = useState(false)
 
-   console.log(createFoodSuccess)
   const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,13 +74,12 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
     }
   };
 
-  // console.log(Food);
 
   const handleSubmit =  async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      // console.log(vendor);
+  
       setCreateFoodSuccess(true);
       setLoading(true)
 

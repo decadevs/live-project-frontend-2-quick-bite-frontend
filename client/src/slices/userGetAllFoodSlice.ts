@@ -36,7 +36,6 @@ export const getUserAllFoods = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/user/allfoods");
-      console.log('response is', response);
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

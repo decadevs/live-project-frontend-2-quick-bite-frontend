@@ -17,13 +17,10 @@ import { getOrderCount } from "../slices/orderCountSlice";
 export default function Home() {
   const dispatch = useAppDispatch();
   const { allFoodCount, isLoading } = useAppSelector((state) => state.allFoodCount);
-  console.log("redux  data ", allFoodCount, isLoading);
 
   const { totalFoods } = useAppSelector((state) => state.totalFood);
-  console.log(" totalFood  data ", totalFoods, isLoading);
 
   const { vendorOrder } = useAppSelector((state) => state.vendorOrder);
-  console.log(" vendorOrder  data ", vendorOrder, isLoading);
 
   useEffect(() => {
     dispatch(getAllFoodCount());
@@ -32,14 +29,8 @@ export default function Home() {
   }, [dispatch]);
 
 const value = allFoodCount?.length
-console.log("allFood value ", value)
-
 const popularFoods = totalFoods?.length
-console.log("popularFoods value ", popularFoods)
-
 const totalVendorOrder = vendorOrder?.length
-console.log("totalVendorOrder value ", totalVendorOrder)
-
   return (
     <>
       <div className="bgColor">

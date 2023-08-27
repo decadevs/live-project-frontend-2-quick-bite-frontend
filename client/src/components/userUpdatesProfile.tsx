@@ -65,8 +65,6 @@ const UserUpdatesProfile = () => {
       setLoading(true);
       const data = await dispatch(updateUserProfile(payload)).unwrap();
 
-      console.log(data.message);
-
       setLoading(false);
       setUser(initialUserData);
       navigate("/userlanding");
