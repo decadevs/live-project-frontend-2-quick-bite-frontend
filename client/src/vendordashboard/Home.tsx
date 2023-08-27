@@ -30,9 +30,9 @@ export default function VendorHome() {
     }, [dispatch])
 
 
-    const getOrders = vendorOrders?.map((item) => item.orders)
-    const getEarnings = vendorEarning?.map((item) => item.earnings)
-    const getRevenue = vendorRevenue?.map((item) => item.revenue)
+    const getOrders = vendorOrders//?.map((item) => item.orders)
+    const getEarnings = vendorEarning//?.map((item) => item.earnings)
+    const getRevenue = vendorRevenue//?.map((item) => item.revenue)
 
     return (
         <>

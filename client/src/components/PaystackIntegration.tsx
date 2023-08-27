@@ -3,6 +3,7 @@ import { PaystackButton } from "react-paystack"
 import styles from "../styles/paystack.module.css"
 import { FaTimes } from "react-icons/fa"
 import "../styles/index.css"
+import { useCart } from "react-use-cart"
 // interface Close{
 //   closeModal : boolean
 // }
@@ -37,6 +38,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
       alert("Wait! You need this oil, don't go!!!!")
     },
   }
+  const { cartTotal } = useCart();
   const storedUserData = localStorage.getItem('user');
   const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
@@ -61,7 +63,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
             
           <input type="text"   
           name="lastName"       
-          value={parsedUserData.data.lastname}
+          value={parsedUserData.lastname}
           onChange={(e)=>setLastName(e.target.value)}
 
           className={styles.modalInput}
@@ -72,7 +74,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
           <input type="text" 
           
           name ="Email"
-        value={parsedUserData.data.email}
+        value={parsedUserData.email}
           className={styles.modalInput}
           onChange={(e)=>setEmail(e.target.value)}
           required
@@ -82,7 +84,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
           <input type="text"          
             id ="Amount" 
             name ="totalAmount"          
-            value={amount}
+            value={Number(cartTotal) }
             required
             onChange={(e)=>setAmount(Number(e.target.value))}
             readOnly

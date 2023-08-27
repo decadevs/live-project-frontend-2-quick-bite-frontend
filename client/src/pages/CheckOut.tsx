@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, ChangeEvent } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Style.css";
 // import { Navbar } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
-//import PaystackIntegration from "../components/PaystackIntegration";
+import PaystackIntegration from "../components/PaystackIntegration";
 
 const initialData = {
   address: "",
@@ -59,8 +60,8 @@ const CheckOut = () => {
             </h4>
             <ul className="list-group">
               {items.map((product) => (
-                <li className="list-group-item d-flex justify-content-between">
-                  <div>
+                <li className="list-group-item d-flex justify-content-between" key={product.id}>
+                  <div >
                     <h6 className="cart-logo">
                       {product.name} x{product.quantity}
                     </h6>
@@ -188,7 +189,7 @@ const CheckOut = () => {
               <hr />
 
               <div className="check-btn">
-                <button type="submit" className="btn3">
+                <button   type="submit" className="btn3">
                   <h4 className="checkout">Continue To Payment</h4>
                 </button>
               </div>
@@ -196,7 +197,7 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
-      {/* {show && <PaystackIntegration closeModal={setShow} />} */}
+      {show && <PaystackIntegration closeModal={setShow} />}
     </div>
   );
 };
