@@ -41,6 +41,7 @@ export const Navbar = () => {
         <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-white`} >
         <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
         {/* <a href="#" className="mx-auto">Vendors</a> */}
+        
            <Link to="/login"><button className={`${styles.SignIn} bg-veryLightGray hover:bg-deepBlue hover:text-white min-w-full`}>Sign In</button></Link>
             <Link to="/register"><button className={`${styles.SignUp} bg-deepBlue  hover:bg-lightBlue min-w-full`}>Sign Up</button> </Link>      
         
