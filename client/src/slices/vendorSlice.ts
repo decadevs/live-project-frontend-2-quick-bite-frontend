@@ -113,7 +113,6 @@ export const vendorAuthSlice = createSlice({
 			state.isAuthenticated = true;
 			state.vendor = action.payload.vendor;
 			state.token = action.payload.token;
-			console.log(action.payload)
 			localStorage.setItem("token", action.payload.token);
 			toast(action.payload.message);
 			state.error = "";

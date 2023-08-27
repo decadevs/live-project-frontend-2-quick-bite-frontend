@@ -40,7 +40,6 @@ const CheckOut = () => {
       ...items,
       cartTotal,
     };
-    console.log(payload);
 
     setShow(true);
     // emptyCart();

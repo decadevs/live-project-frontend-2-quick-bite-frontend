@@ -15,7 +15,6 @@ const PopularDelivery = () => {
    }
    const dispatch = useAppDispatch();
    const { popularRestaurant, isLoading } = useAppSelector((state) => state.popularRestaurant);
-   console.log({popularRestaurant, isLoading})
       
    useEffect(()=>{
       dispatch(getPopularRestaurant()) 

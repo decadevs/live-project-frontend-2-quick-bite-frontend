@@ -15,7 +15,6 @@ interface TabPanelProps {
     value: number;
 }
 
-
 interface StyledTabsProps {
     children?: React.ReactNode;
     value: number;
@@ -90,7 +89,7 @@ function a11yProps(index: number) {
 export default function List() {
     const [value, setValue] = React.useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
