@@ -71,7 +71,7 @@ export const vendorPopularFoodsSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getPopularFoods.fulfilled, (state, action) => {
-            state.vendorPopularFoods = action.payload.data
+            state.vendorPopularFoods = action.payload.totalFoods
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)

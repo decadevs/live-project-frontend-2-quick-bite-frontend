@@ -68,9 +68,9 @@ export default function Sidenav() {
     const theme = useTheme();
     // const [open, setOpen] = React.useState(true);
     const navigate = useNavigate()
-    const updateOpen = useAppStore((state) => state.updateOpen)
+    // const updateOpen = useAppStore((state) => state.updateOpen)
     const open = useAppStore((state) => state.dopen)
-    console.log(updateOpen)
+
     
     return (
         <Box sx={{ display: 'flex' }}>

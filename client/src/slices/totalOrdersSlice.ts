@@ -43,7 +43,9 @@ export const getVendorOrders = createAsyncThunk(
     "vendorOrder/getTotalOrders",
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get("/vendor/vendororders");
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const response:any = await axios.get("/vendor/vendororders");
+            localStorage.getItem(response.data.id)
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
             return response.data;
@@ -75,7 +77,7 @@ export const totalOrderSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorOrders.fulfilled, (state, action) => {
-            state.vendorOrders = action.payload.data
+            state.vendorOrders = action.payload.orders
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)

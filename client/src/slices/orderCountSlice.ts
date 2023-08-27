@@ -38,9 +38,9 @@ export const getOrderCount = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/vendor/vendororders");
-      console.log("response  ", response)
+      localStorage.getItem(response.data.id)
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

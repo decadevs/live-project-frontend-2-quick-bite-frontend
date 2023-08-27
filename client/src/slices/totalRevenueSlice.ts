@@ -75,7 +75,7 @@ export const totalRevenueSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorRevenue.fulfilled, (state, action) => {
-            state.vendorRevenue = action.payload.data
+            state.vendorRevenue = action.payload.totalRevenue
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)

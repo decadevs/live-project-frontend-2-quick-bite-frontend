@@ -77,7 +77,7 @@ export default function ProductList() {
         (state) => state.allFoodCount
     );
     console.log("All Foood Details", allFoodCount, isLoading);
-    
+
     React.useEffect(() => {
         dispatch(getAllFoodCount());
     }, [dispatch]);

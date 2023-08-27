@@ -10,7 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getOrderCount } from "../slices/orderCountSlice";
 import Navbar from "../components/dashboard/Navbar";
-import { Box, Button, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import Sidenav from "../components/dashboard/sidenav";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -97,7 +97,7 @@ export default function VendorOrder() {
   const { vendorOrder, isLoading } = useAppSelector(
     (state) => state.vendorOrder
   );
-  console.log("All Order Details", vendorOrder, isLoading);
+  console.log(isLoading)
 
   React.useEffect(() => {
     dispatch(getOrderCount());
@@ -112,8 +112,6 @@ export default function VendorOrder() {
       order.isPaid
     )
   );
-
-  console.log("row", rows);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -184,9 +182,6 @@ export default function VendorOrder() {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
-          <Button variant="contained" color="success">
-            View Orders
-          </Button>
         </Box>
       </Box>
     </>

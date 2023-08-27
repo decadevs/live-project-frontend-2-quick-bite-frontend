@@ -111,7 +111,6 @@ const EditVendor = () => {
             setLoading(true)
             const data = await dispatch(updateVendorProfile(payload)).unwrap()
 
-            console.log(data);
             //showSuccessToast(data.message);
             setLoading(false)
             setVendor(initialData);
