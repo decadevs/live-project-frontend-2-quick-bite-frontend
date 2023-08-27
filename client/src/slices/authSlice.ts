@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import type { PayloadAction } from "@reduxjs/toolkit";
