@@ -4,7 +4,7 @@ import "../styles/Style.css";
 // import { Navbar } from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
-//import PaystackIntegration from "../components/PaystackIntegration";
+import PaystackIntegration from "../components/PaystackIntegration";
 
 const initialData = {
   address: "",
@@ -196,7 +196,7 @@ const CheckOut = () => {
           </div>
         </div>
       </div>
-      {/* {show && <PaystackIntegration closeModal={setShow} />} */}
+      {show && <PaystackIntegration closeModal={setShow} />}
     </div>
   );
 };

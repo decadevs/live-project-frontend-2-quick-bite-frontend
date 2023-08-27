@@ -5,12 +5,12 @@ import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi";
-// import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 // import { getSingleUser } from "../slices/getSingleUserProfileSlice"
 import { toast } from "react-toastify";
 //import { useAppDispatch } from "../store/hooks";
 import { useCart } from "react-use-cart";
-// import {logout} from "../slices/authSlice"
+//  import {logout} from "../slices/authSlice"
 import "./cartmodal.css";
 
 const initialProducts: Product[] = [
@@ -33,12 +33,11 @@ const initialProducts: Product[] = [
 const Header = () => {
   const { isEmpty, totalItems } = useCart();
 
-  //UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
-  // const storedUserData = localStorage.getItem("user");
-  // const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
-  // console.log("details", parsedUserData);
+  const storedUserData = localStorage.getItem("user");
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
+  console.log("details", parsedUserData);
 
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   // const {logout} = useAppSelector((state)=>state.auth.logout)
   const [collapse, setCollapse] = useState(true);
 
@@ -94,15 +93,14 @@ const Header = () => {
           <div className={styles.flexProfile}>
             <div className="flex-icon">
               <img src={ProfileImg} alt="" className={styles.profileImg} />
-              {/*
-              UN-COMMENT THIS SECTION WHEN U HAVE USER DATA IN UR DATABASE AND U ER LOGGED IN
-               <p
+
+              <p
                 style={{
                   fontSize: "18px",
                   fontWeight: "normal",
                   marginInline: "auto",
                 }}
-              >{`${parsedUserData.data.firstname} ${parsedUserData.data.lastname[0]}.`}</p> */}
+              >{`${parsedUserData.data.firstname} ${parsedUserData.data.lastname[0]}.`}</p>
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>

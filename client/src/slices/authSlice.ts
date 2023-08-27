@@ -24,7 +24,7 @@ export interface UserDetails {
 export interface InitialState {
   user: UserDetails;
   data: [];
-  
+  logout:""
   token: string;
   isAuthenticated: boolean;
   error: string;
@@ -36,6 +36,7 @@ const initialState: InitialState = {
   token: "",
   isAuthenticated: false,
   error: "",
+  logout:""
 };
 
 export const login = createAsyncThunk(

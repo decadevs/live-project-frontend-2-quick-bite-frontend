@@ -1,9 +1,10 @@
 import CardSection from "../components/CardSection";
 import "../styles/allVendorFoods.css";
 import Header from "../components/Header";
+import cover from "../assets/cover_photo.jpeg";
 
 const AllVendorFoods = () => {
-  let foods = [
+  const foods = [
     {
       name: "Fried rice",
       description: "hot and spice ",
@@ -21,15 +22,24 @@ const AllVendorFoods = () => {
     { name: "Egusi & fufu", description: "hot and spice ", id: 5, price: 4000 },
   ];
 
+  const vendor = {
+    name: "Chicken Republic",
+    cover_image: "../src/assets/cover_photo.jpeg",
+    rating: 4.5,
+  };
+
   return (
     <>
       <Header />
       <div>
-        <div className="cover-photo">
-          {/* <img src={cover_photo} alt="" /> */}
+        <div
+          className="cover-photo"
+          style={{ backgroundImage: `url(${vendor.cover_image})` }}
+        >
+          {/* <img src={cover} alt="" /> */}
         </div>
         <div className="vendorInfo">
-          <h2>Chicken Republic</h2>
+          <h2>{vendor.name}</h2>
           <p>⭐️ 4.5 | Min order: N2500 | delivery: N1500</p>
         </div>
         <hr />
