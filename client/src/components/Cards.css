@@ -96,7 +96,7 @@ h3,p{
     margin-top: 100px;
     text-align: center;
     font-size: 40px;
-    color: #32c467;
+    color: white;
     font-weight: 700;
 }
 
@@ -104,7 +104,7 @@ h3,p{
     margin-top: 100px;
     text-align: center;
     font-size: 50px;
-    color: #2C7744;
+    color: whitesmoke;
     font-weight: 700;
 }
 
@@ -124,7 +124,7 @@ h3,p{
     text-align: center;
     font-size: 40px;
     font-family: 'Oleo Script', cursive;
-    color: white;
+    color: whitesmoke;
     font-weight: 700;
 }
 .title-newfoods{
@@ -137,4 +137,43 @@ h3,p{
 
 button a {
     color: #1A512E;
+}
+
+
+.new-quickbite{
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    margin-top: 100px;
+    font-size: 120px;
+       /* font-weight: 700; */
+       padding-top: 100px;
+}
+.popular-foods{
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    margin-top: 100px;
+    font-size: 140px;
+    padding-top: 100px;
+}
+
+.all-restaurants{
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    margin-top: 100px;
+    font-size: 100px;
+}
+.all-foods{
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    margin-top: 100px;
+    font-size: 150px;
+    height: 500px;
+    padding-top: 100px;
+}
+.popular-res{
+    text-align: center;
+    font-family: 'Oleo Script', cursive;
+    margin-top: 100px;
+    font-size: 100px;
+    height: 100px
 }
