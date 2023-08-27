@@ -47,6 +47,8 @@ const Header = () => {
   };
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
+  const storedUserData = localStorage.getItem('user');
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
 
 
   return (
@@ -65,6 +67,7 @@ const Header = () => {
           <div className={styles.flexProfile}>
             <div className="flex-icon">
               <img src={ProfileImg} alt="" className={styles.profileImg} />
+               <p style={{fontSize:"18px", fontWeight:"normal", marginInline:"auto"}}>{`${parsedUserData.data.firstname} ${ parsedUserData.data.lastname[0]}.`}</p>
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
