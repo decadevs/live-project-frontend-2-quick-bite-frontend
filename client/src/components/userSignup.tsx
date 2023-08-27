@@ -47,14 +47,13 @@ const SignupForm = () => {
     try {
       // Simulate saving user data to the postgres database
       setLoading(true);
-      console.log(user);
+  
 
       const payload = {
         ...user,
       };
 
       const {data} = await axios.post("/user/register", payload);
-console.log("register", data)
 
       setUser(initialState);
       setSignupSuccess(true);

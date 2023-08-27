@@ -30,7 +30,6 @@ const LoginForm = () => {
 			};
 
 			await dispatch(login(payload)).unwrap();
-			// console.log( "login", payload)
 
 			setEmail(" ");
 			setPassword("");

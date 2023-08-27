@@ -12,7 +12,6 @@ export default function MediaCard() {
 
     const { vendorProfile, isLoading } = useAppSelector((state) => state.vendorProfile);
 
-    console.log(isLoading)
     useEffect(() => {
         dispatch(getVendorProfile());
     }, [dispatch]);

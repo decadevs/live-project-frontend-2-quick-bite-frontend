@@ -44,7 +44,6 @@ const VendorSignupForm = () => {
     e.preventDefault();
 
     try {
-      console.log(vendor);
       setSignupSuccess(true);
 
       setLoading(true);

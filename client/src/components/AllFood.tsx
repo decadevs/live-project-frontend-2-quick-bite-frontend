@@ -10,9 +10,7 @@ import axios from "axios";
 const AllFood = () => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
-  console.log("dispatch", dispatch);
   const { allFoods } = useAppSelector((state) => state.allFoods);
-  console.log('allfoods:', allFoods);
   const handleClick: MouseEventHandler<HTMLImageElement> = () => {
     setShow(!show);
   };
@@ -20,10 +18,10 @@ const AllFood = () => {
   const userGetAllFoods = async () => {
     const { data } = await axios.get("/user/allFoods");
    //  const allFood = data
-    console.log(data);
+
    //  return setAllFood(allFood);
 
-    console.log("alldata", allFood);
+
   };
 
   useEffect(() => {

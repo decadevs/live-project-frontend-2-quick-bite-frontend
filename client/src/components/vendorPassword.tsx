@@ -118,5 +118,4 @@ const VendorPassword = () => {
     </>
   );
 };
-console.log(RouterLink);
 export default VendorPassword;

@@ -9,7 +9,6 @@ const Cards = () => {
   const { allRestaurant, isLoading } = useAppSelector(
     (state) => state.allRestaurant
   );
-  console.log({ allRestaurant, isLoading });
 
   useEffect(() => {
     dispatch(getAllRestaurant());

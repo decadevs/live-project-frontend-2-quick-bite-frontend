@@ -117,5 +117,4 @@ const UserChangePassword = () => {
       
     );
 };
-console.log(RouterLink)
 export default UserChangePassword;

@@ -21,8 +21,6 @@ export default function VendorHome() {
     const { vendorOrders } = useAppSelector((state) => state.vendorOrders)
     const { vendorEarning } = useAppSelector((state) => state.vendorEarning)
 
-
-    console.log(vendorRevenue, isLoading, vendorOrders, vendorEarning)
     useEffect(() => {
         dispatch(getVendorOrders())
         dispatch(getVendorRevenue())

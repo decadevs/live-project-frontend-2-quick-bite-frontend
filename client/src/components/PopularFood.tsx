@@ -12,7 +12,6 @@ const PopularFood = () => {
   
    const dispatch = useAppDispatch();
    const { popularFood, isLoading } = useAppSelector((state) => state.popularFood);
-   console.log({popularFood, isLoading})
 
 
   const handleClick : MouseEventHandler<HTMLImageElement>=()=>{
