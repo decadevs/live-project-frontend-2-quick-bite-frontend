@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import type { PayloadAction } from "@reduxjs/toolkit";
@@ -44,11 +45,8 @@ export const login = createAsyncThunk(
   async (payload: Record<string, string>, thunkAPI) => {
     try {
       const response = await axios.post("/user/login", payload);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
-      
- 
+      localStorage.setItem("user", JSON.stringify(response.data));
       localStorage.setItem("token", response.data.token);
-
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -70,7 +68,9 @@ export const updateUserProfile = createAsyncThunk(
   async (payload: Record<string, string>, thunkAPI) => {
     try {
       const response = await axios.put("/user/editprofile", payload);
+      localStorage.setItem("user", JSON.stringify(response.data))
       return response.data;
+      
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response) {
@@ -91,7 +91,7 @@ export const getPopularFood = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get("/user/popularfoods");
-      return response.data;
+      return response.data.user;
     } catch (error) {
       console.log(error);
     }
@@ -141,10 +141,10 @@ export const authSlice = createSlice({
     });
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
       // Add user to the state array
-      const newUser = action.payload.user;
-      state.user = newUser;
+      const newUser = action.payload.data;
+      state.user = action.payload.data;
       toast(action.payload.message);
-      localStorage.setItem("user", JSON.stringify(newUser));
+   
     });
     builder.addCase(updateUserProfile.rejected, (state, action) => {
       // Add user to the state array

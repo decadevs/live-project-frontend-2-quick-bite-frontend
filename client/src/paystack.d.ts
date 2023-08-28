@@ -2,7 +2,7 @@ declare module '@paystack/inline-js' {
     interface PaystackTransactionOptions {
     Key:string;
       email: string;
-      amount: string;
+      amount: number;
       firstname:string;
       lastname:string;
       text?:string;

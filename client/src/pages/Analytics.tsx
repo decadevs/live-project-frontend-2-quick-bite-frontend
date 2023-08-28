@@ -17,6 +17,7 @@ import { getOrderCount } from "../slices/orderCountSlice";
 export default function Home() {
   const dispatch = useAppDispatch();
   const { allFoodCount, isLoading } = useAppSelector((state) => state.allFoodCount);
+  console.log(isLoading)
 
   const { totalFoods } = useAppSelector((state) => state.totalFood);
 
@@ -111,7 +112,7 @@ const totalVendorOrder = vendorOrder?.length
                       </CardContent>
                     </Card>
                   </Box>
-                  <Box sx={{ width: "50%", height: "50%" }}>
+                  <Box sx={{ width: "50%" }}>
                     <Card
                       sx={{ height: 24 + "vh", marginBottom: "14px" }}
                       className="gradient"

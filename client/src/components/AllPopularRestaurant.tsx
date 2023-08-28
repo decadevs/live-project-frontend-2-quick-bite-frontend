@@ -1,8 +1,8 @@
-import React from 'react'
+
 import  { MouseEventHandler, useState } from 'react';
-import Dropdown from "../assets/dropdown.svg"
+
 import styles from "../styles/newQuickbite.module.css"
-import  FoodOne from "../assets/food1.jpeg"
+import Image from "../assets/restaurant-background.jpg";
 import { Link } from 'react-router-dom';
 
 const AllPopularRestaurant = () => {
@@ -20,7 +20,7 @@ const AllPopularRestaurant = () => {
        <div className={styles.newQuickFlex}>
            <h2 className={styles.newQuickText}>All Restaurants</h2>
             <div onClick={handleClick} style={{cursor: "pointer"}}>
-            {show ? <i className="fa-solid fa-chevron-up" style={{fontSize:"20px"}}></i> :<img src={Dropdown} alt="" className={styles.dropdown} /> }
+            {show ? <i className="fa-solid fa-chevron-up" style={{fontSize:"20px"}}></i> :<i className="fa-solid fa-chevron-down" style={{ fontSize: "20px" }}></i>}
             </div >
            
            </div>
@@ -29,7 +29,7 @@ const AllPopularRestaurant = () => {
            <div className={ ` ${styles.cardContainer}`}>
             <div className={styles.Card}>
                 <div className={styles.cardHead}>
-                   <img src={FoodOne} alt="" className="h-60 w-90" />
+                   <img src={Image} alt="" className="h-60 w-90" />
                 </div>
                 <div className={styles.cardBody}>
                    <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -45,7 +45,7 @@ const AllPopularRestaurant = () => {
                </div>
                 <div className={styles.Card}>
                 <div className={styles.cardHead}>
-                   <img src={FoodOne} alt="" className="h-60 w-90" />
+                   <img src={Image} alt="" className="h-60 w-90" />
                 </div>
                 <div className={styles.cardBody}>
                    <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -61,7 +61,7 @@ const AllPopularRestaurant = () => {
                </div>
                 <div className={styles.Card}>
                 <div className={styles.cardHead}>
-                   <img src={FoodOne} alt="" className="h-60 w-90" />
+                   <img src={Image} alt="" className="h-60 w-90" />
                 </div>
                 <div className={styles.cardBody}>
                    <h2 className={styles.cardheading}>Bruncherie</h2>

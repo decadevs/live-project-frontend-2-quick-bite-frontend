@@ -18,13 +18,13 @@ export default function AccordionDash() {
     dispatch(getPopularFoods());
   }, [dispatch]);
 
-  const popularFoods = vendorPopularFoods.filter(
+  const popularFoods = vendorPopularFoods?.filter(
     (food) => food.order_count !== undefined && food.order_count > 10
   );
 
   return (
     <div>
-      {popularFoods.length > 0 ? (
+      {popularFoods?.length > 0 ? (
         popularFoods.map((food, index) => (
           <Accordion key={index}>
             <AccordionSummary

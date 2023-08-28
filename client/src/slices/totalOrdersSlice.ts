@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 export interface VendorDetails {
@@ -43,6 +43,7 @@ export const getVendorOrders = createAsyncThunk(
     "vendorOrder/getTotalOrders",
     async (_, thunkAPI) => {
         try {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const response:any = await axios.get("/vendor/vendororders");
             localStorage.getItem(response.data.id)
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
@@ -79,7 +80,7 @@ export const totalOrderSlice = createSlice({
             state.vendorOrders = action.payload.orders
             state.message = action.payload.message
             state.error = "";
-            toast.success(action.payload.message)
+            // toast.success(action.payload.message)
 
         });
 
@@ -87,8 +88,8 @@ export const totalOrderSlice = createSlice({
             // Add user to the state array
             state.isLoading = false;
             state.message = ""
-            state.error = action.payload as string;
-            toast.error(action.payload as string)
+            state.error = action.error as string;
+            // toast.error(action.payload as string)
         });
     },
 });

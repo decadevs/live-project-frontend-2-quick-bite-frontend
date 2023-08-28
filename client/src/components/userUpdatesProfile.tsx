@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { updateUserProfile } from "../slices/authSlice";
 import { showErrorToast } from "../utility/toast";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Link, Link as RouterLink, useNavigate } from "react-router-dom";
+import {  Link as RouterLink, useNavigate } from "react-router-dom";
 import styles from "../styles/header.module.css";
 import Header from "./Header";
 
@@ -27,14 +27,17 @@ const UserUpdatesProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUser({
-      ...user,
-      firstName: logedInUser?.firstname as string,
-      lastName: logedInUser?.lastname as string,
-      email: logedInUser?.email as string,
-      address: logedInUser?.address as string,
-      phoneNumber: logedInUser?.phone_no as string,
-    });
+    if(logedInUser){
+      setUser({
+        ...user,
+        firstName: logedInUser?.firstname as string,
+        lastName: logedInUser?.lastname as string,
+        email: logedInUser?.email as string,
+        address: logedInUser?.address as string,
+        phoneNumber: logedInUser?.phone_no as string,
+      });
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logedInUser]);
 
@@ -63,8 +66,8 @@ const UserUpdatesProfile = () => {
       };
 
       setLoading(true);
-      const data = await dispatch(updateUserProfile(payload)).unwrap();
-
+      await dispatch(updateUserProfile(payload)).unwrap();
+       
       setLoading(false);
       setUser(initialUserData);
       navigate("/userlanding");
