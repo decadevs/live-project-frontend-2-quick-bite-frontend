@@ -49,7 +49,7 @@ const PopularFoodsCard = () => {
                     <div className="btn"></div>
 
                     <Link to="/allvendorfoods">
-                        <button>
+                        <button onClick={()=>localStorage.setItem('vendorid', item.vendorId)}>
                             <a className="view">view more</a>
                         </button>
                     </Link>
