@@ -48,7 +48,7 @@ const PopularFood = () => {
         ) : (
           <>
             <div className={styles.cardContainer}>
-              {popularFood?.map((food) => (
+              {popularFood?.map((food: any) => (
                 <Link to="/4" key={food.id}>
                   {" "}
                   <div className={styles.Card}>

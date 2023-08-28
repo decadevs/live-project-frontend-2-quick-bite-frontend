@@ -13,7 +13,6 @@ const NewQuickbite = () => {
    const [show, setShow] = useState(false)
    const dispatch = useAppDispatch();
    const { newFood, isLoading } = useAppSelector((state) => state.newFood);
-   console.log({ 'This New Food': newFood, isLoading })
 
    useEffect(() => {
       dispatch(getNewFoods())

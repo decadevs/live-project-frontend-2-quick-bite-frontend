@@ -14,6 +14,9 @@ import totalRevenueReducer from "../slices/totalRevenueSlice";
 import totalEarningReducer from "../slices/totalEarningSlice";
 import totalOrderReducer from "../slices/totalOrdersSlice";
 import vendorPopularFoodsReducer from '../slices/vendorPopularFoodsSlice';
+import UserGetAllRestaurantReducer from "../slices/getAllRestaurantSlice";
+import singleVendorReducer from "../slices/singleVendorSlice";
+
 
 export const store = configureStore({
 	reducer: {
@@ -31,7 +34,9 @@ export const store = configureStore({
 		vendorRevenue: totalRevenueReducer,
 		vendorEarning: totalEarningReducer,
 		vendorOrders: totalOrderReducer,
-		vendorPopularFood: vendorPopularFoodsReducer
+		vendorPopularFood: vendorPopularFoodsReducer,
+		allRestaurant: UserGetAllRestaurantReducer,
+		getSingleVendor: singleVendorReducer
 	},
 });
 

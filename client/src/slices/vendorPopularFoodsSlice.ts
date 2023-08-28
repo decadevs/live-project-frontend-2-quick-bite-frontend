@@ -41,7 +41,7 @@ export const getPopularFoods = createAsyncThunk(
         try {
             const response = await axios.get("/vendor/popularfoods");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
-            // localStorage.setItem("token", response.data.token);
+            localStorage.getItem(response.data.id);
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -71,7 +71,7 @@ export const vendorPopularFoodsSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getPopularFoods.fulfilled, (state, action) => {
-            state.vendorPopularFoods = action.payload.data
+            state.vendorPopularFoods = action.payload.totalFoods
             state.message = action.payload.message
             state.error = "";
             toast.success(action.payload.message)

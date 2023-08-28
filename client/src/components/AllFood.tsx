@@ -4,20 +4,27 @@ import Dropdown from "../assets/dropdown.svg";
 import FoodOne from "../assets/food1.jpeg";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getUserAllFood } from "../slices/userGetAllFoodSlice";
+// import { getUserAllFoods } from "../slices/userGetAllFoodSlice";
+import axios from "axios";
 
 const AllFood = () => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
-  const { userAllFood, token } = useAppSelector((state) => state.userAllFood);
-  console.log(userAllFood);
+
+  //   const { allFoods } = useAppSelector((state) => state.allFoods);
   const handleClick: MouseEventHandler<HTMLImageElement> = () => {
-    setShow(!show);
+    //     setShow(!show);
+    //   };
+    //   const [allFood, setAllFood] = useState([]);
+    //   const userGetAllFoods = async () => {
+    //     const { data } = await axios.get("/user/allFoods");
+    //    //  const allFood = data
+    //    //  return setAllFood(allFood);
   };
 
-  useEffect(() => {
-    dispatch(getUserAllFood());
-  }, [dispatch, token]);
+  //   useEffect(() => {
+  //     userGetAllFoods();
+  //   }, []);
 
   return (
     <div id="pFood" className={styles.popular}>

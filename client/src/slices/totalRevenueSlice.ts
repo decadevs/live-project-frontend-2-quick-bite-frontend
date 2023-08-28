@@ -44,6 +44,7 @@ export const getVendorRevenue = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get("/vendor/revenuevendor");
+            localStorage.getItem(response.data.id)
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
             return response.data;
@@ -75,7 +76,7 @@ export const totalRevenueSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorRevenue.fulfilled, (state, action) => {
-            state.vendorRevenue = action.payload.data
+            state.vendorRevenue = action.payload.totalRevenue
             state.message = action.payload.message
             state.error = "";
             toast.success(action.payload.message)

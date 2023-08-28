@@ -5,40 +5,44 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/httpService";
 
 
-export interface NewFoodDetails{
-	id: string;
-    order_count: number;
-    name: string;
-    date_created: Date;
-    date_updated: Date;
-    vendorId: string;
-    price: number;
-    food_image: string;
-    ready_time: string;
+export interface AllRestaurantDetails{
+    id: string;
+    email?: string;
+    restaurant_name?: string;
+    name_of_owner?: string;
+    company_name: string;
+    password: string;
+    address?: string;
+    phone_no?: string;
     isAvailable: boolean;
-    rating: number;   
-    description: string;
+    earnings: number;
+    revenue: number;
+    role: string;
+    salt: string;
+    cover_image?: string;
+    rating: number;
+    orders: number
    
 }
 export interface InitialState {	
-      newFood: NewFoodDetails[];	
+      allRestaurant: AllRestaurantDetails[];	
 	isLoading: boolean
 	error: string;
     message:string
   }
   const initialState:InitialState={
-     newFood:[],
+     allRestaurant:[],
      isLoading:false,
      error:"",
      message: ""
   } 
  
   
-  export const getNewFoods = createAsyncThunk(
-    "newFood/getNewFood",
+  export const getAllRestaurant = createAsyncThunk(
+    "allRestaurant/getAllRestaurant",
     async (_, thunkAPI) => {
       try {
-        const response = await axios.get("/user/getNewFoods");
+        const response = await axios.get("/user/getVendors");
         return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error:any) {
@@ -55,21 +59,21 @@ export interface InitialState {
     }
   );
   
-  export const newFoodSlice = createSlice({
-    name: "newFood",
+  export const getAllRestaurantSlice = createSlice({
+    name: "allRestaurant",
     initialState,
     reducers: {},
     extraReducers: (builder) => {  
      
-      builder.addCase(getNewFoods.pending, (state) => {
+      builder.addCase(getAllRestaurant .pending, (state) => {
         // Add user to the state array
         state.isLoading = true;
         state.message = ""
         state.error =""
       });
-      builder.addCase(getNewFoods.fulfilled, (state, action) => {
+      builder.addCase(getAllRestaurant .fulfilled, (state, action) => {
         // Add user to the state array
-         state.newFood = action.payload.data
+         state.allRestaurant = action.payload.data
          state.message = action.payload.message
          state.isLoading = false
         state.error = "";
@@ -77,7 +81,7 @@ export interface InitialState {
 
       });
   
-      builder.addCase(getNewFoods.rejected, (state, action) => {
+      builder.addCase(getAllRestaurant .rejected, (state, action) => {
         // Add user to the state array
         state.isLoading = false;
         state.message = ""
@@ -90,4 +94,4 @@ export interface InitialState {
   // Action creators are generated for each case reducer function
 //   export const { logout, loginSuccess } = popularFoodSlice.actions;
   
-  export default newFoodSlice.reducer;
+  export default getAllRestaurantSlice.reducer;

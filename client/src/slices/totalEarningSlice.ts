@@ -44,6 +44,7 @@ export const getVendorEarnings = createAsyncThunk(
     async (_, thunkAPI) => {
         try {
             const response = await axios.get("/vendor/totalearnings");
+            localStorage.getItem(response.data.id)
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
             return response.data;
@@ -75,7 +76,7 @@ export const totalEarningSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorEarnings.fulfilled, (state, action) => {
-            state.vendorEarning = action.payload.data
+            state.vendorEarning = action.payload.totalEarning
             state.message = action.payload.message
             state.error = "";
             toast.success(action.payload.message)

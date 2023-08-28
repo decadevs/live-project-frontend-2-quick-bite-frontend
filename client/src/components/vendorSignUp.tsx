@@ -44,7 +44,6 @@ const VendorSignupForm = () => {
     e.preventDefault();
 
     try {
-      console.log(vendor);
       setSignupSuccess(true);
 
       setLoading(true);
@@ -64,7 +63,7 @@ const VendorSignupForm = () => {
       setLoading(false);
 
       // navigate("/vendorLogin")
-      
+      localStorage.clear()
       setTimeout(() => {
         navigate("/vendorLogin");
       }, 500) 

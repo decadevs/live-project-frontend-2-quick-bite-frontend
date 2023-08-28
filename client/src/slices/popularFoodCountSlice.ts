@@ -39,7 +39,7 @@ export const getTotalFood = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/vendor/popularfoods");
-      console.log("response  ", response);
+      localStorage.getItem(response.data.id)
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
       // localStorage.setItem("token", response.data.token);
       return response.data;
@@ -73,7 +73,6 @@ export const getTotalFoodSlice = createSlice({
     builder.addCase(getTotalFood.fulfilled, (state, action) => {
       // Add user to the state array
       state.totalFoods = action.payload.data;
-
       state.message = action.payload.message;
       state.isAuthenticated = true;
       state.error = "";

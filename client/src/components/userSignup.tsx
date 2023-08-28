@@ -47,20 +47,19 @@ const SignupForm = () => {
     try {
       // Simulate saving user data to the postgres database
       setLoading(true);
-      console.log(user);
+  
 
       const payload = {
         ...user,
       };
 
       const {data} = await axios.post("/user/register", payload);
-console.log("register", data)
 
       setUser(initialState);
       setSignupSuccess(true);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data))
-     
+      localStorage.setItem("email", data.userDetails.email);
       setLoading(false);
       navigate("/otp");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

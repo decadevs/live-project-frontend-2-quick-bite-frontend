@@ -44,8 +44,8 @@ export const vendorLogin = createAsyncThunk(
 			const response = await axios.post("/vendor/login", payload);
 
 			localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
-			
-			console.log("response", response.data.token)
+			localStorage.setItem("id", JSON.stringify(response.data.vendor.id));
+			// console.log("response", response.data.token)
 			return response.data;
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
@@ -86,29 +86,29 @@ export const updateVendorProfile = createAsyncThunk(
 );
 
 
-export const getSingleVendor = createAsyncThunk(
-	"singleVendor/getOneUser",
-	async (_, thunkAPI) => {
-	  try {
-		const response = await axios.get("/user/singlvendor");
-	  //   localStorage.setItem("user", JSON.stringify(response.data.user));
-		//localStorage.setItem("token", response.data.token);
+// export const getSingleVendor = createAsyncThunk(
+// 	"singleVendor/getOneUser",
+// 	async (_, thunkAPI) => {
+// 	  try {
+// 		const response = await axios.get("/user/singlvendor");
+// 	  //   localStorage.setItem("user", JSON.stringify(response.data.user));
+// 		//localStorage.setItem("token", response.data.token);
   
-		return response.data;
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	  } catch (error: any) {
-		if (error.response) {
-		  return thunkAPI.rejectWithValue(error.response.data.message);
-		}
-		if (error.request) {
-		  return thunkAPI.rejectWithValue("Network Error");
-		}
-		if (error.message) {
-		  return thunkAPI.rejectWithValue(error.message);
-		}
-	  }
-	}
-  );
+// 		return response.data;
+// 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// 	  } catch (error: any) {
+// 		if (error.response) {
+// 		  return thunkAPI.rejectWithValue(error.response.data.message);
+// 		}
+// 		if (error.request) {
+// 		  return thunkAPI.rejectWithValue("Network Error");
+// 		}
+// 		if (error.message) {
+// 		  return thunkAPI.rejectWithValue(error.message);
+// 		}
+// 	  }
+// 	}
+//   );
   
 
 
@@ -170,24 +170,24 @@ export const vendorAuthSlice = createSlice({
 		});
 
 
-		builder.addCase(getSingleVendor.pending, (state) => {
-			// Add user to the state array
-			state.isAuthenticated = false;
-			state.error = "";
-		  });
-		  builder.addCase(getSingleVendor.fulfilled, (state, action) => {
-			// Add user to the state array
-			state.isAuthenticated = true;
-			state.vendor = action.payload.data;
-			state.token = action.payload.token;
+		// builder.addCase(getSingleVendor.pending, (state) => {
+		// 	// Add user to the state array
+		// 	state.isAuthenticated = false;
+		// 	state.error = "";
+		//   });
+		//   builder.addCase(getSingleVendor.fulfilled, (state, action) => {
+		// 	// Add user to the state array
+		// 	state.isAuthenticated = true;
+		// 	state.vendor = action.payload.data;
+		// 	state.token = action.payload.token;
 	  
-			state.error = "";
-		  });
-		  builder.addCase(getSingleVendor.rejected, (state, action) => {
-			// Add user to the state array
-			state.isAuthenticated = false;
-			state.error = action.payload as string;
-		  });
+		// 	state.error = "";
+		//   });
+		//   builder.addCase(getSingleVendor.rejected, (state, action) => {
+		// 	// Add user to the state array
+		// 	state.isAuthenticated = false;
+		// 	state.error = action.payload as string;
+		//   });
 	},
 });
 

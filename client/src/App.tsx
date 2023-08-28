@@ -37,6 +37,8 @@ import UserLandingpg from "./pages/userLandingpg";
 import { CartProvider } from "react-use-cart";
 import { ProtectRoute } from "./utility/auth";
 import CheckOut from "./pages/CheckOut";
+import UserChangePassword from "./components/userChangePassword";
+import OrdersModal from "./components/VendorAllFoodModal";
 
 function App() {
   return (
@@ -69,6 +71,10 @@ function App() {
               path="/userupdatesprofile"
               element={<UserUpdatesProfile />}
             ></Route>
+            <Route
+              path="/userChangePassword"
+              element={<UserChangePassword />}
+            ></Route>
             <Route path="/userlanding" element={<UserLandingpg />}></Route>
             <Route path="/editvendor" element={<EditVendor />}></Route>
             <Route path="/vendordashboard" element={<VendorHome />}></Route>
@@ -81,6 +87,7 @@ function App() {
             <Route path="/popular" element={<PopularResPage />}></Route>
             <Route path="/popularfoods" element={<PopularFoodsPage />}></Route>
             <Route path="/checkout" element={<CheckOut />}></Route>
+            <Route path="/vendorviewallfood" element={<OrdersModal />}></Route>
           </Routes>
           <Footer />
         </main>

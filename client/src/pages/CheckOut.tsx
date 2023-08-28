@@ -36,10 +36,9 @@ const CheckOut = () => {
 
     const payload = {
       ...formData,
-      ...items,
+      items: [...items],
       cartTotal,
     };
-    console.log(payload);
 
     setShow(true);
     // emptyCart();

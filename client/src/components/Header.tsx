@@ -3,7 +3,7 @@ import styles from "../styles/header.module.css";
 import { Link } from "react-router-dom";
 import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
-import ShoppingCart, { Product } from "../components/CartModal";
+import ShoppingCart from "../components/CartModal";
 import { GiShoppingBag } from "react-icons/gi";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 // import { getSingleUser } from "../slices/getSingleUserProfileSlice"
@@ -12,23 +12,6 @@ import { toast } from "react-toastify";
 import { useCart } from "react-use-cart";
 //  import {logout} from "../slices/authSlice"
 import "./cartmodal.css";
-
-const initialProducts: Product[] = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: 10,
-    count: 2,
-    image: "product1.jpg",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: 15,
-    count: 1,
-    image: "product2.jpg",
-  },
-];
 
 const Header = () => {
   const { isEmpty, totalItems } = useCart();
@@ -69,14 +52,6 @@ const Header = () => {
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
 
-  // const { singleUser} = useAppSelector((state) => state.singleUser)
-  // console.log(singleUser)
-
-  // useEffect(() => {
-
-  //   dispatch(getSingleUser())
-  // }, [dispatch])
-
   return (
     <div>
       <nav className={`${styles.navbar}  `}>
@@ -110,14 +85,42 @@ const Header = () => {
          absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`}
             >
               {menus.map((menu) => (
-                <li className={styles.menu} key={menu.id}>
-                  {menu.Order}
-                  <br />{" "}
-                  <Link to="/userupdatesprofile">{menu.Updateprofile} </Link>
-                  <br />
-                  {menu.Changepassword} <br />
-                  <Link to="/userlanding">{menu.Dashboard} </Link>
-                </li>
+                <ul className={styles.menu} key={menu.id}>
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="" className={styles.dropdown_link}>
+                      {" "}
+                      {menu.Order}{" "}
+                    </Link>{" "}
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userupdatesprofile"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Updateprofile}{" "}
+                    </Link>
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userChangePassword"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Changepassword}
+                    </Link>{" "}
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="/userlanding" className={styles.dropdown_link}>
+                      {menu.Dashboard}{" "}
+                    </Link>{" "}
+                  </li>
+                </ul>
               ))}
             </ul>
 
