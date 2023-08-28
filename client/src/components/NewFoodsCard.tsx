@@ -52,8 +52,8 @@ useEffect(() => {
                     <div className="btn"></div>
 
                     <Link to="/allvendorfoods">
-                        <button>
-                            <a className="view">view more</a>
+                        <button onClick={()=>localStorage.setItem('vendorid', item.vendorId)}>
+                            <a className="view">Order Now</a>
                         </button>
                     </Link>
                 </div>
