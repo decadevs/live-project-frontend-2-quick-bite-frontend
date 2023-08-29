@@ -90,6 +90,8 @@ h3,p{
     color: #1A512E;
     text-decoration: none;
     font-weight: bold;
+    font-family: 'Oleo Script', cursive;
+    font-size: 20px;
 
 }
 
@@ -162,6 +164,7 @@ button a {
     font-family: 'Oleo Script', cursive;
     margin-top: 100px;
     font-size: 100px;
+    padding-top: 50px;
 }
 .all-foods{
     text-align: center;
@@ -176,5 +179,25 @@ button a {
     font-family: 'Oleo Script', cursive;
     margin-top: 100px;
     font-size: 100px;
-    height: 100px
+    height: 100px;
+    padding-top: 100px;
+}
+
+.card-body{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    
+}
+
+
+.rating{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+.star{
+    color: rgb(215, 189, 40);
+    border-color: black;
+    cursor: pointer;
+    /* display: inline-block; */
+    margin-right: 5px;
 }

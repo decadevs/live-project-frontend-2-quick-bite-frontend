@@ -4,6 +4,8 @@ import Image1 from "../assets/1food.jpg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getPopularFood } from "../slices/popularSlice";
 import { useEffect } from "react";
+
+
 const PopularFoodsCard = () => {
 
   const dispatch = useAppDispatch();
@@ -23,6 +25,26 @@ const PopularFoodsCard = () => {
     width: '100%',
     height: '420px'
   };
+  const renderStars = (rating: number) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(
+          <span key={i} className="star">
+            &#9733;
+          </span>
+        );
+      } else {
+        stars.push(
+          <span key={i} className="star">
+            &#9734;
+          </span>
+        );
+      }
+    }
+    return stars;
+  };
+
 
   //const Image2 = popularFood.map((item) => item.food_image)
   // const VendorName = popularFood.map((item) => item.name)
@@ -44,13 +66,20 @@ const PopularFoodsCard = () => {
                         <h3 style={{ fontSize: '1.5rem', color: 'green', fontWeight: 'bold' }}>{item.name}</h3>
                     </div>
                     <div className="card-body">
-                        <p>{item.description}</p>
+                        <p> {item.description} <br/>
+                        Price : {item.price} </p>
                     </div>
-                    <div className="btn"></div>
+                    <div>
+                    <p className="rating">
+                  {" "}
+                  Rating :
+                  <span className="star"> {renderStars(item.rating)} </span>
+                </p>
+                    </div>
 
                     <Link to="/allvendorfoods">
                         <button onClick={()=>localStorage.setItem('vendorid', item.vendorId)}>
-                            <a className="view">view more</a>
+                            <a className="view">Order Now</a>
                         </button>
                     </Link>
                 </div>
