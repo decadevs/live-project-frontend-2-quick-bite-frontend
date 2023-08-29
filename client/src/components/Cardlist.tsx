@@ -53,7 +53,7 @@ const Cardlist = () => {
 
 <div>
 <div className="title-restaurants" style={titleStyle}>
-<h1 className='' >All Restaurants</h1>
+<h1 className='all-restaurants' >All Restaurants</h1>
 </div>
 <div className="wrapper">
 {allRestaurant?.map((item, index) => (
@@ -74,19 +74,12 @@ const Cardlist = () => {
                   <span className="star"> {renderStars(item.rating)} </span>
                 </p>
               </div>
-            <div>
-            <p className="rating">
-          {" "}
-          Rating :
-          <span className="star"> {renderStars(item.rating)} </span>
-        </p>
-            </div>
 
             <Link to="/allvendorfoods">
                 <button
                   onClick={() => localStorage.setItem("vendorid", item.id)}
                 >
-                  <a className="view">Order now</a>
+                  <a className="view">Order Now</a>
                 </button>
               </Link>
         </div>

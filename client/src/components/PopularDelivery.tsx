@@ -42,7 +42,7 @@ const PopularDelivery = () => {
           popularRestaurant?.slice(0,3).map((restaurant)=>(
              <div className={styles.Card} key={restaurant.id}>
             <div className={styles.cardHead}>
-               <img src={restaurant.cover_image} alt="" className="h-60 w-90" />
+               <img src={restaurant.cover_image} alt="" className="h-60 w-100" />
             </div >
             <div className={styles.cardBody}>
                <h2 className={styles.cardheading}>{restaurant.restaurant_name}</h2>
