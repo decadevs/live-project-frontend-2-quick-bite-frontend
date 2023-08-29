@@ -44,6 +44,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
 }) => {
 
   const initialData: Food = {
+    
     name: "",
     price: "",
     ready_time: "",
@@ -84,7 +85,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       setLoading(true)
 
       const formData = new FormData()
-
+       
       formData.append("name", createFood.name)
       formData.append("price", createFood.price)
       formData.append("ready_time", createFood.ready_time)
@@ -95,6 +96,7 @@ const VendorChild: React.FC<VendorCreatesFoodProps> = ({
       }
 
       const {data} = await axios.post("/vendor/createfood", formData)
+      console.log(data)
 
       setCreateFood(initialData)
       showSuccessToast(data.message)
