@@ -130,7 +130,7 @@ const SignupForm = () => {
               required
             />
             <span
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute top-1/3 right-4 transform -translate-y-1/2 cursor-pointer"
               onClick={handleTogglePasswordVisibility}
             >
               {showPassword ? (
@@ -161,7 +161,7 @@ const SignupForm = () => {
               required
             />
             <span
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute top-1/3 right-4 transform -translate-y-1/2 cursor-pointer"
               onClick={handleTogglePasswordVisibility2}
             >
               {closePassword ? (

@@ -1,11 +1,11 @@
 
 import { useState, ChangeEvent } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Input from './reusableComponents/input';
 import { showErrorToast, showSuccessToast } from "../utility/toast";
 import axios from "../api/httpService";
-import Header from './Header';
+// import Header from './Header';
 
 const initialData = {
     oldPassword: "",
@@ -16,6 +16,9 @@ const initialData = {
 const UserChangePassword = () => {
     const [passwordDetails, setPasswordDetails] = useState(initialData);
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(true)
+
+    const toggle =()=> setShowPassword(!showPassword)
     // const [newPassword, setNewPassword] = useState('');
     // const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const navigate = useNavigate();
@@ -62,14 +65,14 @@ const UserChangePassword = () => {
     };
     return (
         <>
-            {<Header />}
+            {/* {<Header />} */}
             <div className="flex justify-center items-center h-screen bg-edf0eb px-4">
                 <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                     <h2 className="text-2xl font-bold mb-4">User Change Password </h2>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-4">
+                        <div className="mb-4" style={{position:"relative"}}>
                             <Input
-                                type="password"
+                               type={showPassword ? "password" : "text" }
                                 placeholder="Old password"
                                 id="password"
                                 name="oldPassword"
@@ -77,11 +80,14 @@ const UserChangePassword = () => {
                                 value={passwordDetails.oldPassword}
                                 onChange={handlePasswordChange}
                             />
+                            <span onClick={toggle} style={{position:"absolute", right:"15px", top:"10px"}}>
+                           {showPassword ? <i className="fa fa-eye" ></i>  : <i className="fas fa-eye-slash"></i> }
+                   </span>
                         </div>
-                        <div className="mb-4">
+                        <div className="mb-4" style={{position:"relative"}}>
 
                             <Input
-                                type="password"
+                                type={showPassword ? "password" : "text" }
                                 placeholder="New password"
                                 id="newPassword"
                                 name="newPassword"
@@ -89,11 +95,14 @@ const UserChangePassword = () => {
                                 value={passwordDetails.newPassword}
                                 onChange={handlePasswordChange}
                             />
+                                   <span onClick={toggle} style={{position:"absolute", right:"15px", top:"10px"}}>
+                           {showPassword ? <i className="fa fa-eye" ></i>  : <i className="fas fa-eye-slash"></i> }
+                   </span>
                         </div>
-                        <div className="mb-4">
+                        <div className="mb-4" style={{position:"relative"}}>
 
                             <Input
-                                type="password"
+                              type={showPassword ? "password" : "text" }
                                 placeholder="Confirm password"
                                 id="confirmNewPassword"
                                 name="confirmPassword"
@@ -102,6 +111,9 @@ const UserChangePassword = () => {
                                 onChange={handlePasswordChange}
                                 required
                             />
+                             <span onClick={toggle} style={{position:"absolute", right:"15px", top:"10px"}}>
+                           {showPassword ? <i className="fa fa-eye" ></i>  : <i className="fas fa-eye-slash"></i> }
+                   </span>
                         </div>
 
                         <button

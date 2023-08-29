@@ -10,11 +10,15 @@ const VendorLoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [passwordValidation, setPasswordValidation] = useState(false);
-	const [showPassword, setShowPassword] = useState(false);
+    const [passwordValidation, setPasswordValidation] = useState(true);
+	// const [showPassword, setShowPassword] = useState(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [formValid, setFormValid] = useState(false);
     const [loading, setLoading] = useState(false);
+
+    const [showPassword, setShowPassword] = useState(true)
+
+    const toggle =() => setShowPassword(!showPassword)
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -59,6 +63,8 @@ const VendorLoginForm = () => {
     return (
         <>
         {/* <Header/> */}
+       
+        
          <div className="flex justify-center items-center h-screen bg-edf0eb px-4"> 
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
                 <h2 className="text-2xl font-bold mb-4">Vendor Login</h2>
@@ -76,12 +82,12 @@ const VendorLoginForm = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <div className="mb-4">
+                <div className="mb-4" style={{position:"relative"}}>
                     {/* <label htmlFor="password" className="block font-medium">
                         Password
                     </label> */}
                     <Input
-                        type="password"
+                        type={showPassword ? "password" : "text" }
                         name="password"
                         placeholder="Enter password"
                         id="password"
@@ -89,6 +95,11 @@ const VendorLoginForm = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                   <span onClick={toggle} style={{position:"absolute", right:"15px", top:"10px"}}>
+                    {showPassword ? <i className="fa fa-eye" ></i>  : <i className="fas fa-eye-slash"></i> }
+                   </span>
+                   
+                     
                 </div>
                 <button
                     className="w-full p-2 bg-deepBlue text-white rounded-xl"

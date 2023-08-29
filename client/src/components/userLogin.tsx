@@ -102,7 +102,7 @@ const LoginForm = () => {
 						required
 					/>
 					<span
-						className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+						className="absolute top-1/3 right-4 transform -translate-y-1/2 cursor-pointer"
 						onClick={handleTogglePasswordVisibility}
 					>
 						{showPassword ? (
@@ -120,8 +120,14 @@ const LoginForm = () => {
 				)}
 				<p className="text-black text-center mt-4 mb-4">
 					Login as a Vendor{" "}
-					<RouterLink to="/vendorlogin" className="text-deepBlue font-bold">
+					<RouterLink to="/vendorlogin" style={{textDecoration:"none"}} className="text-deepBlue font-bold">
 						Here
+					</RouterLink>
+				</p>
+				<p className="text-black text-center mt-4 mb-4">
+					Not registered : {" "}
+					<RouterLink to="/register"  style={{textDecoration:"none"}} className="text-deepBlue font-bold">
+						Click Here
 					</RouterLink>
 				</p>
 				<button

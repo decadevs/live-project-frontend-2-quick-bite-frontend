@@ -1,9 +1,10 @@
 import CardSection from "../components/CardSection";
 import "../styles/allVendorFoods.css";
 import Header from "../components/Header";
+import HeaderNotAuth from "../components/HeaderNotAuth"
 
 const AllVendorFoods = () => {
-  let foods = [
+  const foods = [
     {
       name: "Fried rice",
       description: "hot and spice ",
@@ -23,7 +24,10 @@ const AllVendorFoods = () => {
 
   return (
     <>
-      <Header />
+              {
+        localStorage.getItem('token') ? <Header/> :<HeaderNotAuth/>
+        
+        }
       <div>
         <div className="cover-photo">
           {/* <img src={cover_photo} alt="" /> */}
