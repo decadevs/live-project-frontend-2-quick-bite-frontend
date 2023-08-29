@@ -5,13 +5,13 @@ import Grid from "@mui/material/Grid";
 import "../styles/Dash.css";
 import GeoChart from "../charts/GeoChart";
 import PieChart from "../charts/PieChart";
-import HBarChart from "../charts/HBarChart";
 import CountUp from "react-countup";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getAllFoodCount } from "../slices/getAllFoodCountSlice";
 import { getTotalFood } from "../slices/popularFoodCountSlice";
 import { getOrderCount } from "../slices/orderCountSlice";
+import AreaChart from "../charts/AreaChart";
 
 
 export default function Home() {
@@ -183,7 +183,7 @@ const totalVendorOrder = vendorOrder?.length
                 <Stack spacing={2}>
                   <Card sx={{ height: 50 + "vh" }}>
                     <CardContent>
-                      <HBarChart />
+                      <AreaChart />
                     </CardContent>
                   </Card>
                 </Stack>
