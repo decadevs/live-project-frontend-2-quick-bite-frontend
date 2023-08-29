@@ -18,8 +18,6 @@ useEffect(() => {
     dispatch(getNewFoods())
 }, [dispatch])
 
-
-
   const titleStyle = {
     backgroundImage: `url(${Image1})`,
     backgroundSize: 'cover', 
@@ -27,6 +25,27 @@ useEffect(() => {
     width: '100%',
     height: '420px'
   };
+  const renderStars = (rating: number) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(
+          <span key={i} className="star">
+            &#9733;
+          </span>
+        );
+      } else {
+        stars.push(
+          <span key={i} className="star">
+            &#9734;
+          </span>
+        );
+      }
+    }
+    return stars;
+  };
+
+
     return (
       <div>
         <div className="title-newfoods" style={titleStyle}>
@@ -44,16 +63,20 @@ useEffect(() => {
                         <h3 style={{ fontSize: '1.5rem', color: 'green', fontWeight: 'bold' }}> {item.name} </h3>
                     </div>
                     <div className="card-body">
-                        <p> {item.description} </p>
+                        <p> {item.description} <br/>
+                        Price : {item.price} </p>
                     </div>
                     <div>
-                        <p> {item.rating} </p>
+                    <p className="rating">
+                  {" "}
+                  Rating :
+                  <span className="star"> {renderStars(item.rating)} </span>
+                </p>
                     </div>
-                    <div className="btn"></div>
 
                     <Link to="/allvendorfoods">
                         <button>
-                            <a className="view">view more</a>
+                            <a className="view">Order Now</a>
                         </button>
                     </Link>
                 </div>

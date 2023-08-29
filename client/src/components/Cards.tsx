@@ -1,18 +1,18 @@
 import "./Cards.css";
 import Image from "../assets/restaurant-background.jpg";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { useEffect } from "react";
-import { getAllRestaurant } from "../slices/getAllRestaurantSlice";
+// import { useAppDispatch, useAppSelector } from "../store/hooks";
+// import { useEffect } from "react";
+// import { getAllRestaurant } from "../slices/getAllRestaurantSlice";
 
 const Cards = () => {
-  const dispatch = useAppDispatch();
-  const { allRestaurant, isLoading } = useAppSelector(
-    (state) => state.allRestaurant
-  );
+  // const dispatch = useAppDispatch();
+  // const { allRestaurant, isLoading } = useAppSelector(
+  //   (state) => state.allRestaurant
+  // );
 
-  useEffect(() => {
-    dispatch(getAllRestaurant());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllRestaurant());
+  // }, [dispatch]);
   return (
     <div className = "wrapper">
       {/* <div className="card-container">

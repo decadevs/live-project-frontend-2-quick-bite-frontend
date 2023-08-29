@@ -53,7 +53,7 @@ useEffect(()=> {
 
         <Link to="/allvendorfoods">
             <button>
-                <a className="view">view more</a>
+                <a className="view">Order now</a>
             </button>
         </Link>
     </div>
