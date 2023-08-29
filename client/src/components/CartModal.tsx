@@ -8,14 +8,18 @@ import egusiSoup from "../assets/istockphoto-1386522276-1024x1024.jpeg";
 
 export interface Product {
   id: number;
-  name: string;
-  price: number;
-  count: number;
-  image: string;
+  name?: string;
+  price?: number;
+  count?: number;
+  image?: string;
 }
 
 export interface ShoppingCartProps {
+  products?:Product[]
   onClose: () => void;
+  onProductRemove?:(product:Product)=>void
+  onQuantityChange?:(productId:number,newQuantity: number )=>void
+
 }
 
 function ShoppingCart({ onClose }: ShoppingCartProps) {

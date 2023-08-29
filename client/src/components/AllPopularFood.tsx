@@ -1,8 +1,7 @@
 // import React from 'react'
 import { MouseEventHandler, useState } from 'react';
-import Dropdown from "../assets/dropdown.svg"
 import styles from "../styles/newQuickbite.module.css"
-import FoodOne from "../assets/food1.jpeg"
+import Image from "../assets/white-rice.jpg";
 import { Link } from 'react-router-dom';
 
 
@@ -20,7 +19,7 @@ const AllPopularFood = () => {
          <div className={styles.newQuickFlex}>
             <h2 className={styles.newQuickText}>All Food</h2>
             <div onClick={handleClick} style={{ cursor: "pointer" }}>
-               {show ? <i className="fa-solid fa-chevron-up" style={{ fontSize: "20px" }}></i> : <img src={Dropdown} alt="" className={styles.dropdown} />}
+               {show ? <i className="fa-solid fa-chevron-up" style={{ fontSize: "20px" }}></i> :<i className="fa-solid fa-chevron-down" style={{ fontSize: "20px" }}></i>}
             </div >
 
          </div>
@@ -29,7 +28,7 @@ const AllPopularFood = () => {
             <div className={` ${styles.cardContainer}`}>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={FoodOne} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -45,7 +44,7 @@ const AllPopularFood = () => {
                </div>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={FoodOne} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -61,7 +60,7 @@ const AllPopularFood = () => {
                </div>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={FoodOne} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -72,14 +71,8 @@ const AllPopularFood = () => {
                      <span className={styles.amount}>
                         <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white`}>Order Now</button></Link>
                      </span>
-                     <span className={styles.totalAmount}>####</span>
-                  </div>
-
-
+                     <span className={styles.totalAmount}>####</span> </div>
                </div>
-
-
-
             </div>
             <div className={styles.btnContainer}>
        <Link to="/allfoods"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>see more</button></Link>
