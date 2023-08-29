@@ -5,8 +5,9 @@ import Header from "../components/Header";
 import cover from "../assets/cover_photo.jpeg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getSingleVendor } from "../slices/singleVendorSlice";
+import { getVendorFoods } from "../slices/vendorFoodsSlice";
 
-const AllVendorFoods = async () => {
+const AllVendorFoods = () => {
   const foods = [
     {
       name: "Fried rice",
@@ -31,44 +32,48 @@ const AllVendorFoods = async () => {
     rating: 4.5,
   };
 
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // const { vendor, isLoading } = useAppSelector(
-  //   (state) => state.getSingleVendor
-  // );
+  const { vendor, isLoading } = useAppSelector(
+    (state) => state.getSingleVendor
+  );
 
-  // useEffect(() => {
-  //   const vendorId = localStorage.getItem("vndorid");
+  const { Foods, is_Loading } = useAppSelector((state) => state.getVendorFoods);
 
-  //   dispatch(getSingleVendor()).unwrap();
-  // }, [dispatch]);
+  useEffect(() => {
+    // const vendorId = localStorage.getItem("vndorid");
+    dispatch(getSingleVendor()).unwrap();
 
-  //console.log(vendor, isLoading);
+    dispatch(getVendorFoods()).unwrap();
+  }, [dispatch]);
+
+  console.log("MY TEST", Foods, is_Loading);
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div>
         <div
           className="cover-photo"
-          style={{ backgroundImage: `url(${vendor_data.cover_image})` }}
+          style={{ backgroundImage: `url(${vendor.cover_image})` }}
         >
           {/* <img src={cover} alt="" /> */}
         </div>
         <div className="vendorInfo">
-          <h2>{vendor_data.name}</h2>
-          <p>⭐️ 4.5 | Min order: N2500 | delivery: N1500</p>
+          <h2>{vendor.restaurant_name}</h2>
+          <p>⭐️ {vendor.rating} | Min order: N2500 | delivery: N1500</p>
         </div>
         <hr />
       </div>
 
-      {foods.map((item) => (
-        <CardSection
-          name={item.name}
-          description={item.description}
-          price={item.price}
-          item={item}
-        />
-      ))}
+      {Foods &&
+        Foods.map((item) => (
+          <CardSection
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            item={item}
+          />
+        ))}
     </>
   );
 };

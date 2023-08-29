@@ -4,47 +4,47 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
-export interface VendorDetails {
+export interface FoodDetails {
     id?: string;
-    email?: string;
-    restaurant_name?: string;
-    name_of_owner?: string;
-    company_name?: string;
-    password?: string;
-    address?: string;
-    phone_no?: string;
-    isAvailable?: boolean;
-    earnings?: number;
-    revenue?: number;
-    role?: string;
-    salt?: string;
-    cover_image?: string;
-    rating?: number;
-    orders?: number
+    order_count?: number,
+    name?: string,
+    date_created?: string,
+    date_updated?: string,
+    vendorId?: string,
+    price?: number,
+    food_image?: string,
+    ready_time?: string,
+    isAvailable?: boolean,
+    description?: string,
+    rating?: number,
+    createdAt?: string,
+    updatedAt?: string,
+    VendorId?: null
 }
 
-export interface InitialVendorState {
-	vendor: VendorDetails;
-	isLoading: boolean;
+
+export interface InitialFoodState {
+	Foods: FoodDetails[];
+	is_Loading: boolean;
 	error: string;
 }
 
-const initialState: InitialVendorState = {
-	vendor: {},
-	isLoading: false,
+const initialState: InitialFoodState = {
+	Foods: [],
+	is_Loading: false,
 	error: "",
 };
 
 
 
-export const getSingleVendor = createAsyncThunk(
+export const getVendorFoods = createAsyncThunk(
    
-	"singleVendor/getOneUser",
+	"all foods/for avendor",
 	async (_, thunkAPI) => {
         //const vendorId = localStorage.getItem('vendorid')
-        const vendorId = "cb944210-c0a7-4938-88e8-3738a45032e6"
+        const vendorId = "cb944210-c0a7-4938-88e8-3738a45032e6"   
 	  try {
-		const response = await axios.get(`/user/getSingleVendor/${vendorId}`);
+		const response = await axios.get(`/user/allvendorfoods/${vendorId}`);
        // console.log("MY RESPONSE", response.data )
 		return response.data;
        
@@ -65,34 +65,34 @@ export const getSingleVendor = createAsyncThunk(
   
 
 
-export const singelVendorSlice = createSlice({
+export const singleVendorFoodsSlice = createSlice({
 	name: "vendorAuth",
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 	
-		builder.addCase(getSingleVendor.pending, (state) => {
+		builder.addCase(getVendorFoods.pending, (state) => {
 			// Add user to the state array
-			state.isLoading = true;
+			state.is_Loading = true;
 			state.error = "";
 		  });
-		  builder.addCase(getSingleVendor.fulfilled, (state, action) => {
+		  builder.addCase(getVendorFoods.fulfilled, (state, action) => {
 			// Add user to the state array
-			state.isLoading = false;
-			state.vendor = action.payload.data;
+			state.is_Loading = false;
+			state.Foods = action.payload.data;
             //console.log(action.payload.data)
             toast(action.payload.message);
 			state.error = "";
 		  });
-		  builder.addCase(getSingleVendor.rejected, (state, action) => {
+		  builder.addCase(getVendorFoods.rejected, (state, action) => {
 			// Add user to the state array
-			state.isLoading = false;
+			state.is_Loading = false;
 			state.error = action.payload as string;
 		  });
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { } = singelVendorSlice.actions;
+export const { } = singleVendorFoodsSlice.actions;
 
-export default singelVendorSlice.reducer;
+export default singleVendorFoodsSlice.reducer;
