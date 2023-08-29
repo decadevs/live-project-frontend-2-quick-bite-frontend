@@ -43,11 +43,11 @@ useEffect(() => {
          isLoading ? <img src={spinner} alt="" className={styles.spinner} />  :
          <>
        <div className={styles.cardContainer}>
-         {popularFood?.slice(0,5).map((food)=>(
+         {popularFood?.slice(0,3).map((food)=>(
 
          <div className={styles.Card} key={food.id}>
              <div className={styles.cardHead}>
-                <img src={Image} alt="" className="h-60 w-90" />
+                <img src={Image} alt="" className="h-60 w-100" />
              </div>
              <div className={styles.cardBody}>            
                <h2 className={styles.cardheading}>{food.name}</h2>
@@ -57,7 +57,7 @@ useEffect(() => {
              <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
              <div className={styles.cardFooter}>
                 <span className={styles.amount}>
-                <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
+                <Link to="/4"> <button onClick={()=>localStorage.setItem('vendorid', food.vendorId)} className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                 </span>
                 <span className={styles.totalAmount}>#{food.price}</span>
              </div>

@@ -9,7 +9,6 @@ import Image from "../assets/white-rice.jpg";
 const AllFood = () => {
   const [show, setShow] = useState(false);
   const dispatch = useAppDispatch();
-  console.log("dispatch", dispatch);
   // const { allFoods } = useAppSelector((state) => state.allFoods);
   // console.log('allfoods:', allFoods);
   const handleClick: MouseEventHandler<HTMLImageElement> = () => {
