@@ -3,26 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/httpService";
 
 export interface VendorDetails {
-    id?: string;
-    email?: string;
-    restaurant_name?: string;
-    name_of_owner?: string;
-    company_name?: string;
-    password?: string;
-    address?: string;
-    phone_no?: string;
-    isAvailable?: boolean;
     earnings?: number;
     revenue?: number;
-    role?: string;
-    salt?: string;
-    cover_image?: string;
-    rating?: number;
-    orders?: number
 }
 
 export interface InitialVendorState {
-    vendorOrders: VendorDetails[];
+    earningRevenue: VendorDetails[];
     token: string;
     isAuthenticated: boolean;
     isLoading: boolean
@@ -31,7 +17,7 @@ export interface InitialVendorState {
 }
 
 const initialState: InitialVendorState = {
-    vendorOrders: [],
+    earningRevenue: [],
     token: "",
     isAuthenticated: false,
     error: "",
@@ -39,15 +25,14 @@ const initialState: InitialVendorState = {
     message: ""
 };
 
-export const getVendorOrders = createAsyncThunk(
-    "vendorOrder/getTotalOrders",
+export const getEarningRevenue = createAsyncThunk(
+    "earningRevenue/getEarningRevenue",
     async (_, thunkAPI) => {
         try {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const response:any = await axios.get("/vendor/vendororders");
-            localStorage.getItem(response.data.id)
+            const response = await axios.get("/vendor/earningsandrevenue");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
+            console.log('value', response.data)
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -64,26 +49,27 @@ export const getVendorOrders = createAsyncThunk(
     }
 );
 
-export const totalOrderSlice = createSlice({
-    name: "vendorOrders",
+export const earningRevenueSlice = createSlice({
+    name: "earningRevenue",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
 
-        builder.addCase(getVendorOrders.pending, (state) => {
+        builder.addCase(getEarningRevenue.pending, (state) => {
             // Add user to the state array
             state.isLoading = true;
             state.message = ""
             state.error = ""
         });
-        builder.addCase(getVendorOrders.fulfilled, (state, action) => {
-            state.vendorOrders = action.payload.orders
+        builder.addCase(getEarningRevenue.fulfilled, (state, action) => {
+            state.earningRevenue = action.payload.data
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)
+
         });
 
-        builder.addCase(getVendorOrders.rejected, (state, action) => {
+        builder.addCase(getEarningRevenue.rejected, (state, action) => {
             // Add user to the state array
             state.isLoading = false;
             state.message = ""
@@ -93,4 +79,5 @@ export const totalOrderSlice = createSlice({
     },
 });
 
-export default totalOrderSlice.reducer;
+
+export default earningRevenueSlice.reducer;
