@@ -39,6 +39,11 @@ import { ProtectRoute } from "./utility/auth";
 import CheckOut from "./pages/CheckOut";
 import UserChangePassword from "./components/userChangePassword";
 import OrdersModal from "./components/VendorAllFoodModal";
+import Foodlist from "./components/Foodlist";
+
+
+
+
 
 function App() {
   return (
@@ -78,6 +83,7 @@ function App() {
             <Route path="/userlanding" element={<UserLandingpg />}></Route>
             <Route path="/editvendor" element={<EditVendor />}></Route>
             <Route path="/vendordashboard" element={<VendorHome />}></Route>
+            <Route path='vendordashboard/:id' element={<Foodlist/>}></Route> 
             <Route path="/products" element={<Products />}></Route>
             <Route path="/analytics" element={<Analytics />}></Route>
             <Route path="/settings" element={<Settings />}></Route>
