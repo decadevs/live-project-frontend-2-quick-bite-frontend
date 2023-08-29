@@ -41,10 +41,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
+    padding-right:  50px;
     width: 100%;
     margin-top: 100px;
     margin-bottom: 60px;
-    gap:80px;
+    gap: 20px;
     @media (max-width:1200px) {
         display: grid;
           gap:20px
@@ -62,12 +63,22 @@
      }
 }
 .Card{  
+    max-width: 400px;    
+    background: #D9D9D9;   
+    color: #1A512E;
     width: 300px;
-    background: #D9D9D9;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    padding: 30px;
+    overflow: hidden;
+    box-shadow:0px 0px 15px -5px;
+    transition: 0.3s;
+    animation: ease-in; 
+    margin: 20px 10px 20px 30px ;
+    border-radius: 30px; width: 300px;
+    overflow: hidden;
+    box-shadow:0px 0px 15px -5px;
+    transition: 0.3s;
+    animation: ease-in; 
+    margin: 20px 10px 20px 30px ;
     border-radius: 30px;
-    margin-top: 100px;
     @media (max-width:480px) {
        margin-bottom: 20px;
         
@@ -76,22 +87,41 @@
 .cardBody{
     margin-top: 20px;
     margin-bottom: 25px;
+   max-width: 300x;
+   padding: 0 10px;
+ 
     
 }
+.cardHead{
+    overflow: hidden;
+    height: 200px;
+    width: 300px;
+    object-fit: cover;
+}
+
+
 .cardheading{
-    font-size: 30px;
+    font-size: 24px;
 }
 .cardText{
    color: #836868; 
+   max-width: 200px;
+   
 }
 .amount{
     color: #836868;
+
 }
 .totalAmount{
     color: #836868;
+    font-size: 20px;
+    padding-right: 10px;
 }
 .Card:hover{
-    background-color:#836868;
+    /* background-color:#836868; */
+   
+    transform: scale(1.1);
+    box-shadow:0px 0px 15px 0px;
          ;
 }
 .cardFooter{

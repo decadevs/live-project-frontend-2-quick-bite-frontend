@@ -1,15 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 import { PaystackButton } from "react-paystack"
 import styles from "../styles/paystack.module.css"
 import { FaTimes } from "react-icons/fa"
 import "../styles/index.css"
+import { useCart } from "react-use-cart"
 // interface Close{
 //   closeModal : boolean
 // }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PaystackIntegration:React.FC<any> = ({closeModal}) => {
+  const { cartTotal, emptyCart } = useCart();
     const publicKey = "pk_test_7a07c22bac28de6adde6e701da1374a91b14f269"
-  const [amount, setAmount] =  useState(0)
+  const [amount, setAmount] =  useState(cartTotal)
   const [email, setEmail] = useState("")
   const [firstname, setFirstName] = useState("")
   const [lasttname, setLastName] = useState("")
@@ -27,16 +31,24 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
         Reference ${transaction.reference}         
         `
       alert(message);
-      setEmail("");
+      setEmail(email);
       setFirstName("");
       setLastName("");
-      setAmount(amount)
+      setAmount(cartTotal);
+      emptyCart()
+       window.location.href="/order"
+       
+
 
     },
     onCancel() {
       alert("Wait! You need this oil, don't go!!!!")
     },
+ 
+
   }
+ 
+
   const storedUserData = localStorage.getItem('user');
   const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return (
@@ -61,7 +73,7 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
             
           <input type="text"   
           name="lastName"       
-          value={parsedUserData.data.lastname}
+          value={ parsedUserData.data.lastname}
           onChange={(e)=>setLastName(e.target.value)}
 
           className={styles.modalInput}
@@ -72,20 +84,22 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
           <input type="text" 
           
           name ="Email"
-        value={parsedUserData.data.email}
+          value={ email}
           className={styles.modalInput}
           onChange={(e)=>setEmail(e.target.value)}
+          placeholder="Enter email"
           required
-          readOnly
+         
           /><br/>
             
-          <input type="text"          
+          <input type="number"          
             id ="Amount" 
-            name ="totalAmount"          
-            value={amount}
+            name ="totalAmount"
+                      
+            value={cartTotal}
             required
-            onChange={(e)=>setAmount(Number(e.target.value))}
-            readOnly
+            // onChange={(e)=>setAmount(e.target.value)}
+            
          
             className={styles.modalInput}
    
