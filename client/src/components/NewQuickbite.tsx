@@ -44,7 +44,7 @@ const NewQuickbite = () => {
                            newFood?.slice(0,3).map((foodNew) => (
                                <div className={styles.Card}>
                                  <div className={styles.cardHead}>
-                                    <img src={foodNew.food_image} alt="" className="h-60 w-90" />
+                                    <img src={foodNew.food_image} alt="" className="h-60 w-100" />
                                  </div>
                                  <div className={styles.cardBody}>
                                     <h2 className={styles.cardheading}>{foodNew.name}</h2>

@@ -28,7 +28,7 @@ const AllPopularFood = () => {
             <div className={` ${styles.cardContainer}`}>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -44,7 +44,7 @@ const AllPopularFood = () => {
                </div>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
@@ -60,7 +60,7 @@ const AllPopularFood = () => {
                </div>
                 <div className={styles.Card}>
                   <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
+                     <img src={Image} alt="" className="h-60 w-100" />
                   </div>
                   <div className={styles.cardBody}>
                      <h2 className={styles.cardheading}>Bruncherie</h2>
