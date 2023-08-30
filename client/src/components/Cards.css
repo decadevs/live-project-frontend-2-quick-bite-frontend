@@ -164,7 +164,7 @@ button a {
     font-family: 'Oleo Script', cursive;
     margin-top: 100px;
     font-size: 100px;
-    padding-top: 50px;
+    padding-top: 130px;
 }
 .all-foods{
     text-align: center;
@@ -198,6 +198,30 @@ button a {
     color: rgb(215, 189, 40);
     border-color: black;
     cursor: pointer;
-    /* display: inline-block; */
     margin-right: 5px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; 
+  }
+  
+  .pagination button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    background-color: #1A512E;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+  }
+  
+  .pagination button:hover {
+    background-color:  #1A512E;
+  }
+  
