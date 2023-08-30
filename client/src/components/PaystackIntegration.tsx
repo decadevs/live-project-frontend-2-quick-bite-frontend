@@ -36,7 +36,8 @@ const PaystackIntegration:React.FC<any> = ({closeModal}) => {
       setLastName("");
       setAmount(cartTotal);
       emptyCart()
-       window.location.href="/order"
+       window.location.href="/userorder"
+       
        
 
 

@@ -1,30 +1,36 @@
+// import Cards from "./Cards"
+
+import { Link } from "react-router-dom";
+import "./Cards.css";
+import Image from "../assets/restaurant-background.jpg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
-import { getUserAllFoods } from "../slices/userGetAllFoodSlice";
-import "./Cards.css";
-import { Link } from "react-router-dom";
-import Image1 from "../assets/all-foods.jpg";
+import { getAllRestaurant } from "../slices/getAllRestaurantSlice";
 
 const ITEMS_PER_PAGE = 12;
 
-const AllFoodsCard = () => {
+const Cardlist = () => {
+  const dispatch = useAppDispatch();
+
   const [currentPage, setCurrentPage] = useState(1);
 
-  const dispatch = useAppDispatch();
-  const { allFoods /*isLoading*/ } = useAppSelector(
-    (state) => state.userAllFood
+  const { allRestaurant, isLoading } = useAppSelector(
+    (state) => state.allRestaurant
   );
+
+  console.log(isLoading, allRestaurant);
   useEffect(() => {
-    dispatch(getUserAllFoods());
+    dispatch(getAllRestaurant());
   }, [dispatch]);
 
   const titleStyle = {
-    backgroundImage: `url(${Image1})`,
+    backgroundImage: `url(${Image})`,
     backgroundSize: "cover",
-    backgroundPosition: "cover",
+    backgroundPosition: "center",
     width: "100%",
     height: "420px",
   };
+
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
@@ -44,13 +50,12 @@ const AllFoodsCard = () => {
     }
     return stars;
   };
-
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
-  const paginatedData = allFoods.slice(startIndex, endIndex);
+  const paginatedData = allRestaurant.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(allFoods.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(allRestaurant.length / ITEMS_PER_PAGE);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
@@ -58,16 +63,16 @@ const AllFoodsCard = () => {
 
   return (
     <div>
-      <div className="title-AllFoods" style={titleStyle}>
-        <h1 className="all-foods">All Foods</h1>
+      <div className="title-restaurants" style={titleStyle}>
+        <h1 className="all-restaurants">All Restaurants</h1>
       </div>
       <div className="wrapper">
         {paginatedData?.map((item, index) => (
-          <div className="card-container">
+          <div className="card-container" key={index}>
             <div className="image-container">
-              <img src={item.food_image} alt="" />
+              <img src={item.cover_image} alt="" />
             </div>
-            <div className="card-content" key={index}>
+            <div className="card-content">
               <div className="card-title">
                 <h3
                   style={{
@@ -76,17 +81,11 @@ const AllFoodsCard = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  {item.name}
+                  {item.restaurant_name}
                 </h3>
               </div>
               <div className="card-body">
-                <p>
-                  {" "}
-                  {item.description} <br />
-                  Price : {item.price}{" "}
-                </p>
-              </div>
-              <div>
+                <p> {item.isAvailable}</p>
                 <p className="rating">
                   {" "}
                   Rating :
@@ -96,18 +95,15 @@ const AllFoodsCard = () => {
 
               <Link to="/allvendorfoods">
                 <button
-                  onClick={() =>
-                    localStorage.setItem("vendorid", item.vendorId)
-                  }
+                  onClick={() => localStorage.setItem("vendorid", item.id)}
                 >
-                  <a className="view">Order now</a>
+                  <a className="view">Order Now</a>
                 </button>
               </Link>
             </div>
           </div>
         ))}
       </div>
-
       <div className="pagination">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
@@ -128,4 +124,5 @@ const AllFoodsCard = () => {
     </div>
   );
 };
-export default AllFoodsCard;
+
+export default Cardlist;
