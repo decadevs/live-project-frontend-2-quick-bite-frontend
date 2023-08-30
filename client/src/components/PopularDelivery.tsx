@@ -51,7 +51,7 @@ const PopularDelivery = () => {
             <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
             <div className={styles.cardFooter}>
                <span className={styles.amount}>
-               <Link to="/4"> <button onClick={()=>localStorage.setItem('vendorid', restaurant.id)} className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>View Restaurant</button></Link>
+               <Link to="/allvendorfoods"> <button onClick={()=>localStorage.setItem('vendorid', restaurant.id)} className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>View Restaurant</button></Link>
                </span>
                {/* <span className={styles.totalAmount}>####</span> */}
             </div>
