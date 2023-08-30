@@ -3,10 +3,12 @@ import './Cards.css';
 import Image1 from "../assets/1food.jpg";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getPopularFood } from "../slices/popularSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-
+const ITEMS_PER_PAGE = 4;
 const PopularFoodsCard = () => {
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const dispatch = useAppDispatch();
 
@@ -45,6 +47,16 @@ const PopularFoodsCard = () => {
     return stars;
   };
 
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+ const endIndex = startIndex + ITEMS_PER_PAGE;
+
+ const paginatedData = popularFood.slice(startIndex, endIndex);
+
+ const totalPages = Math.ceil(popularFood.length / ITEMS_PER_PAGE);
+
+ const handlePageChange = (newPage: number) => {
+   setCurrentPage(newPage);
+ };
 
   //const Image2 = popularFood.map((item) => item.food_image)
   // const VendorName = popularFood.map((item) => item.name)
@@ -55,7 +67,7 @@ const PopularFoodsCard = () => {
         <h1 className='popular-foods' >Popular Foods</h1>
       </div>
       <div className="wrapper">
-      {popularFood?.map((item, index) => (
+      {paginatedData?.map((item, index) => (
       
             <div className="card-container" key={index}>
                 <div className="image-container">
@@ -85,6 +97,22 @@ const PopularFoodsCard = () => {
                 </div>
             </div>))}
             </div>
+
+            <div className="pagination">
+  <button
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
+  >
+    Prev
+  </button>
+  <span>Page {currentPage} of {totalPages}</span>
+  <button
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === totalPages}
+  >
+    Next
+  </button>
+</div>
     </div>
   )
 }

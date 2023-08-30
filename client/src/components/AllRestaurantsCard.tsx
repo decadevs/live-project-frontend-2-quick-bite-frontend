@@ -2,14 +2,18 @@
 
 import { Link } from "react-router-dom";
 import './Cards.css'
-import Image from "../assets/volkan-vardar-1H30uRC1plc-unsplash.jpg"
+import Image from "../assets/restaurant-background.jpg"
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllRestaurant } from "../slices/getAllRestaurantSlice";
+
+const ITEMS_PER_PAGE = 4;
 
 const Cardlist = () => {
 
   const dispatch = useAppDispatch();
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const {allRestaurant, isLoading} = useAppSelector((state) => state.allRestaurant)
 
@@ -21,8 +25,8 @@ const Cardlist = () => {
 
   const titleStyle = {
     backgroundImage: `url(${Image})`,
-    backgroundSize: 'cover', // Adjust as needed
-    backgroundPosition: 'center', // Adjust as needed
+    backgroundSize: 'cover', 
+    backgroundPosition: 'center', 
     width: '100%',
     height: '420px'
   };
@@ -47,7 +51,16 @@ const Cardlist = () => {
     }
     return stars;
   };
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
 
+  const paginatedData = allRestaurant.slice(startIndex, endIndex);
+
+  const totalPages = Math.ceil(allRestaurant.length / ITEMS_PER_PAGE);
+
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
+  };
 
   return (
 
@@ -56,7 +69,7 @@ const Cardlist = () => {
 <h1 className='all-restaurants' >All Restaurants</h1>
 </div>
 <div className="wrapper">
-{allRestaurant?.map((item, index) => (
+{paginatedData?.map((item, index) => (
 
     <div className="card-container" key={index}>
         <div className="image-container">
@@ -85,6 +98,22 @@ const Cardlist = () => {
         </div>
     </div>))}
     </div>
+    <div className="pagination">
+  <button
+    onClick={() => handlePageChange(currentPage - 1)}
+    disabled={currentPage === 1}
+  >
+    Prev
+  </button>
+  <span>Page {currentPage} of {totalPages}</span>
+  <button
+    onClick={() => handlePageChange(currentPage + 1)}
+    disabled={currentPage === totalPages}
+  >
+    Next
+  </button>
+</div>
+
 </div>
 )
 }
