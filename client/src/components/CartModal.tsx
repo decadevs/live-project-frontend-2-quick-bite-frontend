@@ -5,6 +5,7 @@ import { useCart } from "react-use-cart";
 import "./cartmodal.css";
 import { useNavigate } from "react-router-dom";
 import egusiSoup from "../assets/istockphoto-1386522276-1024x1024.jpeg";
+import { toast } from "react-toastify";
 
 export interface Product {
   id: number;
@@ -15,11 +16,10 @@ export interface Product {
 }
 
 export interface ShoppingCartProps {
-  products?:Product[]
+  products?: Product[];
   onClose: () => void;
-  onProductRemove?:(product:Product)=>void
-  onQuantityChange?:(productId:number,newQuantity: number )=>void
-
+  onProductRemove?: (product: Product) => void;
+  onQuantityChange?: (productId: number, newQuantity: number) => void;
 }
 
 function ShoppingCart({ onClose }: ShoppingCartProps) {
@@ -35,6 +35,11 @@ function ShoppingCart({ onClose }: ShoppingCartProps) {
   } = useCart();
 
   const navigate = useNavigate();
+
+  function toastNavigation() {
+    navigate("/login");
+    return toast("Please login to continue");
+  }
 
   return (
     <div className="the-modal ">
@@ -112,7 +117,9 @@ function ShoppingCart({ onClose }: ShoppingCartProps) {
 
               <button
                 onClick={() => {
-                  navigate("/checkout");
+                  localStorage.getItem("user")
+                    ? navigate("/checkout")
+                    : toastNavigation();
                 }}
                 className="the-checkout-btn"
               >
