@@ -73,7 +73,7 @@ export interface InitialState {
       });
       builder.addCase(getAllRestaurant .fulfilled, (state, action) => {
         // Add user to the state array
-         state.allRestaurant = action.payload.data
+         state.allRestaurant = action.payload.allVendors
          state.message = action.payload.message
          state.isLoading = false
         state.error = "";
