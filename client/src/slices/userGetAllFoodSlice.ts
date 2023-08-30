@@ -65,7 +65,7 @@ export const userGetAllFoodsSlice = createSlice({
     });
     builder.addCase(getUserAllFoods.fulfilled, (state, action) => {
       // Add user to the state array
-      state.allFoods = action.payload.data;
+      state.allFoods = action.payload.allFoodarr;
       state.message = action.payload.message;
       state.isLoading = false;
       state.error = "";
