@@ -91,6 +91,7 @@ const VendorRegNO = () => {
             Not a registered business?{" "}
             <a
             style={{textDecoration:"none"}}
+            target="blank"
               href="https://pre.cac.gov.ng/home"
               className="text-green-800 font-bold"
             >

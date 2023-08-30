@@ -25,7 +25,6 @@ useEffect(() => {
 }, [dispatch]);
 
 
-
   return (
 
    <div id="pFood" className={styles.popular}>
@@ -47,7 +46,7 @@ useEffect(() => {
 
          <div className={styles.Card} key={food.id}>
              <div className={styles.cardHead}>
-                <img src={Image} alt="" className="h-60 w-100" />
+                <img src={food.food_image} alt="" className="h-60 w-100" />
              </div>
              <div className={styles.cardBody}>            
                <h2 className={styles.cardheading}>{food.name}</h2>
@@ -57,63 +56,13 @@ useEffect(() => {
              <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
              <div className={styles.cardFooter}>
                 <span className={styles.amount}>
-                <Link to="/4"> <button onClick={()=>localStorage.setItem('vendorid', food.vendorId)} className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
+                <Link to="/allvendorfoods"> <button onClick={()=>localStorage.setItem('vendorid', food.vendorId)} className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white` }>Order Now</button></Link>
                 </span>
                 <span className={styles.totalAmount}>#{food.price}</span>
              </div>
             </div>
             
             ))}
-            {/* <div className={styles.Card}>
-                  <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
-                  </div>
-                  <div className={styles.cardBody}>
-                     <h2 className={styles.cardheading}>Bruncherie</h2>
-                     <p className={styles.cardText}>Breakfast , lunch, desserts</p>
-                  </div>
-                  <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
-                  <div className={styles.cardFooter}>
-                     <span className={styles.amount}>
-                        <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white`}>Order Now</button></Link>
-                     </span>
-                     <span className={styles.totalAmount}>####</span>
-                  </div>
-               </div>
-               <div className={styles.Card}>
-                  <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
-                  </div>
-                  <div className={styles.cardBody}>
-                     <h2 className={styles.cardheading}>Bruncherie</h2>
-                     <p className={styles.cardText}>Breakfast , lunch, desserts</p>
-                  </div>
-                  <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
-                  <div className={styles.cardFooter}>
-                     <span className={styles.amount}>
-                        <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white`}>Order Now</button></Link>
-                     </span>
-                     <span className={styles.totalAmount}>####</span>
-                  </div>
-               </div>
-               <div className={styles.Card}>
-                  <div className={styles.cardHead}>
-                     <img src={Image} alt="" className="h-60 w-90" />
-                  </div>
-                  <div className={styles.cardBody}>
-                     <h2 className={styles.cardheading}>Bruncherie</h2>
-                     <p className={styles.cardText}>Breakfast , lunch, desserts</p>
-                  </div>
-                  <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`} ></div>
-                  <div className={styles.cardFooter}>
-                     <span className={styles.amount}>
-                        <Link to="/4"> <button className={`${styles.more} p-4 bg-deepBlue rounded-lg mt-7 text-white`}>Order Now</button></Link>
-                     </span>
-                     <span className={styles.totalAmount}>####</span>
-                  </div>
-               </div> */}
-            
-
         </div>
 
         <div className={styles.btnContainer}>
@@ -122,7 +71,7 @@ useEffect(() => {
       
         <div className={`${styles.divider}  w-70% md: h-0.5 bg-deepBlue`}></div>
         </>
-         }
+      }
         </div>
         
   </div>
