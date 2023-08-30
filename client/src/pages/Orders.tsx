@@ -102,11 +102,11 @@ export default function VendorOrder() {
   React.useEffect(() => {
     dispatch(getOrderCount());
   }, [dispatch]);
-
+    console.log('vendorOrder', vendorOrder)
   const rows = vendorOrder?.map((order: any) =>
     createData(
-      order.food_name,
-      order.quantity,
+      order.food_items.name,
+      order.food_items.length,
       order.amount,
       order.status,
       order.isPaid

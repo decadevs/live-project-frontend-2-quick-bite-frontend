@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 export interface AllFoodDetails {
@@ -76,7 +76,7 @@ export const getAllFoodCountSlice = createSlice({
       state.message = action.payload.message;
       state.isAuthenticated = true;
       state.error = "";
-      toast.success(action.payload.message);
+      // toast.success(action.payload.message);
     });
 
     builder.addCase(getAllFoodCount.rejected, (state, action) => {
@@ -85,7 +85,7 @@ export const getAllFoodCountSlice = createSlice({
       state.message = "";
       state.isAuthenticated = false;
       state.error = action.payload as string;
-      toast.error(action.payload as string);
+      // toast.error(action.payload as string);
     });
   },
 });
