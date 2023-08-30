@@ -10,6 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getAllFoodCount } from "../../slices/getAllFoodCountSlice";
 import VendorCreatesFood from '../../components/VendorCreatesFood';
+import { IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import EditModal from "../../components/EditModal";
+import { useState } from "react";
 
 interface Column {
     id:
@@ -17,32 +22,13 @@ interface Column {
     | "price"
     | "order_count"
     | "ready_time"
-    | "isAvailable"
-    | "rating";
+    | "rating"
+    | "actions"
     label: string;
     minWidth?: number;
     align?: "right" | "left" | "center";
-    format?: (value: number) => string;
+    format?: ((value: number) => string) | undefined
 }
-
-const columns: readonly Column[] = [
-    { id: "name", label: "Name", minWidth: 100 },
-    {
-        id: "price",
-        label: "Price",
-        minWidth: 100,
-        align: "right"
-    },
-    {
-        id: "order_count",
-        label: "Order Count",
-        minWidth: 170,
-        align: "center"
-    },
-    { id: "isAvailable", label: "Available", minWidth: 150, align: "center" },
-    { id: "ready_time", label: "Ready Time", minWidth: 170, align: "center" },
-    { id: "rating", label: "Rating", minWidth: 170, align: "center" }
-];
 
 interface Data {
     name: string;
@@ -50,7 +36,7 @@ interface Data {
     order_count: number;
     ready_time: string;
     rating: string;
-    isAvailable: string;
+    actions: string;
 }
 
 function createData(
@@ -58,8 +44,7 @@ function createData(
     price: number,
     order_count: number,
     ready_time: string,
-    rating: string,
-    isAvailable: string
+    rating: string
 ): Data {
     return {
         name,
@@ -67,7 +52,7 @@ function createData(
         order_count,
         ready_time,
         rating,
-        isAvailable,
+        actions: "actions",
     };
 }
 
@@ -76,8 +61,7 @@ export default function ProductList() {
     const { allFoodCount, isLoading } = useAppSelector(
         (state) => state.allFoodCount
     );
-    console.log("All Foood Details", allFoodCount, isLoading);
-
+    console.log(isLoading)
     React.useEffect(() => {
         dispatch(getAllFoodCount());
     }, [dispatch]);
@@ -89,12 +73,9 @@ export default function ProductList() {
             food.price,
             food.order_count,
             food.ready_time,
-            food.rating,
-            food.isAvailable
+            food.rating
         )
     );
-
-    console.log("row", rows);
 
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -110,6 +91,53 @@ export default function ProductList() {
         setPage(0);
     };
 
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [selectedRow, setSelectedRow] = useState<Data | null>(null);
+
+    const handleEditClick = (row: Data) => {
+        setSelectedRow(row);
+        setShowEditModal(true);
+    };
+    
+    const handleDeleteClick = (row: Data) => {
+        // Implement the delete logic here
+        console.log("Delete clicked for:", row);
+    };
+    
+    const columns: readonly Column[] = [
+        { id: "name", label: "Name", minWidth: 100 },
+        {
+            id: "price",
+            label: "Price",
+            minWidth: 100,
+            align: "right"
+        },
+        {
+            id: "order_count",
+            label: "Order Count",
+            minWidth: 170,
+            align: "center"
+        },
+        { id: "ready_time", label: "Ready Time", minWidth: 170, align: "center" },
+        { id: "rating", label: "Rating", minWidth: 170, align: "center" },
+        {
+            id: "actions",
+            label: "Actions",
+            align: "center",
+            format: (_value: unknown, row: Data) => (
+                <>
+                    <IconButton onClick={() => handleEditClick(row)}>
+                        <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={() => handleDeleteClick(row)}>
+                        <DeleteIcon />
+                    </IconButton>
+                </>
+            ),
+        },
+    ];
+    
+   
     return (
         <>
             <VendorCreatesFood />
@@ -134,9 +162,9 @@ export default function ProductList() {
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.name}>
                                             {columns.map((column) => {
-                                                console.log("col", column);
+                                                //console.log("col", column);
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align}>
@@ -162,6 +190,7 @@ export default function ProductList() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
+            {showEditModal && <EditModal onClose={() => setShowEditModal(false)} isOpen={false} />}
         </>
     )
 }

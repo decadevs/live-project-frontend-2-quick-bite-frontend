@@ -120,7 +120,7 @@ export default function Sidenav() {
                             >
                                 <InboxIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Products" sx={{ opacity: open ? 1 : 0 }} />
+                            <ListItemText primary="Meals" sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/orders')}>

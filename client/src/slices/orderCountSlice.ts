@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 
@@ -41,6 +41,7 @@ export const getOrderCount = createAsyncThunk(
       localStorage.getItem(response.data.id)
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
       // localStorage.setItem("token", response.data.token);
+      console.log('orders  ',  response.data.foodArr)
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -72,12 +73,12 @@ export const getOrderCountSlice = createSlice({
     });
     builder.addCase(getOrderCount.fulfilled, (state, action) => {
       // Add user to the state array
-      state.vendorOrder = action.payload.data;
+      state.vendorOrder = action.payload.vendorOrders;
 
       state.message = action.payload.message;
       state.isAuthenticated = true;
       state.error = "";
-      toast.success(action.payload.message)
+      // toast.success(action.payload.message)
     });
 
     builder.addCase(getOrderCount.rejected, (state, action) => {
@@ -86,7 +87,7 @@ export const getOrderCountSlice = createSlice({
       state.message = ""
       state.isAuthenticated = false;
       state.error = action.payload as string;
-      toast.error(action.payload as string)
+      // toast.error(action.payload as string)
     });
   },
 });
