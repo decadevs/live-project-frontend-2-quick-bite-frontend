@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 // import ProfileImg from "../assets/profile.png";
 import Logo from "../assets/LogoBite.svg";
 import ShoppingCart, { Product } from "../components/CartModal";
-import { GiShoppingBag } from "react-icons/gi"
+import { GiShoppingBag } from "react-icons/gi";
+import { useCart } from "react-use-cart";
 import "./cartmodal.css";
 
 const initialProducts: Product[] = [
@@ -24,10 +25,11 @@ const initialProducts: Product[] = [
   },
 ];
 
-const Header = () => {  
-    const[collapse, setCollapse] = useState(true)
-    
-    const toggleButton = ()=> setCollapse(!collapse)
+const Header = () => {
+  const [collapse, setCollapse] = useState(true);
+  const { isEmpty, totalItems } = useCart();
+
+  const toggleButton = () => setCollapse(!collapse);
 
   const [cartVisibility, setCartVisibility] = useState(false);
   const [products, setProducts] = useState(initialProducts);
@@ -47,18 +49,18 @@ const Header = () => {
   const handleCartClose = () => {
     setCartVisibility(false);
   };
-//   const menus = [
-//     {
-//       id: "Id",
-//       Updateprofile: "Update profile",
-//       Order: "Order",
-//       Changepassword: "Change Password",
-//       Dashboard: "Dashboard",
-//     },
-//   ];
- 
-//   const [dropdown, setDropDown] = useState(true);
-//   const toggle = () => setDropDown(!dropdown);
+  //   const menus = [
+  //     {
+  //       id: "Id",
+  //       Updateprofile: "Update profile",
+  //       Order: "Order",
+  //       Changepassword: "Change Password",
+  //       Dashboard: "Dashboard",
+  //     },
+  //   ];
+
+  //   const [dropdown, setDropDown] = useState(true);
+  //   const toggle = () => setDropDown(!dropdown);
 
   return (
     <div>
@@ -73,19 +75,37 @@ const Header = () => {
           </Link>
 
           <div className="hidden md:flex space-x-6 justify-between"></div>
-          <div className={styles.flexProfile}>     
-          <Link to='/login'> <button className={`${styles.SignIn} bg-veryLightGray hover:bg-deepBlue hover:text-white`}>Sign In</button></Link>
-            <Link to="/register">
-
-              <button className={`${styles.SignUp} bg-deepBlue `}>
-               Signup
+          <div className={styles.flexProfile}>
+            <Link to="/login">
+              {" "}
+              <button
+                className={`${styles.SignIn} bg-veryLightGray hover:bg-deepBlue hover:text-white`}
+              >
+                Sign In
               </button>
             </Link>
-            <GiShoppingBag
+            <Link to="/register">
+              <button className={`${styles.SignUp} bg-deepBlue `}>
+                Signup
+              </button>
+            </Link>
+            {/* <GiShoppingBag
               size={35}
               className="the-shop"
               onClick={() => setCartVisibility(!cartVisibility)}
-            />
+            /> */}
+            <div className="cartf">
+              {!isEmpty && (
+                <div className="item-count">
+                  <span>{totalItems}</span>
+                </div>
+              )}
+              <GiShoppingBag
+                size={35}
+                className="the-shop"
+                onClick={() => setCartVisibility(!cartVisibility)}
+              />
+            </div>
           </div>
 
           <button
@@ -100,15 +120,18 @@ const Header = () => {
             )}
           </button>
         </div>
-      
-        <div className={`${collapse ?styles.mobileView : ""} mt-20 md:hidden bg-deepBlue`} >
-        <div  className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
-        {/* <a href="#" className="mx-auto">Vendors</a> */}
-          
+
+        <div
+          className={`${
+            collapse ? styles.mobileView : ""
+          } mt-20 md:hidden bg-deepBlue`}
+        >
+          <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
+            {/* <a href="#" className="mx-auto">Vendors</a> */}
+
             {/* <Link to="/"><button onClick={handleLogout} className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}>SignUp</button> </Link>       */}
-        
-    </div>
-    </div>
+          </div>
+        </div>
 
         <div
           className={`${
