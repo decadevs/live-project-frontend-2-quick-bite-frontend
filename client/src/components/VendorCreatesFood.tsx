@@ -4,7 +4,7 @@ import { useState } from "react";
 import VendorAddFoodModal from "./VendorAddFoodModal";
 import "../styles/index.css"
 //import Food from "./Food";
-import PaystackIntegration from "./PaystackIntegration";
+
 
 
 // interface VendorCreatesFoodProps {
