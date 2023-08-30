@@ -12,9 +12,6 @@ const AllFoodsCard = () => {
 
   const dispatch = useAppDispatch();
   const {allFoods, isLoading} = useAppSelector((state) => state.userAllFood)
-
-  console.log(allFoods, isLoading)
-
 useEffect(()=> {
   dispatch(getUserAllFoods())
 }, [dispatch])
@@ -52,7 +49,7 @@ useEffect(()=> {
         <div className="btn"></div>
 
         <Link to="/allvendorfoods">
-            <button>
+            <button onClick={()=>localStorage.setItem('vendorid', item.vendorId)}>
                 <a className="view">Order now</a>
             </button>
         </Link>
