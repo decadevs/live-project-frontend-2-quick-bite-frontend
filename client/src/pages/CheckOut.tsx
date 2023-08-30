@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "react-use-cart";
 import PaystackIntegration from "../components/PaystackIntegration";
 import Header from "../components/Header";
+import {userCreateOrder} from '../slices/userCreateOrderSlice';
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 
 const initialData = {
   address: "",
@@ -20,6 +22,10 @@ const CheckOut = () => {
   const [formData, setFormData] = useState(initialData);
   const { cartTotal, items, emptyCart } = useCart();
   const [show, setShow] = useState(false);
+  const {order} = useAppSelector((state)=> state.order)
+  console.log('order frontend', order)
+  const dispatch = useAppDispatch()
+
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
@@ -38,10 +44,11 @@ const CheckOut = () => {
 
     const payload = {
       ...formData,
-      ...items,
+      items,
       cartTotal,
     };
 
+dispatch(userCreateOrder(payload))
     setShow(true);
     // emptyCart();
   };
