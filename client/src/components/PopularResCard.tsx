@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { getPopularRestaurant } from "../slices/popularRestaurantSlice";
 
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 12;
 
 const PopularResCard = () => {
   const dispatch = useAppDispatch();

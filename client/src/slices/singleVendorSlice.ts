@@ -41,8 +41,8 @@ export const getSingleVendor = createAsyncThunk(
    
 	"singleVendor/getOneUser",
 	async (_, thunkAPI) => {
-        //const vendorId = localStorage.getItem('vendorid')
-        const vendorId = "2bde1e91-9382-48cd-b39a-63229c93706b"
+        const vendorId = localStorage.getItem('vendorid')
+        // const vendorId = "2bde1e91-9382-48cd-b39a-63229c93706b"
 
 	  try {
 		const response = await axios.get(`/user/getSingleVendor/${vendorId}`);
