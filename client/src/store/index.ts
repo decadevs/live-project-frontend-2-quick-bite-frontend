@@ -18,6 +18,7 @@ import UserGetAllRestaurantReducer from "../slices/getAllRestaurantSlice";
 import vendorFoodsReducer from "../slices/vendorFoods";
 import singleVendorReducer from "../slices/singleVendorSlice";
 import singleVendorFoodsReducer from "../slices/vendorFoodsSlice";
+import makeOrderReducer from '../slices/userCreateOrderSlice'
 
 export const store = configureStore({
 	reducer: {
@@ -40,6 +41,7 @@ export const store = configureStore({
 		vendorFood: vendorFoodsReducer,
 		getSingleVendor: singleVendorReducer,
 		getVendorFoods: singleVendorFoodsReducer,
+		order : makeOrderReducer
 	
 	},
 });

@@ -77,7 +77,7 @@ const VendorAddFoodModal = ({handleClose}:any) => {
       showSuccessToast(data.message)
       setLoading(false)
         dispatch(getAllFoodCount());
-      navigate("/vendorLogin");
+      // navigate("/vendordashboard");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       console.error(error);
