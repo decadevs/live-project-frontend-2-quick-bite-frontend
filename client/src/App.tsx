@@ -40,6 +40,7 @@ import CheckOut from "./pages/CheckOut";
 import UserChangePassword from "./components/userChangePassword";
 import OrdersModal from "./components/VendorAllFoodModal";
 import Foodlist from "./components/Foodlist";
+import UserOrderComponent from "./components/UserOrder";
 
 
 
@@ -94,6 +95,7 @@ function App() {
             <Route path="/popularfoods" element={<PopularFoodsPage />}></Route>
             <Route path="/checkout" element={<CheckOut />}></Route>
             <Route path="/vendorviewallfood" element={<OrdersModal />}></Route>
+            <Route path="/userorder" element={<UserOrderComponent />}></Route>
           </Routes>
           <Footer />
         </main>
