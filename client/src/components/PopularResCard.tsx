@@ -16,7 +16,6 @@ const PopularResCard = () => {
   const { popularRestaurant, isLoading } = useAppSelector(
     (state) => state.popularRestaurant
   );
-  console.log(isLoading, popularRestaurant);
   useEffect(() => {
     dispatch(getPopularRestaurant());
   }, [dispatch]);

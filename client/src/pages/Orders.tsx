@@ -25,12 +25,12 @@ interface Column {
 
 const handleEditClick = (row: Data) => {
   // Implement the edit logic here
-  console.log("Edit clicked for:", row);
+  // console.log("Edit clicked for:", row);
 };
 
 const handleDeleteClick = (row: Data) => {
   // Implement the delete logic here
-  console.log("Delete clicked for:", row);
+  // console.log("Delete clicked for:", row);
 };
 
 const columns: readonly Column[] = [

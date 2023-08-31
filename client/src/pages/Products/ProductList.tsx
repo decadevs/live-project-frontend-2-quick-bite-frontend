@@ -61,7 +61,7 @@ export default function ProductList() {
     const { allFoodCount, isLoading } = useAppSelector(
         (state) => state.allFoodCount
     );
-    console.log(isLoading)
+    // console.log(isLoading)
     React.useEffect(() => {
         dispatch(getAllFoodCount());
     }, [dispatch]);
@@ -101,7 +101,7 @@ export default function ProductList() {
     
     const handleDeleteClick = (row: Data) => {
         // Implement the delete logic here
-        console.log("Delete clicked for:", row);
+        // console.log("Delete clicked for:", row);
     };
     
     const columns: readonly Column[] = [

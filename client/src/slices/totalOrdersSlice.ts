@@ -77,7 +77,7 @@ export const totalOrderSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorOrders.fulfilled, (state, action) => {
-            state.vendorOrders = action.payload.orders
+            state.vendorOrders = action.payload.orderCount
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)

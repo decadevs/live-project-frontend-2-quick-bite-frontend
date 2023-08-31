@@ -41,7 +41,6 @@ export const getOrderCount = createAsyncThunk(
       localStorage.getItem(response.data.id)
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
       // localStorage.setItem("token", response.data.token);
-      console.log('orders  ',  response.data.foodArr)
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

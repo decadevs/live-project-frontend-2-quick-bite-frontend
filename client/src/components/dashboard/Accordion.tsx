@@ -11,14 +11,14 @@ export default function AccordionDash() {
     const dispatch = useAppDispatch();
     const { vendorPopularFoods, isLoading } = useAppSelector((state) => state.vendorPopularFood)
 
-    console.log(isLoading)
+    console.log('accordian', vendorPopularFoods, isLoading)
     useEffect(() => {
         dispatch(getPopularFoods())
     }, [dispatch])
     // console.log('vendorPopularFoods', vendorPopularFoods)
     const popularFoods = vendorPopularFoods?.map((food) => food);
 
-   console.log("popularFoods value", popularFoods)
+   console.log("accordian popularFoods value", popularFoods)
 // const foodName = vendorPopularFoods?.map((item) => item.name)
 // console.log('food ',foodName)
     return (
