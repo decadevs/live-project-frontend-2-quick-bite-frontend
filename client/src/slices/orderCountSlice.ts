@@ -73,7 +73,7 @@ export const getOrderCountSlice = createSlice({
     });
     builder.addCase(getOrderCount.fulfilled, (state, action) => {
       // Add user to the state array
-      state.vendorOrder = action.payload.vendorOrders;
+      state.vendorOrder = action.payload.foodArr;
 
       state.message = action.payload.message;
       state.isAuthenticated = true;
