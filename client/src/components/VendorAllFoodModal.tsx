@@ -1,22 +1,52 @@
-import React, { useState } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import Modal from "../components/reusableComponents/Modal";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import { getSingleOrder } from "../slices/orderSlice";
 import "../styles/venfoodModal.css";
 
+interface Order {
+  id: string;
+  foodid: string;
+  food_name: string;
+  quantity: number;
+  amount: number;
+  status: string;
+  userId: string;
+  vendorId: string;
+  isPaid: boolean;
+  address: string;
+}
+
 const OrdersModal = () => {
+  const dispatch = useAppDispatch();
+  const { singleOrder, isLoading } = useAppSelector(
+    (state) => state.getSingleOrder
+  );
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [status, setStatus] = useState("pending");
+  console.log(singleOrder, isLoading);
 
-  const orders = [
-    {
-      foodName: "FUFU",
-      price: 2000,
-      userAddress: "123 Okorohmi, Benin City",
-      status: "pending",
-    },
-  ];
+  useEffect(() => {
+    dispatch(getSingleOrder()).unwrap();
+  }, [dispatch]);
 
-  const handleModalOpen = (order: React.SetStateAction<null>) => {
-    setSelectedOrder(order);
+  const order: Order = {
+    food_name: "FUFU",
+    amount: 2000,
+    address: "123 Okorohmi, Benin City",
+    status: "pending",
+    id: "1",
+    foodid: "1",
+    quantity: 2,
+    userId: "3",
+    vendorId: "5",
+    isPaid: false,
+  };
+  //order: React.SetStateAction<null>
+
+  const handleModalOpen = () => {
+    // setSelectedOrder(order);
     setIsModalOpen(true);
   };
 
@@ -24,51 +54,59 @@ const OrdersModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleSaveStatus = (newStatus: string) => {
-    if (selectedOrder) {
-      selectedOrder.status = newStatus;
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setStatus(e.target.value);
+  };
 
-      setSelectedOrder({ ...selectedOrder });
-    }
-    // handleModalClose();
+  const handleSaveStatus = () => {
+    // call endpoint to update order status;
+    const payload = {
+      status,
+    };
+    console.log(payload);
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      {orders.map((order, index) => (
-        <div key={index}>
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-            onClick={() => handleModalOpen(order)}
-          >
-            View Order: {}
-          </button>
-        </div>
-      ))}
+      {/* {order.map((order, index) => ( */}
+      <div>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={() => handleModalOpen()}
+        >
+          View Order: {}
+        </button>
+      </div>
+      {/* ))} */}
 
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-        {selectedOrder && (
+        {isModalOpen && (
           <>
             <h2 className="details">Order Details</h2>
             <p>
-              <strong>Food Name:</strong> {selectedOrder.foodName}
+              <strong>Food Name:</strong> {order.food_name}
             </p>
             <p>
-              <strong>Price:</strong> #{selectedOrder.price.toFixed(2)}
+              <strong>Price:</strong> #{order.amount.toFixed(2)}
             </p>
             <p>
-              <strong>User's Address:</strong> {selectedOrder.userAddress}
+              <strong>User's Address:</strong> {order.address}
             </p>
-            <p>
+            <form onSubmit={handleSaveStatus}>
               <strong>Status:</strong>
-              <select
-                value={selectedOrder.status}
-                onChange={(e) => handleSaveStatus(e.target.value)}
-              >
+              <select name="status" value={status} onChange={handleChange}>
                 <option value="pending">Pending</option>
                 <option value="ready">Ready</option>
               </select>
-            </p>
+              <br />
+
+              <button
+                className="px-3 py-1 my-3 bg-gray-400 rounded "
+                type="submit"
+              >
+                Save
+              </button>
+            </form>
             <button className="close-modal" onClick={handleModalClose}>
               Close Modal
             </button>
