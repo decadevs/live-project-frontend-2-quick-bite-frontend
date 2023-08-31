@@ -9,7 +9,8 @@ import { Button } from '@mui/material';
 import EditVendor from '../components/EditVendor';
 
 export default function MediaCard() {
-    const [showEditVendor, setShowEditVendor] = useState(false);
+    
+    const [showModal , setShowModal] =  useState(false)
     const dispatch = useAppDispatch();
 
     const { vendorProfile, isLoading } = useAppSelector((state) => state.vendorProfile);
@@ -57,14 +58,14 @@ export default function MediaCard() {
                         </Typography>
                     </CardContent>
                 </Card>
-                <Button
+               { !showModal && <Button
                     variant="contained"
                     color="success"
-                    onClick={() => setShowEditVendor(prevShow => !prevShow)}
+                    onClick={() => setShowModal(!showModal)}
                 >
-                    {showEditVendor ? 'Close Edit' : 'Edit Vendor'}
-                </Button>
-                {showEditVendor && <EditVendor />}
+                    {showModal ? 'Close Edit' : 'Edit Vendor'}
+                </Button>}
+                {showModal && <EditVendor  handleClose={setShowModal}/>}
             </Grid>
         </Grid>
     );
