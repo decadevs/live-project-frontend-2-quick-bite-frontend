@@ -20,6 +20,8 @@ import vendorFoodsReducer from "../slices/vendorFoods";
 import singleVendorReducer from "../slices/singleVendorSlice";
 import singleVendorFoodsReducer from "../slices/vendorFoodsSlice";
 import makeOrderReducer from "../slices/userCreateOrderSlice";
+import userOrdersReducer from "../slices/userOrdersSlice";
+
 
 export const store = configureStore({
   reducer: {
@@ -44,6 +46,8 @@ export const store = configureStore({
     getSingleVendor: singleVendorReducer,
     getVendorFoods: singleVendorFoodsReducer,
     order: makeOrderReducer,
+    userOrders: userOrdersReducer,
+
   },
 });
 
