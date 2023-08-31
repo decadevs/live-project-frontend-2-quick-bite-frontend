@@ -129,16 +129,6 @@ export default function ProductList() {
                   return toast.error(error.message);
                 }
               }
-    // const rowIndex = rows.findIndex((r) => r === row);
-    
-    // if (rowIndex !== -1) {
-    //     // Create a copy of the rows array without the selected row
-    //     const updatedRows:any = [...rows];
-    //     updatedRows.splice(rowIndex, 1);
-        
-    //     // Update the state with the updated rows
-    //     setSelectedRow(updatedRows);
-    // }
     };
     
     const columns: readonly Column[] = [
@@ -161,16 +151,6 @@ export default function ProductList() {
             id: "actions",
             label: "Actions",
             align: "center",
-            // format: (_value: unknown, row: Data) => (
-            //     <>
-            //         <IconButton onClick={() => handleEditClick(row)}>
-            //             <EditIcon />
-            //         </IconButton>
-            //         <IconButton onClick={() => handleDeleteClick(row)}>
-            //             <DeleteIcon />
-            //         </IconButton>
-            //     </>
-            // ),
         },
     ];
     

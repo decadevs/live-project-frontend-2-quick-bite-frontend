@@ -17,8 +17,6 @@ export default function AccordionDash() {
     }, [dispatch])
     // console.log('vendorPopularFoods', vendorPopularFoods)
     const popularFoods = vendorPopularFoods?.map((food) => food);
-
-   console.log("accordian popularFoods value", popularFoods)
 // const foodName = vendorPopularFoods?.map((item) => item.name)
 // console.log('food ',foodName)
     return (
@@ -35,7 +33,6 @@ export default function AccordionDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                console.log(food.name)
                                 {food.description}
                             </Typography>
                         </AccordionDetails>

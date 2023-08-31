@@ -20,7 +20,8 @@ import vendorFoodsReducer from "../slices/vendorFoods";
 import singleVendorReducer from "../slices/singleVendorSlice";
 import singleVendorFoodsReducer from "../slices/vendorFoodsSlice";
 import makeOrderReducer from "../slices/userCreateOrderSlice";
-
+import geoProfileReducer from '../slices/geoProfileSlice'
+import singleOrdersReducer from '../slices/orderSlice'
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -44,6 +45,8 @@ export const store = configureStore({
     getSingleVendor: singleVendorReducer,
     getVendorFoods: singleVendorFoodsReducer,
     order: makeOrderReducer,
+    geoProfile: geoProfileReducer,
+    getSingleOrder: singleOrdersReducer
   },
 });
 

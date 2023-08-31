@@ -16,7 +16,7 @@ import "../styles/index.css"
 //const { name, price, food_image, ready_time, description } = req.body;
 
 const VendorCreatesFood = () => {
-  const [showModal , setShowModal] =  useState(true)
+  const [showModal , setShowModal] =  useState(false)
  
   return (
     <>
