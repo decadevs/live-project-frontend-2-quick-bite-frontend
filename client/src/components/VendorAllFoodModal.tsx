@@ -25,11 +25,12 @@ const OrdersModal = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [status, setStatus] = useState("pending");
-  console.log(singleOrder, isLoading);
+  console.log('single', singleOrder);
 
   useEffect(() => {
     dispatch(getSingleOrder()).unwrap();
   }, [dispatch]);
+
 
   const order: Order = {
     food_name: "FUFU",
@@ -43,7 +44,7 @@ const OrdersModal = () => {
     vendorId: "5",
     isPaid: false,
   };
-  //order: React.SetStateAction<null>
+  // order: React.SetStateAction<null>
 
   const handleModalOpen = () => {
     // setSelectedOrder(order);

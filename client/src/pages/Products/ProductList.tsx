@@ -15,6 +15,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import EditModal from "../../components/EditModal";
 import { useState } from "react";
+import axios from "../../api/httpService";
+import { toast } from "react-toastify";
 
 interface Column {
     id:
@@ -27,7 +29,7 @@ interface Column {
     label: string;
     minWidth?: number;
     align?: "right" | "left" | "center";
-    format?: ((value: number) => string) | undefined
+    format?: any//((value: number) => string) | undefined
 }
 
 interface Data {
@@ -36,7 +38,8 @@ interface Data {
     order_count: number;
     ready_time: string;
     rating: string;
-    actions: string;
+    actions: any;
+    foodId: string;
 }
 
 function createData(
@@ -44,7 +47,8 @@ function createData(
     price: number,
     order_count: number,
     ready_time: string,
-    rating: string
+    rating: string,
+    foodId:string
 ): Data {
     return {
         name,
@@ -53,6 +57,7 @@ function createData(
         ready_time,
         rating,
         actions: "actions",
+        foodId,
     };
 }
 
@@ -68,15 +73,15 @@ export default function ProductList() {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rows = allFoodCount.map((food: any) =>
-        createData(
-            food.name,
-            food.price,
-            food.order_count,
-            food.ready_time,
-            food.rating
+    createData(
+        food.name,
+        food.price,
+        food.order_count,
+        food.ready_time,
+        food.rating,
+        food.id
         )
-    );
-
+        );
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -97,11 +102,33 @@ export default function ProductList() {
     const handleEditClick = (row: Data) => {
         setSelectedRow(row);
         setShowEditModal(true);
+        localStorage.setItem('foodid', row.foodId)
     };
     
-    const handleDeleteClick = (row: Data) => {
+    const handleDeleteClick = async (row: Data) => {
         // Implement the delete logic here
         // console.log("Delete clicked for:", row);
+           // Find the index of the selected row in the rows array
+            try{
+                // e.preventDefault()
+                const foodid = row.foodId
+                // localStorage.getItem('vendor')
+                const {data} = await axios.delete(`/vendor/deletefood/${foodid}`)
+                toast.success(data.message)
+
+                dispatch(getAllFoodCount());
+                
+              } catch (error:any) {
+                if (error.response) {
+                  return toast.error(error.response.data.message);
+                }
+                if (error.request) {
+                  return toast.error("Network Error");
+                }
+                if (error.message) {
+                  return toast.error(error.message);
+                }
+              }
     };
     
     const columns: readonly Column[] = [
@@ -124,16 +151,6 @@ export default function ProductList() {
             id: "actions",
             label: "Actions",
             align: "center",
-            format: (_value: unknown, row: Data) => (
-                <>
-                    <IconButton onClick={() => handleEditClick(row)}>
-                        <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => handleDeleteClick(row)}>
-                        <DeleteIcon />
-                    </IconButton>
-                </>
-            ),
         },
     ];
     
@@ -168,9 +185,20 @@ export default function ProductList() {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align}>
-                                                        {column.format && typeof value === "number"
-                                                            ? column.format(value)
-                                                            : value}
+                                                        {column.id === "actions" ? (
+                                                            <TableCell key="actions" align="center">
+                                                                <IconButton onClick={() => handleEditClick(row)}>
+                                                                    <EditIcon />
+                                                                </IconButton>
+                                                                <IconButton onClick={() => handleDeleteClick(row)}>
+                                                                    <DeleteIcon />
+                                                                </IconButton>
+                                                            </TableCell>
+                                                        ) : (
+                                                            column.format && typeof value === "number"
+                                                                ? column.format(value)
+                                                                : value
+                                                        )}
                                                     </TableCell>
                                                 );
                                             })}
@@ -190,7 +218,7 @@ export default function ProductList() {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            {showEditModal && <EditModal onClose={() => setShowEditModal(false)} isOpen={false} />}
+            {showEditModal && <EditModal onClose={() => setShowEditModal(false)} isOpen={true} />}
         </>
     )
 }

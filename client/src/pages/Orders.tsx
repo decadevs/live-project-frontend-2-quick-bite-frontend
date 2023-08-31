@@ -14,24 +14,17 @@ import { Box, IconButton } from "@mui/material";
 import Sidenav from "../components/dashboard/sidenav";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-
+import { toast } from "react-toastify";
+import axios from "../api/httpService";
+import { useState } from "react";
+import OrdersModal from '../components/VendorAllFoodModal'
 interface Column {
-  id: "food_name" | "quantity" | "amount" | "status" | "isPaid" | "actions" ;
+  id: "food_name" | "quantity" | "amount" | "status" | "isPaid" | "actions";
   label: string;
   minWidth?: number;
   align?: "right" | "left" | "center";
-  format?: (value: number, row: Data) => JSX.Element | string;
+  format?: any//((value: number) => string) | undefined
 }
-
-const handleEditClick = (row: Data) => {
-  // Implement the edit logic here
-  // console.log("Edit clicked for:", row);
-};
-
-const handleDeleteClick = (row: Data) => {
-  // Implement the delete logic here
-  // console.log("Delete clicked for:", row);
-};
 
 const columns: readonly Column[] = [
   { id: "food_name", label: "Name", minWidth: 70 },
@@ -53,16 +46,6 @@ const columns: readonly Column[] = [
     id: "actions",
     label: "Actions",
     align: "center",
-    format: (_value: unknown, row: Data) => (
-      <>
-        <IconButton onClick={() => handleEditClick(row)}>
-          <EditIcon />
-        </IconButton>
-        <IconButton onClick={() => handleDeleteClick(row)}>
-          <DeleteIcon />
-        </IconButton>
-      </>
-    ),
   },
 ];
 
@@ -71,8 +54,8 @@ interface Data {
   quantity: number;
   amount: number;
   status: string;
-  // isPaid: boolean;
   actions: string;
+  orderId: string;
 }
 
 function createData(
@@ -80,6 +63,7 @@ function createData(
   quantity: number,
   amount: number,
   status: string,
+  orderId: string
   // isPaid: boolean,
 ): Data {
   return {
@@ -88,7 +72,8 @@ function createData(
     amount,
     status,
     // isPaid,
-    actions: "actions"
+    actions: "actions",
+    orderId
   };
 }
 
@@ -107,12 +92,46 @@ export default function VendorOrder() {
       order.quantity,
       order.itemTotal,
       order.status,
+      order.id
       // order.isPaid
     )
   );
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<Data | null>(null);
+
+    const handleEditClick = (row: Data) => {
+        setSelectedRow(row);
+        setShowEditModal(true);
+        localStorage.setItem('orderid', row.orderId)
+    };
+    
+    const handleDeleteClick = async (row: Data) => {
+        // Implement the delete logic here
+        // console.log("Delete clicked for:", row);
+           // Find the index of the selected row in the rows array
+            try{
+                // e.preventDefault()
+                const orderid = row.orderId
+                localStorage.setItem('orderid', row.orderId)
+                const {data} = await axios.delete(`/vendor/deleteorder/${orderid}`)
+                toast.success(data.message)
+                dispatch(getOrderCount());
+                
+              } catch (error:any) {
+                if (error.response) {
+                  return toast.error(error.response.data.message);
+                }
+                if (error.request) {
+                  return toast.error("Network Error");
+                }
+                if (error.message) {
+                  return toast.error(error.message);
+                }
+              }
+    };
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
@@ -150,17 +169,29 @@ export default function VendorOrder() {
                 </TableHead>
                 <TableBody>
                   {rows
-                    ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    ?.map((row, index) => {
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row) => {
                       return (
-                        <TableRow key={index} hover role="checkbox" tabIndex={-1}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.food_name}>
                           {columns.map((column) => {
+                            //console.log("col", column);
                             const value = row[column.id];
                             return (
                               <TableCell key={column.id} align={column.align}>
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
+                                {column.id === "actions" ? (
+                                  <TableCell key="actions" align="center">
+                                    <IconButton onClick={() => handleEditClick(row)}>
+                                      <EditIcon />
+                                    </IconButton>
+                                    <IconButton onClick={() => handleDeleteClick(row)}>
+                                      <DeleteIcon />
+                                    </IconButton>
+                                  </TableCell>
+                                ) : (
+                                  column.format && typeof value === "number"
+                                    ? column.format(value)
+                                    : value
+                                )}
                               </TableCell>
                             );
                           })}
@@ -180,6 +211,7 @@ export default function VendorOrder() {
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
           </Paper>
+            {showEditModal && <OrdersModal onClose={() => setShowEditModal(false)} isOpen={true} />}
         </Box>
       </Box>
     </>

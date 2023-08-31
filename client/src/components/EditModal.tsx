@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/editFood.css'; // Import your CSS file for styling
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { editVendorFood } from '../slices/vendorFoods';
+import { getAllFoodCount } from '../slices/getAllFoodCountSlice';
 
 
 
@@ -42,6 +43,7 @@ const EditModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         };
         try {
          await dispatch(editVendorFood(payload))
+         dispatch(getAllFoodCount());;
         } catch (error) {
           console.log(error)
         }
