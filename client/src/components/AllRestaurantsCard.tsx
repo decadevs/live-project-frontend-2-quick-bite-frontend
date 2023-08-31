@@ -17,8 +17,6 @@ const Cardlist = () => {
   const { allRestaurant, isLoading } = useAppSelector(
     (state) => state.allRestaurant
   );
-
-  console.log(isLoading, allRestaurant);
   useEffect(() => {
     dispatch(getAllRestaurant());
   }, [dispatch]);

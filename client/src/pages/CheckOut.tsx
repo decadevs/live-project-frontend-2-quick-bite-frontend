@@ -23,7 +23,6 @@ const CheckOut = () => {
   const { cartTotal, items, emptyCart } = useCart();
   const [show, setShow] = useState(false);
   const {order} = useAppSelector((state)=> state.order)
-  console.log('order frontend', order)
   const dispatch = useAppDispatch()
 
 

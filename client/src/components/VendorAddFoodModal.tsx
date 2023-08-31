@@ -71,7 +71,6 @@ const VendorAddFoodModal = ({handleClose}:any) => {
       }
 
       const {data} = await axios.post("/vendor/createfood", formData)
-      console.log(data)
 
       setCreateFood(initialData)
       showSuccessToast(data.message)

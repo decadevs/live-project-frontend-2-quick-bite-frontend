@@ -6,14 +6,10 @@ import { getPopularFoods } from '../slices/vendorPopularFoodsSlice';
 export default function PieChart() {
     const dispatch = useAppDispatch();
     const { vendorPopularFoods, isLoading } = useAppSelector((state) => state.vendorPopularFood)
-
-    console.log(isLoading)
     useEffect(() => {
         dispatch(getPopularFoods())
     }, [dispatch])
-    console.log('vendorPopularFoods ',vendorPopularFoods)
-    const popularFoods = vendorPopularFoods?.filter((food) => food.order_count !== undefined && food.order_count > 10);
-
+    const popularFoods = vendorPopularFoods?.filter((food) => food.order_count !== undefined && food.order_count >= 1);
     const formatDataForChart = () => {
         const chartData = [
             ['Product', 'Popularity'],

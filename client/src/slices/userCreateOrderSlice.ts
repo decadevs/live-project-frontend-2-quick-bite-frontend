@@ -36,7 +36,6 @@ export const userCreateOrder = createAsyncThunk(
 	async (payload: any, thunkAPI) => {
 		try {
 			const response = await axios.post("/user/makeorder", payload);
-            console.log('order backend', response.data.order)
 			// localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
 			// localStorage.setItem("id", JSON.stringify(response.data.vendor.id));
 			// console.log("response", response.data.token)

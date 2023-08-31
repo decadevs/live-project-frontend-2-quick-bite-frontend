@@ -72,7 +72,7 @@ export const getTotalFoodSlice = createSlice({
     });
     builder.addCase(getTotalFood.fulfilled, (state, action) => {
       // Add user to the state array
-      state.totalFoods = action.payload.data;
+      state.totalFoods = action.payload.totalFoods;
       state.message = action.payload.message;
       state.isAuthenticated = true;
       state.error = "";
