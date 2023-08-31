@@ -14,6 +14,8 @@ const AllVendorFoods = () => {
 
   const { Foods } = useAppSelector((state) => state.getVendorFoods);
 
+  console.log(Foods)
+
   useEffect(() => {
     // const vendorId = localStorage.getItem("vndorid");
     dispatch(getSingleVendor()).unwrap();
@@ -41,6 +43,7 @@ const AllVendorFoods = () => {
       {Foods.map((item, i) => (
         <CardSection
           key={i}
+          food_image ={item.food_image}
           name={item.name}
           description={item.description}
           price={item.price}
