@@ -19,7 +19,6 @@ const EditModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   const dispatch = useAppDispatch()
   const {vendorFood} = useAppSelector((state) => state.vendorFood )
-  console.log(vendorFood)
 
 
 

@@ -1,4 +1,4 @@
-import Cardlist from "../components/Cardlist"
+import Cardlist from "../components/AllRestaurantsCard"
  import '../styles/index.css'
 import Header from "../components/Header"
 

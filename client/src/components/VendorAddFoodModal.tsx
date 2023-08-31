@@ -71,13 +71,12 @@ const VendorAddFoodModal = ({handleClose}:any) => {
       }
 
       const {data} = await axios.post("/vendor/createfood", formData)
-      console.log(data)
 
       setCreateFood(initialData)
       showSuccessToast(data.message)
       setLoading(false)
         dispatch(getAllFoodCount());
-      navigate("/vendorLogin");
+      // navigate("/vendordashboard");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error:any) {
       console.error(error);

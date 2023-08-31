@@ -3,26 +3,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/httpService";
 
 export interface VendorDetails {
-    id?: string;
-    email?: string;
-    restaurant_name?: string;
-    name_of_owner?: string;
-    company_name?: string;
-    password?: string;
-    address?: string;
-    phone_no?: string;
-    isAvailable?: boolean;
     earnings?: number;
     revenue?: number;
-    role?: string;
-    salt?: string;
-    cover_image?: string;
-    rating?: number;
-    orders?: number
 }
 
 export interface InitialVendorState {
-    vendorProfile: VendorDetails;
+    earningRevenue: VendorDetails[];
     token: string;
     isAuthenticated: boolean;
     isLoading: boolean
@@ -31,7 +17,7 @@ export interface InitialVendorState {
 }
 
 const initialState: InitialVendorState = {
-    vendorProfile: {},
+    earningRevenue: [],
     token: "",
     isAuthenticated: false,
     error: "",
@@ -39,14 +25,14 @@ const initialState: InitialVendorState = {
     message: ""
 };
 
-export const getVendorProfile = createAsyncThunk(
-    "vendorProfile/getProfile",
+export const getEarningRevenue = createAsyncThunk(
+    "earningRevenue/getEarningRevenue",
     async (_, thunkAPI) => {
         try {
-            const response = await axios.get("/vendor/getsingleprofile");
+            const response = await axios.get("/vendor/earningsandrevenue");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
             // localStorage.setItem("token", response.data.token);
-            // console.log(response.data.vendor)
+            //console.log('value', response.data)
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -63,27 +49,27 @@ export const getVendorProfile = createAsyncThunk(
     }
 );
 
-export const vendorGetProfileSlice = createSlice({
-    name: "vendorProfile",
+export const earningRevenueSlice = createSlice({
+    name: "earningRevenue",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
 
-        builder.addCase(getVendorProfile.pending, (state) => {
+        builder.addCase(getEarningRevenue.pending, (state) => {
             // Add user to the state array
             state.isLoading = true;
             state.message = ""
             state.error = ""
         });
-        builder.addCase(getVendorProfile.fulfilled, (state, action) => {
-            state.vendorProfile = action.payload.vendor
-            // console.log(action.payload.vendor)
+        builder.addCase(getEarningRevenue.fulfilled, (state, action) => {
+            state.earningRevenue = action.payload.earningRevenueArray
             state.message = action.payload.message
             state.error = "";
             // toast.success(action.payload.message)
+
         });
 
-        builder.addCase(getVendorProfile.rejected, (state, action) => {
+        builder.addCase(getEarningRevenue.rejected, (state, action) => {
             // Add user to the state array
             state.isLoading = false;
             state.message = ""
@@ -93,4 +79,5 @@ export const vendorGetProfileSlice = createSlice({
     },
 });
 
-export default vendorGetProfileSlice.reducer;
+
+export default earningRevenueSlice.reducer;

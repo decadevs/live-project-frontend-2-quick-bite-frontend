@@ -14,14 +14,12 @@ export default function MediaCard() {
     const dispatch = useAppDispatch();
 
     const { vendorProfile, isLoading } = useAppSelector((state) => state.vendorProfile);
-    console.log(isLoading)
 
     useEffect(() => {
         dispatch(getVendorProfile());
     }, [dispatch]);
 
     const vendorInfoAvailable = vendorProfile;
-    console.log(vendorProfile)
     
     return (
         <Grid container spacing={3}>
