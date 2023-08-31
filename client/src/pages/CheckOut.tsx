@@ -38,16 +38,15 @@ const CheckOut = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleContinueToPayment = (event: any) => {
+  const handleContinueToPayment = async (event: any) => {
     event.preventDefault();
 
-    const payload = {
+  const payload:any = {
       ...formData,
       items,
       cartTotal,
     };
-
-dispatch(userCreateOrder(payload))
+ dispatch(userCreateOrder(payload))
     setShow(true);
     // emptyCart();
   };

@@ -57,8 +57,9 @@ export const editVendorFood = createAsyncThunk(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async (payload: Record<string, any>, thunkAPI) => {
     try {
+      const foodid = localStorage.getItem('foodid')
       const response = await axios.put(
-        `/vendor/editfood/${payload.id}`,
+        `/vendor/editfood/${foodid}`,
         payload
       );
       return response.data;

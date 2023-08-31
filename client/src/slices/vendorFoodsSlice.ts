@@ -61,8 +61,6 @@ export const getVendorFoods = createAsyncThunk(
 	  }
 	}
   );
-  
-
 
 export const singleVendorFoodsSlice = createSlice({
 	name: "vendorAuth",
