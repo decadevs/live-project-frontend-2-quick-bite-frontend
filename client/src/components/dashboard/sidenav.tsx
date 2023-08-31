@@ -68,9 +68,9 @@ export default function Sidenav() {
     const theme = useTheme();
     // const [open, setOpen] = React.useState(true);
     const navigate = useNavigate()
-    const updateOpen = useAppStore((state) => state.updateOpen)
+    // const updateOpen = useAppStore((state) => state.updateOpen)
     const open = useAppStore((state) => state.dopen)
-    console.log(updateOpen)
+
     
     return (
         <Box sx={{ display: 'flex' }}>
@@ -120,7 +120,7 @@ export default function Sidenav() {
                             >
                                 <InboxIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Products" sx={{ opacity: open ? 1 : 0 }} />
+                            <ListItemText primary="Meals" sx={{ opacity: open ? 1 : 0 }} />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding sx={{ display: 'block' }} onClick={() => navigate('/orders')}>

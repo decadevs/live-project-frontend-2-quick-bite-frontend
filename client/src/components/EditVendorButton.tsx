@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import '../styles/EditVendor.css'
 import { Link } from 'react-router-dom'
 const EditVendorButton = () => {

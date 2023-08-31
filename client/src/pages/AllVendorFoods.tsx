@@ -1,42 +1,46 @@
 import CardSection from "../components/CardSection";
 import "../styles/allVendorFoods.css";
 import Header from "../components/Header";
+import HeaderNotAuth from "../components/HeaderNotAuth";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getSingleVendor } from "../slices/singleVendorSlice";
+import { getVendorFoods } from "../slices/vendorFoodsSlice";
+import { useEffect } from "react";
 
 const AllVendorFoods = () => {
-  let foods = [
-    {
-      name: "Fried rice",
-      description: "hot and spice ",
-      id: 1,
-      price: 1500,
-    },
-    { name: "Moi-moi", description: "hot and spice ", id: 2, price: 500 },
-    { name: "Abacha", description: "hot and spice ", id: 3, price: 2000 },
-    {
-      name: "Grilled Chiken",
-      description: "hot and spice ",
-      id: 4,
-      price: 3500,
-    },
-    { name: "Egusi & fufu", description: "hot and spice ", id: 5, price: 4000 },
-  ];
+  const dispatch = useAppDispatch();
+
+  const { vendor } = useAppSelector((state) => state.getSingleVendor);
+
+  const { Foods } = useAppSelector((state) => state.getVendorFoods);
+
+  useEffect(() => {
+    // const vendorId = localStorage.getItem("vndorid");
+    dispatch(getSingleVendor()).unwrap();
+
+    dispatch(getVendorFoods()).unwrap();
+  }, [dispatch]);
 
   return (
     <>
-      <Header />
+      {localStorage.getItem("token") ? <Header /> : <HeaderNotAuth />}
       <div>
-        <div className="cover-photo">
+        <div
+          className="cover-photo"
+          style={{ backgroundImage: `url(${vendor.cover_image})` }}
+        >
           {/* <img src={cover_photo} alt="" /> */}
         </div>
         <div className="vendorInfo">
-          <h2>Chicken Republic</h2>
-          <p>⭐️ 4.5 | Min order: N2500 | delivery: N1500</p>
+          <h2>{vendor.restaurant_name}</h2>
+          <p>⭐️ {vendor.rating} | Min order: N2500 | delivery: N1500</p>
         </div>
         <hr />
       </div>
 
-      {foods.map((item) => (
+      {Foods.map((item, i) => (
         <CardSection
+          key={i}
           name={item.name}
           description={item.description}
           price={item.price}

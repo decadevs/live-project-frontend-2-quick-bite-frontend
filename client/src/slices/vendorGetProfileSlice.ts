@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 export interface VendorDetails {
@@ -22,7 +22,7 @@ export interface VendorDetails {
 }
 
 export interface InitialVendorState {
-    vendorProfile: VendorDetails[];
+    vendorProfile: VendorDetails;
     token: string;
     isAuthenticated: boolean;
     isLoading: boolean
@@ -31,7 +31,7 @@ export interface InitialVendorState {
 }
 
 const initialState: InitialVendorState = {
-    vendorProfile: [],
+    vendorProfile: {},
     token: "",
     isAuthenticated: false,
     error: "",
@@ -45,8 +45,8 @@ export const getVendorProfile = createAsyncThunk(
         try {
             const response = await axios.get("/vendor/getsingleprofile");
             //localStorage.setItem("vendor", JSON.stringify(response.data.user));
-            localStorage.setItem("token", response.data.token);
-            localStorage.getItem(response.data.id)
+            // localStorage.setItem("token", response.data.token);
+            // console.log(response.data.vendor)
             return response.data;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -76,19 +76,19 @@ export const vendorGetProfileSlice = createSlice({
             state.error = ""
         });
         builder.addCase(getVendorProfile.fulfilled, (state, action) => {
-            state.vendorProfile = action.payload.data
+            state.vendorProfile = action.payload.vendor
+            // console.log(action.payload.vendor)
             state.message = action.payload.message
             state.error = "";
-            toast.success(action.payload.message)
-
+            // toast.success(action.payload.message)
         });
 
         builder.addCase(getVendorProfile.rejected, (state, action) => {
             // Add user to the state array
             state.isLoading = false;
             state.message = ""
-            state.error = action.payload as string;
-            toast.error(action.payload as string)
+            state.error = action.error as string;
+            // toast.error(action.payload as string)
         });
     },
 });

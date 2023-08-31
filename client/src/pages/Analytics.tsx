@@ -17,13 +17,10 @@ import { getOrderCount } from "../slices/orderCountSlice";
 export default function Home() {
   const dispatch = useAppDispatch();
   const { allFoodCount, isLoading } = useAppSelector((state) => state.allFoodCount);
-  console.log("redux  data ", allFoodCount, isLoading);
 
   const { totalFoods } = useAppSelector((state) => state.totalFood);
-  console.log(" totalFood  data ", totalFoods, isLoading);
 
   const { vendorOrder } = useAppSelector((state) => state.vendorOrder);
-  console.log(" vendorOrder  data ", vendorOrder, isLoading);
 
   useEffect(() => {
     dispatch(getAllFoodCount());
@@ -32,14 +29,8 @@ export default function Home() {
   }, [dispatch]);
 
 const value = allFoodCount?.length
-console.log("allFood value ", value)
-
 const popularFoods = totalFoods?.length
-console.log("popularFoods value ", popularFoods)
-
 const totalVendorOrder = vendorOrder?.length
-console.log("totalVendorOrder value ", totalVendorOrder)
-
   return (
     <>
       <div className="bgColor">
@@ -77,14 +68,14 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                             duration={0.3}
                           />
                         </Typography>
-                        <Typography
+                        {/* <Typography
                           gutterBottom
                           variant="body2"
                           component="div"
                           sx={{ color: "#ccd1d1" }}
                         >
                           Since last week
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
                     </Card>
                     <Card sx={{ height: 24 + "vh" }} className="gradientlight">
@@ -109,18 +100,18 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                             duration={0.3}
                           />
                         </Typography>
-                        <Typography
+                        {/* <Typography
                           gutterBottom
                           variant="body2"
                           component="div"
                           sx={{ color: "#ccd1d1" }}
                         >
                           Since last week
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
                     </Card>
                   </Box>
-                  <Box sx={{ width: "50%", height: "50%" }}>
+                  <Box sx={{ width: "50%" }}>
                     <Card
                       sx={{ height: 24 + "vh", marginBottom: "14px" }}
                       className="gradient"
@@ -132,7 +123,7 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                           component="div"
                           sx={{ color: "#f0fcfc", padding: "7px 0px" }}
                         >
-                          Max Popular foods
+                          No of Popular foods
                         </Typography>
                         <Typography
                           gutterBottom
@@ -146,14 +137,14 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                             duration={0.3}
                           />
                         </Typography>
-                        <Typography
+                        {/* <Typography
                           gutterBottom
                           variant="body2"
                           component="div"
                           sx={{ color: "#ccd1d1" }}
                         >
                           Since last week
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
                     </Card>
                     <Card sx={{ height: 24 + "vh" }} className="gradientlight">
@@ -172,16 +163,16 @@ console.log("totalVendorOrder value ", totalVendorOrder)
                           component="div"
                           sx={{ color: "#ffffff" }}
                         >
-                          <CountUp delay={0.2} end={22000} duration={0.3} />
+                          <CountUp delay={0.2} end={totalVendorOrder} duration={0.3} />
                         </Typography>
-                        <Typography
+                        {/* <Typography
                           gutterBottom
                           variant="body2"
                           component="div"
                           sx={{ color: "#ccd1d1" }}
                         >
                           Since last week
-                        </Typography>
+                        </Typography> */}
                       </CardContent>
                     </Card>
                   </Box>

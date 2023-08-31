@@ -77,8 +77,8 @@ html {
 
 .btn-primary {
     color: #fff;
-    background-color: #1A512E;
-    border-color: #1A512E;
+    background-color: #1A512E !important;
+    border-color: #1A512E !important;
 }
 
 .resend {

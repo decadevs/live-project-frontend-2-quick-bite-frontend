@@ -11,17 +11,20 @@ export default function AccordionDash() {
     const dispatch = useAppDispatch();
     const { vendorPopularFoods, isLoading } = useAppSelector((state) => state.vendorPopularFood)
 
-    console.log(isLoading)
+    console.log('accordian', vendorPopularFoods, isLoading)
     useEffect(() => {
         dispatch(getPopularFoods())
     }, [dispatch])
+    // console.log('vendorPopularFoods', vendorPopularFoods)
+    const popularFoods = vendorPopularFoods?.map((food) => food);
 
-    const popularFoods = vendorPopularFoods.filter((food) => food.order_count !== undefined && food.order_count > 10);
-
+   console.log("accordian popularFoods value", popularFoods)
+// const foodName = vendorPopularFoods?.map((item) => item.name)
+// console.log('food ',foodName)
     return (
         <div>
             {popularFoods.length > 0 ? (
-                popularFoods.map((food, index) => (
+                popularFoods?.map((food, index) => (
                     <Accordion key={index}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
@@ -32,6 +35,7 @@ export default function AccordionDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
+                                console.log(food.name)
                                 {food.description}
                             </Typography>
                         </AccordionDetails>

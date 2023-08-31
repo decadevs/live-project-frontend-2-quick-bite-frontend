@@ -47,6 +47,8 @@ const Header = () => {
   };
   const [dropdown, setDropDown] = useState(true);
   const toggle = () => setDropDown(!dropdown);
+  const storedUserData = localStorage.getItem('user');
+  const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
 
 
   return (
@@ -65,6 +67,7 @@ const Header = () => {
           <div className={styles.flexProfile}>
             <div className="flex-icon">
               <img src={ProfileImg} alt="" className={styles.profileImg} />
+               <p style={{fontSize:"18px", fontWeight:"normal", marginInline:"auto"}}>{`${parsedUserData.data.firstname} ${ parsedUserData.data.lastname[0]}.`}</p>
             </div>
             <button>
               <i className="fa fa-angle-down" onClick={toggle}></i>
@@ -155,7 +158,49 @@ const Header = () => {
         >
           <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
             {/* <a href="#" className="mx-auto">Vendors</a> */}
+            <ul
+              className={`${dropdown ? styles.dropdown : ""} 
+         absolute  top-20 w-60 h-15 p-5  bg-brown-300 rounded`}
+            >
+              {menus.map((menu) => (
+                <ul className={styles.menu} key={menu.id}>
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="" className={styles.dropdown_link}>
+                      {" "}
+                      {menu.Order}{" "}
+                    </Link>{" "}
+                  </li>
 
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userupdatesprofile"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Updateprofile}{" "}
+                    </Link>
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link
+                      to="/userChangePassword"
+                      className={styles.dropdown_link}
+                    >
+                      {menu.Changepassword}
+                    </Link>{" "}
+                  </li>
+
+                  <li className={styles.dropdown_link}>
+                    {" "}
+                    <Link to="/userlanding" className={styles.dropdown_link}>
+                      {menu.Dashboard}{" "}
+                    </Link>{" "}
+                  </li>
+                </ul>
+              ))}
+            </ul>
             <Link to="/">
               <button
                 onClick={handleLogout}
@@ -172,17 +217,7 @@ const Header = () => {
             collapse ? styles.mobileView : ""
           } mt-20 md:hidden bg-deepBlue`}
         >
-          <div className=" sm:hidden w-auto sm:self-center left-6 right-6 drop-shadow-md ">
-            {/* <a href="#" className="mx-auto">Vendors</a> */}
-
-            <Link to="/">
-              <button
-                className={`${styles.Logout} bg-deepBlue  hover:bg-lightBlue min-w-full`}
-              >
-                Logout
-              </button>{" "}
-            </Link>
-          </div>
+          
         </div>
       </nav>
       {cartVisibility && <ShoppingCart onClose={handleCartClose} />}

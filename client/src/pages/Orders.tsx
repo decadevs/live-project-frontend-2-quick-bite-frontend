@@ -10,16 +10,28 @@ import TableRow from "@mui/material/TableRow";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getOrderCount } from "../slices/orderCountSlice";
 import Navbar from "../components/dashboard/Navbar";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import Sidenav from "../components/dashboard/sidenav";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface Column {
-  id: "food_name" | "quantity" | "amount" | "status" | "isPaid";
+  id: "food_name" | "quantity" | "amount" | "status" | "isPaid" | "actions" ;
   label: string;
   minWidth?: number;
   align?: "right" | "left" | "center";
-  format?: (value: number) => string;
+  format?: (value: number, row: Data) => JSX.Element | string;
 }
+
+const handleEditClick = (row: Data) => {
+  // Implement the edit logic here
+  // console.log("Edit clicked for:", row);
+};
+
+const handleDeleteClick = (row: Data) => {
+  // Implement the delete logic here
+  // console.log("Delete clicked for:", row);
+};
 
 const columns: readonly Column[] = [
   { id: "food_name", label: "Name", minWidth: 70 },
@@ -36,7 +48,22 @@ const columns: readonly Column[] = [
     align: "center",
   },
   { id: "status", label: "Status", minWidth: 100, align: "center" },
-  { id: "isPaid", label: "Paid", minWidth: 100, align: "center" },
+  // { id: "isPaid", label: "Paid", minWidth: 100, align: "center" },
+  {
+    id: "actions",
+    label: "Actions",
+    align: "center",
+    format: (_value: unknown, row: Data) => (
+      <>
+        <IconButton onClick={() => handleEditClick(row)}>
+          <EditIcon />
+        </IconButton>
+        <IconButton onClick={() => handleDeleteClick(row)}>
+          <DeleteIcon />
+        </IconButton>
+      </>
+    ),
+  },
 ];
 
 interface Data {
@@ -44,7 +71,8 @@ interface Data {
   quantity: number;
   amount: number;
   status: string;
-  isPaid: boolean;
+  // isPaid: boolean;
+  actions: string;
 }
 
 function createData(
@@ -52,14 +80,15 @@ function createData(
   quantity: number,
   amount: number,
   status: string,
-  isPaid: boolean
+  // isPaid: boolean,
 ): Data {
   return {
     food_name,
     quantity,
     amount,
     status,
-    isPaid
+    // isPaid,
+    actions: "actions"
   };
 }
 
@@ -68,23 +97,19 @@ export default function VendorOrder() {
   const { vendorOrder, isLoading } = useAppSelector(
     (state) => state.vendorOrder
   );
-  console.log("All Order Details", vendorOrder, isLoading);
 
   React.useEffect(() => {
     dispatch(getOrderCount());
   }, [dispatch]);
-
   const rows = vendorOrder?.map((order: any) =>
     createData(
-      order.food_name,
+      order.name,
       order.quantity,
-      order.amount,
+      order.itemTotal,
       order.status,
-      order.isPaid
+      // order.isPaid
     )
   );
-
-  console.log("row", rows);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -130,7 +155,6 @@ export default function VendorOrder() {
                       return (
                         <TableRow key={index} hover role="checkbox" tabIndex={-1}>
                           {columns.map((column) => {
-                            console.log("col", column);
                             const value = row[column.id];
                             return (
                               <TableCell key={column.id} align={column.align}>

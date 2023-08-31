@@ -21,8 +21,7 @@ export default function VendorHome() {
     const { vendorOrders } = useAppSelector((state) => state.vendorOrders)
     const { vendorEarning } = useAppSelector((state) => state.vendorEarning)
 
-
-    console.log(vendorRevenue, isLoading, vendorOrders, vendorEarning)
+    console.log(isLoading)
     useEffect(() => {
         dispatch(getVendorOrders())
         dispatch(getVendorRevenue())
@@ -30,9 +29,9 @@ export default function VendorHome() {
     }, [dispatch])
 
 
-    const getOrders = vendorOrders?.map((item) => item.orders)
-    const getEarnings = vendorEarning?.map((item) => item.earnings)
-    const getRevenue = vendorRevenue?.map((item) => item.revenue)
+    const getOrders = vendorOrders//?.map((item) => item.orders)
+    const getEarnings = vendorEarning//?.map((item) => item.earnings)
+    const getRevenue = vendorRevenue//?.map((item) => item.revenue)
 
     return (
         <>

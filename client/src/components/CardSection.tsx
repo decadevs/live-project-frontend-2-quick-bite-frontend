@@ -6,10 +6,10 @@ import { BsPlusSquare } from "react-icons/bs";
 import { useCart } from "react-use-cart";
 
 interface Props {
-  name: string;
-  description: string;
+  name?: string;
+  description?: string;
   item: any;
-  price: number;
+  price?: number;
   // onEdit: (name: string, description: string) => void;
 }
 

@@ -47,14 +47,13 @@ const SignupForm = () => {
     try {
       // Simulate saving user data to the postgres database
       setLoading(true);
-      console.log(user);
+  
 
       const payload = {
         ...user,
       };
 
       const {data} = await axios.post("/user/register", payload);
-console.log("register", data)
 
       setUser(initialState);
       setSignupSuccess(true);
@@ -131,7 +130,7 @@ console.log("register", data)
               required
             />
             <span
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute top-1/3 right-4 transform -translate-y-1/2 cursor-pointer"
               onClick={handleTogglePasswordVisibility}
             >
               {showPassword ? (
@@ -162,7 +161,7 @@ console.log("register", data)
               required
             />
             <span
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer"
+              className="absolute top-1/3 right-4 transform -translate-y-1/2 cursor-pointer"
               onClick={handleTogglePasswordVisibility2}
             >
               {closePassword ? (

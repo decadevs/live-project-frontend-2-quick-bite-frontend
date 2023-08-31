@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { showErrorToast, showSuccessToast } from "../utility/toast";
 import axios from "../api/httpService";
+import "../styles/index.css"
 
 // import Header from './Header';
 
@@ -25,7 +26,6 @@ const VendorRegNO = () => {
 
       const { data } = await axios.post("/vendor/verifyvendor", payload);
       showSuccessToast(data.message);
-      console.log('data is', data)
       localStorage.setItem("token", data.token);
       localStorage.setItem('company_name', data.company_name)
       setRegNo("");
@@ -39,7 +39,7 @@ const VendorRegNO = () => {
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
-        showErrorToast(error.response.status);
+        showErrorToast(error.response.data.message);
       } else if (error.request) {
         showErrorToast("Internal Server Error");
       } else {
@@ -52,7 +52,7 @@ const VendorRegNO = () => {
     <>
       {/* <Header/> */}
       <div className="flex justify-center items-center h-screen bg-edf0eb">
-        <div className="w-1/3 p-8 bg-white rounded-xl shadow">
+        <div className="w-1/3-sm p-6 bg-white rounded-xl shadow">
           <h2 className="text-2xl font-bold mb-4">Vendor Verification Page</h2>
           <div className="mb-4">
             <input
@@ -79,12 +79,23 @@ const VendorRegNO = () => {
                     </RouterLink>
                 </p> */}
           <p className="text-black text-center mt-4">
-            Not a registered business?{" "}
-            <a
-              href="mailto:your@email.com"
+            Registered but no CAC No :  {"  "}
+            <a style={{textDecoration:"none"}}
+              href="mailto:cservice@cac.gov.ng"
               className="text-green-800 font-bold"
             >
               Click here to Send an Email to Corporate Affairs Commission
+            </a>
+          </p>
+          <p className="text-black text-center mt-4">
+            Not a registered business?{" "}
+            <a
+            style={{textDecoration:"none"}}
+            target="blank"
+              href="https://pre.cac.gov.ng/home"
+              className="text-green-800 font-bold"
+            >
+              Click here to register
             </a>
           </p>
         </div>

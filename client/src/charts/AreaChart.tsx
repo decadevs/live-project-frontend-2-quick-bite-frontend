@@ -1,12 +1,7 @@
 import { Chart } from "react-google-charts";
-
-export const data = [
-    ["Year", "Sales", "Expenses"],
-    ["2004", 1000, 400],
-    ["2005", 1170, 460],
-    ["2006", 660, 1120],
-    ["2007", 1030, 540],
-];
+import { getEarningRevenue } from "../slices/earningRevSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useEffect } from "react";
 
 export const options = {
     title: "Vendor Performance",
@@ -15,6 +10,29 @@ export const options = {
 };
 
 export default function AreaChart() {
+    const dispatch = useAppDispatch();
+    const { earningRevenue, isLoading } = useAppSelector((state) => state.earningRev)
+
+    console.log('aracChart', earningRevenue)
+    useEffect(() => {
+        dispatch(getEarningRevenue())
+    }, [dispatch])
+   // console.log("earnings value ", earningRevenue)
+
+    const earnings = earningRevenue?.map((item) =>
+        [`${1}`, item.earnings, item.revenue]
+    )
+
+   // console.log('earnings', earnings)
+
+    const data = [
+        ["Days", "Earnings", "Revenue"],
+        ...earnings,
+        ["2", 1170, 460],
+        ["3", 660, 1120],
+        ["4", 1030, 540],
+    ];
+
     return (
         <Chart
             chartType="LineChart"

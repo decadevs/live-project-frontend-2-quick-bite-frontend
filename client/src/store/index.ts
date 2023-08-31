@@ -14,7 +14,12 @@ import totalRevenueReducer from "../slices/totalRevenueSlice";
 import totalEarningReducer from "../slices/totalEarningSlice";
 import totalOrderReducer from "../slices/totalOrdersSlice";
 import vendorPopularFoodsReducer from "../slices/vendorPopularFoodsSlice";
-import singleOrderReducer from "../slices/orderSlice";
+import UserGetAllRestaurantReducer from "../slices/getAllRestaurantSlice";
+import earningRevReducer from "../slices/earningRevSlice";
+import vendorFoodsReducer from "../slices/vendorFoods";
+import singleVendorReducer from "../slices/singleVendorSlice";
+import singleVendorFoodsReducer from "../slices/vendorFoodsSlice";
+import makeOrderReducer from "../slices/userCreateOrderSlice";
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +38,12 @@ export const store = configureStore({
     vendorEarning: totalEarningReducer,
     vendorOrders: totalOrderReducer,
     vendorPopularFood: vendorPopularFoodsReducer,
-    getSingleOrder: singleOrderReducer,
+    allRestaurant: UserGetAllRestaurantReducer,
+    earningRev: earningRevReducer,
+    vendorFood: vendorFoodsReducer,
+    getSingleVendor: singleVendorReducer,
+    getVendorFoods: singleVendorFoodsReducer,
+    order: makeOrderReducer,
   },
 });
 

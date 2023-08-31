@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 import axios from "../api/httpService";
 
 export interface AllFoodDetails {
@@ -40,7 +40,6 @@ export const getAllFoodCount = createAsyncThunk(
     try {
       const response = await axios.get("/vendor/getallfood");
       localStorage.getItem(response.data.id)
-      console.log("response  ", response);
       //localStorage.setItem("vendor", JSON.stringify(response.data.vendor));
       // localStorage.setItem("token", response.data.token);
       return response.data;
@@ -77,7 +76,7 @@ export const getAllFoodCountSlice = createSlice({
       state.message = action.payload.message;
       state.isAuthenticated = true;
       state.error = "";
-      toast.success(action.payload.message);
+      // toast.success(action.payload.message);
     });
 
     builder.addCase(getAllFoodCount.rejected, (state, action) => {
@@ -86,7 +85,7 @@ export const getAllFoodCountSlice = createSlice({
       state.message = "";
       state.isAuthenticated = false;
       state.error = action.payload as string;
-      toast.error(action.payload as string);
+      // toast.error(action.payload as string);
     });
   },
 });
