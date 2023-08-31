@@ -48,7 +48,7 @@ const columns: readonly Column[] = [
     align: "center",
   },
   { id: "status", label: "Status", minWidth: 100, align: "center" },
-  { id: "isPaid", label: "Paid", minWidth: 100, align: "center" },
+  // { id: "isPaid", label: "Paid", minWidth: 100, align: "center" },
   {
     id: "actions",
     label: "Actions",
@@ -71,7 +71,7 @@ interface Data {
   quantity: number;
   amount: number;
   status: string;
-  isPaid: boolean;
+  // isPaid: boolean;
   actions: string;
 }
 
@@ -80,14 +80,14 @@ function createData(
   quantity: number,
   amount: number,
   status: string,
-  isPaid: boolean,
+  // isPaid: boolean,
 ): Data {
   return {
     food_name,
     quantity,
     amount,
     status,
-    isPaid,
+    // isPaid,
     actions: "actions"
   };
 }
@@ -97,19 +97,17 @@ export default function VendorOrder() {
   const { vendorOrder, isLoading } = useAppSelector(
     (state) => state.vendorOrder
   );
-  console.log(isLoading)
 
   React.useEffect(() => {
     dispatch(getOrderCount());
   }, [dispatch]);
-    console.log('vendorOrder', vendorOrder)
   const rows = vendorOrder?.map((order: any) =>
     createData(
-      order.food_items.name,
-      order.food_items.length,
-      order.amount,
+      order.name,
+      order.quantity,
+      order.itemTotal,
       order.status,
-      order.isPaid
+      // order.isPaid
     )
   );
 

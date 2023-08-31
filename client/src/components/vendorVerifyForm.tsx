@@ -39,7 +39,7 @@ const VendorRegNO = () => {
     } catch (error: any) {
       setLoading(false);
       if (error.response) {
-        showErrorToast(error.response.status);
+        showErrorToast(error.response.data.message);
       } else if (error.request) {
         showErrorToast("Internal Server Error");
       } else {
