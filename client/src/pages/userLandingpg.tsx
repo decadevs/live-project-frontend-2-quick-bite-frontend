@@ -7,11 +7,12 @@ import Header from '../components/Header'
 import AllPopularFood from '../components/AllPopularFood'
  import AllPopularRestaurant from '../components/AllPopularRestaurant'
  import  UserLoginImg from "../assets/food1.jpeg"
+ import HeaderNotAuth from "../components/HeaderNotAuth"
 
 const userLandingpg = () => {
   return (
     <div className={styles.container}>
-        <Header/>
+       { localStorage.getItem("token")? <Header/>: <HeaderNotAuth/>}
         <img src={UserLoginImg} alt=""  className={styles.userImg}/>
         <NewQuickbite/>
          <PopularDelivery/>

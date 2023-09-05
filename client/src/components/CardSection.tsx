@@ -10,16 +10,17 @@ interface Props {
   description?: string;
   item: any;
   price?: number;
+  food_image?: string;
   // onEdit: (name: string, description: string) => void;
 }
 
-const CardSection: React.FC<Props> = ({ name, description, item, price }) => {
+const CardSection: React.FC<Props> = ({ name, description, item, price, food_image }) => {
   const { addItem } = useCart();
 
   return (
     <>
       <div className="card-section-container">
-        <img src={food1} alt="food" />
+        <img src={food_image} alt="food" />
         <div className="text-area">
           <h2>{name}</h2>
           <p>{description}</p>
