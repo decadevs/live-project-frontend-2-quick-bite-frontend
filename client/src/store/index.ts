@@ -48,13 +48,10 @@ export const store = configureStore({
     getSingleVendor: singleVendorReducer,
     getVendorFoods: singleVendorFoodsReducer,
     order: makeOrderReducer,
-<<<<<<< HEAD
     geoProfile: geoProfileReducer,
-    getSingleOrder: singleOrdersReducer
-=======
+    getSingleOrder: singleOrdersReducer,
     userOrders: userOrdersReducer,
 
->>>>>>> 67d634e0f9b5d465c5d01547ec5bdfe71dbc77e6
   },
 });
 

@@ -45,6 +45,7 @@ const AllVendorFoods = () => {
           description={item.description}
           price={item.price}
           item={item}
+          food_image={item.food_image}
         />
       ))}
     </>
